@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZedGraph;
 
 namespace Licenta_Mamograf
 {
@@ -31,9 +32,9 @@ namespace Licenta_Mamograf
 
         private Point _bufferPoint;
 
-        private HScrollBar horizontalScrollBar;
+        public HScrollBar horizontalScrollBar;
 
-        private VScrollBar verticalScrollBar;
+        public VScrollBar verticalScrollBar;
 
         private InterpolationMode _interpolationMode = InterpolationMode.NearestNeighbor;
 
@@ -42,7 +43,7 @@ namespace Licenta_Mamograf
         //
         // Summary:
         //     The available zoom levels for the displayed image
-        public static double[] ZoomLevels = new double[7] { 0.125, 0.25, 0.5, 1.0, 2.0, 4.0, 8.0 };
+        public static double[] ZoomLevels = new double[5] { 0.5, 1.0, 2.0, 4.0, 8.0 };
 
         //
         // Summary:
@@ -180,11 +181,11 @@ namespace Licenta_Mamograf
                 {
                     return;
                 }
-
                 num = 0.5;
             }
-            if (this.ZoomScale < 1 && num == 0.5)
+            if (num == 0.5 && (this.Image.Width * this.ZoomScale <= this.Width || this.Image.Height * this.ZoomScale <= this.Height))
                 return;
+
             SetZoomScale(ZoomScale * num, e.Location);
         }
 
@@ -231,7 +232,7 @@ namespace Licenta_Mamograf
                 base.OnPaint(pe);
                 return;
             }
-
+        
             base.OnPaint(pe);
         }
 
@@ -251,7 +252,6 @@ namespace Licenta_Mamograf
                 {
                     horizontalScrollBar.Maximum = 0;
                 }
-
                 horizontalScrollBar.LargeChange = Math.Max(horizontalScrollBar.Maximum / 10, 1);
                 horizontalScrollBar.SmallChange = Math.Max(horizontalScrollBar.Maximum / 20, 1);
                 if (verticalScrollBar.Visible)
@@ -262,7 +262,6 @@ namespace Licenta_Mamograf
                 {
                     verticalScrollBar.Maximum = 0;
                 }
-
                 verticalScrollBar.LargeChange = Math.Max(verticalScrollBar.Maximum / 10, 1);
                 verticalScrollBar.SmallChange = Math.Max(verticalScrollBar.Maximum / 20, 1);
             }
@@ -358,6 +357,20 @@ namespace Licenta_Mamograf
         {
             rect.Location = PointToScreen(rect.Location);
             ControlPaint.DrawReversibleFrame(rect, Color.White, FrameStyle.Dashed);
+        }
+
+        public Point AdjustPoint(PointF currentPosition)
+        {
+            float x = (float)((currentPosition.X + this.HorizontalScrollBar.Value * this.ZoomScale) / this.ZoomScale);
+            float y = (float)((currentPosition.Y + this.VerticalScrollBar.Value * this.ZoomScale) / this.ZoomScale);
+            int width = this.Image.Width;
+            int height = this.Image.Height;
+
+            Point adjustPosition = new Point(
+                x < 0 ? 0 : x > width ? width : (int)Math.Round(x),
+                y < 0 ? 0 : y > height ? height : (int)Math.Round(y));
+
+            return adjustPosition;
         }
 
         private Rectangle GetRectanglePreserveAspect(Point p1, Point p2)

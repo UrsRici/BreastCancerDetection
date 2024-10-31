@@ -25,8 +25,8 @@ namespace Licenta_Mamograf
         private PGM imgEnh = new PGM();
         private PGM curent_img = new PGM();
 
-        private PointF ROIstartPoint = new PointF();
-        private PointF ROIendPoint = new PointF();
+        private Point ROIstartPoint = new Point();
+        private Point ROIendPoint = new Point();
         private Rectangle ROIfig = new Rectangle();
         private float[,] ROI;
         private Brush ROIselectionBrush = new SolidBrush(Color.FromArgb(75, 255, 255, 50));
@@ -141,13 +141,13 @@ namespace Licenta_Mamograf
                      * SelectROI_button.BackColor = BackColor;
                      * SelectROI_button.ForeColor = Color.Black;
                      */
-                    /*Point p = new Point(
-                    Math.Min((int)ROIendPoint.X, (int)ROIstartPoint.X),
-                    Math.Min((int)ROIendPoint.Y, (int)ROIstartPoint.Y));
+                    Point p = new Point(
+                        Math.Min(ROIendPoint.X, ROIstartPoint.X),
+                        Math.Min(ROIendPoint.Y, ROIstartPoint.Y));
 
                     ROI = new float[
-                        Math.Abs((int)ROIendPoint.X - (int)ROIstartPoint.X),
-                        Math.Abs((int)ROIendPoint.Y - (int)ROIstartPoint.Y)];
+                        Math.Abs(ROIendPoint.X - ROIstartPoint.X),
+                        Math.Abs(ROIendPoint.Y - ROIstartPoint.Y)];
 
                     Bitmap aux = (Bitmap)curent_img.bitmap.Clone();
                     for (int x = 0; x < ROI.GetLength(0); x++)
@@ -157,14 +157,9 @@ namespace Licenta_Mamograf
                             ROI[x, y] = aux.GetPixel((p.X + x), (p.Y + y)).R;
                         }
                     }
-                    for (int x = 0; x < ROI.GetLength(0); x++)
-                    {
-                        for (int y = 0; y < ROI.GetLength(1); y++)
-                        {
-                            info_log.Text += ROI[x, y] + " ";
-                        }
-                        info_log.Text += "\n";
-                    }*/
+   
+                    info_log.Text = ROI.GetLength(0)+ " " + ROI.GetLength(1);
+
                 }
             }
             else info_log.Text += "No image selected!\n";
@@ -172,6 +167,8 @@ namespace Licenta_Mamograf
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
+           
+
             // Draw the rectangle...
             if (pictureBox.Image != null && pictureBox.ROIselect_Button_active)
             {
@@ -186,56 +183,12 @@ namespace Licenta_Mamograf
         {
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
             {
-                // Calculăm coordonatele reale ale pixelului în funcție de zoom
-                ROIstartPoint = adjustPosition(e);
+                // Calculăm coordonatele reale ale pixelului în funcție de zoom...
+                ROIstartPoint = pictureBox.AdjustPoint(e.Location);
 
                 // Afișăm coordonatele în startPoint.Text
                 startPoint.Text = "P1(" + ROIstartPoint.X + ", " + ROIstartPoint.Y + ")";
             }
-        }
-        
-        private PointF adjustPosition(MouseEventArgs e)
-        {
-            PointF adjusted = new PointF();
-            adjusted.X = (float)((e.Location.X + pictureBox.HorizontalScrollBar.Value) / pictureBox.ZoomScale);
-            adjusted.Y = (float)((e.Location.Y + pictureBox.VerticalScrollBar.Value) / pictureBox.ZoomScale);
-
-            switch (pictureBox.ZoomScale)
-            {
-                case 2:
-                    adjusted.X *= 1.6f;
-                    adjusted.Y *= 1.6f;
-                    break;
-                case 4:
-                    adjusted.X *= 2.9112081514f;
-                    adjusted.Y *= 2.9112081514f;
-                    break;
-                case 8:
-                    adjusted.X *= 5.5710306407f;
-                    adjusted.Y *= 5.5710306407f;
-                    break;
-                case 16:
-                    adjusted.X *= 10.9140518417f;
-                    adjusted.Y *= 10.9140518417f;
-                    break;
-                case 32:
-                    adjusted.X *= 21.6216216216f;
-                    adjusted.Y *= 21.6216216216f;
-                    break;
-                case 64:
-                    adjusted.X *= 43.068622097f;
-                    adjusted.Y *= 43.068622097f;
-                    break;
-                case 128:
-                    adjusted.X *= 86.0215053763f;
-                    adjusted.Y *= 86.0215053763f;
-                    break;
-
-            }
-
-            adjusted.X = (float)Math.Round(adjusted.X);
-            adjusted.Y = (float)Math.Round(adjusted.Y);
-            return adjusted;
         }
 
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
@@ -243,14 +196,7 @@ namespace Licenta_Mamograf
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
             {
                 // Checking if the ROIendPoint is inside the pictureBox...
-                int x = (int)(e.Location.X / pictureBox.ZoomScale);
-                int y = (int)(e.Location.Y / pictureBox.ZoomScale);
-                int width = (int)(pictureBox.Width / (float)pictureBox.ZoomScale);
-                int height = (int)(pictureBox.Height / (float)pictureBox.ZoomScale);
-
-                ROIendPoint = new Point(
-                    x < 0 ? 0 : x > width ? width : x,
-                    y < 0 ? 0 : y > height ? height : y);
+                ROIendPoint = pictureBox.AdjustPoint(e.Location);
 
 
                 label_x.Text = Math.Abs(ROIendPoint.X - ROIstartPoint.X).ToString();
@@ -295,8 +241,7 @@ namespace Licenta_Mamograf
 
         private void button1_Click(object sender, EventArgs e)
         {
-            info_log.Text += pictureBox.GetImageSize();
-            info_log.Text += pictureBox.ZoomScale.ToString() + "\n";
+            info_log.Text += pictureBox.verticalScrollBar.ToString() + "\n";
         }
     }
 }
