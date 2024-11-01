@@ -9,16 +9,16 @@ namespace Licenta_Mamograf
 {
     public class HaarWavelet
     {
-        private double[,] matrix;
-        private double[,] coefficients;
-        private double threshold;
-        private double[,] denoisedMatrix;
-        private Bitmap denoisedBitmap;
-        private Bitmap image;
+        private static double[,] matrix;
+        private static double[,] coefficients;
+        private static double threshold;
+        private static double[,] denoisedMatrix;
+        private static Bitmap denoisedBitmap;
+        private static Bitmap image;
 
         public HaarWavelet(Bitmap bitmap) { image = bitmap; }   
 
-        private void Transform()
+        private static void Transform()
         {
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
@@ -35,7 +35,7 @@ namespace Licenta_Mamograf
             }
         }
 
-        private void InverseTransform()
+        private static void InverseTransform()
         {
             int rows = coefficients.GetLength(0);
             int cols = coefficients.GetLength(1);
@@ -52,7 +52,7 @@ namespace Licenta_Mamograf
             }
         }
 
-        private void CalculateThreshold()
+        private static void CalculateThreshold()
         {
             // Implementare simplă pentru calcularea pragului
             double mean = coefficients.Cast<double>().Average();
@@ -60,7 +60,7 @@ namespace Licenta_Mamograf
             threshold = mean + 0.5f * stdDev; // Prag adaptiv simplificat
         }
 
-        private void ApplyThreshold()
+        private static void ApplyThreshold()
         {
             int rows = coefficients.GetLength(0);
             int cols = coefficients.GetLength(1);
@@ -78,7 +78,7 @@ namespace Licenta_Mamograf
             }
         }
 
-        private void ConvertMatrixToBitmap()
+        private static void ConvertMatrixToBitmap()
         {
             int height = denoisedMatrix.GetLength(0);
             int width = denoisedMatrix.GetLength(1);
@@ -103,7 +103,7 @@ namespace Licenta_Mamograf
             }
         }
 
-        private void ConvertBitmapToMatrix()
+        private static void ConvertBitmapToMatrix()
         {
             int width = image.Width;
             int height = image.Height;
@@ -121,8 +121,9 @@ namespace Licenta_Mamograf
             };
         }
 
-        public (Bitmap, double[,]) Denoising()
+        public static Bitmap Denoising(PGM pGM)
         {
+            image = pGM.bitmap;
             // Convert the image into a matrix...
             ConvertBitmapToMatrix();
 
@@ -141,7 +142,7 @@ namespace Licenta_Mamograf
             // Convert the denoised matrix into a denoised image...
             ConvertMatrixToBitmap();
 
-            return (denoisedBitmap, denoisedMatrix);
+            return (denoisedBitmap/*, denoisedMatrix*/);
         }
     }
 }

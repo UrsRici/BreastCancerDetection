@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vaja1_CLAHE;
 
 namespace Licenta_Mamograf
 {
@@ -29,12 +30,15 @@ namespace Licenta_Mamograf
     
     public class PGM
     {
-        public string magicNumber;
-        public int width;
-        public int height;
-        public int maxVal;
-        public Bitmap bitmap;
-        public double[,] matrix;
+        public string magicNumber = "P5";
+        public int width = 1024;
+        public int height = 1024;
+        public int maxVal = 255;
+        public Bitmap bitmap { get; set; }
+        public double[,] matrix { get; set; }
+
+
+
         public PGM() 
         { 
             magicNumber = string.Empty;
@@ -95,7 +99,27 @@ namespace Licenta_Mamograf
                 }
             }
         }
+        public PGM Update(Bitmap bmp)
+        {
+            bitmap = bmp;
+            width = bmp.Width;
+            height = bmp.Height;
+            matrix = new double[width, height];
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    matrix[x, y] = bmp.GetPixel(x, y).R;
+                }
+            }
+            return this;
+        }
         public void Show(PictureBox pB) { pB.Image = (Bitmap)bitmap.Clone(); }
         public PGM Coppy() { return new PGM(this); }
+
+        public MyBitmap ToMyBitmap()
+        {
+            return new MyBitmap(this.bitmap);
+        }
     }
 }

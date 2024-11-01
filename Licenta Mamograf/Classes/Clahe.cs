@@ -331,6 +331,7 @@ namespace Licenta_Mamograf
             equalizeHistogram();
 
             return res;
+
         }
     }
 }
