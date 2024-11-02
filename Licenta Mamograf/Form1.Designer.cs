@@ -32,15 +32,6 @@
             this.info_log = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button_WaveletDenoising = new System.Windows.Forms.Button();
-            this.button_Enhancement = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.bits_x_tb = new System.Windows.Forms.TextBox();
-            this.bits_y_tb = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.grey_level_tb = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.slope_tb = new System.Windows.Forms.TextBox();
             this.endPoint = new System.Windows.Forms.Label();
             this.startPoint = new System.Windows.Forms.Label();
             this.label_y = new System.Windows.Forms.Label();
@@ -50,16 +41,19 @@
             this.button_selectROI = new System.Windows.Forms.Button();
             this.button_relode = new System.Windows.Forms.Button();
             this.button_log = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label_aux1 = new System.Windows.Forms.Label();
-            this.label_aux2 = new System.Windows.Forms.Label();
             this.button_CLHE = new System.Windows.Forms.Button();
             this.contrastLimit = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button_CLAHE = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.windowSize = new System.Windows.Forms.TextBox();
+            this.pictureBox_R = new System.Windows.Forms.PictureBox();
+            this.pictureBox_G = new System.Windows.Forms.PictureBox();
+            this.pictureBox_B = new System.Windows.Forms.PictureBox();
             this.pictureBox = new Licenta_Mamograf.MyImageBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_R)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_G)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_B)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,7 +90,7 @@
             this.button_WaveletDenoising.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_WaveletDenoising.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_WaveletDenoising.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_WaveletDenoising.Location = new System.Drawing.Point(1087, 16);
+            this.button_WaveletDenoising.Location = new System.Drawing.Point(745, 141);
             this.button_WaveletDenoising.Name = "button_WaveletDenoising";
             this.button_WaveletDenoising.Size = new System.Drawing.Size(163, 47);
             this.button_WaveletDenoising.TabIndex = 4;
@@ -104,106 +98,11 @@
             this.button_WaveletDenoising.UseVisualStyleBackColor = false;
             this.button_WaveletDenoising.Click += new System.EventHandler(this.button_WaveletDenoising_Click);
             // 
-            // button_Enhancement
-            // 
-            this.button_Enhancement.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button_Enhancement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_Enhancement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Enhancement.Location = new System.Drawing.Point(1087, 86);
-            this.button_Enhancement.Name = "button_Enhancement";
-            this.button_Enhancement.Size = new System.Drawing.Size(163, 47);
-            this.button_Enhancement.TabIndex = 5;
-            this.button_Enhancement.Text = "Enhancement";
-            this.button_Enhancement.UseVisualStyleBackColor = false;
-            this.button_Enhancement.Click += new System.EventHandler(this.button_Enhancement_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1084, 142);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(15, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "X";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1084, 166);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(16, 16);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Y";
-            // 
-            // bits_x_tb
-            // 
-            this.bits_x_tb.Location = new System.Drawing.Point(1100, 138);
-            this.bits_x_tb.Margin = new System.Windows.Forms.Padding(2);
-            this.bits_x_tb.Name = "bits_x_tb";
-            this.bits_x_tb.Size = new System.Drawing.Size(22, 20);
-            this.bits_x_tb.TabIndex = 9;
-            this.bits_x_tb.Text = "8";
-            this.bits_x_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // bits_y_tb
-            // 
-            this.bits_y_tb.Location = new System.Drawing.Point(1100, 162);
-            this.bits_y_tb.Margin = new System.Windows.Forms.Padding(2);
-            this.bits_y_tb.Name = "bits_y_tb";
-            this.bits_y_tb.Size = new System.Drawing.Size(22, 20);
-            this.bits_y_tb.TabIndex = 10;
-            this.bits_y_tb.Text = "8";
-            this.bits_y_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1140, 142);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 16);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "grey levels";
-            // 
-            // grey_level_tb
-            // 
-            this.grey_level_tb.Location = new System.Drawing.Point(1217, 138);
-            this.grey_level_tb.Margin = new System.Windows.Forms.Padding(2);
-            this.grey_level_tb.Name = "grey_level_tb";
-            this.grey_level_tb.Size = new System.Drawing.Size(33, 20);
-            this.grey_level_tb.TabIndex = 12;
-            this.grey_level_tb.Text = "256";
-            this.grey_level_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1172, 166);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 16);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "slope";
-            // 
-            // slope_tb
-            // 
-            this.slope_tb.Location = new System.Drawing.Point(1217, 162);
-            this.slope_tb.Margin = new System.Windows.Forms.Padding(2);
-            this.slope_tb.Name = "slope_tb";
-            this.slope_tb.Size = new System.Drawing.Size(33, 20);
-            this.slope_tb.TabIndex = 14;
-            this.slope_tb.Text = "2.5";
-            this.slope_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // endPoint
             // 
             this.endPoint.AutoSize = true;
             this.endPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endPoint.Location = new System.Drawing.Point(1157, 291);
+            this.endPoint.Location = new System.Drawing.Point(1213, 103);
             this.endPoint.Name = "endPoint";
             this.endPoint.Size = new System.Drawing.Size(56, 20);
             this.endPoint.TabIndex = 20;
@@ -213,7 +112,7 @@
             // 
             this.startPoint.AutoSize = true;
             this.startPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startPoint.Location = new System.Drawing.Point(1157, 261);
+            this.startPoint.Location = new System.Drawing.Point(1213, 73);
             this.startPoint.Name = "startPoint";
             this.startPoint.Size = new System.Drawing.Size(56, 20);
             this.startPoint.TabIndex = 19;
@@ -223,7 +122,7 @@
             // 
             this.label_y.AutoSize = true;
             this.label_y.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_y.Location = new System.Drawing.Point(1110, 291);
+            this.label_y.Location = new System.Drawing.Point(1166, 103);
             this.label_y.Name = "label_y";
             this.label_y.Size = new System.Drawing.Size(16, 20);
             this.label_y.TabIndex = 18;
@@ -233,7 +132,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1090, 291);
+            this.label5.Location = new System.Drawing.Point(1146, 103);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(20, 20);
             this.label5.TabIndex = 17;
@@ -243,7 +142,7 @@
             // 
             this.label_x.AutoSize = true;
             this.label_x.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_x.Location = new System.Drawing.Point(1110, 261);
+            this.label_x.Location = new System.Drawing.Point(1166, 73);
             this.label_x.Name = "label_x";
             this.label_x.Size = new System.Drawing.Size(16, 20);
             this.label_x.TabIndex = 16;
@@ -253,7 +152,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1090, 261);
+            this.label6.Location = new System.Drawing.Point(1146, 73);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 20);
             this.label6.TabIndex = 15;
@@ -264,7 +163,7 @@
             this.button_selectROI.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_selectROI.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_selectROI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_selectROI.Location = new System.Drawing.Point(1087, 211);
+            this.button_selectROI.Location = new System.Drawing.Point(1143, 23);
             this.button_selectROI.Name = "button_selectROI";
             this.button_selectROI.Size = new System.Drawing.Size(163, 47);
             this.button_selectROI.TabIndex = 21;
@@ -295,42 +194,12 @@
             this.button_log.UseVisualStyleBackColor = true;
             this.button_log.Click += new System.EventHandler(this.button_log_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(615, 397);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 19);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "Clean LOG";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label_aux1
-            // 
-            this.label_aux1.AutoSize = true;
-            this.label_aux1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_aux1.Location = new System.Drawing.Point(1083, 356);
-            this.label_aux1.Name = "label_aux1";
-            this.label_aux1.Size = new System.Drawing.Size(56, 20);
-            this.label_aux1.TabIndex = 27;
-            this.label_aux1.Text = "P1(x,y)";
-            // 
-            // label_aux2
-            // 
-            this.label_aux2.AutoSize = true;
-            this.label_aux2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_aux2.Location = new System.Drawing.Point(1157, 356);
-            this.label_aux2.Name = "label_aux2";
-            this.label_aux2.Size = new System.Drawing.Size(56, 20);
-            this.label_aux2.TabIndex = 28;
-            this.label_aux2.Text = "P1(x,y)";
-            // 
             // button_CLHE
             // 
             this.button_CLHE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_CLHE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_CLHE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CLHE.Location = new System.Drawing.Point(809, 38);
+            this.button_CLHE.Location = new System.Drawing.Point(745, 16);
             this.button_CLHE.Name = "button_CLHE";
             this.button_CLHE.Size = new System.Drawing.Size(72, 47);
             this.button_CLHE.TabIndex = 29;
@@ -340,7 +209,7 @@
             // 
             // contrastLimit
             // 
-            this.contrastLimit.Location = new System.Drawing.Point(896, 100);
+            this.contrastLimit.Location = new System.Drawing.Point(832, 78);
             this.contrastLimit.Margin = new System.Windows.Forms.Padding(2);
             this.contrastLimit.Name = "contrastLimit";
             this.contrastLimit.Size = new System.Drawing.Size(33, 20);
@@ -352,7 +221,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(806, 102);
+            this.label7.Location = new System.Drawing.Point(742, 80);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 16);
@@ -364,7 +233,7 @@
             this.button_CLAHE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_CLAHE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_CLAHE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CLAHE.Location = new System.Drawing.Point(887, 38);
+            this.button_CLAHE.Location = new System.Drawing.Point(823, 16);
             this.button_CLAHE.Name = "button_CLAHE";
             this.button_CLAHE.Size = new System.Drawing.Size(72, 47);
             this.button_CLAHE.TabIndex = 32;
@@ -376,7 +245,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(806, 127);
+            this.label8.Location = new System.Drawing.Point(742, 105);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(84, 16);
@@ -385,7 +254,7 @@
             // 
             // windowSize
             // 
-            this.windowSize.Location = new System.Drawing.Point(896, 125);
+            this.windowSize.Location = new System.Drawing.Point(832, 103);
             this.windowSize.Margin = new System.Windows.Forms.Padding(2);
             this.windowSize.Name = "windowSize";
             this.windowSize.Size = new System.Drawing.Size(33, 20);
@@ -393,10 +262,36 @@
             this.windowSize.Text = "64";
             this.windowSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // pictureBox_R
+            // 
+            this.pictureBox_R.Location = new System.Drawing.Point(530, 321);
+            this.pictureBox_R.Name = "pictureBox_R";
+            this.pictureBox_R.Size = new System.Drawing.Size(256, 256);
+            this.pictureBox_R.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_R.TabIndex = 35;
+            this.pictureBox_R.TabStop = false;
+            // 
+            // pictureBox_G
+            // 
+            this.pictureBox_G.Location = new System.Drawing.Point(791, 321);
+            this.pictureBox_G.Name = "pictureBox_G";
+            this.pictureBox_G.Size = new System.Drawing.Size(256, 256);
+            this.pictureBox_G.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_G.TabIndex = 36;
+            this.pictureBox_G.TabStop = false;
+            // 
+            // pictureBox_B
+            // 
+            this.pictureBox_B.Location = new System.Drawing.Point(1053, 321);
+            this.pictureBox_B.Name = "pictureBox_B";
+            this.pictureBox_B.Size = new System.Drawing.Size(256, 256);
+            this.pictureBox_B.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_B.TabIndex = 37;
+            this.pictureBox_B.TabStop = false;
+            // 
             // pictureBox
             // 
             this.pictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox.Image = global::Licenta_Mamograf.Properties.Resources._48Alqh;
             this.pictureBox.Location = new System.Drawing.Point(12, 65);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.ROIselect_Button_active = false;
@@ -412,17 +307,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1262, 611);
+            this.ClientSize = new System.Drawing.Size(1318, 611);
+            this.Controls.Add(this.pictureBox_B);
+            this.Controls.Add(this.pictureBox_G);
+            this.Controls.Add(this.pictureBox_R);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.windowSize);
             this.Controls.Add(this.button_CLAHE);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.contrastLimit);
             this.Controls.Add(this.button_CLHE);
-            this.Controls.Add(this.label_aux2);
-            this.Controls.Add(this.label_aux1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.button_log);
             this.Controls.Add(this.button_relode);
             this.Controls.Add(this.button_selectROI);
@@ -432,21 +326,16 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label_x);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.slope_tb);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.grey_level_tb);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.bits_y_tb);
-            this.Controls.Add(this.bits_x_tb);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button_Enhancement);
             this.Controls.Add(this.button_WaveletDenoising);
             this.Controls.Add(this.info_log);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button_select);
+            this.Controls.Add(this.pictureBox);
             this.Name = "Image_Analysis";
             this.Text = "Image_analysis";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_R)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_G)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_B)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -458,15 +347,6 @@
         private System.Windows.Forms.RichTextBox info_log;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button_WaveletDenoising;
-        private System.Windows.Forms.Button button_Enhancement;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox bits_x_tb;
-        private System.Windows.Forms.TextBox bits_y_tb;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox grey_level_tb;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox slope_tb;
         private System.Windows.Forms.Label endPoint;
         private System.Windows.Forms.Label startPoint;
         private System.Windows.Forms.Label label_y;
@@ -476,16 +356,16 @@
         private System.Windows.Forms.Button button_selectROI;
         private System.Windows.Forms.Button button_relode;
         private System.Windows.Forms.Button button_log;
-        private MyImageBox pictureBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label_aux1;
-        private System.Windows.Forms.Label label_aux2;
         private System.Windows.Forms.Button button_CLHE;
         private System.Windows.Forms.TextBox contrastLimit;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button_CLAHE;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox windowSize;
+        private System.Windows.Forms.PictureBox pictureBox_R;
+        private System.Windows.Forms.PictureBox pictureBox_G;
+        private System.Windows.Forms.PictureBox pictureBox_B;
+        internal MyImageBox pictureBox;
     }
 }
 

@@ -70,8 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Clahe.cs" />
-    <Compile Include="Classes\CLHE.cs" />
+    <Compile Include="Classes\CLAHE.cs" />
     <Compile Include="Classes\MyBitmap.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

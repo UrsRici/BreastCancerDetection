@@ -7,47 +7,45 @@ using System.Threading.Tasks;
 
 namespace Licenta_Mamograf
 {
-    public class HaarWavelet
+    public static class HaarWavelet
     {
         private static double[,] matrix;
         private static double[,] coefficients;
         private static double threshold;
         private static double[,] denoisedMatrix;
-        private static Bitmap denoisedBitmap;
-        private static Bitmap image;
-
-        public HaarWavelet(Bitmap bitmap) { image = bitmap; }   
+        private static MyBitmap denoisedBitmap;
+        private static MyBitmap image;
 
         private static void Transform()
         {
-            int rows = matrix.GetLength(0);
-            int cols = matrix.GetLength(1);
-            coefficients = new double[rows, cols];
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            coefficients = new double[height, width];
 
             // Transformata Haar pe rânduri
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < cols / 2; j++)
+                for (int j = 0; j < width / 2; j++)
                 {
                     coefficients[i, j] = (matrix[i, 2 * j] + matrix[i, 2 * j + 1]) / Math.Sqrt(2);
-                    coefficients[i, j + cols / 2] = (matrix[i, 2 * j] - matrix[i, 2 * j + 1]) / Math.Sqrt(2);
+                    coefficients[i, j + width / 2] = (matrix[i, 2 * j] - matrix[i, 2 * j + 1]) / Math.Sqrt(2);
                 }
             }
         }
 
         private static void InverseTransform()
         {
-            int rows = coefficients.GetLength(0);
-            int cols = coefficients.GetLength(1);
-            denoisedMatrix = new double[rows, cols];
+            int height = coefficients.GetLength(0);
+            int width = coefficients.GetLength(1);
+            denoisedMatrix = new double[height, width];
 
             // Transformata Haar inversă pe rânduri
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < cols / 2; j++)
+                for (int j = 0; j < width / 2; j++)
                 {
-                    denoisedMatrix[i, 2 * j] = (coefficients[i, j] + coefficients[i, j + cols / 2]) / Math.Sqrt(2);
-                    denoisedMatrix[i, 2 * j + 1] = (coefficients[i, j] - coefficients[i, j + cols / 2]) / Math.Sqrt(2);
+                    denoisedMatrix[i, 2 * j] = (coefficients[i, j] + coefficients[i, j + width / 2]) / Math.Sqrt(2);
+                    denoisedMatrix[i, 2 * j + 1] = (coefficients[i, j] - coefficients[i, j + width / 2]) / Math.Sqrt(2);
                 }
             }
         }
@@ -62,12 +60,12 @@ namespace Licenta_Mamograf
 
         private static void ApplyThreshold()
         {
-            int rows = coefficients.GetLength(0);
-            int cols = coefficients.GetLength(1);
+            int height = coefficients.GetLength(0);
+            int width = coefficients.GetLength(1);
 
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < width; j++)
                 {
                     // Elimină coeficientii cu intensitate prea mare
                     if (Math.Abs(coefficients[i, j]) < threshold /*|| Math.Abs(coefficients[i, j]) > 255*/) // Prag maxim
@@ -82,7 +80,7 @@ namespace Licenta_Mamograf
         {
             int height = denoisedMatrix.GetLength(0);
             int width = denoisedMatrix.GetLength(1);
-            denoisedBitmap = new Bitmap(width, height);
+            denoisedBitmap = new MyBitmap(height, width);
 
             for (int y = 0; y < height; y++)
             {
@@ -97,8 +95,8 @@ namespace Licenta_Mamograf
                         grayValue = 0;
                     else
                         grayValue = 255;
-                    Color grayColor = Color.FromArgb(grayValue, grayValue, grayValue);
-                    denoisedBitmap.SetPixel(x, y, grayColor);
+
+                    denoisedBitmap.SetPixel(y, x, (byte)grayValue);
                 }
             }
         }
@@ -114,14 +112,12 @@ namespace Licenta_Mamograf
                 for (int x = 0; x < width; x++)
                 {
                     // Obține valoarea de gri a pixelului
-                    Color pixelColor = image.GetPixel(x, y);
-                    double grayValue = (pixelColor.R + pixelColor.G + pixelColor.B) / 3.0; // Poți folosi o formulă mai complexă pentru luminanță
-                    matrix[y, x] = grayValue;
+                    matrix[y, x] = image.GetPixel(y, x);
                 }
-            };
+            }
         }
 
-        public static Bitmap Denoising(PGM pGM)
+        public static MyBitmap Denoising(PGM pGM)
         {
             image = pGM.bitmap;
             // Convert the image into a matrix...
@@ -144,5 +140,6 @@ namespace Licenta_Mamograf
 
             return (denoisedBitmap/*, denoisedMatrix*/);
         }
+
     }
 }

@@ -13,9 +13,6 @@ using Emgu.CV.UI;
 using Emgu.CV;
 using ZedGraph;
 using OpenTK;
-using Licenta_Mamograf.Classes;
-using Vaja1_CLAHE;
-
 
 namespace Licenta_Mamograf
 {
@@ -23,9 +20,8 @@ namespace Licenta_Mamograf
     {
         private string filePath = string.Empty;
         private PGM original_img = new PGM();
-        //private PGM imgWD = new PGM();
-        //private PGM imgEnh = new PGM();
         private PGM curent_img = new PGM();
+        DateTime t0 = new DateTime(), t1 = new DateTime();
 
         private Point ROIstartPoint = new Point();
         private Point ROIendPoint = new Point();
@@ -40,6 +36,7 @@ namespace Licenta_Mamograf
 
         private void button_select_Click(object sender, EventArgs e)
         {
+            t0 = DateTime.Now;
             // Create an OpenFileDialog to select a file
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -52,7 +49,7 @@ namespace Licenta_Mamograf
             {
                 filePath = openFileDialog.FileName;
                 original_img = new PGM(filePath);
-                original_img.Show(pictureBox);
+                original_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
                 curent_img = new PGM(original_img);
 
                 textBox1.Text = filePath;
@@ -65,6 +62,10 @@ namespace Licenta_Mamograf
                  * info_log.Text += img.maxVal + "\n";
                  */
             }
+
+            t1 = DateTime.Now;
+
+            info_log.Text = (t1 - t0).ToString() + " ms\n";
         }
 
         private void button_WaveletDenoising_Click(object sender, EventArgs e)
@@ -79,42 +80,13 @@ namespace Licenta_Mamograf
             curent_img.Update(HaarWavelet.Denoising(curent_img));
 
             
-            curent_img.Show(pictureBox);
+            curent_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
 
             info_log.Text += "------Wavelet Denoising------\n";
             /*
              * info_log.Text += imgWD.magicNumber + "\n";
              * info_log.Text += imgWD.width + " " + imgWD.height + "\n";
              * info_log.Text += imgWD.maxVal + "\n";
-             */
-
-        }
-
-        private void button_Enhancement_Click(object sender, EventArgs e)
-        {
-            if (pictureBox.Image == null)
-            {
-                info_log.Text += "Use Wavelet Denoising first!\n";
-                return;
-            }
-            // Entrance data selection...
-            int nbrBinx = int.Parse(bits_x_tb.Text);
-            int nbrBinY = int.Parse(bits_y_tb.Text);
-            int grayLevels = int.Parse(grey_level_tb.Text);
-            float slope = float.Parse(slope_tb.Text);
-
-            // Selecting the current image and applying the Enhancement algorithm...
-            Clahe imClahe = new Clahe(nbrBinx, nbrBinY, grayLevels, slope, (Bitmap)curent_img.bitmap.Clone());
-
-            curent_img.Update(imClahe.Process());
-
-            curent_img.Show(pictureBox);
-
-            info_log.Text += "------Enhancement------\n";
-            /*
-             * info_log.Text += imgEnh.magicNumber + "\n";
-             * info_log.Text += imgEnh.width + " " + imgEnh.height + "\n";
-             * info_log.Text += imgEnh.maxVal + "\n";
              */
 
         }
@@ -147,16 +119,18 @@ namespace Licenta_Mamograf
                         Math.Abs(ROIendPoint.X - ROIstartPoint.X),
                         Math.Abs(ROIendPoint.Y - ROIstartPoint.Y)];
 
-                    Bitmap aux = (Bitmap)curent_img.bitmap.Clone();
+                    MyBitmap aux = curent_img.bitmap;
                     for (int x = 0; x < ROI.GetLength(0); x++)
                     {
                         for (int y = 0; y < ROI.GetLength(1); y++)
                         {
-                            ROI[x, y] = aux.GetPixel((p.X + x), (p.Y + y)).R;
+                            ROI[x, y] = aux.GetPixel((p.X + x), (p.Y + y));
+                            //info_log.Text += ROI[x, y] + " ";
                         }
+                        //info_log.Text += "\n";
                     }
    
-                    info_log.Text = ROI.GetLength(0)+ " " + ROI.GetLength(1);
+                    info_log.Text += ROI.GetLength(0)+ " " + ROI.GetLength(1);
 
                 }
             }
@@ -221,7 +195,7 @@ namespace Licenta_Mamograf
             }
             ROIfig= new Rectangle();
 
-            original_img.Show(pictureBox);
+            original_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
             curent_img = new PGM(original_img);
 
             info_log.Text += "------Image Reloded------\n";
@@ -237,15 +211,9 @@ namespace Licenta_Mamograf
             info_log.Text = string.Empty;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            info_log.Text += pictureBox.verticalScrollBar.ToString() + "\n";
-        }
-
         private void button_CLHE_Click(object sender, EventArgs e)
         {
             DateTime t0 = DateTime.Now;
-
             if (pictureBox.Image == null)
             {
                 info_log.Text += "Use Wavelet Denoising first!\n";
@@ -253,14 +221,14 @@ namespace Licenta_Mamograf
             }
 
             double cL = double.Parse(contrastLimit.Text);
-            MyBitmap myBitmap = curent_img.ToMyBitmap();
+            MyBitmap myBitmap = curent_img.bitmap;
             CLHE.Apply(ref myBitmap, cL);
-            curent_img.Update(myBitmap.ToBitmap());
+            curent_img.Update(myBitmap);
 
-            curent_img.Show(pictureBox);
+            curent_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
 
             DateTime t1 = DateTime.Now;
-            info_log.Text += (t1 - t0).ToString();
+            info_log.Text += (t1 - t0).ToString() + " ms\n";
         }
 
         private void button_CLAHE_Click(object sender, EventArgs e)
@@ -275,13 +243,14 @@ namespace Licenta_Mamograf
             double cL = double.Parse(contrastLimit.Text);
             int wS = int.Parse(windowSize.Text);
 
-            MyBitmap myBitmap = curent_img.ToMyBitmap();
+            MyBitmap myBitmap = curent_img.bitmap;
             CLAHE.Apply(ref myBitmap, wS, cL);
-            curent_img.Update(myBitmap.ToBitmap());
+            curent_img.Update(myBitmap);
 
-            curent_img.Show(pictureBox);
+            curent_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
             DateTime t1 = DateTime.Now;
-            info_log.Text += (t1 - t0).ToString();
+            info_log.Text += (t1 - t0).ToString() + " ms\n";
         }
+
     }
 }
