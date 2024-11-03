@@ -17,7 +17,11 @@ namespace Licenta_Mamograf
 
         public bool ROIselect_Button_active { get; set; } = false;
 
+        private Rectangle ROIfig { get; set; } = new Rectangle();
+        public void SetROIfig(Point location, Size size) { ROIfig = new Rectangle(location, size); }
+        public void ResetROIfig() { ROIfig = new Rectangle(); }
 
+        public Brush ROIselectionBrush = new SolidBrush(Color.FromArgb(100, 170, 215, 230));
 
         private bool _panableAndZoomable;
 
@@ -230,11 +234,17 @@ namespace Licenta_Mamograf
 
                 pe.Graphics.Transform = matrix;
                 base.OnPaint(pe);
+
+                if (ROIfig != null) 
+                    pe.Graphics.FillRectangle(ROIselectionBrush, ROIfig);
+
                 return;
             }
-        
+            
             base.OnPaint(pe);
         }
+
+
 
         private void SetScrollBarVisibilityAndMaxMin()
         {
@@ -460,24 +470,34 @@ namespace Licenta_Mamograf
         {
             this.horizontalScrollBar = new System.Windows.Forms.HScrollBar();
             this.verticalScrollBar = new System.Windows.Forms.VScrollBar();
-            ((System.ComponentModel.ISupportInitialize)this).BeginInit();
-            base.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // horizontalScrollBar
+            // 
             this.horizontalScrollBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.horizontalScrollBar.Location = new System.Drawing.Point(0, 0);
+            this.horizontalScrollBar.Location = new System.Drawing.Point(0, 33);
             this.horizontalScrollBar.Name = "horizontalScrollBar";
-            this.horizontalScrollBar.Size = new System.Drawing.Size(80, 17);
+            this.horizontalScrollBar.Size = new System.Drawing.Size(83, 17);
             this.horizontalScrollBar.TabIndex = 2;
-            this.horizontalScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(OnScroll);
-            base.Controls.Add(this.horizontalScrollBar);
+            this.horizontalScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.OnScroll);
+            // 
+            // verticalScrollBar
+            // 
             this.verticalScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.verticalScrollBar.Location = new System.Drawing.Point(0, 0);
+            this.verticalScrollBar.Location = new System.Drawing.Point(83, 0);
             this.verticalScrollBar.Name = "verticalScrollBar";
-            this.verticalScrollBar.Size = new System.Drawing.Size(17, 80);
+            this.verticalScrollBar.Size = new System.Drawing.Size(17, 50);
             this.verticalScrollBar.TabIndex = 1;
-            this.verticalScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(OnScroll);
-            base.Controls.Add(this.verticalScrollBar);
-            ((System.ComponentModel.ISupportInitialize)this).EndInit();
-            base.ResumeLayout(false);
+            this.verticalScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.OnScroll);
+            // 
+            // MyImageBox
+            // 
+            this.Controls.Add(this.horizontalScrollBar);
+            this.Controls.Add(this.verticalScrollBar);
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ResumeLayout(false);
+
         }
     }
 }

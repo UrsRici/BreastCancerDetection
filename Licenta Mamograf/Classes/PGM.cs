@@ -118,37 +118,35 @@ namespace Licenta_Mamograf
             return this;
         }
 
-        public void Show(PictureBox p, PictureBox pR, PictureBox pG, PictureBox pB)
-        {
-            Bitmap bmp = new Bitmap(this.height, this.width);
-            int height = bmp.Height;
-            int width = bmp.Width;
-            Bitmap r = new Bitmap(height, width);
-            Bitmap g = new Bitmap(height, width);
-            Bitmap b = new Bitmap(height, width);
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    byte pixel = bitmap.GetPixel(y, x);
-                    bmp.SetPixel(y, x, Color.FromArgb(pixel, pixel, pixel));
-                    r.SetPixel(y, x, Color.FromArgb(pixel, 0, 0));
-                    g.SetPixel(y, x, Color.FromArgb(0, pixel, 0));
-                    b.SetPixel(y, x, Color.FromArgb(0, 0, pixel));
-                }
-            }
-            p.Image = bmp;
-            pR.Image = r;
-            pG.Image = g;
-            pB.Image = b;
-            /*p.Image = bitmap.ToBitmap();
-            pR.Image = bitmap.ToBitmap_R();
-            pG.Image = bitmap.ToBitmap_G();
-            pB.Image = bitmap.ToBitmap_B();*/
-        }
+        public void Show(PictureBox p) { p.Image = bitmap.ToBitmap(); }
 
         public PGM Coppy() { return new PGM(this); }
+
+        public double[] Histogram()
+        {
+            double[] histogram = new double[256];
+
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                    histogram[bitmap.GetPixel(x, y)]++;
+
+            return histogram;
+        }
+
+        public double[] CumulativeHistogram()
+        {
+            double[] histogram = this.Histogram();
+            double[] cumulativeHistogram = new double[histogram.Length];
+            cumulativeHistogram[0] = histogram[0]; // Setăm primul element
+
+            // Calculăm suma cumulativă
+            for (int i = 1; i < histogram.Length; i++)
+            {
+                cumulativeHistogram[i] = cumulativeHistogram[i - 1] + histogram[i];
+            }
+
+            return cumulativeHistogram; // Returnăm histogramă cumulativă
+        }
 
     }
 }

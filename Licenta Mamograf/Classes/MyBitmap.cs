@@ -13,9 +13,6 @@ namespace Licenta_Mamograf
         public int Width { get; set; }
         public int Height { get; set; }
         public byte[,] PixelData { get; set; }
-        public Color[,] R { get; set; }
-        public Color[,] G { get; set; }
-        public Color[,] B { get; set; }
 
         public MyBitmap(MyBitmap bitmap)
         {        
@@ -23,18 +20,12 @@ namespace Licenta_Mamograf
             this.Height = bitmap.Height;
 
             this.PixelData = new byte[this.Height, this.Width];
-            this.R = new Color[this.Width, this.Height];
-            this.G = new Color[this.Width, this.Height];
-            this.B = new Color[this.Width, this.Height];
 
             this.PixelData = bitmap.PixelData;
-            this.R = bitmap.R;
-            this.G = bitmap.G;
-            this.B = bitmap.B;
 
-            /*for (int y = 0; y < this.Height; ++y)
+            for (int y = 0; y < this.Height; ++y)
                 for (int x = 0; x < this.Width; ++x)
-                    this.PixelData[y, x] = bitmap.GetPixel(x, y).R;*/
+                    this.PixelData[y, x] = bitmap.GetPixel(y, x);
         }
         
         public MyBitmap(int w, int h)
@@ -43,9 +34,6 @@ namespace Licenta_Mamograf
             this.Height = h;
 
             this.PixelData = new byte[this.Height, this.Width];
-            this.R = new Color[this.Width, this.Height];
-            this.G = new Color[this.Width, this.Height];
-            this.B = new Color[this.Width, this.Height];
         }
 
         public byte GetPixel(int y, int x)
@@ -56,9 +44,6 @@ namespace Licenta_Mamograf
         public void SetPixel(int y, int x, byte value)
         {
             PixelData[y, x] = value;
-            R[y, x] = Color.FromArgb(value, 0, 0);
-            G[y, x] = Color.FromArgb(0, value, 0);
-            B[y, x] = Color.FromArgb(0, 0, value);
         }
 
         public Bitmap ToBitmap()
@@ -71,48 +56,6 @@ namespace Licenta_Mamograf
                     int pixel = PixelData[y, x];
                     Color c = Color.FromArgb(pixel, pixel, pixel);
                     bitmap.SetPixel(y, x, c);
-                }
-            }
-
-            return bitmap;
-        }
-
-        public Bitmap ToBitmap_R()
-        {
-            Bitmap bitmap = new Bitmap(Width, Height);
-            for (int y = 0; y < this.Height; y++)
-            {
-                for (int x = 0; x < this.Width; x++)
-                {
-                    bitmap.SetPixel(y, x, R[y, x]);
-                }
-            }
-
-            return bitmap;
-        }
-
-        public Bitmap ToBitmap_G()
-        {
-            Bitmap bitmap = new Bitmap(Width, Height);
-            for (int y = 0; y < this.Height; y++)
-            {
-                for (int x = 0; x < this.Width; x++)
-                {
-                    bitmap.SetPixel(y, x, G[y, x]);
-                }
-            }
-
-            return bitmap;
-        }
-
-        public Bitmap ToBitmap_B()
-        {
-            Bitmap bitmap = new Bitmap(Width, Height);
-            for (int y = 0; y < this.Height; y++)
-            {
-                for (int x = 0; x < this.Width; x++)
-                {
-                    bitmap.SetPixel(y, x, B[y, x]);
                 }
             }
 

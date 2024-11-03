@@ -55,7 +55,7 @@ namespace Licenta_Mamograf
             // Implementare simplă pentru calcularea pragului
             double mean = coefficients.Cast<double>().Average();
             double stdDev = Math.Sqrt(coefficients.Cast<double>().Select(val => Math.Pow(val - mean, 2)).Average());
-            threshold = mean + 0.5f * stdDev; // Prag adaptiv simplificat
+            threshold = mean + 0.1f * stdDev; // Prag adaptiv simplificat
         }
 
         private static void ApplyThreshold()
@@ -68,7 +68,7 @@ namespace Licenta_Mamograf
                 for (int j = 0; j < width; j++)
                 {
                     // Elimină coeficientii cu intensitate prea mare
-                    if (Math.Abs(coefficients[i, j]) < threshold /*|| Math.Abs(coefficients[i, j]) > 255*/) // Prag maxim
+                    if (coefficients[i, j] < threshold )
                     {
                         coefficients[i, j] = 0; // Setează coeficientul la 0
                     }

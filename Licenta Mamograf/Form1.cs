@@ -13,25 +13,26 @@ using Emgu.CV.UI;
 using Emgu.CV;
 using ZedGraph;
 using OpenTK;
+using System.Windows.Forms.DataVisualization.Charting;
+using Emgu.CV.Flann;
 
 namespace Licenta_Mamograf
 {
     public partial class Image_Analysis : Form
     {
-        private string filePath = string.Empty;
-        private PGM original_img = new PGM();
-        private PGM curent_img = new PGM();
+        private string filePath = "D:\\Aplicatii\\Facultate\\Informatica\\Licenta\\archive\\all-mias\\mdb005.pgm";
+        private PGM img = new PGM();
         DateTime t0 = new DateTime(), t1 = new DateTime();
 
-        private Point ROIstartPoint = new Point();
-        private Point ROIendPoint = new Point();
-        private Rectangle ROIfig = new Rectangle();
+        public Point ROIstartPoint = new Point();
+        public Point ROIendPoint = new Point();
         private float[,] ROI;
-        private Brush ROIselectionBrush = new SolidBrush(Color.FromArgb(75, 255, 255, 50));
 
         public Image_Analysis()
         {
             InitializeComponent();
+            img = new PGM(filePath);
+            img.Show(pictureBox);
         }
 
         private void button_select_Click(object sender, EventArgs e)
@@ -48,9 +49,8 @@ namespace Licenta_Mamograf
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
-                original_img = new PGM(filePath);
-                original_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
-                curent_img = new PGM(original_img);
+                img = new PGM(filePath);
+                img.Show(pictureBox);
 
                 textBox1.Text = filePath;
                 
@@ -77,10 +77,10 @@ namespace Licenta_Mamograf
             }
             
             // Selecting the current image and applying the WaveletDenoising algorithm...
-            curent_img.Update(HaarWavelet.Denoising(curent_img));
+            img.Update(HaarWavelet.Denoising(img));
 
             
-            curent_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
+            img.Show(pictureBox);
 
             info_log.Text += "------Wavelet Denoising------\n";
             /*
@@ -119,7 +119,7 @@ namespace Licenta_Mamograf
                         Math.Abs(ROIendPoint.X - ROIstartPoint.X),
                         Math.Abs(ROIendPoint.Y - ROIstartPoint.Y)];
 
-                    MyBitmap aux = curent_img.bitmap;
+                    MyBitmap aux = img.bitmap;
                     for (int x = 0; x < ROI.GetLength(0); x++)
                     {
                         for (int y = 0; y < ROI.GetLength(1); y++)
@@ -135,20 +135,6 @@ namespace Licenta_Mamograf
                 }
             }
             else info_log.Text += "No image selected!\n";
-        }
-
-        private void pictureBox_Paint(object sender, PaintEventArgs e)
-        {
-           
-
-            // Draw the rectangle...
-            if (pictureBox.Image != null && pictureBox.ROIselect_Button_active)
-            {
-                if (ROIfig != null && ROIfig.Width > 0 && ROIfig.Height > 0)
-                {
-                    e.Graphics.FillRectangle(ROIselectionBrush, ROIfig);
-                }
-            }
         }
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -167,7 +153,7 @@ namespace Licenta_Mamograf
         {
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
             {
-                // Checking if the ROIendPoint is inside the pictureBox...
+                // Checking if the pictureBox.ROIendPoint is inside the pictureBox...
                 ROIendPoint = pictureBox.AdjustPoint(e.Location);
 
 
@@ -176,12 +162,15 @@ namespace Licenta_Mamograf
 
                 endPoint.Text = "P2(" + ROIendPoint.X + "," + ROIendPoint.Y + ")";
 
-                ROIfig.Location = new Point(
-                    Math.Min((int)ROIstartPoint.X, (int)ROIendPoint.X),
-                    Math.Min((int)ROIstartPoint.Y, (int)ROIendPoint.Y));
-                ROIfig.Size = new Size(
-                    Math.Abs((int)ROIstartPoint.X - (int)ROIendPoint.X),
-                    Math.Abs((int)ROIstartPoint.Y - (int)ROIendPoint.Y));
+                Point location = new Point(
+                    Math.Min(ROIstartPoint.X, ROIendPoint.X),
+                    Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
+                Size size = new Size(
+                    Math.Abs(ROIstartPoint.X - ROIendPoint.X),
+                    Math.Abs(ROIstartPoint.Y - ROIendPoint.Y));
+
+                pictureBox.SetROIfig(location, size);
+
                 pictureBox.Invalidate();
             }
         }
@@ -193,10 +182,12 @@ namespace Licenta_Mamograf
                 info_log.Text += "No image selected!\n";
                 return; 
             }
-            ROIfig= new Rectangle();
+            pictureBox.ResetROIfig();
 
-            original_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
-            curent_img = new PGM(original_img);
+            img = new PGM(filePath);
+            img.Show(pictureBox);
+
+            //curent_img = new PGM(original_img);
 
             info_log.Text += "------Image Reloded------\n";
             /*
@@ -221,11 +212,11 @@ namespace Licenta_Mamograf
             }
 
             double cL = double.Parse(contrastLimit.Text);
-            MyBitmap myBitmap = curent_img.bitmap;
+            MyBitmap myBitmap = img.bitmap;
             CLHE.Apply(ref myBitmap, cL);
-            curent_img.Update(myBitmap);
+            img.Update(myBitmap);
 
-            curent_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
+            img.Show(pictureBox);
 
             DateTime t1 = DateTime.Now;
             info_log.Text += (t1 - t0).ToString() + " ms\n";
@@ -243,13 +234,37 @@ namespace Licenta_Mamograf
             double cL = double.Parse(contrastLimit.Text);
             int wS = int.Parse(windowSize.Text);
 
-            MyBitmap myBitmap = curent_img.bitmap;
+            MyBitmap myBitmap = img.bitmap;
             CLAHE.Apply(ref myBitmap, wS, cL);
-            curent_img.Update(myBitmap);
+            img.Update(myBitmap);
 
-            curent_img.Show(pictureBox, pictureBox_R, pictureBox_G, pictureBox_B);
+            img.Show(pictureBox);
             DateTime t1 = DateTime.Now;
             info_log.Text += (t1 - t0).ToString() + " ms\n";
+        }
+
+        private void button_Charts_Click(object sender, EventArgs e)
+        {
+            double[] histogram = img.Histogram();
+            double[] cumulativeHistogram = img.CumulativeHistogram();
+
+            Series his = chart_Histogram.Series["Pixel"];
+            Series cHis = chart_CumulativeHistogram.Series["Pixel"];
+
+            his.Points.Clear();
+            cHis.Points.Clear();
+
+            for (int i = 0; i < histogram.Length; i++)
+            {
+                his.Points.AddXY(i, histogram[i]);
+                cHis.Points.AddXY(i, cumulativeHistogram[i]);
+            }
+            histogram[0] = histogram[1];
+            his.Points[0].YValues[0] = his.Points[1].YValues[0];
+            his.Points[0].YValues[0] = histogram.Max();
+
+            chart_CumulativeHistogram.ChartAreas[0].AxisY.Minimum = cumulativeHistogram.Min();
+            chart_CumulativeHistogram.ChartAreas[0].AxisY.Maximum = cumulativeHistogram.Max();
         }
 
     }
