@@ -72,55 +72,80 @@ namespace Licenta_Mamograf
             StreamReader sr = new StreamReader(filePath);
 
             // Read the magic number (should be "P5" for binary PGM)
-            magicNumber = sr.ReadLine();
+            this.magicNumber = sr.ReadLine();
 
             // Read width and height
             string[] line = sr.ReadLine().Split(' ');
-            width = int.Parse(line[0]);
-            height = int.Parse(line[1]);
+            this.width = int.Parse(line[0]);
+            this.height = int.Parse(line[1]);
 
             // Read max pixel value
-            maxVal = int.Parse(sr.ReadLine());
+            this.maxVal = int.Parse(sr.ReadLine());
             // Read pixel data
             byte[] pixelData = new byte[height * width];
             sr.BaseStream.Read(pixelData, 0, pixelData.Length);
 
             // Create bitmap and fill it with pixel data
-            bitmap = new MyBitmap(height, width);
-            matrix = new double[height, width];
+            this.bitmap = new MyBitmap(this.height, this.width);
+            this.matrix = new double[this.height, this.width];
 
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < this.height; y++)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < this.width; x++)
                 {
-                    byte pixel = pixelData[x * width + y];
+                    byte pixel = pixelData[x * this.width + y];
                     // Use the pixel value to set the color (grayscale)
                     // height - y - 1 because we are fliping the image
-                    bitmap.SetPixel(height - y - 1, x, pixel);
-                    matrix[height - y - 1, x] = pixel;
+                    this.bitmap.SetPixel(height - y - 1, x, pixel);
+                    this.matrix[this.height - y - 1, x] = pixel;
                 }
             }
         }
 
-        public PGM Update(MyBitmap bmp)
+        public void Update(MyBitmap bmp)
         {
-            bitmap = bmp;
-            width = bmp.Width;
-            height = bmp.Height;
-            matrix = new double[width, height];
+            this.bitmap = bmp;
+            this.width = bmp.Width;
+            this.height = bmp.Height;
+            this.matrix = new double[this.width, this.height];
+            for (int y = 0; y < this.height; y++)
+            {
+                for (int x = 0; x < this.width; x++)
+                {
+                    this.matrix[y, x] = bmp.GetPixel(y, x);
+                }
+            }
+        }
+
+        public void Update(double[,] matrix)
+        {
+            this.width = matrix.GetLength(0);
+            this.height = matrix.GetLength(1);
+            this.bitmap = new MyBitmap(width, height);
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    matrix[y, x] = bmp.GetPixel(y, x);
+                    this.bitmap.SetPixel(y, x, (byte)matrix[y, x]);
                 }
             }
-            return this;
         }
 
-        public void Show(PictureBox p) { p.Image = bitmap.ToBitmap(); }
+        public void Show(PictureBox p) { p.Image = this.bitmap.ToBitmap(); }
 
-        public PGM Coppy() { return new PGM(this); }
+        public void RemoveArea(Point p0, Point p1)
+        {
+            for (int y = p0.Y; y < p1.Y; y++)
+            {
+                for (int x = p0.X; x < p1.X; x++)
+                {
+                    this.matrix[x, y] = 0;
+                }
+            }
+            this.Update(this.matrix);
+        }
+
+
 
         public double[] Histogram()
         {

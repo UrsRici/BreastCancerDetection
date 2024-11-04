@@ -15,12 +15,14 @@ using ZedGraph;
 using OpenTK;
 using System.Windows.Forms.DataVisualization.Charting;
 using Emgu.CV.Flann;
+using System.Drawing.Drawing2D;
+using Emgu.CV.Structure;
 
 namespace Licenta_Mamograf
 {
     public partial class Image_Analysis : Form
     {
-        private string filePath = "D:\\Aplicatii\\Facultate\\Informatica\\Licenta\\archive\\all-mias\\mdb005.pgm";
+        private string filePath = @"D:\Aplicatii\Facultate\Informatica\Licenta\Licenta Mamograf\Licenta Mamograf\Images\mdb005.pgm";
         private PGM img = new PGM();
         DateTime t0 = new DateTime(), t1 = new DateTime();
 
@@ -49,8 +51,8 @@ namespace Licenta_Mamograf
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
-                img = new PGM(filePath);
-                img.Show(pictureBox);
+
+                button_relode_Click(sender, e);
 
                 textBox1.Text = filePath;
                 
@@ -137,6 +139,22 @@ namespace Licenta_Mamograf
             else info_log.Text += "No image selected!\n";
         }
 
+        private void button_RemoveROI_Click(object sender, EventArgs e)
+        {
+            if (!pictureBox.IsROIfig()) { return; }
+            Point p0 = new Point(
+                Math.Min(ROIstartPoint.X, ROIendPoint.X),
+                Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
+
+            Point p1 = new Point(
+                Math.Max(ROIstartPoint.X, ROIendPoint.X),
+                Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
+
+            img.RemoveArea(p0, p1);
+            pictureBox.ResetROIfig();
+            img.Show(pictureBox);
+        }
+
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
@@ -182,12 +200,11 @@ namespace Licenta_Mamograf
                 info_log.Text += "No image selected!\n";
                 return; 
             }
+            if (pictureBox.ROIselect_Button_active) { button_selectROI_Click(sender, e); }
             pictureBox.ResetROIfig();
 
             img = new PGM(filePath);
             img.Show(pictureBox);
-
-            //curent_img = new PGM(original_img);
 
             info_log.Text += "------Image Reloded------\n";
             /*
@@ -265,6 +282,12 @@ namespace Licenta_Mamograf
 
             chart_CumulativeHistogram.ChartAreas[0].AxisY.Minimum = cumulativeHistogram.Min();
             chart_CumulativeHistogram.ChartAreas[0].AxisY.Maximum = cumulativeHistogram.Max();
+
+            PointPairList points = new PointPairList();
+            for (int i = 0; i < cumulativeHistogram.Length; i++) 
+            {
+                points.Add(i, cumulativeHistogram[i]);
+            }
         }
 
     }

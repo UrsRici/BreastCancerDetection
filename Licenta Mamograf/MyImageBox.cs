@@ -20,6 +20,13 @@ namespace Licenta_Mamograf
         private Rectangle ROIfig { get; set; } = new Rectangle();
         public void SetROIfig(Point location, Size size) { ROIfig = new Rectangle(location, size); }
         public void ResetROIfig() { ROIfig = new Rectangle(); }
+        public bool IsROIfig()
+        { 
+            if (ROIfig == Rectangle.Empty)
+                return false;
+            else
+                return true;
+        }
 
         public Brush ROIselectionBrush = new SolidBrush(Color.FromArgb(100, 170, 215, 230));
 

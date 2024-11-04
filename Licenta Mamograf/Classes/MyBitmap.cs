@@ -12,7 +12,7 @@ namespace Licenta_Mamograf
 
         public int Width { get; set; }
         public int Height { get; set; }
-        public byte[,] PixelData { get; set; }
+        private byte[,] PixelData { get; set; }
 
         public MyBitmap(MyBitmap bitmap)
         {        
@@ -38,22 +38,22 @@ namespace Licenta_Mamograf
 
         public byte GetPixel(int y, int x)
         {
-            return PixelData[y, x];
+            return this.PixelData[y, x];
         }
 
         public void SetPixel(int y, int x, byte value)
         {
-            PixelData[y, x] = value;
+            this.PixelData[y, x] = value;
         }
 
         public Bitmap ToBitmap()
         {
-            Bitmap bitmap = new Bitmap(Width, Height);
+            Bitmap bitmap = new Bitmap(this.Width, this.Height);
             for (int y = 0; y < this.Height; y++)
             {
                 for (int x = 0; x < this.Width; x++)
                 {
-                    int pixel = PixelData[y, x];
+                    int pixel = this.PixelData[y, x];
                     Color c = Color.FromArgb(pixel, pixel, pixel);
                     bitmap.SetPixel(y, x, c);
                 }

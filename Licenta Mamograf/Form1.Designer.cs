@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint5 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint6 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             this.button_select = new System.Windows.Forms.Button();
             this.info_log = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -57,6 +57,7 @@
             this.button_Charts = new System.Windows.Forms.Button();
             this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBox = new Licenta_Mamograf.MyImageBox();
+            this.button_RemoveROI = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -272,35 +273,35 @@
             // chart_Histogram
             // 
             this.chart_Histogram.BackColor = System.Drawing.Color.SkyBlue;
-            chartArea3.AxisX.Maximum = 255D;
-            chartArea3.AxisX.Minimum = 0D;
-            chartArea3.AxisY.MaximumAutoSize = 0F;
-            chartArea3.InnerPlotPosition.Auto = false;
-            chartArea3.InnerPlotPosition.Height = 85F;
-            chartArea3.InnerPlotPosition.Width = 85F;
-            chartArea3.InnerPlotPosition.X = 10F;
-            chartArea3.InnerPlotPosition.Y = 5F;
-            chartArea3.Name = "ChartArea";
-            chartArea3.Position.Auto = false;
-            chartArea3.Position.Height = 100F;
-            chartArea3.Position.Width = 100F;
-            this.chart_Histogram.ChartAreas.Add(chartArea3);
+            chartArea5.AxisX.Maximum = 255D;
+            chartArea5.AxisX.Minimum = 0D;
+            chartArea5.AxisY.MaximumAutoSize = 0F;
+            chartArea5.InnerPlotPosition.Auto = false;
+            chartArea5.InnerPlotPosition.Height = 85F;
+            chartArea5.InnerPlotPosition.Width = 80F;
+            chartArea5.InnerPlotPosition.X = 15F;
+            chartArea5.InnerPlotPosition.Y = 5F;
+            chartArea5.Name = "ChartArea";
+            chartArea5.Position.Auto = false;
+            chartArea5.Position.Height = 100F;
+            chartArea5.Position.Width = 100F;
+            this.chart_Histogram.ChartAreas.Add(chartArea5);
             this.chart_Histogram.Location = new System.Drawing.Point(530, 277);
             this.chart_Histogram.Name = "chart_Histogram";
             this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series3.ChartArea = "ChartArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series3.Name = "Pixel";
-            series3.Points.Add(dataPoint3);
-            series3.YValuesPerPoint = 2;
-            this.chart_Histogram.Series.Add(series3);
+            series5.ChartArea = "ChartArea";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series5.Name = "Pixel";
+            series5.Points.Add(dataPoint5);
+            series5.YValuesPerPoint = 2;
+            this.chart_Histogram.Series.Add(series5);
             this.chart_Histogram.Size = new System.Drawing.Size(300, 300);
             this.chart_Histogram.TabIndex = 39;
             this.chart_Histogram.Text = "Histogram";
             // 
             // button_Charts
             // 
-            this.button_Charts.Location = new System.Drawing.Point(530, 244);
+            this.button_Charts.Location = new System.Drawing.Point(1024, 244);
             this.button_Charts.Name = "button_Charts";
             this.button_Charts.Size = new System.Drawing.Size(100, 27);
             this.button_Charts.TabIndex = 40;
@@ -311,26 +312,26 @@
             // chart_CumulativeHistogram
             // 
             this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.SkyBlue;
-            chartArea4.AxisX.Maximum = 255D;
-            chartArea4.AxisX.Minimum = 0D;
-            chartArea4.InnerPlotPosition.Auto = false;
-            chartArea4.InnerPlotPosition.Height = 85F;
-            chartArea4.InnerPlotPosition.Width = 85F;
-            chartArea4.InnerPlotPosition.X = 10F;
-            chartArea4.InnerPlotPosition.Y = 5F;
-            chartArea4.Name = "ChartArea";
-            chartArea4.Position.Auto = false;
-            chartArea4.Position.Height = 100F;
-            chartArea4.Position.Width = 100F;
-            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea4);
+            chartArea6.AxisX.Maximum = 255D;
+            chartArea6.AxisX.Minimum = 0D;
+            chartArea6.InnerPlotPosition.Auto = false;
+            chartArea6.InnerPlotPosition.Height = 85F;
+            chartArea6.InnerPlotPosition.Width = 80F;
+            chartArea6.InnerPlotPosition.X = 15F;
+            chartArea6.InnerPlotPosition.Y = 5F;
+            chartArea6.Name = "ChartArea";
+            chartArea6.Position.Auto = false;
+            chartArea6.Position.Height = 100F;
+            chartArea6.Position.Width = 100F;
+            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea6);
             this.chart_CumulativeHistogram.Location = new System.Drawing.Point(836, 277);
             this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
             this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series4.ChartArea = "ChartArea";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Name = "Pixel";
-            series4.Points.Add(dataPoint4);
-            this.chart_CumulativeHistogram.Series.Add(series4);
+            series6.ChartArea = "ChartArea";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Name = "Pixel";
+            series6.Points.Add(dataPoint6);
+            this.chart_CumulativeHistogram.Series.Add(series6);
             this.chart_CumulativeHistogram.Size = new System.Drawing.Size(300, 300);
             this.chart_CumulativeHistogram.TabIndex = 41;
             this.chart_CumulativeHistogram.Text = "Histogram";
@@ -348,12 +349,23 @@
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             // 
+            // button_RemoveROI
+            // 
+            this.button_RemoveROI.Location = new System.Drawing.Point(1031, 142);
+            this.button_RemoveROI.Name = "button_RemoveROI";
+            this.button_RemoveROI.Size = new System.Drawing.Size(100, 36);
+            this.button_RemoveROI.TabIndex = 42;
+            this.button_RemoveROI.Text = "Remove ROI";
+            this.button_RemoveROI.UseVisualStyleBackColor = true;
+            this.button_RemoveROI.Click += new System.EventHandler(this.button_RemoveROI_Click);
+            // 
             // Image_Analysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1150, 598);
+            this.Controls.Add(this.button_RemoveROI);
             this.Controls.Add(this.chart_CumulativeHistogram);
             this.Controls.Add(this.button_Charts);
             this.Controls.Add(this.chart_Histogram);
@@ -411,6 +423,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Histogram;
         private System.Windows.Forms.Button button_Charts;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
+        private System.Windows.Forms.Button button_RemoveROI;
     }
 }
 
