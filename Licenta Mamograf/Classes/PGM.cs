@@ -145,7 +145,17 @@ namespace Licenta_Mamograf
             this.Update(this.matrix);
         }
 
-
+        public void ReplaceArea(Point p0, Point p1, float[,] roi)
+        {
+            for (int y = p0.Y; y < p1.Y; y++)
+            {
+                for (int x = p0.X; x < p1.X; x++)
+                {
+                    this.matrix[x, y] = roi[x - p0.X, y - p0.Y];
+                }
+            }
+            this.Update(this.matrix);
+        }
 
         public double[] Histogram()
         {

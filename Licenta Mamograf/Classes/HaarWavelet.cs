@@ -106,7 +106,7 @@ namespace Licenta_Mamograf
                 for (int j = 0; j < width; j++)
                 {
                     // Elimină coeficientii cu intensitate prea mare
-                    if (coefficients[i, j] < threshold || coefficients[i, j] > 255) // Prag maxim
+                    if (coefficients[i, j] < threshold /*|| coefficients[i, j] > 255*/) // Prag maxim
                     {
                         coefficients[i, j] = 0; // Setează coeficientul la 0
                     }

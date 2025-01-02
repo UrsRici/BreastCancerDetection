@@ -17,6 +17,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Emgu.CV.Flann;
 using System.Drawing.Drawing2D;
 using Emgu.CV.Structure;
+using Licenta_Mamograf.Classes;
 
 namespace Licenta_Mamograf
 {
@@ -142,6 +143,7 @@ namespace Licenta_Mamograf
         private void button_RemoveROI_Click(object sender, EventArgs e)
         {
             if (!pictureBox.IsROIfig()) { return; }
+
             Point p0 = new Point(
                 Math.Min(ROIstartPoint.X, ROIendPoint.X),
                 Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
@@ -153,6 +155,26 @@ namespace Licenta_Mamograf
             img.RemoveArea(p0, p1);
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
+        }
+        private void button_AI_on_ROI_Click(object sender, EventArgs e)
+        {
+            if (!pictureBox.IsROIfig()) { return; }
+            if (pictureBox.ROIselect_Button_active) { button_selectROI_Click(sender, e); }
+
+            Point p0 = new Point(
+               Math.Min(ROIstartPoint.X, ROIendPoint.X),
+               Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
+
+            Point p1 = new Point(
+                Math.Max(ROIstartPoint.X, ROIendPoint.X),
+                Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
+            
+
+            float[,] aux = GrowCut.Apply(ROI);
+            img.ReplaceArea(p0, p1, aux);
+            pictureBox.ResetROIfig();
+            img.Show(pictureBox);
+
         }
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -259,6 +281,8 @@ namespace Licenta_Mamograf
             DateTime t1 = DateTime.Now;
             info_log.Text += (t1 - t0).ToString() + " ms\n";
         }
+
+
 
         private void button_Charts_Click(object sender, EventArgs e)
         {
