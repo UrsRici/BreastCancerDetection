@@ -36,7 +36,7 @@
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             this.button_select = new System.Windows.Forms.Button();
             this.info_log = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.location = new System.Windows.Forms.TextBox();
             this.button_WaveletDenoising = new System.Windows.Forms.Button();
             this.endPoint = new System.Windows.Forms.Label();
             this.startPoint = new System.Windows.Forms.Label();
@@ -57,8 +57,9 @@
             this.button_Charts = new System.Windows.Forms.Button();
             this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button_RemoveROI = new System.Windows.Forms.Button();
-            this.pictureBox = new Licenta_Mamograf.MyImageBox();
             this.button_AI_on_ROI = new System.Windows.Forms.Button();
+            this.button_AI = new System.Windows.Forms.Button();
+            this.pictureBox = new Licenta_Mamograf.MyImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -69,9 +70,9 @@
             this.button_select.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_select.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_select.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_select.Location = new System.Drawing.Point(530, 51);
+            this.button_select.Location = new System.Drawing.Point(548, 14);
             this.button_select.Name = "button_select";
-            this.button_select.Size = new System.Drawing.Size(137, 42);
+            this.button_select.Size = new System.Drawing.Size(107, 42);
             this.button_select.TabIndex = 1;
             this.button_select.Text = "Select IMG";
             this.button_select.UseVisualStyleBackColor = false;
@@ -81,25 +82,25 @@
             // 
             this.info_log.BackColor = System.Drawing.Color.LightBlue;
             this.info_log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.info_log.Location = new System.Drawing.Point(673, 12);
+            this.info_log.Location = new System.Drawing.Point(529, 65);
             this.info_log.Name = "info_log";
             this.info_log.Size = new System.Drawing.Size(173, 157);
             this.info_log.TabIndex = 3;
             this.info_log.Text = "";
             // 
-            // textBox1
+            // location
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(530, 20);
-            this.textBox1.TabIndex = 2;
+            this.location.Location = new System.Drawing.Point(12, 23);
+            this.location.Name = "location";
+            this.location.Size = new System.Drawing.Size(530, 20);
+            this.location.TabIndex = 2;
             // 
             // button_WaveletDenoising
             // 
             this.button_WaveletDenoising.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_WaveletDenoising.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_WaveletDenoising.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_WaveletDenoising.Location = new System.Drawing.Point(683, 189);
+            this.button_WaveletDenoising.Location = new System.Drawing.Point(793, 12);
             this.button_WaveletDenoising.Name = "button_WaveletDenoising";
             this.button_WaveletDenoising.Size = new System.Drawing.Size(163, 47);
             this.button_WaveletDenoising.TabIndex = 4;
@@ -111,7 +112,7 @@
             // 
             this.endPoint.AutoSize = true;
             this.endPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endPoint.Location = new System.Drawing.Point(932, 216);
+            this.endPoint.Location = new System.Drawing.Point(778, 175);
             this.endPoint.Name = "endPoint";
             this.endPoint.Size = new System.Drawing.Size(56, 20);
             this.endPoint.TabIndex = 20;
@@ -121,7 +122,7 @@
             // 
             this.startPoint.AutoSize = true;
             this.startPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startPoint.Location = new System.Drawing.Point(932, 186);
+            this.startPoint.Location = new System.Drawing.Point(778, 145);
             this.startPoint.Name = "startPoint";
             this.startPoint.Size = new System.Drawing.Size(56, 20);
             this.startPoint.TabIndex = 19;
@@ -131,7 +132,7 @@
             // 
             this.label_y.AutoSize = true;
             this.label_y.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_y.Location = new System.Drawing.Point(885, 216);
+            this.label_y.Location = new System.Drawing.Point(731, 175);
             this.label_y.Name = "label_y";
             this.label_y.Size = new System.Drawing.Size(16, 20);
             this.label_y.TabIndex = 18;
@@ -141,7 +142,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(865, 216);
+            this.label5.Location = new System.Drawing.Point(711, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(20, 20);
             this.label5.TabIndex = 17;
@@ -151,7 +152,7 @@
             // 
             this.label_x.AutoSize = true;
             this.label_x.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_x.Location = new System.Drawing.Point(885, 186);
+            this.label_x.Location = new System.Drawing.Point(731, 145);
             this.label_x.Name = "label_x";
             this.label_x.Size = new System.Drawing.Size(16, 20);
             this.label_x.TabIndex = 16;
@@ -161,7 +162,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(865, 186);
+            this.label6.Location = new System.Drawing.Point(711, 145);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 20);
             this.label6.TabIndex = 15;
@@ -172,9 +173,9 @@
             this.button_selectROI.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_selectROI.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_selectROI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_selectROI.Location = new System.Drawing.Point(862, 136);
+            this.button_selectROI.Location = new System.Drawing.Point(708, 95);
             this.button_selectROI.Name = "button_selectROI";
-            this.button_selectROI.Size = new System.Drawing.Size(163, 47);
+            this.button_selectROI.Size = new System.Drawing.Size(168, 47);
             this.button_selectROI.TabIndex = 21;
             this.button_selectROI.Text = "Select ROI";
             this.button_selectROI.UseVisualStyleBackColor = false;
@@ -185,9 +186,9 @@
             this.button_relode.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_relode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_relode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_relode.Location = new System.Drawing.Point(530, 113);
+            this.button_relode.Location = new System.Drawing.Point(661, 14);
             this.button_relode.Name = "button_relode";
-            this.button_relode.Size = new System.Drawing.Size(137, 42);
+            this.button_relode.Size = new System.Drawing.Size(107, 42);
             this.button_relode.TabIndex = 23;
             this.button_relode.Text = "Relode IMG";
             this.button_relode.UseVisualStyleBackColor = false;
@@ -195,7 +196,7 @@
             // 
             // button_log
             // 
-            this.button_log.Location = new System.Drawing.Point(765, 167);
+            this.button_log.Location = new System.Drawing.Point(621, 220);
             this.button_log.Name = "button_log";
             this.button_log.Size = new System.Drawing.Size(81, 19);
             this.button_log.TabIndex = 24;
@@ -208,7 +209,7 @@
             this.button_CLHE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_CLHE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_CLHE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CLHE.Location = new System.Drawing.Point(875, 12);
+            this.button_CLHE.Location = new System.Drawing.Point(1109, 8);
             this.button_CLHE.Name = "button_CLHE";
             this.button_CLHE.Size = new System.Drawing.Size(72, 47);
             this.button_CLHE.TabIndex = 29;
@@ -218,7 +219,7 @@
             // 
             // contrastLimit
             // 
-            this.contrastLimit.Location = new System.Drawing.Point(962, 74);
+            this.contrastLimit.Location = new System.Drawing.Point(1196, 70);
             this.contrastLimit.Margin = new System.Windows.Forms.Padding(2);
             this.contrastLimit.Name = "contrastLimit";
             this.contrastLimit.Size = new System.Drawing.Size(33, 20);
@@ -230,7 +231,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(872, 76);
+            this.label7.Location = new System.Drawing.Point(1106, 72);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 16);
@@ -242,7 +243,7 @@
             this.button_CLAHE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_CLAHE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_CLAHE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CLAHE.Location = new System.Drawing.Point(953, 12);
+            this.button_CLAHE.Location = new System.Drawing.Point(1187, 8);
             this.button_CLAHE.Name = "button_CLAHE";
             this.button_CLAHE.Size = new System.Drawing.Size(72, 47);
             this.button_CLAHE.TabIndex = 32;
@@ -254,7 +255,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(872, 101);
+            this.label8.Location = new System.Drawing.Point(1106, 97);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(84, 16);
@@ -263,7 +264,7 @@
             // 
             // windowSize
             // 
-            this.windowSize.Location = new System.Drawing.Point(962, 99);
+            this.windowSize.Location = new System.Drawing.Point(1196, 95);
             this.windowSize.Margin = new System.Windows.Forms.Padding(2);
             this.windowSize.Name = "windowSize";
             this.windowSize.Size = new System.Drawing.Size(33, 20);
@@ -303,7 +304,7 @@
             // 
             // button_Charts
             // 
-            this.button_Charts.Location = new System.Drawing.Point(1024, 244);
+            this.button_Charts.Location = new System.Drawing.Point(530, 245);
             this.button_Charts.Name = "button_Charts";
             this.button_Charts.Size = new System.Drawing.Size(100, 27);
             this.button_Charts.TabIndex = 40;
@@ -340,13 +341,33 @@
             // 
             // button_RemoveROI
             // 
-            this.button_RemoveROI.Location = new System.Drawing.Point(1031, 142);
+            this.button_RemoveROI.Location = new System.Drawing.Point(882, 95);
             this.button_RemoveROI.Name = "button_RemoveROI";
             this.button_RemoveROI.Size = new System.Drawing.Size(100, 36);
             this.button_RemoveROI.TabIndex = 42;
             this.button_RemoveROI.Text = "Remove ROI";
             this.button_RemoveROI.UseVisualStyleBackColor = true;
             this.button_RemoveROI.Click += new System.EventHandler(this.button_RemoveROI_Click);
+            // 
+            // button_AI_on_ROI
+            // 
+            this.button_AI_on_ROI.Location = new System.Drawing.Point(882, 137);
+            this.button_AI_on_ROI.Name = "button_AI_on_ROI";
+            this.button_AI_on_ROI.Size = new System.Drawing.Size(100, 36);
+            this.button_AI_on_ROI.TabIndex = 43;
+            this.button_AI_on_ROI.Text = "Apply AI on ROI";
+            this.button_AI_on_ROI.UseVisualStyleBackColor = true;
+            this.button_AI_on_ROI.Click += new System.EventHandler(this.button_AI_on_ROI_Click);
+            // 
+            // button_AI
+            // 
+            this.button_AI.Location = new System.Drawing.Point(882, 179);
+            this.button_AI.Name = "button_AI";
+            this.button_AI.Size = new System.Drawing.Size(100, 36);
+            this.button_AI.TabIndex = 44;
+            this.button_AI.Text = "Apply AI";
+            this.button_AI.UseVisualStyleBackColor = true;
+            this.button_AI.Click += new System.EventHandler(this.button_AI_Click);
             // 
             // pictureBox
             // 
@@ -361,22 +382,13 @@
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             // 
-            // button_AI_on_ROI
-            // 
-            this.button_AI_on_ROI.Location = new System.Drawing.Point(1031, 184);
-            this.button_AI_on_ROI.Name = "button_AI_on_ROI";
-            this.button_AI_on_ROI.Size = new System.Drawing.Size(100, 36);
-            this.button_AI_on_ROI.TabIndex = 43;
-            this.button_AI_on_ROI.Text = "Apply AI on ROI";
-            this.button_AI_on_ROI.UseVisualStyleBackColor = true;
-            this.button_AI_on_ROI.Click += new System.EventHandler(this.button_AI_on_ROI_Click);
-            // 
             // Image_Analysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(1144, 598);
+            this.ClientSize = new System.Drawing.Size(1282, 598);
+            this.Controls.Add(this.button_AI);
             this.Controls.Add(this.button_AI_on_ROI);
             this.Controls.Add(this.button_RemoveROI);
             this.Controls.Add(this.chart_CumulativeHistogram);
@@ -399,7 +411,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button_WaveletDenoising);
             this.Controls.Add(this.info_log);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.location);
             this.Controls.Add(this.button_select);
             this.Controls.Add(this.pictureBox);
             this.Name = "Image_Analysis";
@@ -415,7 +427,7 @@
         #endregion
         private System.Windows.Forms.Button button_select;
         private System.Windows.Forms.RichTextBox info_log;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox location;
         private System.Windows.Forms.Button button_WaveletDenoising;
         private System.Windows.Forms.Label endPoint;
         private System.Windows.Forms.Label startPoint;
@@ -438,6 +450,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
         private System.Windows.Forms.Button button_RemoveROI;
         private System.Windows.Forms.Button button_AI_on_ROI;
+        private System.Windows.Forms.Button button_AI;
     }
 }
 

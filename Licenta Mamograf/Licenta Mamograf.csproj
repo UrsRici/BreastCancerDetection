@@ -84,7 +84,7 @@
     </Compile>
     <Compile Include="Classes\HaarWavelet.cs" />
     <Compile Include="Classes\PGM.cs" />
-    <Compile Include="MyImageBox.cs">
+    <Compile Include="Classes\MyImageBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -92,7 +92,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyImageBox.resx">
+    <EmbeddedResource Include="Classes\MyImageBox.resx">
       <DependentUpon>MyImageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -444,6 +444,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\data.txt" />
     <Content Include="Images\Info.txt" />
     <Content Include="Images\Licence.txt" />
     <Content Include="Resources\License-LGPL.txt" />

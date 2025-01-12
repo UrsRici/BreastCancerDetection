@@ -35,7 +35,7 @@ namespace Licenta_Mamograf
         public int height = 1024;
         public int maxVal = 255;
         public MyBitmap bitmap { get; set; }
-        public double[,] matrix { get; set; }
+        public float[,] matrix { get; set; }
 
 
         public PGM()
@@ -57,12 +57,12 @@ namespace Licenta_Mamograf
 
             this.bitmap = new MyBitmap(img.bitmap);
 
-            this.matrix = new double[img.matrix.GetLength(0), img.matrix.GetLength(1)];
-            for (int i = 0; i < img.matrix.GetLength(0); i++)
+            this.matrix = new float[img.matrix.GetLength(0), img.matrix.GetLength(1)];
+            for (int y = 0; y < img.matrix.GetLength(0); y++)
             {
-                for (int j = 0; j < img.matrix.GetLength(1); j++)
+                for (int x = 0; x < img.matrix.GetLength(1); x++)
                 {
-                    this.matrix[i, j] = img.matrix[i, j];
+                    this.matrix[y, x] = img.matrix[y, x];
                 }
             }
         }
@@ -87,7 +87,7 @@ namespace Licenta_Mamograf
 
             // Create bitmap and fill it with pixel data
             this.bitmap = new MyBitmap(this.height, this.width);
-            this.matrix = new double[this.height, this.width];
+            this.matrix = new float[this.height, this.width];
 
             for (int y = 0; y < this.height; y++)
             {
@@ -107,7 +107,7 @@ namespace Licenta_Mamograf
             this.bitmap = bmp;
             this.width = bmp.Width;
             this.height = bmp.Height;
-            this.matrix = new double[this.width, this.height];
+            this.matrix = new float[this.width, this.height];
             for (int y = 0; y < this.height; y++)
             {
                 for (int x = 0; x < this.width; x++)
@@ -117,7 +117,7 @@ namespace Licenta_Mamograf
             }
         }
 
-        public void Update(double[,] matrix)
+        public void Update(float[,] matrix)
         {
             this.width = matrix.GetLength(0);
             this.height = matrix.GetLength(1);
@@ -157,9 +157,34 @@ namespace Licenta_Mamograf
             this.Update(this.matrix);
         }
 
-        public double[] Histogram()
+        public void ApplyMask(Point p0, Point p1, float[,] mask)
         {
-            double[] histogram = new double[256];
+            for (int y = p0.Y; y < p1.Y; y++)
+            {
+                for (int x = p0.X; x < p1.X; x++)
+                {
+                    if (mask[x - p0.X, y - p0.Y] != 0)
+                        this.matrix[x, y] = mask[x - p0.X, y - p0.Y];
+                }
+            }
+            this.Update(this.matrix);
+        }
+        public void ApplyMask(float[,] mask)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (mask[x, y] != 0)
+                        this.matrix[x, y] = mask[x, y];
+                }
+            }
+            this.Update(this.matrix);
+        }
+
+        public float[] Histogram()
+        {
+            float[] histogram = new float[256];
 
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
@@ -168,10 +193,10 @@ namespace Licenta_Mamograf
             return histogram;
         }
 
-        public double[] CumulativeHistogram()
+        public float[] CumulativeHistogram()
         {
-            double[] histogram = this.Histogram();
-            double[] cumulativeHistogram = new double[histogram.Length];
+            float[] histogram = this.Histogram();
+            float[] cumulativeHistogram = new float[histogram.Length];
             cumulativeHistogram[0] = histogram[0]; // Setăm primul element
 
             // Calculăm suma cumulativă

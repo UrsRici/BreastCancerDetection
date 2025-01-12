@@ -34,6 +34,8 @@ namespace Licenta_Mamograf
         public Image_Analysis()
         {
             InitializeComponent();
+            GrowCut.Load();
+
             img = new PGM(filePath);
             img.Show(pictureBox);
         }
@@ -55,7 +57,7 @@ namespace Licenta_Mamograf
 
                 button_relode_Click(sender, e);
 
-                textBox1.Text = filePath;
+                location.Text = filePath;
                 
                 info_log.Text += "------Image Load------\n";
                 /*
@@ -156,6 +158,7 @@ namespace Licenta_Mamograf
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
         }
+
         private void button_AI_on_ROI_Click(object sender, EventArgs e)
         {
             if (!pictureBox.IsROIfig()) { return; }
@@ -167,14 +170,21 @@ namespace Licenta_Mamograf
 
             Point p1 = new Point(
                 Math.Max(ROIstartPoint.X, ROIendPoint.X),
-                Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
-            
+                Math.Max(ROIstartPoint.Y, ROIendPoint.Y));    
 
-            float[,] aux = GrowCut.Apply(ROI);
-            img.ReplaceArea(p0, p1, aux);
+            float[,] mask = GrowCut.Apply(ROI);
+            img.ApplyMask(p0, p1, mask);
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
+        }
 
+        private void button_AI_Click(object sender, EventArgs e)
+        {
+            float[,] mask = GrowCut.ApplyData(img.matrix, Path.GetFileNameWithoutExtension(filePath));
+            
+            img.ApplyMask(mask);
+            pictureBox.ResetROIfig();
+            img.Show(pictureBox);
         }
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -250,7 +260,7 @@ namespace Licenta_Mamograf
                 return;
             }
 
-            double cL = double.Parse(contrastLimit.Text);
+            float cL = float.Parse(contrastLimit.Text);
             MyBitmap myBitmap = img.bitmap;
             CLHE.Apply(ref myBitmap, cL);
             img.Update(myBitmap);
@@ -270,7 +280,7 @@ namespace Licenta_Mamograf
                 return;
             }
 
-            double cL = double.Parse(contrastLimit.Text);
+            float cL = float.Parse(contrastLimit.Text);
             int wS = int.Parse(windowSize.Text);
 
             MyBitmap myBitmap = img.bitmap;
@@ -282,12 +292,10 @@ namespace Licenta_Mamograf
             info_log.Text += (t1 - t0).ToString() + " ms\n";
         }
 
-
-
         private void button_Charts_Click(object sender, EventArgs e)
         {
-            double[] histogram = img.Histogram();
-            double[] cumulativeHistogram = img.CumulativeHistogram();
+            float[] histogram = img.Histogram();
+            float[] cumulativeHistogram = img.CumulativeHistogram();
 
             Series his = chart_Histogram.Series["Pixel"];
             Series cHis = chart_CumulativeHistogram.Series["Pixel"];
