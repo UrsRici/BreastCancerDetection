@@ -35,6 +35,7 @@ namespace Licenta_Mamograf
         public int height = 1024;
         public int maxVal = 255;
         public MyBitmap bitmap { get; set; }
+        public Bitmap mask { get; set; }
         public float[,] matrix { get; set; }
 
 
@@ -45,6 +46,7 @@ namespace Licenta_Mamograf
             height = 0;
             maxVal = 0;
             bitmap = null;
+            mask = null;
             matrix = null;
         }
 
@@ -56,6 +58,7 @@ namespace Licenta_Mamograf
             this.maxVal = img.maxVal;
 
             this.bitmap = new MyBitmap(img.bitmap);
+            this.mask = new Bitmap(img.mask);
 
             this.matrix = new float[img.matrix.GetLength(0), img.matrix.GetLength(1)];
             for (int y = 0; y < img.matrix.GetLength(0); y++)
@@ -87,6 +90,7 @@ namespace Licenta_Mamograf
 
             // Create bitmap and fill it with pixel data
             this.bitmap = new MyBitmap(this.height, this.width);
+            this.mask = new Bitmap(this.height, this.width);
             this.matrix = new float[this.height, this.width];
 
             for (int y = 0; y < this.height; y++)
@@ -126,12 +130,37 @@ namespace Licenta_Mamograf
             {
                 for (int x = 0; x < width; x++)
                 {
-                    this.bitmap.SetPixel(y, x, (byte)matrix[y, x]);
+                    byte pixel = (byte)matrix[y, x];
+                    this.bitmap.SetPixel(y, x, pixel);
                 }
             }
         }
 
-        public void Show(PictureBox p) { p.Image = this.bitmap.ToBitmap(); }
+        public void ShowImage(PictureBox p) { p.Image = this.bitmap.ToBitmap(); }
+
+        public void ShowMask(PictureBox p) { p.Image = this.mask; }
+
+        public void Show(PictureBox p) 
+        { 
+            Bitmap image = new Bitmap(width, height);
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (this.mask.GetPixel(x, y).R == 0)
+                    {
+                        byte pixel = (byte)this.bitmap.GetPixel(x, y);
+                        Color color = Color.FromArgb(pixel, pixel, pixel);
+                        image.SetPixel(x, y, color);
+                    }
+                    else
+                    {
+                        image.SetPixel(x, y, this.mask.GetPixel(x, y));
+                    }
+                }
+            }
+            p.Image = image; 
+        }
 
         public void RemoveArea(Point p0, Point p1)
         {
@@ -145,41 +174,29 @@ namespace Licenta_Mamograf
             this.Update(this.matrix);
         }
 
-        public void ReplaceArea(Point p0, Point p1, float[,] roi)
+        public void ApplyMask(Point p0, Point p1, float[,] roi)
         {
             for (int y = p0.Y; y < p1.Y; y++)
             {
-                for (int x = p0.X; x < p1.X; x++)
+                for (int x = p0.X; x < p1.X; x++) 
                 {
-                    this.matrix[x, y] = roi[x - p0.X, y - p0.Y];
+                    Color color = Color.FromArgb((byte)roi[x - p0.X, y - p0.Y], 0, 0);
+                    this.mask.SetPixel(x, y, color);
                 }
             }
-            this.Update(this.matrix);
         }
 
-        public void ApplyMask(Point p0, Point p1, float[,] mask)
-        {
-            for (int y = p0.Y; y < p1.Y; y++)
-            {
-                for (int x = p0.X; x < p1.X; x++)
-                {
-                    if (mask[x - p0.X, y - p0.Y] != 0)
-                        this.matrix[x, y] = mask[x - p0.X, y - p0.Y];
-                }
-            }
-            this.Update(this.matrix);
-        }
-        public void ApplyMask(float[,] mask)
+        public void ApplyMask(float[,] roi)
         {
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
-                {
-                    if (mask[x, y] != 0)
-                        this.matrix[x, y] = mask[x, y];
+                {                   
+                    Color color = Color.FromArgb((byte)roi[x, y], 0, 0);
+                    this.mask.SetPixel(x, y, color);
                 }
             }
-            this.Update(this.matrix);
+            //this.Update(this.matrix);
         }
 
         public float[] Histogram()

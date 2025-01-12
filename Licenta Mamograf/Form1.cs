@@ -37,7 +37,7 @@ namespace Licenta_Mamograf
             GrowCut.Load();
 
             img = new PGM(filePath);
-            img.Show(pictureBox);
+            img.ShowImage(pictureBox);
         }
 
         private void button_select_Click(object sender, EventArgs e)
@@ -72,28 +72,41 @@ namespace Licenta_Mamograf
 
             info_log.Text = (t1 - t0).ToString() + " ms\n";
         }
+        private void button_relode_Click(object sender, EventArgs e)
+        {
+            if (pictureBox.Image == null)
+            {
+                info_log.Text += "No image selected!\n";
+                return;
+            }
+            if (pictureBox.ROIselect_Button_active) { button_selectROI_Click(sender, e); }
+            pictureBox.ResetROIfig();
+
+            img = new PGM(filePath);
+            img.ShowImage(pictureBox);
+
+            info_log.Text += "------Image Reloded------\n";
+            /*
+             * info_log.Text += img.magicNumber + "\n";
+             * info_log.Text += img.width + " " + img.height + "\n";
+             * info_log.Text += img.maxVal + "\n";
+             */
+        }
 
         private void button_WaveletDenoising_Click(object sender, EventArgs e)
         {
+            info_log.Text += "------Wavelet Denoising------\n";
             if (pictureBox.Image == null)
             { 
                 info_log.Text += "No image selected!\n";
                 return; 
             }
-            
-            // Selecting the current image and applying the WaveletDenoising algorithm...
+
+            DateTime t = DateTime.Now;
             img.Update(HaarWavelet.Denoising(img));
+            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
 
-            
-            img.Show(pictureBox);
-
-            info_log.Text += "------Wavelet Denoising------\n";
-            /*
-             * info_log.Text += imgWD.magicNumber + "\n";
-             * info_log.Text += imgWD.width + " " + imgWD.height + "\n";
-             * info_log.Text += imgWD.maxVal + "\n";
-             */
-
+            img.ShowImage(pictureBox);
         }
 
         private void button_selectROI_Click(object sender, EventArgs e)
@@ -141,7 +154,6 @@ namespace Licenta_Mamograf
             }
             else info_log.Text += "No image selected!\n";
         }
-
         private void button_RemoveROI_Click(object sender, EventArgs e)
         {
             if (!pictureBox.IsROIfig()) { return; }
@@ -156,11 +168,11 @@ namespace Licenta_Mamograf
 
             img.RemoveArea(p0, p1);
             pictureBox.ResetROIfig();
-            img.Show(pictureBox);
+            img.ShowImage(pictureBox);
         }
-
         private void button_AI_on_ROI_Click(object sender, EventArgs e)
         {
+            
             if (!pictureBox.IsROIfig()) { return; }
             if (pictureBox.ROIselect_Button_active) { button_selectROI_Click(sender, e); }
 
@@ -172,8 +184,8 @@ namespace Licenta_Mamograf
                 Math.Max(ROIstartPoint.X, ROIendPoint.X),
                 Math.Max(ROIstartPoint.Y, ROIendPoint.Y));    
 
-            float[,] mask = GrowCut.Apply(ROI);
-            img.ApplyMask(p0, p1, mask);
+            // float[,] mask = GrowCut.Apply(ROI);
+            img.ApplyMask(p0, p1, GrowCut.Apply(ROI));
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
         }
@@ -184,6 +196,20 @@ namespace Licenta_Mamograf
             
             img.ApplyMask(mask);
             pictureBox.ResetROIfig();
+            img.Show(pictureBox);
+        }
+
+        private void button_show_image_Click(object sender, EventArgs e)
+        {
+            img.ShowImage(pictureBox);
+        }
+        private void button_show_mask_Click(object sender, EventArgs e)
+        {
+            pictureBox.BackColor = Color.Black;
+            img.ShowMask(pictureBox);
+        }
+        private void button_show_Click(object sender, EventArgs e)
+        {
             img.Show(pictureBox);
         }
 
@@ -198,7 +224,6 @@ namespace Licenta_Mamograf
                 startPoint.Text = "P1(" + ROIstartPoint.X + ", " + ROIstartPoint.Y + ")";
             }
         }
-
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
@@ -225,27 +250,6 @@ namespace Licenta_Mamograf
             }
         }
 
-        private void button_relode_Click(object sender, EventArgs e)
-        {
-            if (pictureBox.Image == null)
-            {
-                info_log.Text += "No image selected!\n";
-                return; 
-            }
-            if (pictureBox.ROIselect_Button_active) { button_selectROI_Click(sender, e); }
-            pictureBox.ResetROIfig();
-
-            img = new PGM(filePath);
-            img.Show(pictureBox);
-
-            info_log.Text += "------Image Reloded------\n";
-            /*
-             * info_log.Text += img.magicNumber + "\n";
-             * info_log.Text += img.width + " " + img.height + "\n";
-             * info_log.Text += img.maxVal + "\n";
-             */
-        }
-
         private void button_log_Click(object sender, EventArgs e)
         {
             info_log.Text = string.Empty;
@@ -253,7 +257,7 @@ namespace Licenta_Mamograf
 
         private void button_CLHE_Click(object sender, EventArgs e)
         {
-            DateTime t0 = DateTime.Now;
+            info_log.Text += "-------------CLHE------------\n";
             if (pictureBox.Image == null)
             {
                 info_log.Text += "Use Wavelet Denoising first!\n";
@@ -262,18 +266,18 @@ namespace Licenta_Mamograf
 
             float cL = float.Parse(contrastLimit.Text);
             MyBitmap myBitmap = img.bitmap;
+
+            DateTime t = DateTime.Now;
             CLHE.Apply(ref myBitmap, cL);
+            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
+
             img.Update(myBitmap);
 
-            img.Show(pictureBox);
-
-            DateTime t1 = DateTime.Now;
-            info_log.Text += (t1 - t0).ToString() + " ms\n";
+            img.ShowImage(pictureBox); 
         }
-
         private void button_CLAHE_Click(object sender, EventArgs e)
         {
-            DateTime t0 = DateTime.Now;
+            info_log.Text += "-------------CLAHE------------\n";
             if (pictureBox.Image == null)
             {
                 info_log.Text += "Use Wavelet Denoising first!\n";
@@ -284,12 +288,14 @@ namespace Licenta_Mamograf
             int wS = int.Parse(windowSize.Text);
 
             MyBitmap myBitmap = img.bitmap;
+
+            DateTime t = DateTime.Now;
             CLAHE.Apply(ref myBitmap, wS, cL);
+            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
+
             img.Update(myBitmap);
 
-            img.Show(pictureBox);
-            DateTime t1 = DateTime.Now;
-            info_log.Text += (t1 - t0).ToString() + " ms\n";
+            img.ShowImage(pictureBox);
         }
 
         private void button_Charts_Click(object sender, EventArgs e)

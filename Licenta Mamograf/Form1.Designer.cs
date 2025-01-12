@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint11 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint12 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             this.button_select = new System.Windows.Forms.Button();
             this.info_log = new System.Windows.Forms.RichTextBox();
             this.location = new System.Windows.Forms.TextBox();
@@ -60,6 +60,12 @@
             this.button_AI_on_ROI = new System.Windows.Forms.Button();
             this.button_AI = new System.Windows.Forms.Button();
             this.pictureBox = new Licenta_Mamograf.MyImageBox();
+            this.button_show_image = new System.Windows.Forms.Button();
+            this.button_show_mask = new System.Windows.Forms.Button();
+            this.button_show = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -82,7 +88,7 @@
             // 
             this.info_log.BackColor = System.Drawing.Color.LightBlue;
             this.info_log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.info_log.Location = new System.Drawing.Point(529, 65);
+            this.info_log.Location = new System.Drawing.Point(547, 65);
             this.info_log.Name = "info_log";
             this.info_log.Size = new System.Drawing.Size(173, 157);
             this.info_log.TabIndex = 3;
@@ -100,7 +106,7 @@
             this.button_WaveletDenoising.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_WaveletDenoising.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_WaveletDenoising.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_WaveletDenoising.Location = new System.Drawing.Point(793, 12);
+            this.button_WaveletDenoising.Location = new System.Drawing.Point(783, 14);
             this.button_WaveletDenoising.Name = "button_WaveletDenoising";
             this.button_WaveletDenoising.Size = new System.Drawing.Size(163, 47);
             this.button_WaveletDenoising.TabIndex = 4;
@@ -112,7 +118,7 @@
             // 
             this.endPoint.AutoSize = true;
             this.endPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endPoint.Location = new System.Drawing.Point(778, 175);
+            this.endPoint.Location = new System.Drawing.Point(826, 177);
             this.endPoint.Name = "endPoint";
             this.endPoint.Size = new System.Drawing.Size(56, 20);
             this.endPoint.TabIndex = 20;
@@ -122,7 +128,7 @@
             // 
             this.startPoint.AutoSize = true;
             this.startPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startPoint.Location = new System.Drawing.Point(778, 145);
+            this.startPoint.Location = new System.Drawing.Point(826, 147);
             this.startPoint.Name = "startPoint";
             this.startPoint.Size = new System.Drawing.Size(56, 20);
             this.startPoint.TabIndex = 19;
@@ -132,7 +138,7 @@
             // 
             this.label_y.AutoSize = true;
             this.label_y.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_y.Location = new System.Drawing.Point(731, 175);
+            this.label_y.Location = new System.Drawing.Point(779, 177);
             this.label_y.Name = "label_y";
             this.label_y.Size = new System.Drawing.Size(16, 20);
             this.label_y.TabIndex = 18;
@@ -142,7 +148,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(711, 175);
+            this.label5.Location = new System.Drawing.Point(759, 177);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(20, 20);
             this.label5.TabIndex = 17;
@@ -152,7 +158,7 @@
             // 
             this.label_x.AutoSize = true;
             this.label_x.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_x.Location = new System.Drawing.Point(731, 145);
+            this.label_x.Location = new System.Drawing.Point(779, 147);
             this.label_x.Name = "label_x";
             this.label_x.Size = new System.Drawing.Size(16, 20);
             this.label_x.TabIndex = 16;
@@ -162,7 +168,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(711, 145);
+            this.label6.Location = new System.Drawing.Point(759, 147);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 20);
             this.label6.TabIndex = 15;
@@ -173,7 +179,7 @@
             this.button_selectROI.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_selectROI.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_selectROI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_selectROI.Location = new System.Drawing.Point(708, 95);
+            this.button_selectROI.Location = new System.Drawing.Point(756, 97);
             this.button_selectROI.Name = "button_selectROI";
             this.button_selectROI.Size = new System.Drawing.Size(168, 47);
             this.button_selectROI.TabIndex = 21;
@@ -196,7 +202,7 @@
             // 
             // button_log
             // 
-            this.button_log.Location = new System.Drawing.Point(621, 220);
+            this.button_log.Location = new System.Drawing.Point(639, 203);
             this.button_log.Name = "button_log";
             this.button_log.Size = new System.Drawing.Size(81, 19);
             this.button_log.TabIndex = 24;
@@ -209,7 +215,7 @@
             this.button_CLHE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_CLHE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_CLHE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CLHE.Location = new System.Drawing.Point(1109, 8);
+            this.button_CLHE.Location = new System.Drawing.Point(1109, 107);
             this.button_CLHE.Name = "button_CLHE";
             this.button_CLHE.Size = new System.Drawing.Size(72, 47);
             this.button_CLHE.TabIndex = 29;
@@ -219,7 +225,7 @@
             // 
             // contrastLimit
             // 
-            this.contrastLimit.Location = new System.Drawing.Point(1196, 70);
+            this.contrastLimit.Location = new System.Drawing.Point(1196, 169);
             this.contrastLimit.Margin = new System.Windows.Forms.Padding(2);
             this.contrastLimit.Name = "contrastLimit";
             this.contrastLimit.Size = new System.Drawing.Size(33, 20);
@@ -231,7 +237,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1106, 72);
+            this.label7.Location = new System.Drawing.Point(1106, 171);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 16);
@@ -243,7 +249,7 @@
             this.button_CLAHE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_CLAHE.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_CLAHE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CLAHE.Location = new System.Drawing.Point(1187, 8);
+            this.button_CLAHE.Location = new System.Drawing.Point(1187, 107);
             this.button_CLAHE.Name = "button_CLAHE";
             this.button_CLAHE.Size = new System.Drawing.Size(72, 47);
             this.button_CLAHE.TabIndex = 32;
@@ -255,7 +261,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(1106, 97);
+            this.label8.Location = new System.Drawing.Point(1106, 196);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(84, 16);
@@ -264,7 +270,7 @@
             // 
             // windowSize
             // 
-            this.windowSize.Location = new System.Drawing.Point(1196, 95);
+            this.windowSize.Location = new System.Drawing.Point(1196, 194);
             this.windowSize.Margin = new System.Windows.Forms.Padding(2);
             this.windowSize.Name = "windowSize";
             this.windowSize.Size = new System.Drawing.Size(33, 20);
@@ -275,36 +281,36 @@
             // chart_Histogram
             // 
             this.chart_Histogram.BackColor = System.Drawing.Color.SkyBlue;
-            chartArea3.AxisX.Maximum = 255D;
-            chartArea3.AxisX.Minimum = 0D;
-            chartArea3.AxisY.MaximumAutoSize = 0F;
-            chartArea3.InnerPlotPosition.Auto = false;
-            chartArea3.InnerPlotPosition.Height = 85F;
-            chartArea3.InnerPlotPosition.Width = 80F;
-            chartArea3.InnerPlotPosition.X = 15F;
-            chartArea3.InnerPlotPosition.Y = 5F;
-            chartArea3.Name = "ChartArea";
-            chartArea3.Position.Auto = false;
-            chartArea3.Position.Height = 100F;
-            chartArea3.Position.Width = 100F;
-            this.chart_Histogram.ChartAreas.Add(chartArea3);
-            this.chart_Histogram.Location = new System.Drawing.Point(529, 277);
+            chartArea11.AxisX.Maximum = 255D;
+            chartArea11.AxisX.Minimum = 0D;
+            chartArea11.AxisY.MaximumAutoSize = 0F;
+            chartArea11.InnerPlotPosition.Auto = false;
+            chartArea11.InnerPlotPosition.Height = 85F;
+            chartArea11.InnerPlotPosition.Width = 80F;
+            chartArea11.InnerPlotPosition.X = 15F;
+            chartArea11.InnerPlotPosition.Y = 5F;
+            chartArea11.Name = "ChartArea";
+            chartArea11.Position.Auto = false;
+            chartArea11.Position.Height = 100F;
+            chartArea11.Position.Width = 100F;
+            this.chart_Histogram.ChartAreas.Add(chartArea11);
+            this.chart_Histogram.Location = new System.Drawing.Point(567, 319);
             this.chart_Histogram.Name = "chart_Histogram";
             this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series3.ChartArea = "ChartArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series3.Name = "Pixel";
-            dataPoint3.Color = System.Drawing.Color.Black;
-            series3.Points.Add(dataPoint3);
-            series3.YValuesPerPoint = 2;
-            this.chart_Histogram.Series.Add(series3);
+            series11.ChartArea = "ChartArea";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series11.Name = "Pixel";
+            dataPoint11.Color = System.Drawing.Color.Black;
+            series11.Points.Add(dataPoint11);
+            series11.YValuesPerPoint = 2;
+            this.chart_Histogram.Series.Add(series11);
             this.chart_Histogram.Size = new System.Drawing.Size(300, 300);
             this.chart_Histogram.TabIndex = 39;
             this.chart_Histogram.Text = "Histogram";
             // 
             // button_Charts
             // 
-            this.button_Charts.Location = new System.Drawing.Point(530, 245);
+            this.button_Charts.Location = new System.Drawing.Point(568, 287);
             this.button_Charts.Name = "button_Charts";
             this.button_Charts.Size = new System.Drawing.Size(100, 27);
             this.button_Charts.TabIndex = 40;
@@ -315,33 +321,33 @@
             // chart_CumulativeHistogram
             // 
             this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.SkyBlue;
-            chartArea4.AxisX.Maximum = 255D;
-            chartArea4.AxisX.Minimum = 0D;
-            chartArea4.InnerPlotPosition.Auto = false;
-            chartArea4.InnerPlotPosition.Height = 85F;
-            chartArea4.InnerPlotPosition.Width = 80F;
-            chartArea4.InnerPlotPosition.X = 15F;
-            chartArea4.InnerPlotPosition.Y = 5F;
-            chartArea4.Name = "ChartArea";
-            chartArea4.Position.Auto = false;
-            chartArea4.Position.Height = 100F;
-            chartArea4.Position.Width = 100F;
-            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea4);
-            this.chart_CumulativeHistogram.Location = new System.Drawing.Point(836, 277);
+            chartArea12.AxisX.Maximum = 255D;
+            chartArea12.AxisX.Minimum = 0D;
+            chartArea12.InnerPlotPosition.Auto = false;
+            chartArea12.InnerPlotPosition.Height = 85F;
+            chartArea12.InnerPlotPosition.Width = 80F;
+            chartArea12.InnerPlotPosition.X = 15F;
+            chartArea12.InnerPlotPosition.Y = 5F;
+            chartArea12.Name = "ChartArea";
+            chartArea12.Position.Auto = false;
+            chartArea12.Position.Height = 100F;
+            chartArea12.Position.Width = 100F;
+            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea12);
+            this.chart_CumulativeHistogram.Location = new System.Drawing.Point(874, 319);
             this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
             this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series4.ChartArea = "ChartArea";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Name = "Pixel";
-            series4.Points.Add(dataPoint4);
-            this.chart_CumulativeHistogram.Series.Add(series4);
+            series12.ChartArea = "ChartArea";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series12.Name = "Pixel";
+            series12.Points.Add(dataPoint12);
+            this.chart_CumulativeHistogram.Series.Add(series12);
             this.chart_CumulativeHistogram.Size = new System.Drawing.Size(300, 300);
             this.chart_CumulativeHistogram.TabIndex = 41;
             this.chart_CumulativeHistogram.Text = "Histogram";
             // 
             // button_RemoveROI
             // 
-            this.button_RemoveROI.Location = new System.Drawing.Point(882, 95);
+            this.button_RemoveROI.Location = new System.Drawing.Point(930, 97);
             this.button_RemoveROI.Name = "button_RemoveROI";
             this.button_RemoveROI.Size = new System.Drawing.Size(100, 36);
             this.button_RemoveROI.TabIndex = 42;
@@ -351,7 +357,7 @@
             // 
             // button_AI_on_ROI
             // 
-            this.button_AI_on_ROI.Location = new System.Drawing.Point(882, 137);
+            this.button_AI_on_ROI.Location = new System.Drawing.Point(930, 139);
             this.button_AI_on_ROI.Name = "button_AI_on_ROI";
             this.button_AI_on_ROI.Size = new System.Drawing.Size(100, 36);
             this.button_AI_on_ROI.TabIndex = 43;
@@ -361,7 +367,7 @@
             // 
             // button_AI
             // 
-            this.button_AI.Location = new System.Drawing.Point(882, 179);
+            this.button_AI.Location = new System.Drawing.Point(930, 181);
             this.button_AI.Name = "button_AI";
             this.button_AI.Size = new System.Drawing.Size(100, 36);
             this.button_AI.TabIndex = 44;
@@ -382,12 +388,75 @@
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             // 
+            // button_show_image
+            // 
+            this.button_show_image.Location = new System.Drawing.Point(843, 228);
+            this.button_show_image.Name = "button_show_image";
+            this.button_show_image.Size = new System.Drawing.Size(81, 19);
+            this.button_show_image.TabIndex = 45;
+            this.button_show_image.Text = "Show Image";
+            this.button_show_image.UseVisualStyleBackColor = true;
+            this.button_show_image.Click += new System.EventHandler(this.button_show_image_Click);
+            // 
+            // button_show_mask
+            // 
+            this.button_show_mask.Location = new System.Drawing.Point(930, 228);
+            this.button_show_mask.Name = "button_show_mask";
+            this.button_show_mask.Size = new System.Drawing.Size(81, 19);
+            this.button_show_mask.TabIndex = 46;
+            this.button_show_mask.Text = "Show Mask";
+            this.button_show_mask.UseVisualStyleBackColor = true;
+            this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
+            // 
+            // button_show
+            // 
+            this.button_show.Location = new System.Drawing.Point(756, 228);
+            this.button_show.Name = "button_show";
+            this.button_show.Size = new System.Drawing.Size(81, 19);
+            this.button_show.TabIndex = 47;
+            this.button_show.Text = "Show";
+            this.button_show.UseVisualStyleBackColor = true;
+            this.button_show.Click += new System.EventHandler(this.button_show_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.LightBlue;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextBox1.Location = new System.Drawing.Point(740, 86);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(303, 166);
+            this.richTextBox1.TabIndex = 48;
+            this.richTextBox1.Text = "";
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.BackColor = System.Drawing.Color.LightBlue;
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextBox2.Location = new System.Drawing.Point(1093, 97);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(185, 135);
+            this.richTextBox2.TabIndex = 49;
+            this.richTextBox2.Text = "";
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.BackColor = System.Drawing.Color.LightBlue;
+            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextBox3.Location = new System.Drawing.Point(550, 275);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(642, 354);
+            this.richTextBox3.TabIndex = 50;
+            this.richTextBox3.Text = "";
+            // 
             // Image_Analysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(1282, 598);
+            this.ClientSize = new System.Drawing.Size(1298, 668);
+            this.Controls.Add(this.button_show);
+            this.Controls.Add(this.button_show_mask);
+            this.Controls.Add(this.button_show_image);
             this.Controls.Add(this.button_AI);
             this.Controls.Add(this.button_AI_on_ROI);
             this.Controls.Add(this.button_RemoveROI);
@@ -414,6 +483,9 @@
             this.Controls.Add(this.location);
             this.Controls.Add(this.button_select);
             this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.richTextBox3);
             this.Name = "Image_Analysis";
             this.Text = "Image Analysis";
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).EndInit();
@@ -451,6 +523,12 @@
         private System.Windows.Forms.Button button_RemoveROI;
         private System.Windows.Forms.Button button_AI_on_ROI;
         private System.Windows.Forms.Button button_AI;
+        private System.Windows.Forms.Button button_show_image;
+        private System.Windows.Forms.Button button_show_mask;
+        private System.Windows.Forms.Button button_show;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox richTextBox3;
     }
 }
 
