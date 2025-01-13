@@ -75,7 +75,9 @@
   <ItemGroup>
     <Compile Include="Classes\CLAHE.cs" />
     <Compile Include="Classes\GrowCut.cs" />
+    <Compile Include="Classes\ImageData.cs" />
     <Compile Include="Classes\MyBitmap.cs" />
+    <Compile Include="Classes\pixel.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

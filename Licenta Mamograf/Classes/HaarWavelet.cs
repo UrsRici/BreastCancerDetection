@@ -16,7 +16,6 @@ namespace Licenta_Mamograf
         private static MyBitmap denoisedBitmap;
         private static MyBitmap image;
 
-
         private static double[,] Transform(double[,] matrix)
         {
             int height = matrix.GetLength(0);
@@ -52,7 +51,6 @@ namespace Licenta_Mamograf
 
             return coefficients;
         }
-
 
         private static void Transform()
         {

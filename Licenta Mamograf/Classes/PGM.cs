@@ -7,29 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Licenta_Mamograf.Classes.GrowCut;
 
 namespace Licenta_Mamograf
 {
-    public class Pixel
-    {
-        public int x, y, s;
-        public Pixel(int x, int y, int s)
-        {
-            this.x = x;
-            this.y = y;
-            this.s = s;
-        }
-        public Pixel()
-        {
-            this.x = 0;
-            this.y = 0;
-            this.s = 0;
-        }
-    }
-
     public class PGM
     {
-
         public string magicNumber = "P5";
         public int width = 1024;
         public int height = 1024;
@@ -37,7 +20,6 @@ namespace Licenta_Mamograf
         public MyBitmap bitmap { get; set; }
         public Bitmap mask { get; set; }
         public float[,] matrix { get; set; }
-
 
         public PGM()
         {
@@ -69,7 +51,6 @@ namespace Licenta_Mamograf
                 }
             }
         }
-
         public PGM(string filePath)
         {
             StreamReader sr = new StreamReader(filePath);
@@ -120,7 +101,6 @@ namespace Licenta_Mamograf
                 }
             }
         }
-
         public void Update(float[,] matrix)
         {
             this.width = matrix.GetLength(0);
@@ -137,9 +117,7 @@ namespace Licenta_Mamograf
         }
 
         public void ShowImage(PictureBox p) { p.Image = this.bitmap.ToBitmap(); }
-
         public void ShowMask(PictureBox p) { p.Image = this.mask; }
-
         public void Show(PictureBox p) 
         { 
             Bitmap image = new Bitmap(width, height);
@@ -173,7 +151,6 @@ namespace Licenta_Mamograf
             }
             this.Update(this.matrix);
         }
-
         public void ApplyMask(Point p0, Point p1, float[,] roi)
         {
             for (int y = p0.Y; y < p1.Y; y++)
@@ -185,7 +162,6 @@ namespace Licenta_Mamograf
                 }
             }
         }
-
         public void ApplyMask(float[,] roi)
         {
             for (int y = 0; y < height; y++)
@@ -209,7 +185,6 @@ namespace Licenta_Mamograf
 
             return histogram;
         }
-
         public float[] CumulativeHistogram()
         {
             float[] histogram = this.Histogram();

@@ -25,7 +25,7 @@ namespace Licenta_Mamograf
     {
         private string filePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Images\mdb005.pgm"));
         private PGM img = new PGM();
-        DateTime t0 = new DateTime(), t1 = new DateTime();
+        DateTime t = new DateTime();
 
         public Point ROIstartPoint = new Point();
         public Point ROIendPoint = new Point();
@@ -34,15 +34,15 @@ namespace Licenta_Mamograf
         public Image_Analysis()
         {
             InitializeComponent();
-            GrowCut.Load();
-
+            ImageData.Load();
+            ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
             img = new PGM(filePath);
             img.ShowImage(pictureBox);
         }
 
         private void button_select_Click(object sender, EventArgs e)
         {
-            t0 = DateTime.Now;
+            t = DateTime.Now;
             // Create an OpenFileDialog to select a file
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -59,12 +59,11 @@ namespace Licenta_Mamograf
 
                 location.Text = filePath;
                 
+                ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
+
                 info_log.Text += "------Image Load------\n";
             }
-
-            t1 = DateTime.Now;
-
-            info_log.Text = (t1 - t0).ToString() + " ms\n";
+            info_log.Text = (DateTime.Now - t).ToString() + " ms\n";
         }
         private void button_relode_Click(object sender, EventArgs e)
         {
@@ -96,7 +95,7 @@ namespace Licenta_Mamograf
                 return; 
             }
 
-            DateTime t = DateTime.Now;
+            t = DateTime.Now;
             img.Update(HaarWavelet.Denoising(img));
             info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
 
@@ -186,7 +185,7 @@ namespace Licenta_Mamograf
 
         private void button_AI_Click(object sender, EventArgs e)
         {
-            float[,] mask = GrowCut.ApplyData(img.matrix, Path.GetFileNameWithoutExtension(filePath));
+            float[,] mask = GrowCut.ApplyData(img.matrix);
             
             img.ApplyMask(mask);
             pictureBox.ResetROIfig();
@@ -261,7 +260,7 @@ namespace Licenta_Mamograf
             float cL = float.Parse(contrastLimit.Text);
             MyBitmap myBitmap = img.bitmap;
 
-            DateTime t = DateTime.Now;
+            t = DateTime.Now;
             CLHE.Apply(ref myBitmap, cL);
             info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
 
@@ -283,7 +282,7 @@ namespace Licenta_Mamograf
 
             MyBitmap myBitmap = img.bitmap;
 
-            DateTime t = DateTime.Now;
+            t = DateTime.Now;
             CLAHE.Apply(ref myBitmap, wS, cL);
             info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
 
