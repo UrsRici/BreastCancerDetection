@@ -23,14 +23,14 @@ namespace Licenta_Mamograf
 {
     public partial class Image_Analysis : Form
     {
-        private string filePath = @"D:\Aplicatii\Facultate\Informatica\Licenta\Licenta Mamograf\Licenta Mamograf\Images\mdb005.pgm";
+        private string filePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Images\mdb005.pgm"));
         private PGM img = new PGM();
         DateTime t0 = new DateTime(), t1 = new DateTime();
 
         public Point ROIstartPoint = new Point();
         public Point ROIendPoint = new Point();
         private float[,] ROI;
-
+        
         public Image_Analysis()
         {
             InitializeComponent();
@@ -60,12 +60,6 @@ namespace Licenta_Mamograf
                 location.Text = filePath;
                 
                 info_log.Text += "------Image Load------\n";
-                /*
-                 * info_log.Text += Path.GetFileName(filePath) + "\n";
-                 * info_log.Text += img.magicNumber + "\n";
-                 * info_log.Text += img.width + " " + img.height + "\n";
-                 * info_log.Text += img.maxVal + "\n";
-                 */
             }
 
             t1 = DateTime.Now;
