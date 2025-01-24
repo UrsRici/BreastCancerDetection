@@ -18,6 +18,7 @@ using Emgu.CV.Flann;
 using System.Drawing.Drawing2D;
 using Emgu.CV.Structure;
 using Licenta_Mamograf.Classes;
+using ClaheTest;
 
 namespace Licenta_Mamograf
 {
@@ -321,5 +322,12 @@ namespace Licenta_Mamograf
             }
         }
 
+        private void Clahe_test_Click(object sender, EventArgs e)
+        {
+            Clahe clahe = new Clahe(8, 8, 256, 32f, img.bitmap.ToBitmap());
+            img.bitmap.ToMyBitmap(clahe.Process());
+            img.Update(img.bitmap);
+            img.Show(pictureBox);
+        }
     }
 }

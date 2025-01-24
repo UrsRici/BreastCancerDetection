@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CLAHE.cs" />
+    <Compile Include="Classes\ClaheTest.cs" />
     <Compile Include="Classes\GrowCut.cs" />
     <Compile Include="Classes\ImageData.cs" />
     <Compile Include="Classes\MyBitmap.cs" />
