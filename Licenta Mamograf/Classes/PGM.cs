@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Licenta_Mamograf.Classes.GrowCut;
 
 namespace Licenta_Mamograf
 {
@@ -114,6 +113,15 @@ namespace Licenta_Mamograf
                     this.bitmap.SetPixel(y, x, pixel);
                 }
             }
+        }
+        public void Update(Bitmap bmp)
+        {
+            this.bitmap.ToMyBitmap(bmp);
+            this.Update(this.bitmap);
+        }
+        public Bitmap ToBitmap()
+        {
+            return this.bitmap.ToBitmap();
         }
 
         public void ShowImage(PictureBox p) { p.Image = this.bitmap.ToBitmap(); }
