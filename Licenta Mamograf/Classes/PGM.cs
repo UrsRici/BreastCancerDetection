@@ -115,6 +115,15 @@ namespace Licenta_Mamograf
                 }
             }
         }
+        public void Update(Bitmap bmp)
+        {
+            this.bitmap.ToMyBitmap(bmp);
+            this.Update(this.bitmap);
+        }
+        public Bitmap ToBitmap()
+        {
+            return this.bitmap.ToBitmap();
+        }
 
         public void ShowImage(PictureBox p) { p.Image = this.bitmap.ToBitmap(); }
         public void ShowMask(PictureBox p) { p.Image = this.mask; }

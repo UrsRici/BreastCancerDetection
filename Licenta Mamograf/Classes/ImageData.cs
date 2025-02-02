@@ -27,7 +27,7 @@ namespace Licenta_Mamograf.Classes
             public string Severity { get; set; }
 
             // 5th and 6th columns: x, y image-coordinates
-            public int X { get; set; }
+            public int X { get; set; } 
             public int Y { get; set; }
 
             // 7th column: Approximate radius in pixels

@@ -9,16 +9,17 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Emgu.CV.UI;
 using Emgu.CV;
+using Emgu.CV.UI;
+using Emgu.CV.Structure;
+using Emgu.CV.Flann;
 using ZedGraph;
 using OpenTK;
 using System.Windows.Forms.DataVisualization.Charting;
-using Emgu.CV.Flann;
 using System.Drawing.Drawing2D;
-using Emgu.CV.Structure;
 using Licenta_Mamograf.Classes;
 using ClaheTest;
+using OpenTK.Graphics.ES30;
 
 namespace Licenta_Mamograf
 {
@@ -89,7 +90,7 @@ namespace Licenta_Mamograf
 
         private void button_WaveletDenoising_Click(object sender, EventArgs e)
         {
-            info_log.Text += "------Wavelet Denoising------\n";
+            info_log.Text += "------Preprocessing------\n";
             if (pictureBox.Image == null)
             { 
                 info_log.Text += "No image selected!\n";
@@ -97,7 +98,7 @@ namespace Licenta_Mamograf
             }
 
             t = DateTime.Now;
-            img.Update(HaarWavelet.Denoising(img));
+            img.Update(Preprocessing.Apply(img));    
             info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
 
             img.ShowImage(pictureBox);
@@ -278,16 +279,20 @@ namespace Licenta_Mamograf
                 return;
             }
 
-            float cL = float.Parse(contrastLimit.Text);
+            double cL = double.Parse(contrastLimit.Text);
             int wS = int.Parse(windowSize.Text);
-
-            MyBitmap myBitmap = img.bitmap;
-
             t = DateTime.Now;
-            CLAHE.Apply(ref myBitmap, wS, cL);
-            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
 
-            img.Update(myBitmap);
+            /*MyBitmap myBitmap = img.bitmap;
+
+            CLAHE.Apply(ref myBitmap, wS, cL);
+            
+            img.Update(MyClahe.Apply(img.ToBitmap(), contrastLimit.Text, 8));*/
+
+
+            img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
+
+            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
 
             img.ShowImage(pictureBox);
         }
@@ -308,12 +313,11 @@ namespace Licenta_Mamograf
                 his.Points.AddXY(i, histogram[i]);
                 cHis.Points.AddXY(i, cumulativeHistogram[i]);
             }
-            histogram[0] = histogram[1];
-            his.Points[0].YValues[0] = his.Points[1].YValues[0];
-            his.Points[0].YValues[0] = histogram.Max();
 
             chart_CumulativeHistogram.ChartAreas[0].AxisY.Minimum = cumulativeHistogram.Min();
             chart_CumulativeHistogram.ChartAreas[0].AxisY.Maximum = cumulativeHistogram.Max();
+            histogram[0] = histogram[1];
+            chart_Histogram.ChartAreas[0].AxisY.Maximum = 15000;
 
             PointPairList points = new PointPairList();
             for (int i = 0; i < cumulativeHistogram.Length; i++) 
@@ -322,12 +326,5 @@ namespace Licenta_Mamograf
             }
         }
 
-        private void Clahe_test_Click(object sender, EventArgs e)
-        {
-            Clahe clahe = new Clahe(8, 8, 256, 32f, img.bitmap.ToBitmap());
-            img.bitmap.ToMyBitmap(clahe.Process());
-            img.Update(img.bitmap);
-            img.Show(pictureBox);
-        }
     }
 }
