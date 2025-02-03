@@ -50,12 +50,10 @@ namespace Licenta_Mamograf
         private InterpolationMode _interpolationMode = InterpolationMode.NearestNeighbor;
 
         private static readonly Cursor _defaultCursor = Cursors.Hand;
-
         //
         // Summary:
         //     The available zoom levels for the displayed image
         public static double[] ZoomLevels = new double[5] { 0.5, 1.0, 2.0, 4.0, 8.0 };
-
         //
         // Summary:
         //     Get or Set the property to enable(disable) Pan and Zoom
@@ -139,7 +137,7 @@ namespace Licenta_Mamograf
         public MyImageBox()
         {
             InitializeComponent();
-            _zoomScale = 1.0;
+            _zoomScale = (double)this.Height / 1024;
             SetScrollBarVisibilityAndMaxMin();
             base.ResizeRedraw = false;
             DoubleBuffered = true;
@@ -171,12 +169,13 @@ namespace Licenta_Mamograf
 
         private void OnResize(object sender, EventArgs e)
         {
-            Size viewSize = GetViewSize();
-            if (base.Image != null && viewSize.Width > 0 && viewSize.Height > 0)
-            {
+            //Size viewSize = GetViewSize();
+            //if (base.Image != null && viewSize.Width > 0 && viewSize.Height > 0)
+            //{
+                _zoomScale = (double)this.Height / 1024;
                 SetScrollBarVisibilityAndMaxMin();
                 Invalidate();
-            }
+            //}
         }
 
         private void OnMouseWheel(object sender, MouseEventArgs e)
@@ -250,8 +249,6 @@ namespace Licenta_Mamograf
             
             base.OnPaint(pe);
         }
-
-
 
         private void SetScrollBarVisibilityAndMaxMin()
         {

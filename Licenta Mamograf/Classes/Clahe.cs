@@ -31,15 +31,6 @@ namespace Licenta_Mamograf
             return comulativeFreq;
         }
 
-        private static double findMax(double[] array)
-        {
-            double max = double.MinValue;
-            foreach (double value in array)
-                if (value > max)
-                    max = value;
-            return max;
-        }
-
         private static double findMin(double[] array)
         {
             double min = double.MaxValue;
@@ -97,68 +88,6 @@ namespace Licenta_Mamograf
             for (int y = 0; y < bitplane.Height; y++)
                 for (x = 0; x < bitplane.Width; x++)
                     bitplane.SetPixel(x, y, (byte)finalFreq[bitplane.GetPixel(x, y)]);
-        }
-    }
-
-    public static class CLAHE
-    {
-        private static void CreateWindow(ref MyBitmap bitplane, int windowSize, ref MyBitmap window, int y, int x)
-        {
-            int jIndex = 0;
-            int iIndex;
-            int i;
-            for (int j = 0 - (windowSize / 2); j < (windowSize / 2); j++)
-            {
-                iIndex = 0;
-                for (i = 0 - (windowSize / 2); i < (windowSize / 2); i++)
-                {
-                    int xx = x + i;
-                    if (xx < 0)
-                        xx = Math.Abs(xx);
-                    if (xx >= bitplane.Width)
-                        xx = (bitplane.Width - 1) + ((bitplane.Width) - (xx + windowSize));
-                    int yy = y + j;
-                    if (yy < 0)
-                        yy = Math.Abs(yy);
-                    if (yy >= bitplane.Height)
-                        yy = (bitplane.Height - 1) + ((bitplane.Height) - (yy + windowSize));
-
-                    window.SetPixel(iIndex, jIndex, bitplane.GetPixel(xx, yy));
-                    iIndex++;
-                }
-                jIndex++;
-            }
-        }
-
-        public static void Apply(ref MyBitmap bitplane, int windowSize, double contrastLimit)
-        {
-
-            MyBitmap newBitplane = new MyBitmap(bitplane.Width, bitplane.Height);
-            MyBitmap window = new MyBitmap(windowSize, windowSize);
-
-            int x;
-            int y;
-            for (y = 0; y < bitplane.Height; y++)
-            {
-                for (x = 0; x < bitplane.Width; x++)
-                {
-                    // Create window
-                    CreateWindow(ref bitplane, windowSize, ref window, y, x);
-
-                    // Contrast Limit Histogram equalization on window
-                    CLHE.Apply(ref window, contrastLimit);
-
-                    // Replace pixel from windowHE
-                    newBitplane.SetPixel(x, y, window.GetPixel(windowSize / 2, windowSize / 2));
-                }
-            }
-
-            // Copy
-            for (y = 0; y < bitplane.Height; y++)
-                for (x = 0; x < bitplane.Width; x++)
-                    bitplane.SetPixel(x, y, newBitplane.GetPixel(x, y));
-
-
         }
     }
 }

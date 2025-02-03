@@ -4,15 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Licenta_Mamograf.Classes
 {
-    public static class ImageData
-    {
-        private static List<imageData> Data = new List<imageData>();
-        private static List<imageData> currentData = new List<imageData>();
-
-        public class imageData
+    public class imageData
         {
             // 1st column: MIAS database reference number
             public string ID { get; set; }
@@ -27,7 +23,7 @@ namespace Licenta_Mamograf.Classes
             public string Severity { get; set; }
 
             // 5th and 6th columns: x, y image-coordinates
-            public int X { get; set; } 
+            public int X { get; set; }
             public int Y { get; set; }
 
             // 7th column: Approximate radius in pixels
@@ -58,6 +54,11 @@ namespace Licenta_Mamograf.Classes
                 return $"{ID} {TissueType} {AbnormalityClass} {Severity} {X} {Y} {Radius}";
             }
         }
+    
+    public static class ImageData
+    {
+        private static List<imageData> Data = new List<imageData>();
+        private static List<imageData> currentData = new List<imageData>();
 
         public static void Load()
         {

@@ -25,19 +25,109 @@ namespace Licenta_Mamograf
         public Point ROIstartPoint = new Point();
         public Point ROIendPoint = new Point();
         private float[,] ROI;
-        
+
+        /*private void AdjustUIElements()
+        {
+            int formWidth = this.ClientSize.Width;
+            int formHeight = this.ClientSize.Height;
+
+            // Ajustează poziția și dimensiunea pictureBox
+            pictureBox.Size = new Size((int)(formWidth * 0.5), (int)(formHeight * 0.9));
+            pictureBox.Location = new Point(10, 10);
+
+            int controlPanelX = pictureBox.Right + 20;
+            int buttonWidth = (int)(formWidth * 0.15);
+            int buttonHeight = (int)(formHeight * 0.05);
+            int padding = 10;
+            int currentY = 10;
+
+            // Selectare imagine
+            button_select.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Info Log
+            info_log.SetBounds(controlPanelX, currentY, buttonWidth * 2, buttonHeight * 4);
+            currentY += info_log.Height + padding;
+
+            // Locație imagine
+            location.SetBounds(controlPanelX, currentY, buttonWidth * 2, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Buton Preprocesare
+            button_Preprocessing.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Selectare ROI
+            button_selectROI.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Eliminare ROI
+            button_RemoveROI.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Aplica AI pe ROI
+            button_AIonROI.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Aplica AI pe întreaga imagine
+            button_AI.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Butoane afișare imagini
+            button_show_image.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+            button_show_mask.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+            button_show.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Histogramă
+            chart_Histogram.SetBounds(controlPanelX, currentY, buttonWidth * 2, buttonHeight * 4);
+            currentY += chart_Histogram.Height + padding;
+
+            // Histogramă cumulativă
+            chart_CumulativeHistogram.SetBounds(controlPanelX, currentY, buttonWidth * 2, buttonHeight * 4);
+            currentY += chart_CumulativeHistogram.Height + padding;
+
+            // Buton pentru afișare histograme
+            button_Charts.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // CLAHE și CLHE
+            button_CLHE.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+            button_CLAHE.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
+            currentY += buttonHeight + padding;
+
+            // Setări CLAHE
+            label7.SetBounds(controlPanelX, currentY, buttonWidth / 2, buttonHeight);
+            contrastLimit.SetBounds(controlPanelX + buttonWidth / 2, currentY, buttonWidth / 2, buttonHeight);
+            currentY += buttonHeight + padding;
+            label8.SetBounds(controlPanelX, currentY, buttonWidth / 2, buttonHeight);
+            windowSize.SetBounds(controlPanelX + buttonWidth / 2, currentY, buttonWidth / 2, buttonHeight);
+        }*/
+
         public Image_Analysis()
         {
             InitializeComponent();
+
+            //AdjustUIElements();
+
             ImageData.Load();
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
+
+            // Afisare datele despre imaginea initiala din fisierul "data.txt"...
+            List<imageData> a = ImageData.GetDatas();
+            for (int i = 0; i < a.Count; i++)
+                info_log.Text += a[i].ToString() + "\n";
+
+            location.Text = filePath;
+
             img = new PGM(filePath);
             img.ShowImage(pictureBox);
         }
-
         private void button_select_Click(object sender, EventArgs e)
         {
-            t = DateTime.Now;
             // Create an OpenFileDialog to select a file
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -45,20 +135,26 @@ namespace Licenta_Mamograf
             openFileDialog.Filter = "PGM Files (*.pgm)|*.pgm";
             openFileDialog.Title = "Select a PGM File";
 
+            ResetROI();
             // If the user selects a file and clicks OK
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
 
-                button_relode_Click(sender, e);
-
                 location.Text = filePath;
-                
-                ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
+
+                img = new PGM(filePath);
+                img.ShowImage(pictureBox);
 
                 info_log.Text += "------Image Load------\n";
+
+                ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
+
+                // Afisare datele despre imaginea initiala din fisierul "data.txt"...
+                List<imageData> a = ImageData.GetDatas();
+                for (int i = 0; i < a.Count; i++)
+                    info_log.Text += a[i].ToString() + "\n";
             }
-            info_log.Text = (DateTime.Now - t).ToString() + " ms\n";
         }
         private void button_relode_Click(object sender, EventArgs e)
         {
@@ -67,18 +163,21 @@ namespace Licenta_Mamograf
                 info_log.Text += "No image selected!\n";
                 return;
             }
-            if (pictureBox.ROIselect_Button_active) { button_selectROI_Click(sender, e); }
-            pictureBox.ResetROIfig();
+            location.Text = filePath;
+
+            ResetROI();
 
             img = new PGM(filePath);
             img.ShowImage(pictureBox);
 
             info_log.Text += "------Image Reloded------\n";
-            /*
-             * info_log.Text += img.magicNumber + "\n";
-             * info_log.Text += img.width + " " + img.height + "\n";
-             * info_log.Text += img.maxVal + "\n";
-             */
+
+            ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
+
+            // Afisare datele despre imaginea initiala din fisierul "data.txt"...
+            List<imageData> a = ImageData.GetDatas();
+            for (int i = 0; i < a.Count; i++)
+                info_log.Text += a[i].ToString() + "\n";
         }
 
         private void button_Preprocessing_Click(object sender, EventArgs e)
@@ -126,17 +225,12 @@ namespace Licenta_Mamograf
                         Math.Abs(ROIendPoint.Y - ROIstartPoint.Y)];
 
                     MyBitmap aux = img.bitmap;
+
                     for (int x = 0; x < ROI.GetLength(0); x++)
-                    {
                         for (int y = 0; y < ROI.GetLength(1); y++)
-                        {
                             ROI[x, y] = aux.GetPixel((p.X + x), (p.Y + y));
-                            //info_log.Text += ROI[x, y] + " ";
-                        }
-                        //info_log.Text += "\n";
-                    }
    
-                    info_log.Text += ROI.GetLength(0)+ " " + ROI.GetLength(1);
+                    info_log.Text += ROI.GetLength(0)+ " " + ROI.GetLength(1) + "\n";
 
                 }
             }
@@ -158,7 +252,7 @@ namespace Licenta_Mamograf
             pictureBox.ResetROIfig();
             img.ShowImage(pictureBox);
         }
-        private void button_AI_on_ROI_Click(object sender, EventArgs e)
+        private void button_AIonROI_Click(object sender, EventArgs e)
         {
             
             if (!pictureBox.IsROIfig()) { return; }
@@ -176,6 +270,13 @@ namespace Licenta_Mamograf
             img.ApplyMask(p0, p1, GrowCut.Apply(ROI));
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
+        }
+        private void ResetROI()
+        {
+            if (pictureBox.ROIselect_Button_active)
+                button_selectROI_Click(new object(), new EventArgs());
+
+            pictureBox.ResetROIfig();
         }
 
         private void button_AI_Click(object sender, EventArgs e)
@@ -209,7 +310,7 @@ namespace Licenta_Mamograf
                 ROIstartPoint = pictureBox.AdjustPoint(e.Location);
 
                 // Afișăm coordonatele în startPoint.Text
-                startPoint.Text = "P1(" + ROIstartPoint.X + ", " + ROIstartPoint.Y + ")";
+                startPoint.Text = "P1(" + ROIstartPoint.X + "," + ROIstartPoint.Y + ")";
             }
         }
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
@@ -310,7 +411,7 @@ namespace Licenta_Mamograf
             chart_CumulativeHistogram.ChartAreas[0].AxisY.Minimum = cumulativeHistogram.Min();
             chart_CumulativeHistogram.ChartAreas[0].AxisY.Maximum = cumulativeHistogram.Max();
             histogram[0] = histogram[1];
-            chart_Histogram.ChartAreas[0].AxisY.Maximum = 15000;
+            chart_Histogram.ChartAreas[0].AxisY.Maximum = histogram.Max() + histogram.Max()*.05;
 
             PointPairList points = new PointPairList();
             for (int i = 0; i < cumulativeHistogram.Length; i++) 
