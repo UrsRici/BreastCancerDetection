@@ -53,7 +53,7 @@ namespace Licenta_Mamograf
         //
         // Summary:
         //     The available zoom levels for the displayed image
-        public static double[] ZoomLevels = new double[5] { 0.5, 1.0, 2.0, 4.0, 8.0 };
+
         //
         // Summary:
         //     Get or Set the property to enable(disable) Pan and Zoom
