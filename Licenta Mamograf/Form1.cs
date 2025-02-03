@@ -81,7 +81,7 @@ namespace Licenta_Mamograf
              */
         }
 
-        private void button_WaveletDenoising_Click(object sender, EventArgs e)
+        private void button_Preprocessing_Click(object sender, EventArgs e)
         {
             info_log.Text += "------Preprocessing------\n";
             if (pictureBox.Image == null)

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Emgu.CV.CvEnum;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +15,6 @@ namespace Licenta_Mamograf
         private static float[,] coefficients;
         private static float threshold;
         private static float[,] denoisedMatrix;
-        private static MyBitmap denoisedBitmap;
         private static MyBitmap cleanImage;
 
         private static void Transform()
@@ -53,7 +54,7 @@ namespace Licenta_Mamograf
             // Implementare simplă pentru calcularea pragului
             float mean = coefficients.Cast<float>().Average();
             float stdDev = (float)Math.Sqrt(coefficients.Cast<float>().Select(val => (float)Math.Pow(val - mean, 2)).Average());
-            threshold = mean + 0.5f * stdDev; // Prag adaptiv simplificat
+            threshold = mean + .5f * stdDev; // Prag adaptiv simplificat
         }
         private static void ApplyThreshold()
         {
@@ -76,7 +77,7 @@ namespace Licenta_Mamograf
         {
             int height = denoisedMatrix.GetLength(0);
             int width = denoisedMatrix.GetLength(1);
-            denoisedBitmap = new MyBitmap(height, width);
+            cleanImage = new MyBitmap(height, width);
 
             for (int y = 0; y < height; y++)
             {
@@ -92,7 +93,7 @@ namespace Licenta_Mamograf
                     else
                         grayValue = 255;
 
-                    denoisedBitmap.SetPixel(y, x, (byte)grayValue);
+                    cleanImage.SetPixel(y, x, (byte)grayValue);
                 }
             }
         }
@@ -114,17 +115,18 @@ namespace Licenta_Mamograf
             ConvertMatrixToBitmap();
         }
 
-        private static void RemoveHeightNoise()
+        private static void RemoveHeightNoise(PGM pgm)
         {
-            int width = denoisedBitmap.Width;
-            int height = denoisedBitmap.Height;
+            MyBitmap image = pgm.bitmap;
+            int width = image.Width;
+            int height = image.Height;
             cleanImage = new MyBitmap(width, height);
 
             for (int y = 1; y < height - 1; y++)
             {
                 for (int x = 1; x < width - 1; x++)
                 {
-                    byte currentPixel = denoisedBitmap.GetPixel(y, x);
+                    byte currentPixel = image.GetPixel(y, x);
                     int avgIntensity = 0;
                     int count = 0;
 
@@ -134,7 +136,7 @@ namespace Licenta_Mamograf
                         for (int dx = -1; dx <= 1; dx++)
                         {
                             if (dx == 0 && dy == 0) continue; // Evităm pixelul central
-                            byte neighborPixel = denoisedBitmap.GetPixel(y + dy, x + dx);
+                            byte neighborPixel = image.GetPixel(y + dy, x + dx);
                             avgIntensity += neighborPixel;
                             count++;
                         }
@@ -149,121 +151,103 @@ namespace Licenta_Mamograf
                         cleanImage.SetPixel(y, x, currentPixel); // Lasă pixelul neschimbat
                 }
             }
+            pgm.Update(cleanImage);
         }
 
-        public static MyBitmap Apply(PGM pgm)
+        private static void ArtifactRemover()
         {
-            matrix = pgm.matrix;
-             
-            // Apply Haar Wavelet algortm...
-            HaarWavelet();
+            int width = cleanImage.Width;
+            int height = cleanImage.Height;
+            MyBitmap image = new MyBitmap(width, height);
+            bool[,] visited = new bool[width, height];
+            List<List<(int, int)>> regions = new List<List<(int, int)>>();
 
-            // Remove intens pixels...
-            RemoveHeightNoise();
-
-            //MyBitmap p = RemoveArtifacts(cleanImage);
-
-            return cleanImage;
-        }
-
-
-        /* RemoveArtefacts
-        public static MyBitmap RemoveArtifacts(MyBitmap image)
-        {
-            int width = image.Width;
-            int height = image.Height;
-            MyBitmap cleanImage = new MyBitmap(width, height);
-            bool[,] visited = new bool[height, width]; // Matrice pentru a marca pixelii deja procesați
-
-            // Folosim o metodă BFS pentru a detecta regiunile izolate
-            for (int y = 1; y < height - 1; y++)
+            for (int y = 0; y < height; y++)
             {
-                for (int x = 1; x < width - 1; x++)
+                for (int x = 0; x < width; x++)
                 {
-                    if (!visited[y, x])
+                    byte currentPixel = image.GetPixel(x, y);
+
+                    if (!visited[y, x] && cleanImage.GetPixel(y, x) > 0)
                     {
-                        byte currentPixel = image.GetPixel(y, x);
                         List<(int, int)> region = new List<(int, int)>();
                         Queue<(int, int)> queue = new Queue<(int, int)>();
 
-                        // Începem BFS de la pixelul (x, y)
                         queue.Enqueue((y, x));
                         visited[y, x] = true;
-
                         while (queue.Count > 0)
                         {
                             var (cy, cx) = queue.Dequeue();
+
                             region.Add((cy, cx));
 
-                            // Verificăm cei 4 vecini ai pixelului curent
-                            foreach (var neighbor in GetNeighbors(cy, cx))
+                            foreach (var (dy, dx) in GetNeighbors(cy, cx))
                             {
-                                int dy = neighbor.Item1;
-                                int dx = neighbor.Item2;
-
-                                if (dy >= 0 && dy < height && dx >= 0 && dx < width && !visited[dy, dx] && image.GetPixel(dy, dx) == currentPixel)
+                                if (!visited[dy, dx])
                                 {
                                     visited[dy, dx] = true;
                                     queue.Enqueue((dy, dx));
                                 }
                             }
                         }
-
-                        // Dacă regiunea detectată este prea mică (un artefact), o înlocuim cu media vecinilor
-                        if (region.Count <= 10) // Prag pentru mărimea regiunii izolate
-                        {
-                            foreach (var (py, px) in region)
-                            {
-                                byte avgPixel = CalculateAverageIntensity(image, px, py);
-                                cleanImage.SetPixel(py, px, avgPixel);
-                            }
-                        }
-                        else
-                        {
-                            // Altfel, copiem regiunea neafectată
-                            foreach (var (py, px) in region)
-                            {
-                                cleanImage.SetPixel(py, px, currentPixel);
-                            }
-                        }
+                        regions.Add(region);
                     }
                 }
             }
+            RemoveRegions(regions);
+        }
+        private static List<(int, int)> GetNeighbors(int y, int x)
+        {
+            List<(int, int)> neighbors = new List<(int, int)>();
+
+            for (int dy = -1; dy < 2; dy++)
+            {
+                for (int dx = -1; dx < 2; dx++)
+                {
+                    if (dx == 0 && dy == 0) continue;
+
+                    int newX = x + dy;
+                    int newY = y + dx;
+                    if (newX >= 0 && newX < cleanImage.Width && newY >= 0 && newY < cleanImage.Height && cleanImage.GetPixel(newY, newX) != 0)
+                    {
+                        neighbors.Add((newY, newX));
+                    }
+                }
+            }
+            return neighbors;
+
+        }
+        private static void RemoveRegions(List<List<(int, int)>> regions)
+        {
+            // Remove all regions except the largest one...
+            int width = cleanImage.Width;
+            int height = cleanImage.Height;
+            MyBitmap image = new MyBitmap(width, height);
+
+            var region = regions.OrderByDescending(list => list.Count).FirstOrDefault();
+
+            foreach (var (y, x) in region)
+            {
+                image.SetPixel(y, x, cleanImage.GetPixel(y, x));
+            }
+            cleanImage = image;
+        }
+
+        public static MyBitmap Apply(PGM pgm)
+        {
+            // Remove intens pixels...
+            RemoveHeightNoise(pgm);
+
+            matrix = pgm.matrix;
+
+            // Apply Haar Wavelet algortm...
+            HaarWavelet();
+
+            //Remove Artifacts from the image...
+            ArtifactRemover();
 
             return cleanImage;
         }
 
-        // Returnează vecinii unui pixel
-        private static List<(int, int)> GetNeighbors(int y, int x)
-        {
-            List<(int, int)> neighbors = new List<(int, int)>
-            {
-                (y - 1, x), // Vecin sus
-                (y + 1, x), // Vecin jos
-                (y, x - 1), // Vecin stânga
-                (y, x + 1)  // Vecin dreapta
-            };
-            return neighbors;
-        }
-
-        // Calculează media intensității vecinilor unui pixel
-        private static byte CalculateAverageIntensity(MyBitmap image, int x, int y)
-        {
-            int sum = 0;
-            int count = 0;
-
-            for (int dy = -1; dy <= 1; dy++)
-            {
-                for (int dx = -1; dx <= 1; dx++)
-                {
-                    if (dx == 0 && dy == 0) continue;
-                    sum += image.GetPixel(y + dy, x + dx);
-                    count++;
-                }
-            }
-
-            return (byte)(sum / count);
-        }
-        */
     }
 }

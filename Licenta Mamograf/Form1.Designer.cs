@@ -112,7 +112,7 @@
             this.button_Preprocessing.TabIndex = 4;
             this.button_Preprocessing.Text = "Preprocesare";
             this.button_Preprocessing.UseVisualStyleBackColor = false;
-            this.button_Preprocessing.Click += new System.EventHandler(this.button_WaveletDenoising_Click);
+            this.button_Preprocessing.Click += new System.EventHandler(this.button_Preprocessing_Click);
             // 
             // endPoint
             // 
