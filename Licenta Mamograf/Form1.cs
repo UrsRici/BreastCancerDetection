@@ -26,93 +26,10 @@ namespace Licenta_Mamograf
         public Point ROIendPoint = new Point();
         private float[,] ROI;
 
-        /*private void AdjustUIElements()
-        {
-            int formWidth = this.ClientSize.Width;
-            int formHeight = this.ClientSize.Height;
-
-            // Ajustează poziția și dimensiunea pictureBox
-            pictureBox.Size = new Size((int)(formWidth * 0.5), (int)(formHeight * 0.9));
-            pictureBox.Location = new Point(10, 10);
-
-            int controlPanelX = pictureBox.Right + 20;
-            int buttonWidth = (int)(formWidth * 0.15);
-            int buttonHeight = (int)(formHeight * 0.05);
-            int padding = 10;
-            int currentY = 10;
-
-            // Selectare imagine
-            button_select.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Info Log
-            info_log.SetBounds(controlPanelX, currentY, buttonWidth * 2, buttonHeight * 4);
-            currentY += info_log.Height + padding;
-
-            // Locație imagine
-            location.SetBounds(controlPanelX, currentY, buttonWidth * 2, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Buton Preprocesare
-            button_Preprocessing.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Selectare ROI
-            button_selectROI.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Eliminare ROI
-            button_RemoveROI.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Aplica AI pe ROI
-            button_AIonROI.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Aplica AI pe întreaga imagine
-            button_AI.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Butoane afișare imagini
-            button_show_image.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-            button_show_mask.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-            button_show.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Histogramă
-            chart_Histogram.SetBounds(controlPanelX, currentY, buttonWidth * 2, buttonHeight * 4);
-            currentY += chart_Histogram.Height + padding;
-
-            // Histogramă cumulativă
-            chart_CumulativeHistogram.SetBounds(controlPanelX, currentY, buttonWidth * 2, buttonHeight * 4);
-            currentY += chart_CumulativeHistogram.Height + padding;
-
-            // Buton pentru afișare histograme
-            button_Charts.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // CLAHE și CLHE
-            button_CLHE.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-            button_CLAHE.SetBounds(controlPanelX, currentY, buttonWidth, buttonHeight);
-            currentY += buttonHeight + padding;
-
-            // Setări CLAHE
-            label7.SetBounds(controlPanelX, currentY, buttonWidth / 2, buttonHeight);
-            contrastLimit.SetBounds(controlPanelX + buttonWidth / 2, currentY, buttonWidth / 2, buttonHeight);
-            currentY += buttonHeight + padding;
-            label8.SetBounds(controlPanelX, currentY, buttonWidth / 2, buttonHeight);
-            windowSize.SetBounds(controlPanelX + buttonWidth / 2, currentY, buttonWidth / 2, buttonHeight);
-        }*/
-
         public Image_Analysis()
         {
             InitializeComponent();
-
-            //AdjustUIElements();
-
+            Image_Analysis_Resize(new object(), new EventArgs());
             ImageData.Load();
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
 
@@ -126,6 +43,17 @@ namespace Licenta_Mamograf
             img = new PGM(filePath);
             img.ShowImage(pictureBox);
         }
+        private void Image_Analysis_Resize(object sender, EventArgs e)
+        {
+            tabControl.Width = this.ClientSize.Width - pictureBox.Width - pictureBox.Location.Y * 3;
+            int chartLocation = button_show_image.Location.Y + button_show_mask.Location.Y + button_show_mask.Height;
+            int chartSpace = tabPage4.Height - chartLocation;
+            chart_CumulativeHistogram.Height = chartSpace / 2 - 6;
+            chart_Histogram.Height = chartSpace / 2 - 6;
+            chart_CumulativeHistogram.Location = new Point(chart_CumulativeHistogram.Location.X, chartLocation);
+            chart_Histogram.Location = new Point(chart_CumulativeHistogram.Location.X, chartLocation + chart_CumulativeHistogram.Height + 6);
+        }
+
         private void button_select_Click(object sender, EventArgs e)
         {
             // Create an OpenFileDialog to select a file

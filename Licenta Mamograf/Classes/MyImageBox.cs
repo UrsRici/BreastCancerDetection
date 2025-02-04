@@ -172,9 +172,16 @@ namespace Licenta_Mamograf
             //Size viewSize = GetViewSize();
             //if (base.Image != null && viewSize.Width > 0 && viewSize.Height > 0)
             //{
-                _zoomScale = (double)this.Height / 1024;
-                SetScrollBarVisibilityAndMaxMin();
-                Invalidate();
+            if (base.Height != base.Width)
+            {
+                base.Width = base.Height;
+                base.Location = new Point(this.Parent.ClientSize.Width - base.Width - base.Location.Y, base.Location.Y);
+            }
+            _zoomScale = (double)this.Height / 1024;
+                
+            SetScrollBarVisibilityAndMaxMin();
+
+            Invalidate();
             //}
         }
 
