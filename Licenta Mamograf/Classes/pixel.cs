@@ -11,7 +11,7 @@ namespace Licenta_Mamograf.Classes
         public int x { get; set; }
         public int y { get; set; }
         public float i { get; set; }
-        public pixel(int x, int y, float i)
+        public pixel(int y, int x, float i)
         {
             this.i = i;
             this.x = x;
@@ -19,7 +19,7 @@ namespace Licenta_Mamograf.Classes
         }
         public override string ToString()
         {
-            return $"Pixel: ({x}, {y}), Intensity: {i}";
+            return $"Pixel: ({y}, {x}), Intensity: {i}";
         }
     }
 }

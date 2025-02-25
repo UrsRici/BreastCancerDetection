@@ -149,14 +149,14 @@ namespace Licenta_Mamograf
                         Math.Min(ROIendPoint.Y, ROIstartPoint.Y));
 
                     ROI = new float[
-                        Math.Abs(ROIendPoint.X - ROIstartPoint.X),
-                        Math.Abs(ROIendPoint.Y - ROIstartPoint.Y)];
+                        Math.Abs(ROIendPoint.Y - ROIstartPoint.Y),
+                        Math.Abs(ROIendPoint.X - ROIstartPoint.X)];
 
                     MyBitmap aux = img.bitmap;
 
-                    for (int x = 0; x < ROI.GetLength(0); x++)
-                        for (int y = 0; y < ROI.GetLength(1); y++)
-                            ROI[x, y] = aux.GetPixel((p.X + x), (p.Y + y));
+                    for (int y = 0; y < ROI.GetLength(0); y++)
+                        for (int x = 0; x < ROI.GetLength(1); x++)
+                            ROI[y, x] = aux.GetPixel((p.Y + y), (p.X + x));
    
                     info_log.Text += ROI.GetLength(0)+ " " + ROI.GetLength(1) + "\n";
 
@@ -194,7 +194,7 @@ namespace Licenta_Mamograf
                 Math.Max(ROIstartPoint.X, ROIendPoint.X),
                 Math.Max(ROIstartPoint.Y, ROIendPoint.Y));    
 
-            // float[,] mask = GrowCut.Apply(ROI);
+            float[,] mask = GrowCut.Apply(ROI);
             img.ApplyMask(p0, p1, GrowCut.Apply(ROI));
             pictureBox.ResetROIfig();
             img.Show(pictureBox);

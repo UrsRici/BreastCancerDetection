@@ -92,7 +92,7 @@ namespace Licenta_Mamograf
 
             // Create bitmap and fill it with pixel data
             this.bitmap = new MyBitmap(this.height, this.width);
-            this.mask = new Bitmap(this.height, this.width);
+            this.mask = new Bitmap(this.width, this.height);
             this.matrix = new float[this.height, this.width];
 
             for (int y = 0; y < this.height; y++)
@@ -174,7 +174,7 @@ namespace Licenta_Mamograf
                 {
                     if (this.mask.GetPixel(x, y).R == 0)
                     {
-                        byte pixel = (byte)this.bitmap.GetPixel(x, y);
+                        byte pixel = (byte)this.bitmap.GetPixel(y, x);
                         Color color = Color.FromArgb(pixel, pixel, pixel);
                         image.SetPixel(x, y, color);
                     }
@@ -193,7 +193,7 @@ namespace Licenta_Mamograf
             {
                 for (int x = p0.X; x < p1.X; x++)
                 {
-                    this.matrix[x, y] = 0;
+                    this.matrix[y, x] = 0;
                 }
             }
             this.Update(this.matrix);
@@ -204,7 +204,7 @@ namespace Licenta_Mamograf
             {
                 for (int x = p0.X; x < p1.X; x++) 
                 {
-                    Color color = Color.FromArgb((byte)roi[x - p0.X, y - p0.Y], 0, 0);
+                    Color color = Color.FromArgb((byte)roi[y - p0.Y, x - p0.X], 0, 0);
                     this.mask.SetPixel(x, y, color);
                 }
             }
@@ -215,7 +215,7 @@ namespace Licenta_Mamograf
             {
                 for (int x = 0; x < width; x++)
                 {                   
-                    Color color = Color.FromArgb((byte)roi[x, y], 0, 0);
+                    Color color = Color.FromArgb((byte)roi[y, x], 0, 0);
                     this.mask.SetPixel(x, y, color);
                 }
             }

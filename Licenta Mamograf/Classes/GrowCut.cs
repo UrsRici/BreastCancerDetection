@@ -32,7 +32,7 @@ namespace Licenta_Mamograf.Classes
                     {
                         for (int x = 0; x < ROI.GetLength(1); x++)
                         {
-                            ROI[x, y] = matrix[x + data.X - data.Radius, y + data.Y - data.Radius];
+                            ROI[y, x] = matrix[y + data.Y - data.Radius, x + data.X - data.Radius];
                         }
                     }
                     ROI = Apply(ROI);
@@ -41,7 +41,7 @@ namespace Licenta_Mamograf.Classes
                     {
                         for (int x = 0; x < ROI.GetLength(1); x++)
                         {
-                            mask[x + data.X - data.Radius, y + data.Y - data.Radius] = ROI[x, y];
+                            mask[y + data.Y - data.Radius, x + data.X - data.Radius] = ROI[y, x];
                         }
                     }
                 }
@@ -61,7 +61,7 @@ namespace Licenta_Mamograf.Classes
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        List<pixel> neighbors = getNeighbors(x, y);
+                        List<pixel> neighbors = getNeighbors(y, x);
                         foreach (pixel n in neighbors) 
                         {
                             float s = f(points[y, x], points[n.y, n.x]) * strength[n.y, n.x];
@@ -89,14 +89,6 @@ namespace Licenta_Mamograf.Classes
                     }
                 }
             }
-
-            /*for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    points[y, x] = 255;
-                }
-            }*/
             return points;
         }
 
@@ -124,7 +116,7 @@ namespace Licenta_Mamograf.Classes
             strength[Y, X] = 1;
         }
 
-        private static List<pixel> getNeighbors(int X, int Y)
+        private static List<pixel> getNeighbors(int Y, int X)
         {
             List<pixel> N = new List<pixel>();
             for (int y = Y - 1; y < Y + 2; y++)
@@ -133,7 +125,7 @@ namespace Licenta_Mamograf.Classes
                 {
                     if ((x != X || y != Y) && (-1 < x && x < width && -1 < y && y < height))
                     {
-                        N.Add(new pixel(x, y, points[y, x]));
+                        N.Add(new pixel(y, x, points[y, x]));
                     }
                 }
             }
