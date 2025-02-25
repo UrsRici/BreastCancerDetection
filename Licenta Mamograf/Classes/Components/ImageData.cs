@@ -69,13 +69,10 @@ namespace Licenta_Mamograf.Classes
             {
                 string[] row = buffer.Split(' ');
                 if (row.Length > 4)
-                {
                     Data.Add(new imageData(row[0], row[1], row[2], row[3], 1024 - int.Parse(row[4]), 1024 - int.Parse(row[5]), int.Parse(row[6])));
-                }
                 else
-                {
                     Data.Add(new imageData(row[0], row[1], row[2]));
-                }
+
             }
         }
 
