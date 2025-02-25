@@ -4,15 +4,20 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Tensorflow;
 
 namespace Licenta_Mamograf.Classes
 {
-    public partial class MyMLTissue
+    public partial class MLTissue
     {
         private static readonly string MLNetModelPath = Path.Combine(Directory.GetCurrentDirectory(), @"../../Classes/MLModel/Model.mlnet");
-
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
+        
+        private static Dictionary<string, string> labelMap = new Dictionary<string, string>
+        {
+            { "F", "Fatty" },
+            { "G", "Fatty-Glandular" },
+            { "D", "Dense-Glandular" }
+        };
 
         private static PredictionEngine<ModelInput, ModelOutput> CreatePredictEngine()
         {
@@ -30,12 +35,12 @@ namespace Licenta_Mamograf.Classes
         {
             var unlabeledScores = result.Score;
             var labelNames = GetLabels(result);
-
             Dictionary<string, float> labledScores = new Dictionary<string, float>();
+            
             for (int i = 0; i < labelNames.Count(); i++)
             {
-                var labelName = labelNames.ElementAt(i);
-                labledScores.Add(labelName.ToString(), unlabeledScores[i]);
+                string labelName = labelMap[labelNames.ElementAt(i)];
+                labledScores.Add(labelName, (float)Math.Round(unlabeledScores[i] * 100, 1));
             }
 
             return labledScores.OrderByDescending(c => c.Value);
@@ -57,7 +62,9 @@ namespace Licenta_Mamograf.Classes
         public static ModelOutput Predict(ModelInput input)
         {
             var predEngine = PredictEngine.Value;
-            return predEngine.Predict(input);
+            var output = predEngine.Predict(input);
+            output.PredictedLabel = labelMap[output.PredictedLabel];
+            return output;
         }
     }
 }

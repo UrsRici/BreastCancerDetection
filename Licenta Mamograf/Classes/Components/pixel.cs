@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Licenta_Mamograf.Classes
+﻿namespace Licenta_Mamograf.Classes
 {
     public class pixel
     {
@@ -17,9 +11,6 @@ namespace Licenta_Mamograf.Classes
             this.x = x;
             this.y = y;
         }
-        public override string ToString()
-        {
-            return $"Pixel: ({y}, {x}), Intensity: {i}";
-        }
+        public override string ToString() { return $"Pixel: ({y}, {x}), Intensity: {i}"; }
     }
 }

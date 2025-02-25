@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZedGraph;
-using OpenTK;
 using System.Windows.Forms.DataVisualization.Charting;
 using Licenta_Mamograf.Classes;
 
@@ -18,6 +12,7 @@ namespace Licenta_Mamograf
 {
     public partial class Image_Analysis : Form
     {
+        #region globalVariables
         private string filePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Images\mdb005.pgm"));
         private PGM img = new PGM();
         DateTime t = new DateTime();
@@ -25,7 +20,9 @@ namespace Licenta_Mamograf
         public Point ROIstartPoint = new Point();
         public Point ROIendPoint = new Point();
         private float[,] ROI;
+        #endregion
 
+        #region ImageAnalysisForm
         public Image_Analysis()
         {
             InitializeComponent();
@@ -34,10 +31,10 @@ namespace Licenta_Mamograf
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
 
             // Afisare datele despre imaginea initiala din fisierul "data.txt"...
-            List<imageData> a = ImageData.GetDatas();
+            /*List<imageData> a = ImageData.GetDatas();
             for (int i = 0; i < a.Count; i++)
                 info_log.Text += a[i].ToString() + "\n";
-
+            */
             location.Text = filePath;
 
             img = new PGM(filePath);
@@ -53,7 +50,14 @@ namespace Licenta_Mamograf
             chart_CumulativeHistogram.Location = new Point(chart_CumulativeHistogram.Location.X, chartLocation);
             chart_Histogram.Location = new Point(chart_CumulativeHistogram.Location.X, chartLocation + chart_CumulativeHistogram.Height + 6);
         }
+        private void ImageVerify()
+        {
+            if (pictureBox.Image == null)
+                info_log.Text += "No image selected!\n";
+        }
+        #endregion
 
+        #region ImageSelectionArea
         private void button_select_Click(object sender, EventArgs e)
         {
             // Create an OpenFileDialog to select a file
@@ -86,11 +90,7 @@ namespace Licenta_Mamograf
         }
         private void button_relode_Click(object sender, EventArgs e)
         {
-            if (pictureBox.Image == null)
-            {
-                info_log.Text += "No image selected!\n";
-                return;
-            }
+            ImageVerify();
             location.Text = filePath;
 
             ResetROI();
@@ -98,7 +98,7 @@ namespace Licenta_Mamograf
             img = new PGM(filePath);
             img.ShowImage(pictureBox);
 
-            info_log.Text += "------Image Reloded------\n";
+            //info_log.Text += "------Image Reloded------\n";
 
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
 
@@ -107,23 +107,66 @@ namespace Licenta_Mamograf
             for (int i = 0; i < a.Count; i++)
                 info_log.Text += a[i].ToString() + "\n";
         }
+        private void button_log_Click(object sender, EventArgs e)
+        {
+            info_log.Text = string.Empty;
+        }
+        #endregion
 
+        #region PreprocessingArea
         private void button_Preprocessing_Click(object sender, EventArgs e)
         {
-            info_log.Text += "------Preprocessing------\n";
-            if (pictureBox.Image == null)
-            { 
-                info_log.Text += "No image selected!\n";
-                return; 
-            }
+            //info_log.Text += "------Preprocessing------\n";
+            ImageVerify();
 
             t = DateTime.Now;
-            img.Update(Preprocessing.Apply(img));    
+            img.Update(Preprocessing.Apply(img));
             info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
 
             img.ShowImage(pictureBox);
         }
+        private void button_CLHE_Click(object sender, EventArgs e)
+        {
+            //info_log.Text += "-------------CLHE------------\n";
+            ImageVerify();
 
+            float cL = float.Parse(contrastLimit.Text);
+            MyBitmap myBitmap = img.bitmap;
+
+            t = DateTime.Now;
+            CLHE.Apply(ref myBitmap, cL);
+            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
+
+            img.Update(myBitmap);
+
+            img.ShowImage(pictureBox);
+        }
+        private void button_CLAHE_Click(object sender, EventArgs e)
+        {
+            //info_log.Text += "-------------CLAHE------------\n";
+            ImageVerify();
+
+            double cL = double.Parse(contrastLimit.Text);
+            int wS = int.Parse(windowSize.Text);
+
+            t = DateTime.Now;
+            img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
+            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
+
+            img.ShowImage(pictureBox);
+        }
+        private void button_typeTissue_Click(object sender, EventArgs e)
+        {
+            ModelOutput output = MLTissue.Predict(img.ToModelInput());
+            var info = MLTissue.GetSortedScoresWithLabels(output);
+            label_Tissue0.Text = "Tissue Type: " + output.PredictedLabel;
+            Tissue_Info.Text = string.Empty;
+            foreach (var item in info)
+                Tissue_Info.Text += $"{item.Key}: {item.Value}%\n";
+        }
+        #endregion
+
+        #region AIArea
         private void button_selectROI_Click(object sender, EventArgs e)
         {
             if (pictureBox.Image != null)
@@ -157,8 +200,8 @@ namespace Licenta_Mamograf
                     for (int y = 0; y < ROI.GetLength(0); y++)
                         for (int x = 0; x < ROI.GetLength(1); x++)
                             ROI[y, x] = aux.GetPixel((p.Y + y), (p.X + x));
-   
-                    info_log.Text += ROI.GetLength(0)+ " " + ROI.GetLength(1) + "\n";
+
+                    info_log.Text += ROI.GetLength(0) + " " + ROI.GetLength(1) + "\n";
 
                 }
             }
@@ -182,7 +225,7 @@ namespace Licenta_Mamograf
         }
         private void button_AIonROI_Click(object sender, EventArgs e)
         {
-            
+
             if (!pictureBox.IsROIfig()) { return; }
             if (pictureBox.ROIselect_Button_active) { button_selectROI_Click(sender, e); }
 
@@ -192,7 +235,7 @@ namespace Licenta_Mamograf
 
             Point p1 = new Point(
                 Math.Max(ROIstartPoint.X, ROIendPoint.X),
-                Math.Max(ROIstartPoint.Y, ROIendPoint.Y));    
+                Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
 
             //float[,] mask = GrowCut.Apply(ROI);
             img.ApplyMask(p0, p1, GrowCut.Apply(ROI));
@@ -209,12 +252,45 @@ namespace Licenta_Mamograf
         private void button_AI_Click(object sender, EventArgs e)
         {
             float[,] mask = GrowCut.ApplyData(img.matrix);
-            
+
             img.ApplyMask(mask);
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
         }
+        #endregion
 
+        #region ChartArea
+        private void button_Charts_Click(object sender, EventArgs e)
+        {
+            float[] histogram = img.Histogram();
+            float[] cumulativeHistogram = img.CumulativeHistogram();
+
+            Series his = chart_Histogram.Series["Pixel"];
+            Series cHis = chart_CumulativeHistogram.Series["Pixel"];
+
+            his.Points.Clear();
+            cHis.Points.Clear();
+
+            for (int i = 0; i < histogram.Length; i++)
+            {
+                his.Points.AddXY(i, histogram[i]);
+                cHis.Points.AddXY(i, cumulativeHistogram[i]);
+            }
+
+            chart_CumulativeHistogram.ChartAreas[0].AxisY.Minimum = cumulativeHistogram.Min();
+            chart_CumulativeHistogram.ChartAreas[0].AxisY.Maximum = cumulativeHistogram.Max();
+            histogram[0] = histogram[1];
+            chart_Histogram.ChartAreas[0].AxisY.Maximum = histogram.Max() + histogram.Max() * .05;
+
+            PointPairList points = new PointPairList();
+            for (int i = 0; i < cumulativeHistogram.Length; i++)
+            {
+                points.Add(i, cumulativeHistogram[i]);
+            }
+        }
+        #endregion
+
+        #region ImageShowArea
         private void button_show_image_Click(object sender, EventArgs e)
         {
             img.ShowImage(pictureBox);
@@ -228,7 +304,9 @@ namespace Licenta_Mamograf
         {
             img.Show(pictureBox);
         }
+        #endregion
 
+        #region ImageBoxEvents
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
@@ -265,109 +343,6 @@ namespace Licenta_Mamograf
                 pictureBox.Invalidate();
             }
         }
-
-        private void button_log_Click(object sender, EventArgs e)
-        {
-            info_log.Text = string.Empty;
-        }
-
-        private void button_CLHE_Click(object sender, EventArgs e)
-        {
-            info_log.Text += "-------------CLHE------------\n";
-            if (pictureBox.Image == null)
-            {
-                info_log.Text += "Use Wavelet Denoising first!\n";
-                return;
-            }
-
-            float cL = float.Parse(contrastLimit.Text);
-            MyBitmap myBitmap = img.bitmap;
-
-            t = DateTime.Now;
-            CLHE.Apply(ref myBitmap, cL);
-            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
-
-            img.Update(myBitmap);
-
-            img.ShowImage(pictureBox); 
-        }
-        private void button_CLAHE_Click(object sender, EventArgs e)
-        {
-            info_log.Text += "-------------CLAHE------------\n";
-            if (pictureBox.Image == null)
-            {
-                info_log.Text += "Use Wavelet Denoising first!\n";
-                return;
-            }
-
-            double cL = double.Parse(contrastLimit.Text);
-            int wS = int.Parse(windowSize.Text);
-            t = DateTime.Now;
-
-            /*MyBitmap myBitmap = img.bitmap;
-
-            CLAHE.Apply(ref myBitmap, wS, cL);
-            
-            img.Update(MyClahe.Apply(img.ToBitmap(), contrastLimit.Text, 8));*/
-
-
-            img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
-
-            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
-
-            img.ShowImage(pictureBox);
-        }
-
-        private void button_Charts_Click(object sender, EventArgs e)
-        {
-            float[] histogram = img.Histogram();
-            float[] cumulativeHistogram = img.CumulativeHistogram();
-
-            Series his = chart_Histogram.Series["Pixel"];
-            Series cHis = chart_CumulativeHistogram.Series["Pixel"];
-
-            his.Points.Clear();
-            cHis.Points.Clear();
-
-            for (int i = 0; i < histogram.Length; i++)
-            {
-                his.Points.AddXY(i, histogram[i]);
-                cHis.Points.AddXY(i, cumulativeHistogram[i]);
-            }
-
-            chart_CumulativeHistogram.ChartAreas[0].AxisY.Minimum = cumulativeHistogram.Min();
-            chart_CumulativeHistogram.ChartAreas[0].AxisY.Maximum = cumulativeHistogram.Max();
-            histogram[0] = histogram[1];
-            chart_Histogram.ChartAreas[0].AxisY.Maximum = histogram.Max() + histogram.Max()*.05;
-
-            PointPairList points = new PointPairList();
-            for (int i = 0; i < cumulativeHistogram.Length; i++) 
-            {
-                points.Add(i, cumulativeHistogram[i]);
-            }
-        }
-
-        private void button_typeCancer_Click(object sender, EventArgs e)
-        {
-            string FilePath = @"D:\Aplicatii\Facultate\Informatica\Licenta\Licenta Mamograf\Licenta Mamograf\Images";
-            var Files = Directory.GetFiles(FilePath, "*.pgm");
-            for (int i = 0; i < 100; i++) 
-            {
-                var file = Files[i];
-                PGM IMG = new PGM(Path.Combine(FilePath, Path.GetFileName(file)));
-
-                ModelInput input = new ModelInput()
-                {
-                    ImageSource = IMG.ToImageSource()
-                };
-                ModelOutput output = MyMLTissue.Predict(input);
-
-                richTextBox_typeCancer.Text += output.PredictedLabel.ToString();
-                List<imageData> data = ImageData.Data;
-                richTextBox_typeCancer.Text += data[i].TissueType + "\n";
-
-            }
-            
-        }
+        #endregion
     }
 }

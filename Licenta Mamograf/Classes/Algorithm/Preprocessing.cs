@@ -1,11 +1,6 @@
-﻿using Emgu.CV.CvEnum;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Licenta_Mamograf
 {
@@ -17,6 +12,61 @@ namespace Licenta_Mamograf
         private static float[,] denoisedMatrix;
         private static MyBitmap cleanImage;
 
+        public static MyBitmap Apply(PGM pgm)
+        {
+            // Remove intens pixels...
+            RemoveHeightNoise(pgm);
+
+            matrix = pgm.matrix;
+
+            // Apply Haar Wavelet algortm...
+            HaarWavelet();
+
+            //Remove Artifacts from the image...
+            ArtifactRemover();
+
+            return cleanImage;
+        }
+        private static void RemoveHeightNoise(PGM pgm)
+        {
+            MyBitmap image = pgm.bitmap;
+            int width = image.Width;
+            int height = image.Height;
+            cleanImage = new MyBitmap(height, width);
+
+            for (int y = 1; y < height - 1; y++)
+            {
+                for (int x = 1; x < width - 1; x++)
+                {
+                    byte currentPixel = image.GetPixel(y, x);
+                    int avgIntensity = 0;
+                    int count = 0;
+
+                    // Calculăm media pixelilor vecini
+                    for (int dy = -1; dy <= 1; dy++)
+                    {
+                        for (int dx = -1; dx <= 1; dx++)
+                        {
+                            if (dx == 0 && dy == 0) continue; // Evităm pixelul central
+                            byte neighborPixel = image.GetPixel(y + dy, x + dx);
+                            avgIntensity += neighborPixel;
+                            count++;
+                        }
+                    }
+
+                    avgIntensity /= count;
+
+                    // Dacă intensitatea pixelului curent diferă mult de media vecinilor, îl înlocuim cu media
+                    if (Math.Abs(currentPixel - avgIntensity) > 10) // Pragul poate fi ajustat
+                        cleanImage.SetPixel(y, x, (byte)avgIntensity);
+                    else
+                        cleanImage.SetPixel(y, x, currentPixel); // Lasă pixelul neschimbat
+                }
+            }
+            pgm.Update(cleanImage);
+        }
+
+        #region HaarWavelet
         private static void Transform()
         {
             int height = matrix.GetLength(0);
@@ -114,46 +164,9 @@ namespace Licenta_Mamograf
             // Convert the denoised matrix into a denoised image...
             ConvertMatrixToBitmap();
         }
+        #endregion
 
-        private static void RemoveHeightNoise(PGM pgm)
-        {
-            MyBitmap image = pgm.bitmap;
-            int width = image.Width;
-            int height = image.Height;
-            cleanImage = new MyBitmap(height, width);
-
-            for (int y = 1; y < height - 1; y++)
-            {
-                for (int x = 1; x < width - 1; x++)
-                {
-                    byte currentPixel = image.GetPixel(y, x);
-                    int avgIntensity = 0;
-                    int count = 0;
-
-                    // Calculăm media pixelilor vecini
-                    for (int dy = -1; dy <= 1; dy++)
-                    {
-                        for (int dx = -1; dx <= 1; dx++)
-                        {
-                            if (dx == 0 && dy == 0) continue; // Evităm pixelul central
-                            byte neighborPixel = image.GetPixel(y + dy, x + dx);
-                            avgIntensity += neighborPixel;
-                            count++;
-                        }
-                    }
-
-                    avgIntensity /= count;
-
-                    // Dacă intensitatea pixelului curent diferă mult de media vecinilor, îl înlocuim cu media
-                    if (Math.Abs(currentPixel - avgIntensity) > 10) // Pragul poate fi ajustat
-                        cleanImage.SetPixel(y, x, (byte)avgIntensity);
-                    else
-                        cleanImage.SetPixel(y, x, currentPixel); // Lasă pixelul neschimbat
-                }
-            }
-            pgm.Update(cleanImage);
-        }
-
+        #region ArtifactRemover
         private static void ArtifactRemover()
         {
             int width = cleanImage.Width;
@@ -232,22 +245,6 @@ namespace Licenta_Mamograf
             }
             cleanImage = image;
         }
-
-        public static MyBitmap Apply(PGM pgm)
-        {
-            // Remove intens pixels...
-            RemoveHeightNoise(pgm);
-
-            matrix = pgm.matrix;
-
-            // Apply Haar Wavelet algortm...
-            HaarWavelet();
-
-            //Remove Artifacts from the image...
-            ArtifactRemover();
-
-            return cleanImage;
-        }
-
+        #endregion
     }
 }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Licenta_Mamograf.Classes;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Licenta_Mamograf
@@ -165,15 +160,18 @@ namespace Licenta_Mamograf
         }
         public byte[] ToImageSource()
         {
-            byte[] image = new byte[this.width * this.height];
-            for (int y = 0; y < this.height; y++)
+            string cacheCath = Path.GetTempPath() + "cache.jpg";
+            this.ToBitmap().Save(cacheCath);
+            return File.ReadAllBytes(cacheCath);
+        }
+
+        public ModelInput ToModelInput()
+        {
+            ModelInput input = new ModelInput()
             {
-                for (int x = 0; x < this.width; x++)
-                {
-                    image[y * this.height + x] = this.bitmap.GetPixel(y, x);
-                }
-            }
-            return image;
+                ImageSource = this.ToImageSource()
+            };
+            return input;
         }
 
         public void ShowImage(PictureBox p) { p.Image = this.bitmap.ToBitmap(); }

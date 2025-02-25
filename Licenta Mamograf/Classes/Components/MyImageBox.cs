@@ -1,20 +1,13 @@
-﻿using Emgu.CV.UI;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ZedGraph;
 
 namespace Licenta_Mamograf
 {
     internal class MyImageBox : PictureBox
     {
-
         public bool ROIselect_Button_active { get; set; } = false;
 
         private Rectangle ROIfig { get; set; } = new Rectangle();
