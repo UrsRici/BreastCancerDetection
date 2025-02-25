@@ -28,7 +28,7 @@ namespace Licenta_Mamograf
                     this.PixelData[y, x] = bitmap.GetPixel(y, x);
         }
         
-        public MyBitmap(int w, int h)
+        public MyBitmap(int h, int w)
         {
             this.Width = w;
             this.Height = h;
@@ -55,7 +55,7 @@ namespace Licenta_Mamograf
                 {
                     int pixel = this.PixelData[y, x];
                     Color c = Color.FromArgb(pixel, pixel, pixel);
-                    bitmap.SetPixel(y, x, c);
+                    bitmap.SetPixel(x, y, c);
                 }
             }
 

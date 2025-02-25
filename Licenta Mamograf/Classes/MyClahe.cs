@@ -20,7 +20,6 @@ namespace Licenta_Mamograf.Classes
 
             CvInvoke.CLAHE(input, clipLimit, new Size(size, size), output);
 
-
             return RemoveNoise(output.Bitmap);
         }
 

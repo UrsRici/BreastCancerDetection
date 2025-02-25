@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea35 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series35 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint35 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.Title title35 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea36 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series36 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint36 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.Title title36 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.button_select = new System.Windows.Forms.Button();
             this.info_log = new System.Windows.Forms.RichTextBox();
             this.location = new System.Windows.Forms.TextBox();
@@ -68,6 +68,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.richTextBox_typeCancer = new System.Windows.Forms.RichTextBox();
+            this.button_typeCancer = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.pictureBox = new Licenta_Mamograf.MyImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
@@ -312,49 +314,49 @@
             this.windowSize.Name = "windowSize";
             this.windowSize.Size = new System.Drawing.Size(33, 26);
             this.windowSize.TabIndex = 33;
-            this.windowSize.Text = "8";
+            this.windowSize.Text = "16";
             this.windowSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // chart_Histogram
             // 
             this.chart_Histogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chart_Histogram.BackColor = System.Drawing.Color.Teal;
-            chartArea35.AxisX.Maximum = 255D;
-            chartArea35.AxisX.Minimum = 0D;
-            chartArea35.AxisY.MaximumAutoSize = 0F;
-            chartArea35.InnerPlotPosition.Auto = false;
-            chartArea35.InnerPlotPosition.Height = 80F;
-            chartArea35.InnerPlotPosition.Width = 85F;
-            chartArea35.InnerPlotPosition.X = 10F;
-            chartArea35.InnerPlotPosition.Y = 10F;
-            chartArea35.Name = "ChartArea";
-            chartArea35.Position.Auto = false;
-            chartArea35.Position.Height = 100F;
-            chartArea35.Position.Width = 100F;
-            this.chart_Histogram.ChartAreas.Add(chartArea35);
+            chartArea1.AxisX.Maximum = 255D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisY.MaximumAutoSize = 0F;
+            chartArea1.InnerPlotPosition.Auto = false;
+            chartArea1.InnerPlotPosition.Height = 80F;
+            chartArea1.InnerPlotPosition.Width = 85F;
+            chartArea1.InnerPlotPosition.X = 10F;
+            chartArea1.InnerPlotPosition.Y = 10F;
+            chartArea1.Name = "ChartArea";
+            chartArea1.Position.Auto = false;
+            chartArea1.Position.Height = 100F;
+            chartArea1.Position.Width = 100F;
+            this.chart_Histogram.ChartAreas.Add(chartArea1);
             this.chart_Histogram.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.chart_Histogram.Location = new System.Drawing.Point(6, 321);
             this.chart_Histogram.Name = "chart_Histogram";
             this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series35.ChartArea = "ChartArea";
-            series35.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series35.Name = "Pixel";
-            dataPoint35.Color = System.Drawing.Color.Black;
-            series35.Points.Add(dataPoint35);
-            series35.YValuesPerPoint = 2;
-            this.chart_Histogram.Series.Add(series35);
+            series1.ChartArea = "ChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series1.Name = "Pixel";
+            dataPoint1.Color = System.Drawing.Color.Black;
+            series1.Points.Add(dataPoint1);
+            series1.YValuesPerPoint = 2;
+            this.chart_Histogram.Series.Add(series1);
             this.chart_Histogram.Size = new System.Drawing.Size(364, 196);
             this.chart_Histogram.TabIndex = 39;
-            title35.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title35.Name = "Title1";
-            title35.Position.Auto = false;
-            title35.Position.Height = 8.378904F;
-            title35.Position.Width = 94F;
-            title35.Position.X = 3F;
-            title35.Position.Y = 1F;
-            title35.Text = "Histograma";
-            this.chart_Histogram.Titles.Add(title35);
+            title1.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Position.Auto = false;
+            title1.Position.Height = 8.378904F;
+            title1.Position.Width = 94F;
+            title1.Position.X = 3F;
+            title1.Position.Y = 1F;
+            title1.Text = "Histograma";
+            this.chart_Histogram.Titles.Add(title1);
             // 
             // button_Charts
             // 
@@ -373,40 +375,40 @@
             // 
             this.chart_CumulativeHistogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.Teal;
-            chartArea36.AxisX.Maximum = 255D;
-            chartArea36.AxisX.Minimum = 0D;
-            chartArea36.InnerPlotPosition.Auto = false;
-            chartArea36.InnerPlotPosition.Height = 80F;
-            chartArea36.InnerPlotPosition.Width = 85F;
-            chartArea36.InnerPlotPosition.X = 10F;
-            chartArea36.InnerPlotPosition.Y = 10F;
-            chartArea36.Name = "CumulativeHistogram";
-            chartArea36.Position.Auto = false;
-            chartArea36.Position.Height = 100F;
-            chartArea36.Position.Width = 100F;
-            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea36);
+            chartArea2.AxisX.Maximum = 255D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.InnerPlotPosition.Auto = false;
+            chartArea2.InnerPlotPosition.Height = 80F;
+            chartArea2.InnerPlotPosition.Width = 85F;
+            chartArea2.InnerPlotPosition.X = 10F;
+            chartArea2.InnerPlotPosition.Y = 10F;
+            chartArea2.Name = "CumulativeHistogram";
+            chartArea2.Position.Auto = false;
+            chartArea2.Position.Height = 100F;
+            chartArea2.Position.Width = 100F;
+            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea2);
             this.chart_CumulativeHistogram.Location = new System.Drawing.Point(6, 119);
             this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
             this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series36.ChartArea = "CumulativeHistogram";
-            series36.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series36.Name = "Pixel";
-            series36.Points.Add(dataPoint36);
-            this.chart_CumulativeHistogram.Series.Add(series36);
+            series2.ChartArea = "CumulativeHistogram";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Name = "Pixel";
+            series2.Points.Add(dataPoint2);
+            this.chart_CumulativeHistogram.Series.Add(series2);
             this.chart_CumulativeHistogram.Size = new System.Drawing.Size(364, 196);
             this.chart_CumulativeHistogram.TabIndex = 41;
-            title36.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title36.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
-            title36.DockingOffset = -10;
-            title36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title36.Name = "Title1";
-            title36.Position.Auto = false;
-            title36.Position.Height = 8.378904F;
-            title36.Position.Width = 94F;
-            title36.Position.X = 3F;
-            title36.Position.Y = 1F;
-            title36.Text = "Histograma Cumulativa";
-            this.chart_CumulativeHistogram.Titles.Add(title36);
+            title2.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title2.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
+            title2.DockingOffset = -10;
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Position.Auto = false;
+            title2.Position.Height = 8.378904F;
+            title2.Position.Width = 94F;
+            title2.Position.X = 3F;
+            title2.Position.Y = 1F;
+            title2.Text = "Histograma Cumulativa";
+            this.chart_CumulativeHistogram.Titles.Add(title2);
             // 
             // button_RemoveROI
             // 
@@ -541,6 +543,8 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage3.Controls.Add(this.richTextBox_typeCancer);
+            this.tabPage3.Controls.Add(this.button_typeCancer);
             this.tabPage3.Controls.Add(this.button_selectROI);
             this.tabPage3.Controls.Add(this.label_x);
             this.tabPage3.Controls.Add(this.label6);
@@ -557,6 +561,27 @@
             this.tabPage3.Size = new System.Drawing.Size(376, 523);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Aplicare AI";
+            // 
+            // richTextBox_typeCancer
+            // 
+            this.richTextBox_typeCancer.Location = new System.Drawing.Point(7, 281);
+            this.richTextBox_typeCancer.Name = "richTextBox_typeCancer";
+            this.richTextBox_typeCancer.Size = new System.Drawing.Size(119, 64);
+            this.richTextBox_typeCancer.TabIndex = 46;
+            this.richTextBox_typeCancer.Text = "";
+            // 
+            // button_typeCancer
+            // 
+            this.button_typeCancer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.button_typeCancer.Location = new System.Drawing.Point(6, 235);
+            this.button_typeCancer.MaximumSize = new System.Drawing.Size(300, 400);
+            this.button_typeCancer.MinimumSize = new System.Drawing.Size(130, 40);
+            this.button_typeCancer.Name = "button_typeCancer";
+            this.button_typeCancer.Size = new System.Drawing.Size(300, 40);
+            this.button_typeCancer.TabIndex = 45;
+            this.button_typeCancer.Text = "Type Cancer";
+            this.button_typeCancer.UseVisualStyleBackColor = true;
+            this.button_typeCancer.Click += new System.EventHandler(this.button_typeCancer_Click);
             // 
             // tabPage4
             // 
@@ -650,6 +675,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button_typeCancer;
+        private System.Windows.Forms.RichTextBox richTextBox_typeCancer;
     }
 }
 

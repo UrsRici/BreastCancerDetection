@@ -348,5 +348,8 @@ namespace Licenta_Mamograf
             }
         }
 
+        private void button_typeCancer_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

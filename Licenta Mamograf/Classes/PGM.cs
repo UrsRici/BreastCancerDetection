@@ -30,7 +30,29 @@ namespace Licenta_Mamograf
             mask = null;
             matrix = null;
         }
+        public PGM(Bitmap bmp)
+        {
+            this.magicNumber = "P5"; // Format standard pentru PGM binar
+            this.width = bmp.Width;
+            this.height = bmp.Height;
+            this.maxVal = 255;
 
+            this.bitmap = new MyBitmap(bmp.Height, bmp.Width);
+            this.mask = new Bitmap(bmp);
+            this.matrix = new float[bmp.Height, bmp.Width];
+
+            for (int y = 0; y < bmp.Height; y++)
+            {
+                for (int x = 0; x < bmp.Width; x++)
+                {
+                    Color pixelColor = bmp.GetPixel(x, y);
+                    byte gray = (byte)((pixelColor.R + pixelColor.G + pixelColor.B) / 3);
+
+                    this.bitmap.SetPixel(y, x, gray);
+                    this.matrix[y, x] = gray;
+                }
+            }
+        }
         public PGM(PGM img)
         {
             this.magicNumber = img.magicNumber;
@@ -77,11 +99,10 @@ namespace Licenta_Mamograf
             {
                 for (int x = 0; x < this.width; x++)
                 {
-                    byte pixel = pixelData[x * this.width + y];
+                    byte pixel = pixelData[y * this.height + x];
                     // Use the pixel value to set the color (grayscale)
-                    // height - y - 1 because we are fliping the image
-                    this.bitmap.SetPixel(height - y - 1, x, pixel);
-                    this.matrix[this.height - y - 1, x] = pixel;
+                    this.bitmap.SetPixel(y, this.width - x - 1, pixel);
+                    this.matrix[y, this.width - x - 1] = pixel;
                 }
             }
         }
@@ -91,12 +112,12 @@ namespace Licenta_Mamograf
             this.bitmap = bmp;
             this.width = bmp.Width;
             this.height = bmp.Height;
-            this.matrix = new float[this.width, this.height];
+            this.matrix = new float[this.height, this.width];
             for (int y = 0; y < this.height; y++)
             {
                 for (int x = 0; x < this.width; x++)
                 {
-                    this.matrix[y, x] = bmp.GetPixel(y, x);
+                    matrix[y, x] = bmp.GetPixel(y, x);
                 }
             }
         }
@@ -116,8 +137,26 @@ namespace Licenta_Mamograf
         }
         public void Update(Bitmap bmp)
         {
-            this.bitmap.ToMyBitmap(bmp);
-            this.Update(this.bitmap);
+            this.magicNumber = "P5"; // Format standard pentru PGM binar
+            this.width = bmp.Width;
+            this.height = bmp.Height;
+            this.maxVal = 255;
+
+            this.bitmap = new MyBitmap(bmp.Height, bmp.Width);
+            this.mask = new Bitmap(bmp);
+            this.matrix = new float[bmp.Height, bmp.Width];
+
+            for (int y = 0; y < bmp.Height; y++)
+            {
+                for (int x = 0; x < bmp.Width; x++)
+                {
+                    Color pixelColor = bmp.GetPixel(x, y);
+                    byte gray = (byte)((pixelColor.R + pixelColor.G + pixelColor.B) / 3);
+
+                    this.bitmap.SetPixel(y, x, gray);
+                    this.matrix[y, x] = gray;
+                }
+            }
         }
         public Bitmap ToBitmap()
         {

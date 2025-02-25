@@ -120,7 +120,7 @@ namespace Licenta_Mamograf
             MyBitmap image = pgm.bitmap;
             int width = image.Width;
             int height = image.Height;
-            cleanImage = new MyBitmap(width, height);
+            cleanImage = new MyBitmap(height, width);
 
             for (int y = 1; y < height - 1; y++)
             {
@@ -158,15 +158,15 @@ namespace Licenta_Mamograf
         {
             int width = cleanImage.Width;
             int height = cleanImage.Height;
-            MyBitmap image = new MyBitmap(width, height);
-            bool[,] visited = new bool[width, height];
+            MyBitmap image = new MyBitmap(height, width);
+            bool[,] visited = new bool[height, width];
             List<List<(int, int)>> regions = new List<List<(int, int)>>();
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    byte currentPixel = image.GetPixel(x, y);
+                    byte currentPixel = image.GetPixel(y, x);
 
                     if (!visited[y, x] && cleanImage.GetPixel(y, x) > 0)
                     {
@@ -222,7 +222,7 @@ namespace Licenta_Mamograf
             // Remove all regions except the largest one...
             int width = cleanImage.Width;
             int height = cleanImage.Height;
-            MyBitmap image = new MyBitmap(width, height);
+            MyBitmap image = new MyBitmap(height, width);
 
             var region = regions.OrderByDescending(list => list.Count).FirstOrDefault();
 
