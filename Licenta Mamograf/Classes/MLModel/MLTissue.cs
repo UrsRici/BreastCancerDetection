@@ -4,11 +4,10 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Tensorflow;
 
 namespace Licenta_Mamograf.Classes
 {
-    public partial class MyMLTissue
+    public partial class MLTissue
     {
         private static readonly string MLNetModelPath = Path.Combine(Directory.GetCurrentDirectory(), @"../../Classes/MLModel/Model.mlnet");
 

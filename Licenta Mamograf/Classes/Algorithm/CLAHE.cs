@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Licenta_Mamograf
 {
@@ -20,7 +14,6 @@ namespace Licenta_Mamograf
 
             return histogram;
         }
-
         private static double[] calculateComulativeFrequency(double[] array)
         {
             int size = array.Length;
@@ -30,7 +23,6 @@ namespace Licenta_Mamograf
                 comulativeFreq[i] = comulativeFreq[i - 1] + array[i];
             return comulativeFreq;
         }
-
         private static double findMin(double[] array)
         {
             double min = double.MaxValue;
@@ -39,7 +31,6 @@ namespace Licenta_Mamograf
                     min = value;
             return min;
         }
-
         public static void Apply(ref MyBitmap bitplane, double contrastLimit)
         {
             double cl = (contrastLimit * (bitplane.Width * bitplane.Height)) / 256;

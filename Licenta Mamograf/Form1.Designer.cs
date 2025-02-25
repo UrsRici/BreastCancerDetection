@@ -68,9 +68,9 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.richTextBox_typeCancer = new System.Windows.Forms.RichTextBox();
-            this.button_typeCancer = new System.Windows.Forms.Button();
+            this.button_typeTissue = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label_TissueType = new System.Windows.Forms.Label();
             this.pictureBox = new Licenta_Mamograf.MyImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
@@ -109,7 +109,7 @@
             this.info_log.Location = new System.Drawing.Point(6, 126);
             this.info_log.MinimumSize = new System.Drawing.Size(300, 200);
             this.info_log.Name = "info_log";
-            this.info_log.Size = new System.Drawing.Size(364, 390);
+            this.info_log.Size = new System.Drawing.Size(476, 390);
             this.info_log.TabIndex = 3;
             this.info_log.Text = "";
             // 
@@ -235,7 +235,7 @@
             // 
             this.button_log.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_log.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_log.Location = new System.Drawing.Point(288, 496);
+            this.button_log.Location = new System.Drawing.Point(400, 496);
             this.button_log.Name = "button_log";
             this.button_log.Size = new System.Drawing.Size(81, 19);
             this.button_log.TabIndex = 24;
@@ -501,7 +501,7 @@
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(384, 556);
+            this.tabControl.Size = new System.Drawing.Size(496, 556);
             this.tabControl.TabIndex = 49;
             this.tabControl.Click += new System.EventHandler(this.Image_Analysis_Resize);
             // 
@@ -517,7 +517,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(376, 523);
+            this.tabPage1.Size = new System.Drawing.Size(488, 523);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Incarcare";
             // 
@@ -525,7 +525,9 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage2.Controls.Add(this.label_TissueType);
             this.tabPage2.Controls.Add(this.button_Preprocessing);
+            this.tabPage2.Controls.Add(this.button_typeTissue);
             this.tabPage2.Controls.Add(this.button_CLHE);
             this.tabPage2.Controls.Add(this.button_CLAHE);
             this.tabPage2.Controls.Add(this.label7);
@@ -543,8 +545,6 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.DarkCyan;
-            this.tabPage3.Controls.Add(this.richTextBox_typeCancer);
-            this.tabPage3.Controls.Add(this.button_typeCancer);
             this.tabPage3.Controls.Add(this.button_selectROI);
             this.tabPage3.Controls.Add(this.label_x);
             this.tabPage3.Controls.Add(this.label6);
@@ -562,26 +562,18 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Aplicare AI";
             // 
-            // richTextBox_typeCancer
+            // button_typeTissue
             // 
-            this.richTextBox_typeCancer.Location = new System.Drawing.Point(7, 281);
-            this.richTextBox_typeCancer.Name = "richTextBox_typeCancer";
-            this.richTextBox_typeCancer.Size = new System.Drawing.Size(363, 236);
-            this.richTextBox_typeCancer.TabIndex = 46;
-            this.richTextBox_typeCancer.Text = "";
-            // 
-            // button_typeCancer
-            // 
-            this.button_typeCancer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button_typeCancer.Location = new System.Drawing.Point(6, 235);
-            this.button_typeCancer.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_typeCancer.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_typeCancer.Name = "button_typeCancer";
-            this.button_typeCancer.Size = new System.Drawing.Size(300, 40);
-            this.button_typeCancer.TabIndex = 45;
-            this.button_typeCancer.Text = "Type Cancer";
-            this.button_typeCancer.UseVisualStyleBackColor = true;
-            this.button_typeCancer.Click += new System.EventHandler(this.button_typeCancer_Click);
+            this.button_typeTissue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.button_typeTissue.Location = new System.Drawing.Point(6, 200);
+            this.button_typeTissue.MaximumSize = new System.Drawing.Size(300, 400);
+            this.button_typeTissue.MinimumSize = new System.Drawing.Size(130, 40);
+            this.button_typeTissue.Name = "button_typeTissue";
+            this.button_typeTissue.Size = new System.Drawing.Size(300, 40);
+            this.button_typeTissue.TabIndex = 45;
+            this.button_typeTissue.Text = "Tissue Type";
+            this.button_typeTissue.UseVisualStyleBackColor = true;
+            this.button_typeTissue.Click += new System.EventHandler(this.button_typeTissue_Click);
             // 
             // tabPage4
             // 
@@ -600,11 +592,22 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Vizualizare";
             // 
+            // label_TissueType
+            // 
+            this.label_TissueType.AutoSize = true;
+            this.label_TissueType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_TissueType.Location = new System.Drawing.Point(5, 243);
+            this.label_TissueType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_TissueType.Name = "label_TissueType";
+            this.label_TissueType.Size = new System.Drawing.Size(101, 20);
+            this.label_TissueType.TabIndex = 46;
+            this.label_TissueType.Text = "Tissue Type: ";
+            // 
             // pictureBox
             // 
             this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox.Location = new System.Drawing.Point(402, 12);
+            this.pictureBox.Location = new System.Drawing.Point(514, 12);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.ROIselect_Button_active = false;
             this.pictureBox.Size = new System.Drawing.Size(556, 556);
@@ -618,7 +621,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(969, 580);
+            this.ClientSize = new System.Drawing.Size(1081, 580);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.tabControl);
             this.Name = "Image_Analysis";
@@ -675,8 +678,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button button_typeCancer;
-        private System.Windows.Forms.RichTextBox richTextBox_typeCancer;
+        private System.Windows.Forms.Button button_typeTissue;
+        private System.Windows.Forms.Label label_TissueType;
     }
 }
 

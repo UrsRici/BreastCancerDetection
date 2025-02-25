@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Licenta_Mamograf.Classes
 {
@@ -48,7 +41,6 @@ namespace Licenta_Mamograf.Classes
             }
             return mask;
         }
-
         public static float[,] Apply(float[,] ROI)
         {
             Initialization(ROI);
@@ -91,7 +83,6 @@ namespace Licenta_Mamograf.Classes
             }
             return points;
         }
-
         private static void Initialization(float[,] ROI)
         {
             height = ROI.GetLength(0);
@@ -115,7 +106,6 @@ namespace Licenta_Mamograf.Classes
             }
             strength[Y, X] = 1;
         }
-
         private static List<pixel> getNeighbors(int Y, int X)
         {
             List<pixel> N = new List<pixel>();
@@ -131,7 +121,6 @@ namespace Licenta_Mamograf.Classes
             }
             return N;
         }
-
         private static float f(float i1, float i2)
         {
             if(i1 > i2)

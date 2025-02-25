@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Licenta_Mamograf
 {
     public class MyBitmap
     {
-
         public int Width { get; set; }
         public int Height { get; set; }
         private byte[,] PixelData { get; set; }
@@ -27,7 +21,6 @@ namespace Licenta_Mamograf
                 for (int x = 0; x < this.Width; ++x)
                     this.PixelData[y, x] = bitmap.GetPixel(y, x);
         }
-        
         public MyBitmap(int h, int w)
         {
             this.Width = w;
@@ -35,17 +28,14 @@ namespace Licenta_Mamograf
 
             this.PixelData = new byte[this.Height, this.Width];
         }
-
         public byte GetPixel(int y, int x)
         {
             return this.PixelData[y, x];
         }
-
         public void SetPixel(int y, int x, byte value)
         {
             this.PixelData[y, x] = value;
         }
-
         public Bitmap ToBitmap()
         {
             Bitmap bitmap = new Bitmap(this.Width, this.Height);
@@ -61,7 +51,6 @@ namespace Licenta_Mamograf
 
             return bitmap;
         }
-
         public void ToMyBitmap(Bitmap bmp)
         {
 

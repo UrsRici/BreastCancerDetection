@@ -1,11 +1,6 @@
 ﻿using Emgu.CV.Structure;
 using Emgu.CV;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Licenta_Mamograf.Classes
 {
@@ -22,7 +17,6 @@ namespace Licenta_Mamograf.Classes
 
             return RemoveNoise(output.Bitmap);
         }
-
         private static Bitmap RemoveNoise(Bitmap mat)
         {
             Bitmap bitmap = new Bitmap(mat.Width, mat.Height);

@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Licenta_Mamograf.Classes
 {
@@ -49,15 +46,13 @@ namespace Licenta_Mamograf.Classes
                 this.Y = 0;
                 this.Radius = 0;
             }
-            public override string ToString()
-            {
-                return $"{ID} {TissueType} {AbnormalityClass} {Severity} {X} {Y} {Radius}";
-            }
+            public override string ToString() { return $"{ID} {TissueType} {AbnormalityClass} {Severity} {X} {Y} {Radius}"; }
         }
     
     public static class ImageData
     {
         public static readonly List<imageData> Data = new List<imageData>();
+        public static readonly Dictionary<int, string> TissueData = new Dictionary<int, string>();
         private static List<imageData> currentData = new List<imageData>();
 
         public static void Load()
@@ -73,7 +68,15 @@ namespace Licenta_Mamograf.Classes
                 else
                     Data.Add(new imageData(row[0], row[1], row[2]));
 
+                int ImageNr = int.Parse(row[0].Substring(row[0].Length - 3));
+                if (!TissueData.ContainsKey(ImageNr))
+                    TissueData.Add(ImageNr, row[1]);
             }
+            sr.Close();
+        }
+        public static string GetTissueData(int i)
+        {
+            return TissueData[i];
         }
 
         public static void LoadCurrentData(string fileName)

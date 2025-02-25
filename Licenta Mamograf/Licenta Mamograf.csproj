@@ -544,12 +544,8 @@
     <Content Include="Images\data.txt" />
     <Content Include="Images\Info.txt" />
     <Content Include="Images\Licence.txt" />
-    <Content Include="Resources\License-LGPL.txt" />
-    <None Include="Resources\48Alqh.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
