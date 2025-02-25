@@ -566,7 +566,7 @@
             // 
             this.richTextBox_typeCancer.Location = new System.Drawing.Point(7, 281);
             this.richTextBox_typeCancer.Name = "richTextBox_typeCancer";
-            this.richTextBox_typeCancer.Size = new System.Drawing.Size(119, 64);
+            this.richTextBox_typeCancer.Size = new System.Drawing.Size(363, 236);
             this.richTextBox_typeCancer.TabIndex = 46;
             this.richTextBox_typeCancer.Text = "";
             // 

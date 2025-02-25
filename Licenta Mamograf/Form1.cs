@@ -194,7 +194,7 @@ namespace Licenta_Mamograf
                 Math.Max(ROIstartPoint.X, ROIendPoint.X),
                 Math.Max(ROIstartPoint.Y, ROIendPoint.Y));    
 
-            float[,] mask = GrowCut.Apply(ROI);
+            //float[,] mask = GrowCut.Apply(ROI);
             img.ApplyMask(p0, p1, GrowCut.Apply(ROI));
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
@@ -206,7 +206,6 @@ namespace Licenta_Mamograf
 
             pictureBox.ResetROIfig();
         }
-
         private void button_AI_Click(object sender, EventArgs e)
         {
             float[,] mask = GrowCut.ApplyData(img.matrix);
@@ -350,6 +349,25 @@ namespace Licenta_Mamograf
 
         private void button_typeCancer_Click(object sender, EventArgs e)
         {
+            string FilePath = @"D:\Aplicatii\Facultate\Informatica\Licenta\Licenta Mamograf\Licenta Mamograf\Images";
+            var Files = Directory.GetFiles(FilePath, "*.pgm");
+            for (int i = 0; i < 100; i++) 
+            {
+                var file = Files[i];
+                PGM IMG = new PGM(Path.Combine(FilePath, Path.GetFileName(file)));
+
+                ModelInput input = new ModelInput()
+                {
+                    ImageSource = IMG.ToImageSource()
+                };
+                ModelOutput output = MyMLTissue.Predict(input);
+
+                richTextBox_typeCancer.Text += output.PredictedLabel.ToString();
+                List<imageData> data = ImageData.Data;
+                richTextBox_typeCancer.Text += data[i].TissueType + "\n";
+
+            }
+            
         }
     }
 }
