@@ -10,6 +10,7 @@ namespace Licenta_Mamograf.Classes
     public partial class MLTissue
     {
         private static readonly string MLNetModelPath = Path.Combine(Directory.GetCurrentDirectory(), @"../../Classes/MLModel/Model.mlnet");
+
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
         
         private static Dictionary<string, string> labelMap = new Dictionary<string, string>
