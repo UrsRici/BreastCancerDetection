@@ -2,6 +2,9 @@
 
 namespace Licenta_Mamograf.Classes
 {
+    /// <summary>
+    /// model output class for MLTissue.
+    /// </summary>
     public class ModelOutput
     {
         [ColumnName(@"Label")]

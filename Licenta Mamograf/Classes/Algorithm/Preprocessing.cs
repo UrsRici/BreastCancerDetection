@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Licenta_Mamograf
 {
+    /// <summary>
+    /// Clasa care implementează procesarea imaginii pentru îmbunătățirea calității acesteia, incluzând eliminarea zgomotului, aplicarea transformatei Haar și eliminarea artefactelor.
+    /// </summary>
     public static class Preprocessing
     {
         private static float[,] matrix;
@@ -12,21 +15,31 @@ namespace Licenta_Mamograf
         private static float[,] denoisedMatrix;
         private static MyBitmap cleanImage;
 
+        /// <summary>
+        /// Aplica procesarea imaginii pe imaginea dată (PGM).
+        /// </summary>
+        /// <param name="pgm">Imaginea PGM de procesat.</param>
+        /// <returns>Imaginea procesată.</returns>
         public static MyBitmap Apply(PGM pgm)
         {
-            // Remove intens pixels...
+            // Elimină zgomotul de înălțime din imagine...
             RemoveHeightNoise(pgm);
 
             matrix = pgm.matrix;
 
-            // Apply Haar Wavelet algortm...
+            // Aplică algoritmul Haar Wavelet...
             HaarWavelet();
 
-            //Remove Artifacts from the image...
+            // Elimină artefactele din imagine...
             ArtifactRemover();
 
             return cleanImage;
         }
+
+        /// <summary>
+        /// Elimină zgomotul de înălțime (valorile extreme) din imaginea PGM.
+        /// </summary>
+        /// <param name="pgm">Imaginea PGM din care se elimină zgomotul.</param>
         private static void RemoveHeightNoise(PGM pgm)
         {
             MyBitmap image = pgm.bitmap;
@@ -47,7 +60,7 @@ namespace Licenta_Mamograf
                     {
                         for (int dx = -1; dx <= 1; dx++)
                         {
-                            if (dx == 0 && dy == 0) continue; // Evităm pixelul central
+                            if (dx == 0 && dy == 0) continue;
                             byte neighborPixel = image.GetPixel(y + dy, x + dx);
                             avgIntensity += neighborPixel;
                             count++;
@@ -57,16 +70,19 @@ namespace Licenta_Mamograf
                     avgIntensity /= count;
 
                     // Dacă intensitatea pixelului curent diferă mult de media vecinilor, îl înlocuim cu media
-                    if (Math.Abs(currentPixel - avgIntensity) > 10) // Pragul poate fi ajustat
+                    if (Math.Abs(currentPixel - avgIntensity) > 10)
                         cleanImage.SetPixel(y, x, (byte)avgIntensity);
                     else
-                        cleanImage.SetPixel(y, x, currentPixel); // Lasă pixelul neschimbat
+                        cleanImage.SetPixel(y, x, currentPixel);
                 }
             }
             pgm.Update(cleanImage);
         }
 
         #region HaarWavelet
+        /// <summary>
+        /// Realizează transformata Haar pe matricea de imagine.
+        /// </summary>
         private static void Transform()
         {
             int height = matrix.GetLength(0);
@@ -83,6 +99,10 @@ namespace Licenta_Mamograf
                 }
             }
         }
+
+        /// <summary>
+        /// Realizează transformata inversă Haar pe matricea de coeficienți.
+        /// </summary>
         private static void InverseTransform()
         {
             int height = coefficients.GetLength(0);
@@ -99,6 +119,10 @@ namespace Licenta_Mamograf
                 }
             }
         }
+
+        /// <summary>
+        /// Calculează pragul adaptiv pe baza coeficientilor Haar.
+        /// </summary>
         private static void CalculateThreshold()
         {
             // Implementare simplă pentru calcularea pragului
@@ -106,6 +130,10 @@ namespace Licenta_Mamograf
             float stdDev = (float)Math.Sqrt(coefficients.Cast<float>().Select(val => (float)Math.Pow(val - mean, 2)).Average());
             threshold = mean + .5f * stdDev; // Prag adaptiv simplificat
         }
+
+        /// <summary>
+        /// Aplică pragul la coeficientii Haar pentru a elimina valorile mici.
+        /// </summary>
         private static void ApplyThreshold()
         {
             int height = coefficients.GetLength(0);
@@ -123,6 +151,10 @@ namespace Licenta_Mamograf
                 }
             }
         }
+
+        /// <summary>
+        /// Convertește matricea denoizată într-o imagine Bitmap.
+        /// </summary>
         private static void ConvertMatrixToBitmap()
         {
             int height = denoisedMatrix.GetLength(0);
@@ -134,7 +166,7 @@ namespace Licenta_Mamograf
                 for (int x = 0; x < width; x++)
                 {
                     // Normalizează valoarea pentru a fi între 0 și 255
-                    int grayValue = 0; // Asigură-te că valoarea este în limite
+                    int grayValue = 0;
 
                     if (denoisedMatrix[y, x] > 0 && denoisedMatrix[y, x] < 255)
                         grayValue = (int)matrix[y, x];
@@ -147,40 +179,48 @@ namespace Licenta_Mamograf
                 }
             }
         }
+
+        /// <summary>
+        /// Aplică procesul complet Haar Wavelet.
+        /// </summary>
         private static void HaarWavelet()
         {
-            // Transform the matrix into Haar coefficients...
+            // Transformă matricea în coeficienți Haar...
             Transform();
 
-            // Calculate the threshold...
+            // Calculează pragul...
             CalculateThreshold();
 
-            // Apply the threshold to the Haar coefficients...
+            // Aplică pragul pe coeficientii Haar...
             ApplyThreshold();
 
-            // Transform the thresholded Haar matrix into a denoised matrix...
+            // Transformă matricea Haar cu prag în matricea denoizată...
             InverseTransform();
 
-            // Convert the denoised matrix into a denoised image...
+            // Convertește matricea denoizată într-o imagine denoizată...
             ConvertMatrixToBitmap();
         }
         #endregion
 
         #region ArtifactRemover
+        /// <summary>
+        /// Înlătură artefactele din imagine folosind un algoritm de identificare a regiunilor conectate.
+        /// </summary
         private static void ArtifactRemover()
         {
-            int width = cleanImage.Width;
-            int height = cleanImage.Height;
-            MyBitmap image = new MyBitmap(height, width);
-            bool[,] visited = new bool[height, width];
-            List<List<(int, int)>> regions = new List<List<(int, int)>>();
+            int width = cleanImage.Width; // Lățimea imaginii
+            int height = cleanImage.Height; // Înălțimea imaginii
+            MyBitmap image = new MyBitmap(height, width); // Crearea unei noi imagini pentru a stoca rezultatul
+            bool[,] visited = new bool[height, width]; // Matrice pentru a urmări pixelii deja analizați
+            List<List<(int, int)>> regions = new List<List<(int, int)>>(); // Listă pentru regiunile detectate
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    byte currentPixel = image.GetPixel(y, x);
+                    byte currentPixel = image.GetPixel(y, x); // Pixelul curent
 
+                    // Dacă pixelul nu a fost vizitat și valoarea sa este mai mare decât 0
                     if (!visited[y, x] && cleanImage.GetPixel(y, x) > 0)
                     {
                         List<(int, int)> region = new List<(int, int)>();
@@ -188,12 +228,15 @@ namespace Licenta_Mamograf
 
                         queue.Enqueue((y, x));
                         visited[y, x] = true;
+
+                        // Procesăm coada pentru a detecta întreaga regiune
                         while (queue.Count > 0)
                         {
                             var (cy, cx) = queue.Dequeue();
 
                             region.Add((cy, cx));
 
+                            // Verificăm vecinii pixelului curent
                             foreach (var (dy, dx) in GetNeighbors(cy, cx))
                             {
                                 if (!visited[dy, dx])
@@ -203,16 +246,26 @@ namespace Licenta_Mamograf
                                 }
                             }
                         }
-                        regions.Add(region);
+                        regions.Add(region); // Adăugăm regiunea la lista de regiuni detectate
                     }
                 }
             }
+
+            // Îndepărtăm regiunile mai mici, păstrând doar cea mai mare
             RemoveRegions(regions);
         }
+
+        /// <summary>
+        /// Obține toți vecinii unui pixel (8 direcții de vecinătate).
+        /// </summary>
+        /// <param name="y">Coordonata pe axa Y a pixelului.</param>
+        /// <param name="x">Coordonata pe axa X a pixelului.</param>
+        /// <returns>Lista vecinilor.</returns>
         private static List<(int, int)> GetNeighbors(int y, int x)
         {
-            List<(int, int)> neighbors = new List<(int, int)>();
+            List<(int, int)> neighbors = new List<(int, int)>(); // Listă pentru vecini
 
+            // Parcurgem pixelii vecini (în jurul pixelului curent)
             for (int dy = -1; dy < 2; dy++)
             {
                 for (int dx = -1; dx < 2; dx++)
@@ -221,6 +274,8 @@ namespace Licenta_Mamograf
 
                     int newX = x + dy;
                     int newY = y + dx;
+
+                    // Verificăm dacă vecinul este în interiorul imaginii și dacă nu este un pixel negru (0)
                     if (newX >= 0 && newX < cleanImage.Width && newY >= 0 && newY < cleanImage.Height && cleanImage.GetPixel(newY, newX) != 0)
                     {
                         neighbors.Add((newY, newX));
@@ -228,23 +283,31 @@ namespace Licenta_Mamograf
                 }
             }
             return neighbors;
-
         }
+
+        /// <summary>
+        /// Înlătură regiunile mici și păstrează doar regiunea cea mai mare.
+        /// </summary>
+        /// <param name="regions">Lista regiunilor detectate.</param>
         private static void RemoveRegions(List<List<(int, int)>> regions)
         {
-            // Remove all regions except the largest one...
             int width = cleanImage.Width;
             int height = cleanImage.Height;
             MyBitmap image = new MyBitmap(height, width);
 
+            // Selectăm regiunea cea mai mare din listă
             var region = regions.OrderByDescending(list => list.Count).FirstOrDefault();
 
+            // Copiem pixelii din regiunea cea mai mare în noua imagine
             foreach (var (y, x) in region)
             {
                 image.SetPixel(y, x, cleanImage.GetPixel(y, x));
             }
+
+            // Actualizăm imaginea curentă cu imaginea finală
             cleanImage = image;
         }
         #endregion
+
     }
 }

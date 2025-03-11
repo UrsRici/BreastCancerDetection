@@ -2,6 +2,9 @@
 
 namespace Licenta_Mamograf.Classes
 {
+    /// <summary>
+    /// model input class for MLTissue.
+    /// </summary>
     public class ModelInput
     {
         [LoadColumn(0)]

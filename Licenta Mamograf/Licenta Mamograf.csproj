@@ -163,7 +163,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Algorithm\CLAHE.cs" />
+    <Compile Include="Classes\Algorithm\CLHE.cs" />
     <Compile Include="Classes\Algorithm\GrowCut.cs" />
     <Compile Include="Classes\Components\ImageData.cs" />
     <Compile Include="Classes\Components\MyBitmap.cs" />
@@ -172,11 +172,11 @@
     <Compile Include="Classes\MLModel\MLTissue.cs" />
     <Compile Include="Classes\MLModel\ModelInput.cs" />
     <Compile Include="Classes\MLModel\ModelOutput.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Analysis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Analysis.Designer.cs">
+      <DependentUpon>Analysis.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Algorithm\Preprocessing.cs" />
     <Compile Include="Classes\Components\PGM.cs" />
@@ -185,8 +185,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Analysis.resx">
+      <DependentUpon>Analysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\Components\MyImageBox.resx">
       <DependentUpon>MyImageBox.cs</DependentUpon>

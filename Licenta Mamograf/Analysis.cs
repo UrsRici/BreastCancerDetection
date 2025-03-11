@@ -12,7 +12,7 @@ namespace Licenta_Mamograf
 {
     public partial class Image_Analysis : Form
     {
-        #region globalVariables
+        #region Variabile Globale
         private string filePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Images\mdb005.pgm"));
         private PGM img = new PGM();
         DateTime t = new DateTime();
@@ -22,7 +22,7 @@ namespace Licenta_Mamograf
         private float[,] ROI;
         #endregion
 
-        #region ImageAnalysisForm
+        #region Image Analysis Form
         public Image_Analysis()
         {
             InitializeComponent();
@@ -57,9 +57,10 @@ namespace Licenta_Mamograf
         }
         #endregion
 
-        #region ImageSelectionArea
+        #region Selectare Imagini
         private void button_select_Click(object sender, EventArgs e)
         {
+            t = DateTime.Now; 
             // Create an OpenFileDialog to select a file
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -87,6 +88,7 @@ namespace Licenta_Mamograf
                 for (int i = 0; i < a.Count; i++)
                     info_log.Text += a[i].ToString() + "\n";
             }
+            info_log.Text = (DateTime.Now - t).ToString();
         }
         private void button_relode_Click(object sender, EventArgs e)
         {
@@ -113,7 +115,7 @@ namespace Licenta_Mamograf
         }
         #endregion
 
-        #region PreprocessingArea
+        #region Preprocesare
         private void button_Preprocessing_Click(object sender, EventArgs e)
         {
             //info_log.Text += "------Preprocessing------\n";
@@ -166,7 +168,7 @@ namespace Licenta_Mamograf
         }
         #endregion
 
-        #region AIArea
+        #region AI
         private void button_selectROI_Click(object sender, EventArgs e)
         {
             if (pictureBox.Image != null)
@@ -259,7 +261,7 @@ namespace Licenta_Mamograf
         }
         #endregion
 
-        #region ChartArea
+        #region Diagrame
         private void button_Charts_Click(object sender, EventArgs e)
         {
             float[] histogram = img.Histogram();
@@ -290,7 +292,7 @@ namespace Licenta_Mamograf
         }
         #endregion
 
-        #region ImageShowArea
+        #region Vizualizare Imagini
         private void button_show_image_Click(object sender, EventArgs e)
         {
             img.ShowImage(pictureBox);
@@ -306,7 +308,7 @@ namespace Licenta_Mamograf
         }
         #endregion
 
-        #region ImageBoxEvents
+        #region ImageBox Events
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
