@@ -109,6 +109,36 @@ namespace Licenta_Mamograf
             for (int i = 0; i < a.Count; i++)
                 info_log.Text += a[i].ToString() + "\n";
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (img != null)
+            {
+                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+                folderDialog.Description = "Select a folder to save the images";
+
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Numele fișierului fără extensie (ex: mdb005)
+                    string fileName = Path.GetFileNameWithoutExtension(filePath);
+
+                    // Creează un folder nou în locația aleasă, cu numele fișierului
+                    string newFolderPath = Path.Combine(folderDialog.SelectedPath, fileName);
+                    Directory.CreateDirectory(newFolderPath);
+
+                    // Calea pentru imaginea originală
+                    string originalImagePath = Path.Combine(newFolderPath, fileName + ".jpg");
+                    img.bitmap.ToBitmap().Save(originalImagePath);
+
+                    // Calea pentru imaginea mască
+                    string maskImagePath = Path.Combine(newFolderPath, fileName + "_mask.jpg");
+                    img.mask.Save(maskImagePath);
+
+                    // Log info
+                    info_log.Text += "Original image saved to: " + originalImagePath + "\n";
+                    info_log.Text += "Mask image saved to: " + maskImagePath + "\n";
+                }
+            }
+        }
         private void button_log_Click(object sender, EventArgs e)
         {
             info_log.Text = string.Empty;

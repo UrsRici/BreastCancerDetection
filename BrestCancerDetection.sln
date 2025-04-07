@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Licenta Mamograf", "Licenta Mamograf\Licenta Mamograf.csproj", "{005DF706-9E5D-4539-96E1-A64F9605ACE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrestCancerDetection", "BrestCancerDetection\BrestCancerDetection.csproj", "{005DF706-9E5D-4539-96E1-A64F9605ACE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
