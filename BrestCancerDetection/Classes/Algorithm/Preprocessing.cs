@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Licenta_Mamograf
+namespace BrestCancerDetection.Classes
 {
     /// <summary>
     /// Clasa care implementează procesarea imaginii pentru îmbunătățirea calității acesteia, incluzând eliminarea zgomotului, aplicarea transformatei Haar și eliminarea artefactelor.
