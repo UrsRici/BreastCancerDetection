@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using ZedGraph;
 using System.Windows.Forms.DataVisualization.Charting;
 using Licenta_Mamograf.Classes;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Licenta_Mamograf
 {
@@ -189,12 +190,32 @@ namespace Licenta_Mamograf
         }
         private void button_typeTissue_Click(object sender, EventArgs e)
         {
+            Dictionary<string, float> Limit = new Dictionary<string, float>
+            {
+                { "Fatty", 2f },
+                { "Fatty-Glandular", 3.5f },
+                { "Dense-Glandular", 4.5f }
+            };
+            Dictionary<string, int> Size = new Dictionary<string, int>
+            {
+                { "Fatty", 4 },
+                { "Fatty-Glandular", 6 },
+                { "Dense-Glandular", 8 }
+            };
+
+            float climpLimit = 0f;
             ModelOutput output = MLTissue.Predict(img.ToModelInput());
             var info = MLTissue.GetSortedScoresWithLabels(output);
             label_Tissue0.Text = "Tissue Type: " + output.PredictedLabel;
             Tissue_Info.Text = string.Empty;
             foreach (var item in info)
+            { 
                 Tissue_Info.Text += $"{item.Key}: {item.Value}%\n";
+                climpLimit += Limit[item.Key] * item.Value / 100f;
+            }
+            contrastLimit.Text = Math.Round(climpLimit, 1).ToString();
+            windowSize.Text = Size[output.PredictedLabel].ToString();
+
         }
         #endregion
 
