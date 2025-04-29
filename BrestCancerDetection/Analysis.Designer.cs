@@ -66,6 +66,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.button_select = new System.Windows.Forms.Button();
             this.button_relode = new System.Windows.Forms.Button();
             this.button_log = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@
             this.location = new System.Windows.Forms.TextBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pictureBox = new Licenta_Mamograf.MyImageBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
@@ -529,9 +529,26 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(488, 523);
+            this.tabPage1.Size = new System.Drawing.Size(493, 523);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Incarcare";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(344, 6);
+            this.button1.MaximumSize = new System.Drawing.Size(300, 400);
+            this.button1.MinimumSize = new System.Drawing.Size(130, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(142, 40);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Save Image";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button_select
             // 
@@ -571,7 +588,7 @@
             // 
             this.button_log.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_log.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_log.Location = new System.Drawing.Point(400, 496);
+            this.button_log.Location = new System.Drawing.Point(405, 496);
             this.button_log.Name = "button_log";
             this.button_log.Size = new System.Drawing.Size(81, 19);
             this.button_log.TabIndex = 24;
@@ -589,7 +606,7 @@
             this.info_log.Location = new System.Drawing.Point(6, 126);
             this.info_log.MinimumSize = new System.Drawing.Size(300, 200);
             this.info_log.Name = "info_log";
-            this.info_log.Size = new System.Drawing.Size(476, 390);
+            this.info_log.Size = new System.Drawing.Size(481, 390);
             this.info_log.TabIndex = 3;
             this.info_log.Text = "";
             // 
@@ -617,7 +634,7 @@
             this.tabControl.Location = new System.Drawing.Point(14, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(496, 556);
+            this.tabControl.Size = new System.Drawing.Size(501, 556);
             this.tabControl.TabIndex = 49;
             this.tabControl.Click += new System.EventHandler(this.Image_Analysis_Resize);
             // 
@@ -625,7 +642,7 @@
             // 
             this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox.Location = new System.Drawing.Point(514, 12);
+            this.pictureBox.Location = new System.Drawing.Point(519, 12);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.ROIselect_Button_active = false;
             this.pictureBox.Size = new System.Drawing.Size(556, 556);
@@ -634,29 +651,12 @@
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(344, 6);
-            this.button1.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button1.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 40);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Save Image";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Image_Analysis
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(1081, 580);
+            this.ClientSize = new System.Drawing.Size(1086, 580);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.tabControl);
             this.Name = "Image_Analysis";
