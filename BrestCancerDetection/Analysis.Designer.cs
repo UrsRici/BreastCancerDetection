@@ -30,14 +30,14 @@ namespace BrestCancerDetection
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button_show_image = new System.Windows.Forms.Button();
             this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -120,18 +120,18 @@ namespace BrestCancerDetection
             // 
             this.chart_CumulativeHistogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.Teal;
-            chartArea1.AxisX.Maximum = 255D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.InnerPlotPosition.Auto = false;
-            chartArea1.InnerPlotPosition.Height = 80F;
-            chartArea1.InnerPlotPosition.Width = 85F;
-            chartArea1.InnerPlotPosition.X = 10F;
-            chartArea1.InnerPlotPosition.Y = 10F;
-            chartArea1.Name = "CumulativeHistogram";
-            chartArea1.Position.Auto = false;
-            chartArea1.Position.Height = 100F;
-            chartArea1.Position.Width = 100F;
-            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea1);
+            chartArea3.AxisX.Maximum = 255D;
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.InnerPlotPosition.Auto = false;
+            chartArea3.InnerPlotPosition.Height = 80F;
+            chartArea3.InnerPlotPosition.Width = 85F;
+            chartArea3.InnerPlotPosition.X = 10F;
+            chartArea3.InnerPlotPosition.Y = 10F;
+            chartArea3.Name = "CumulativeHistogram";
+            chartArea3.Position.Auto = false;
+            chartArea3.Position.Height = 100F;
+            chartArea3.Position.Width = 100F;
+            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea3);
             this.chart_CumulativeHistogram.Location = new System.Drawing.Point(6, 119);
             this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
             this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -142,18 +142,18 @@ namespace BrestCancerDetection
             this.chart_CumulativeHistogram.Series.Add(series1);
             this.chart_CumulativeHistogram.Size = new System.Drawing.Size(481, 196);
             this.chart_CumulativeHistogram.TabIndex = 41;
-            title1.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title1.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
-            title1.DockingOffset = -10;
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Position.Auto = false;
-            title1.Position.Height = 8.378904F;
-            title1.Position.Width = 94F;
-            title1.Position.X = 3F;
-            title1.Position.Y = 1F;
-            title1.Text = "Histograma Cumulativa";
-            this.chart_CumulativeHistogram.Titles.Add(title1);
+            title3.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title3.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
+            title3.DockingOffset = -10;
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Position.Auto = false;
+            title3.Position.Height = 8.378904F;
+            title3.Position.Width = 94F;
+            title3.Position.X = 3F;
+            title3.Position.Y = 1F;
+            title3.Text = "Histograma Cumulativa";
+            this.chart_CumulativeHistogram.Titles.Add(title3);
             // 
             // button_show
             // 
@@ -172,19 +172,19 @@ namespace BrestCancerDetection
             // 
             this.chart_Histogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chart_Histogram.BackColor = System.Drawing.Color.Teal;
-            chartArea2.AxisX.Maximum = 255D;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisY.MaximumAutoSize = 0F;
-            chartArea2.InnerPlotPosition.Auto = false;
-            chartArea2.InnerPlotPosition.Height = 80F;
-            chartArea2.InnerPlotPosition.Width = 85F;
-            chartArea2.InnerPlotPosition.X = 10F;
-            chartArea2.InnerPlotPosition.Y = 10F;
-            chartArea2.Name = "ChartArea";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 100F;
-            chartArea2.Position.Width = 100F;
-            this.chart_Histogram.ChartAreas.Add(chartArea2);
+            chartArea4.AxisX.Maximum = 255D;
+            chartArea4.AxisX.Minimum = 0D;
+            chartArea4.AxisY.MaximumAutoSize = 0F;
+            chartArea4.InnerPlotPosition.Auto = false;
+            chartArea4.InnerPlotPosition.Height = 80F;
+            chartArea4.InnerPlotPosition.Width = 85F;
+            chartArea4.InnerPlotPosition.X = 10F;
+            chartArea4.InnerPlotPosition.Y = 10F;
+            chartArea4.Name = "ChartArea";
+            chartArea4.Position.Auto = false;
+            chartArea4.Position.Height = 100F;
+            chartArea4.Position.Width = 100F;
+            this.chart_Histogram.ChartAreas.Add(chartArea4);
             this.chart_Histogram.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.chart_Histogram.Location = new System.Drawing.Point(6, 321);
             this.chart_Histogram.Name = "chart_Histogram";
@@ -196,18 +196,18 @@ namespace BrestCancerDetection
             series2.Points.Add(dataPoint2);
             series2.YValuesPerPoint = 2;
             this.chart_Histogram.Series.Add(series2);
-            this.chart_Histogram.Size = new System.Drawing.Size(481, 196);
+            this.chart_Histogram.Size = new System.Drawing.Size(476, 196);
             this.chart_Histogram.TabIndex = 39;
-            title2.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Title1";
-            title2.Position.Auto = false;
-            title2.Position.Height = 8.378904F;
-            title2.Position.Width = 94F;
-            title2.Position.X = 3F;
-            title2.Position.Y = 1F;
-            title2.Text = "Histograma";
-            this.chart_Histogram.Titles.Add(title2);
+            title4.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.Name = "Title1";
+            title4.Position.Auto = false;
+            title4.Position.Height = 8.378904F;
+            title4.Position.Width = 94F;
+            title4.Position.X = 3F;
+            title4.Position.Y = 1F;
+            title4.Text = "Histograma";
+            this.chart_Histogram.Titles.Add(title4);
             // 
             // button_Charts
             // 
@@ -677,7 +677,6 @@ namespace BrestCancerDetection
             this.tabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
