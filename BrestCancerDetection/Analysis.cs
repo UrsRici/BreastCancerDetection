@@ -6,10 +6,9 @@ using System.Linq;
 using System.Windows.Forms;
 using ZedGraph;
 using System.Windows.Forms.DataVisualization.Charting;
-using Licenta_Mamograf.Classes;
-using Google.Protobuf.WellKnownTypes;
+using BrestCancerDetection.Classes;
 
-namespace Licenta_Mamograf
+namespace BrestCancerDetection
 {
     public partial class Image_Analysis : Form
     {
@@ -133,6 +132,25 @@ namespace Licenta_Mamograf
                     // Calea pentru imaginea mască
                     string maskImagePath = Path.Combine(newFolderPath, fileName + "_mask.jpg");
                     img.mask.Save(maskImagePath);
+
+                    // Calea pentru imaginea combinată
+                    string combinedImagePath = Path.Combine(newFolderPath, fileName + "_combine.jpg");
+                    Bitmap combinedImage = new Bitmap(img.width, img.height);
+                    for (int y = 0; y < img.height; y++)
+                    {
+                        for (int x = 0; x < img.width; x++)
+                        {
+                            if (img.mask.GetPixel(y, x).R != 0)
+                                combinedImage.SetPixel(y, x, img.mask.GetPixel(y, x));
+                            else
+                            { 
+                                byte c = img.bitmap.GetPixel(x, y);
+                                Color color = Color.FromArgb(c, c, c); // Conversie grayscale
+                                combinedImage.SetPixel(y, x, color);
+                            }
+                        }
+                    }
+                    combinedImage.Save(combinedImagePath);
 
                     // Log info
                     info_log.Text += "Original image saved to: " + originalImagePath + "\n";
@@ -397,5 +415,6 @@ namespace Licenta_Mamograf
             }
         }
         #endregion
+
     }
 }

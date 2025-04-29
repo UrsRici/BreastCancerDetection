@@ -1,9 +1,8 @@
-﻿using Licenta_Mamograf.Classes;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Licenta_Mamograf
+namespace BrestCancerDetection.Classes
 {
     /// <summary>
     /// Clasă pentru gestionarea imaginilor în format PGM (Portable Gray Map).
@@ -128,7 +127,7 @@ namespace Licenta_Mamograf
             this.maxVal = 255;
 
             this.bitmap = new MyBitmap(bmp.Height, bmp.Width);
-            this.mask = new Bitmap(bmp);
+            this.mask = new Bitmap(bmp.Height, bmp.Width);
             this.matrix = new float[bmp.Height, bmp.Width];
 
             for (int y = 0; y < bmp.Height; y++)

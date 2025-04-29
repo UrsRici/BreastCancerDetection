@@ -1,5 +1,5 @@
 ﻿using Emgu.CV.ML;
-using Licenta_Mamograf.Classes;
+using BrestCancerDetection;
 using System;
 using System.Collections.Generic;
 using System.Linq;

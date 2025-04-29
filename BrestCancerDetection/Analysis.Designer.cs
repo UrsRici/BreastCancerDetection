@@ -1,4 +1,6 @@
-﻿namespace Licenta_Mamograf
+﻿using BrestCancerDetection.Classes;
+
+namespace BrestCancerDetection
 {
     partial class Image_Analysis
     {
@@ -73,7 +75,7 @@
             this.info_log = new System.Windows.Forms.RichTextBox();
             this.location = new System.Windows.Forms.TextBox();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.pictureBox = new Licenta_Mamograf.MyImageBox();
+            this.pictureBox = new BrestCancerDetection.Classes.MyImageBox();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
@@ -97,7 +99,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(488, 523);
+            this.tabPage4.Size = new System.Drawing.Size(493, 523);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Vizualizare";
             // 
@@ -138,7 +140,7 @@
             series1.Name = "Pixel";
             series1.Points.Add(dataPoint1);
             this.chart_CumulativeHistogram.Series.Add(series1);
-            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(476, 196);
+            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(481, 196);
             this.chart_CumulativeHistogram.TabIndex = 41;
             title1.Alignment = System.Drawing.ContentAlignment.TopCenter;
             title1.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
@@ -194,7 +196,7 @@
             series2.Points.Add(dataPoint2);
             series2.YValuesPerPoint = 2;
             this.chart_Histogram.Series.Add(series2);
-            this.chart_Histogram.Size = new System.Drawing.Size(476, 196);
+            this.chart_Histogram.Size = new System.Drawing.Size(481, 196);
             this.chart_Histogram.TabIndex = 39;
             title2.Alignment = System.Drawing.ContentAlignment.TopCenter;
             title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -250,7 +252,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(488, 523);
+            this.tabPage3.Size = new System.Drawing.Size(493, 523);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Aplicare AI";
             // 
@@ -385,7 +387,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(488, 523);
+            this.tabPage2.Size = new System.Drawing.Size(493, 523);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Procesare";
             // 
@@ -540,7 +542,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(344, 6);
+            this.button1.Location = new System.Drawing.Point(333, 6);
             this.button1.MaximumSize = new System.Drawing.Size(300, 400);
             this.button1.MinimumSize = new System.Drawing.Size(130, 40);
             this.button1.Name = "button1";
