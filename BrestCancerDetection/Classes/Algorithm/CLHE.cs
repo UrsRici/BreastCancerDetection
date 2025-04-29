@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BrestCancerDetection.Classes
+namespace Licenta_Mamograf
 {
     /// <summary>
     /// Clasa care implementează metoda de echilibrare a contrastului limitat (CLAHE) pe o imagine.

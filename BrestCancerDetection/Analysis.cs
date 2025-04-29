@@ -6,9 +6,10 @@ using System.Linq;
 using System.Windows.Forms;
 using ZedGraph;
 using System.Windows.Forms.DataVisualization.Charting;
-using BrestCancerDetection.Classes;
+using Licenta_Mamograf.Classes;
+using Google.Protobuf.WellKnownTypes;
 
-namespace BrestCancerDetection
+namespace Licenta_Mamograf
 {
     public partial class Image_Analysis : Form
     {
@@ -415,6 +416,5 @@ namespace BrestCancerDetection
             }
         }
         #endregion
-
     }
 }

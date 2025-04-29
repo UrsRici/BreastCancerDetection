@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace BrestCancerDetection.Classes
+namespace Licenta_Mamograf.Classes
 {
     public class imageData
         {

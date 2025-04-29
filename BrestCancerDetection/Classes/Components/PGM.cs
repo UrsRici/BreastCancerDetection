@@ -1,8 +1,9 @@
-﻿using System.Drawing;
+﻿using Licenta_Mamograf.Classes;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace BrestCancerDetection.Classes
+namespace Licenta_Mamograf
 {
     /// <summary>
     /// Clasă pentru gestionarea imaginilor în format PGM (Portable Gray Map).

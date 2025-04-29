@@ -2,7 +2,7 @@
 using Emgu.CV;
 using System.Drawing;
 
-namespace BrestCancerDetection.Classes
+namespace Licenta_Mamograf.Classes
 {
     /// <summary>
     /// Clasa care implementează funcționalitatea de îmbunătățire a contrastului folosind metoda CLAHE (Contrast Limited Adaptive Histogram Equalization).

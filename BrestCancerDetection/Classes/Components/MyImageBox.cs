@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace BrestCancerDetection.Classes
+namespace Licenta_Mamograf
 {
     internal class MyImageBox : PictureBox
     {

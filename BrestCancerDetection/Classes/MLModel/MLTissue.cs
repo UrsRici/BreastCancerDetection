@@ -5,7 +5,7 @@ using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 
-namespace BrestCancerDetection.Classes
+namespace Licenta_Mamograf.Classes
 {
     public partial class MLTissue
     {

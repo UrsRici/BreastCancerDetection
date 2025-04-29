@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BrestCancerDetection.Classes
+namespace Licenta_Mamograf.Classes
 {
     /// <summary>
     /// Clasa care implementează algoritmul GrowCut pentru segmentarea imaginii.
