@@ -37,41 +37,41 @@
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button_show_image = new System.Windows.Forms.Button();
+            this.button_show_image = new Krypton.Toolkit.KryptonButton();
             this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_show = new System.Windows.Forms.Button();
+            this.button_show = new Krypton.Toolkit.KryptonButton();
             this.chart_Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_Charts = new System.Windows.Forms.Button();
-            this.button_show_mask = new System.Windows.Forms.Button();
+            this.button_Charts = new Krypton.Toolkit.KryptonButton();
+            this.button_show_mask = new Krypton.Toolkit.KryptonButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button_selectROI = new System.Windows.Forms.Button();
+            this.button_selectROI = new Krypton.Toolkit.KryptonButton();
             this.label_x = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button_AI = new System.Windows.Forms.Button();
+            this.button_AI = new Krypton.Toolkit.KryptonButton();
             this.label_y = new System.Windows.Forms.Label();
-            this.button_AIonROI = new System.Windows.Forms.Button();
+            this.button_AIonROI = new Krypton.Toolkit.KryptonButton();
             this.startPoint = new System.Windows.Forms.Label();
-            this.button_RemoveROI = new System.Windows.Forms.Button();
+            this.button_RemoveROI = new Krypton.Toolkit.KryptonButton();
             this.endPoint = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Tissue_Info = new System.Windows.Forms.RichTextBox();
-            this.contrastLimit = new System.Windows.Forms.TextBox();
-            this.windowSize = new System.Windows.Forms.TextBox();
+            this.Tissue_Info = new Krypton.Toolkit.KryptonRichTextBox();
+            this.contrastLimit = new Krypton.Toolkit.KryptonTextBox();
+            this.windowSize = new Krypton.Toolkit.KryptonTextBox();
             this.label_Tissue0 = new System.Windows.Forms.Label();
-            this.button_Preprocessing = new System.Windows.Forms.Button();
-            this.button_typeTissue = new System.Windows.Forms.Button();
-            this.button_CLHE = new System.Windows.Forms.Button();
-            this.button_CLAHE = new System.Windows.Forms.Button();
+            this.button_Preprocessing = new Krypton.Toolkit.KryptonButton();
+            this.button_typeTissue = new Krypton.Toolkit.KryptonButton();
+            this.button_CLHE = new Krypton.Toolkit.KryptonButton();
+            this.button_CLAHE = new Krypton.Toolkit.KryptonButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button_select = new System.Windows.Forms.Button();
-            this.button_relode = new System.Windows.Forms.Button();
-            this.button_log = new System.Windows.Forms.Button();
+            this.button1 = new Krypton.Toolkit.KryptonButton();
+            this.button_select = new Krypton.Toolkit.KryptonButton();
+            this.button_relode = new Krypton.Toolkit.KryptonButton();
+            this.button_log = new Krypton.Toolkit.KryptonButton();
             this.info_log = new System.Windows.Forms.RichTextBox();
-            this.location = new System.Windows.Forms.TextBox();
+            this.location = new Krypton.Toolkit.KryptonTextBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pictureBox = new Licenta_Mamograf.MyImageBox();
             this.tabPage4.SuspendLayout();
@@ -97,21 +97,22 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(488, 523);
+            this.tabPage4.Size = new System.Drawing.Size(493, 523);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Vizualizare";
             // 
             // button_show_image
             // 
-            this.button_show_image.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.button_show_image.Location = new System.Drawing.Point(6, 6);
             this.button_show_image.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_show_image.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_show_image.Name = "button_show_image";
             this.button_show_image.Size = new System.Drawing.Size(138, 40);
+            this.button_show_image.StateCommon.Border.Rounding = 10F;
+            this.button_show_image.StateCommon.Border.Width = 1;
             this.button_show_image.TabIndex = 45;
-            this.button_show_image.Text = "Show Image";
-            this.button_show_image.UseVisualStyleBackColor = true;
+            this.button_show_image.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show_image.Values.Text = "Show Image";
             this.button_show_image.Click += new System.EventHandler(this.button_show_image_Click);
             // 
             // chart_CumulativeHistogram
@@ -138,7 +139,7 @@
             series1.Name = "Pixel";
             series1.Points.Add(dataPoint1);
             this.chart_CumulativeHistogram.Series.Add(series1);
-            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(476, 196);
+            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(481, 196);
             this.chart_CumulativeHistogram.TabIndex = 41;
             title1.Alignment = System.Drawing.ContentAlignment.TopCenter;
             title1.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
@@ -155,15 +156,16 @@
             // 
             // button_show
             // 
-            this.button_show.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.button_show.Location = new System.Drawing.Point(150, 6);
             this.button_show.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_show.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_show.Name = "button_show";
             this.button_show.Size = new System.Drawing.Size(138, 40);
+            this.button_show.StateCommon.Border.Rounding = 10F;
+            this.button_show.StateCommon.Border.Width = 1;
             this.button_show.TabIndex = 47;
-            this.button_show.Text = "Image + Mask";
-            this.button_show.UseVisualStyleBackColor = true;
+            this.button_show.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show.Values.Text = "Image + Mask";
             this.button_show.Click += new System.EventHandler(this.button_show_Click);
             // 
             // chart_Histogram
@@ -194,7 +196,7 @@
             series2.Points.Add(dataPoint2);
             series2.YValuesPerPoint = 2;
             this.chart_Histogram.Series.Add(series2);
-            this.chart_Histogram.Size = new System.Drawing.Size(476, 196);
+            this.chart_Histogram.Size = new System.Drawing.Size(481, 196);
             this.chart_Histogram.TabIndex = 39;
             title2.Alignment = System.Drawing.ContentAlignment.TopCenter;
             title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -209,28 +211,30 @@
             // 
             // button_Charts
             // 
-            this.button_Charts.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Charts.Location = new System.Drawing.Point(150, 52);
             this.button_Charts.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_Charts.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_Charts.Name = "button_Charts";
             this.button_Charts.Size = new System.Drawing.Size(138, 40);
+            this.button_Charts.StateCommon.Border.Rounding = 10F;
+            this.button_Charts.StateCommon.Border.Width = 1;
             this.button_Charts.TabIndex = 40;
-            this.button_Charts.Text = "Update Charts";
-            this.button_Charts.UseVisualStyleBackColor = true;
+            this.button_Charts.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_Charts.Values.Text = "Update Charts";
             this.button_Charts.Click += new System.EventHandler(this.button_Charts_Click);
             // 
             // button_show_mask
             // 
-            this.button_show_mask.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.button_show_mask.Location = new System.Drawing.Point(6, 52);
             this.button_show_mask.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_show_mask.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_show_mask.Name = "button_show_mask";
             this.button_show_mask.Size = new System.Drawing.Size(138, 40);
+            this.button_show_mask.StateCommon.Border.Rounding = 10F;
+            this.button_show_mask.StateCommon.Border.Width = 1;
             this.button_show_mask.TabIndex = 46;
-            this.button_show_mask.Text = "Show Mask";
-            this.button_show_mask.UseVisualStyleBackColor = true;
+            this.button_show_mask.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show_mask.Values.Text = "Show Mask";
             this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
             // 
             // tabPage3
@@ -250,23 +254,23 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(488, 523);
+            this.tabPage3.Size = new System.Drawing.Size(493, 523);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Aplicare AI";
             // 
             // button_selectROI
             // 
-            this.button_selectROI.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_selectROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_selectROI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_selectROI.Location = new System.Drawing.Point(6, 6);
             this.button_selectROI.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_selectROI.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_selectROI.Name = "button_selectROI";
             this.button_selectROI.Size = new System.Drawing.Size(300, 40);
+            this.button_selectROI.StateCommon.Border.Rounding = 10F;
+            this.button_selectROI.StateCommon.Border.Width = 1;
             this.button_selectROI.TabIndex = 21;
-            this.button_selectROI.Text = "Select ROI";
-            this.button_selectROI.UseVisualStyleBackColor = false;
+            this.button_selectROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_selectROI.Values.Text = "Select ROI";
             this.button_selectROI.Click += new System.EventHandler(this.button_selectROI_Click);
             // 
             // label_x
@@ -301,15 +305,16 @@
             // 
             // button_AI
             // 
-            this.button_AI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.button_AI.Location = new System.Drawing.Point(6, 189);
             this.button_AI.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_AI.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_AI.Name = "button_AI";
             this.button_AI.Size = new System.Drawing.Size(300, 40);
+            this.button_AI.StateCommon.Border.Rounding = 10F;
+            this.button_AI.StateCommon.Border.Width = 1;
             this.button_AI.TabIndex = 44;
-            this.button_AI.Text = "Apply AI";
-            this.button_AI.UseVisualStyleBackColor = true;
+            this.button_AI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_AI.Values.Text = "Apply AI";
             this.button_AI.Click += new System.EventHandler(this.button_AI_Click);
             // 
             // label_y
@@ -324,15 +329,16 @@
             // 
             // button_AIonROI
             // 
-            this.button_AIonROI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.button_AIonROI.Location = new System.Drawing.Point(6, 145);
             this.button_AIonROI.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_AIonROI.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_AIonROI.Name = "button_AIonROI";
             this.button_AIonROI.Size = new System.Drawing.Size(300, 40);
+            this.button_AIonROI.StateCommon.Border.Rounding = 10F;
+            this.button_AIonROI.StateCommon.Border.Width = 1;
             this.button_AIonROI.TabIndex = 43;
-            this.button_AIonROI.Text = "Apply AI on ROI";
-            this.button_AIonROI.UseVisualStyleBackColor = true;
+            this.button_AIonROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_AIonROI.Values.Text = "Apply AI on ROI";
             this.button_AIonROI.Click += new System.EventHandler(this.button_AIonROI_Click);
             // 
             // startPoint
@@ -347,15 +353,16 @@
             // 
             // button_RemoveROI
             // 
-            this.button_RemoveROI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.button_RemoveROI.Location = new System.Drawing.Point(6, 101);
             this.button_RemoveROI.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_RemoveROI.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_RemoveROI.Name = "button_RemoveROI";
             this.button_RemoveROI.Size = new System.Drawing.Size(300, 40);
+            this.button_RemoveROI.StateCommon.Border.Rounding = 10F;
+            this.button_RemoveROI.StateCommon.Border.Width = 1;
             this.button_RemoveROI.TabIndex = 42;
-            this.button_RemoveROI.Text = "Remove ROI";
-            this.button_RemoveROI.UseVisualStyleBackColor = true;
+            this.button_RemoveROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_RemoveROI.Values.Text = "Remove ROI";
             this.button_RemoveROI.Click += new System.EventHandler(this.button_RemoveROI_Click);
             // 
             // endPoint
@@ -385,42 +392,46 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(488, 523);
+            this.tabPage2.Size = new System.Drawing.Size(493, 523);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Procesare";
             // 
             // Tissue_Info
             // 
-            this.Tissue_Info.BackColor = System.Drawing.Color.DarkCyan;
             this.Tissue_Info.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Tissue_Info.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Tissue_Info.Location = new System.Drawing.Point(6, 266);
             this.Tissue_Info.MaxLength = 2147;
             this.Tissue_Info.Name = "Tissue_Info";
             this.Tissue_Info.ReadOnly = true;
             this.Tissue_Info.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.Tissue_Info.Size = new System.Drawing.Size(300, 70);
+            this.Tissue_Info.Size = new System.Drawing.Size(300, 72);
+            this.Tissue_Info.StateCommon.Back.Color1 = System.Drawing.Color.DarkCyan;
+            this.Tissue_Info.StateCommon.Border.Rounding = 10F;
+            this.Tissue_Info.StateCommon.Border.Width = 1;
+            this.Tissue_Info.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tissue_Info.TabIndex = 47;
             this.Tissue_Info.Text = "Tissue 1: 99.9%\nTissue 2: 99.9%\nTissue 3: 99.9%";
             // 
             // contrastLimit
             // 
-            this.contrastLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contrastLimit.Location = new System.Drawing.Point(173, 142);
             this.contrastLimit.Margin = new System.Windows.Forms.Padding(2);
             this.contrastLimit.Name = "contrastLimit";
-            this.contrastLimit.Size = new System.Drawing.Size(33, 26);
+            this.contrastLimit.Size = new System.Drawing.Size(33, 27);
+            this.contrastLimit.StateCommon.Border.Rounding = 5F;
+            this.contrastLimit.StateCommon.Border.Width = 1;
             this.contrastLimit.TabIndex = 30;
             this.contrastLimit.Text = "5";
             this.contrastLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // windowSize
             // 
-            this.windowSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.windowSize.Location = new System.Drawing.Point(173, 169);
+            this.windowSize.Location = new System.Drawing.Point(173, 170);
             this.windowSize.Margin = new System.Windows.Forms.Padding(2);
             this.windowSize.Name = "windowSize";
-            this.windowSize.Size = new System.Drawing.Size(33, 26);
+            this.windowSize.Size = new System.Drawing.Size(33, 27);
+            this.windowSize.StateCommon.Border.Rounding = 5F;
+            this.windowSize.StateCommon.Border.Width = 1;
             this.windowSize.TabIndex = 33;
             this.windowSize.Text = "16";
             this.windowSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -438,60 +449,61 @@
             // 
             // button_Preprocessing
             // 
-            this.button_Preprocessing.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_Preprocessing.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_Preprocessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Preprocessing.Location = new System.Drawing.Point(6, 6);
             this.button_Preprocessing.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_Preprocessing.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_Preprocessing.Name = "button_Preprocessing";
             this.button_Preprocessing.Size = new System.Drawing.Size(300, 40);
+            this.button_Preprocessing.StateCommon.Border.Rounding = 10F;
+            this.button_Preprocessing.StateCommon.Border.Width = 1;
             this.button_Preprocessing.TabIndex = 4;
-            this.button_Preprocessing.Text = "PreProcesare";
-            this.button_Preprocessing.UseVisualStyleBackColor = false;
+            this.button_Preprocessing.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_Preprocessing.Values.Text = "PreProcesare";
             this.button_Preprocessing.Click += new System.EventHandler(this.button_Preprocessing_Click);
             // 
             // button_typeTissue
             // 
-            this.button_typeTissue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.button_typeTissue.Location = new System.Drawing.Point(6, 200);
             this.button_typeTissue.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_typeTissue.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_typeTissue.Name = "button_typeTissue";
             this.button_typeTissue.Size = new System.Drawing.Size(300, 40);
+            this.button_typeTissue.StateCommon.Border.Rounding = 10F;
+            this.button_typeTissue.StateCommon.Border.Width = 1;
             this.button_typeTissue.TabIndex = 45;
-            this.button_typeTissue.Text = "Tissue Type";
-            this.button_typeTissue.UseVisualStyleBackColor = true;
+            this.button_typeTissue.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_typeTissue.Values.Text = "Tissue Type";
             this.button_typeTissue.Click += new System.EventHandler(this.button_typeTissue_Click);
             // 
             // button_CLHE
             // 
-            this.button_CLHE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_CLHE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_CLHE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CLHE.Location = new System.Drawing.Point(6, 52);
             this.button_CLHE.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_CLHE.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_CLHE.Name = "button_CLHE";
             this.button_CLHE.Size = new System.Drawing.Size(300, 40);
+            this.button_CLHE.StateCommon.Border.Rounding = 10F;
+            this.button_CLHE.StateCommon.Border.Width = 1;
             this.button_CLHE.TabIndex = 29;
-            this.button_CLHE.Text = "CLHE";
-            this.button_CLHE.UseVisualStyleBackColor = false;
+            this.button_CLHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_CLHE.Values.Text = "CLHE";
             this.button_CLHE.Click += new System.EventHandler(this.button_CLHE_Click);
             // 
             // button_CLAHE
             // 
-            this.button_CLAHE.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_CLAHE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_CLAHE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CLAHE.Location = new System.Drawing.Point(6, 98);
             this.button_CLAHE.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_CLAHE.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_CLAHE.Name = "button_CLAHE";
             this.button_CLAHE.Size = new System.Drawing.Size(300, 40);
+            this.button_CLAHE.StateCommon.Border.Rounding = 10F;
+            this.button_CLAHE.StateCommon.Border.Width = 1;
             this.button_CLAHE.TabIndex = 32;
-            this.button_CLAHE.Text = "CLAHE";
-            this.button_CLAHE.UseVisualStyleBackColor = false;
+            this.button_CLAHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_CLAHE.Values.Text = "CLAHE";
             this.button_CLAHE.Click += new System.EventHandler(this.button_CLAHE_Click);
             // 
             // label7
@@ -537,63 +549,62 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(333, 6);
             this.button1.MaximumSize = new System.Drawing.Size(300, 400);
             this.button1.MinimumSize = new System.Drawing.Size(130, 40);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(142, 40);
+            this.button1.StateCommon.Border.Rounding = 10F;
+            this.button1.StateCommon.Border.Width = 1;
             this.button1.TabIndex = 25;
-            this.button1.Text = "Save Image";
-            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button1.Values.Text = "Save Image";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button_select
             // 
             this.button_select.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_select.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_select.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_select.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_select.Location = new System.Drawing.Point(6, 6);
             this.button_select.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_select.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_select.Name = "button_select";
             this.button_select.Size = new System.Drawing.Size(300, 40);
+            this.button_select.StateCommon.Border.Rounding = 10F;
+            this.button_select.StateCommon.Border.Width = 1;
             this.button_select.TabIndex = 1;
-            this.button_select.Text = "Select Image";
-            this.button_select.UseVisualStyleBackColor = false;
+            this.button_select.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_select.Values.Text = "Select Image";
             this.button_select.Click += new System.EventHandler(this.button_select_Click);
             // 
             // button_relode
             // 
             this.button_relode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_relode.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button_relode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_relode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_relode.Location = new System.Drawing.Point(6, 52);
             this.button_relode.MaximumSize = new System.Drawing.Size(300, 400);
             this.button_relode.MinimumSize = new System.Drawing.Size(130, 40);
             this.button_relode.Name = "button_relode";
             this.button_relode.Size = new System.Drawing.Size(300, 42);
+            this.button_relode.StateCommon.Border.Rounding = 10F;
+            this.button_relode.StateCommon.Border.Width = 1;
             this.button_relode.TabIndex = 23;
-            this.button_relode.Text = "Relode Image";
-            this.button_relode.UseVisualStyleBackColor = false;
+            this.button_relode.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_relode.Values.Text = "Relode Image";
             this.button_relode.Click += new System.EventHandler(this.button_relode_Click);
             // 
             // button_log
             // 
             this.button_log.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_log.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.button_log.Location = new System.Drawing.Point(405, 496);
             this.button_log.Name = "button_log";
             this.button_log.Size = new System.Drawing.Size(81, 19);
             this.button_log.TabIndex = 24;
-            this.button_log.Text = "Clean LOG";
-            this.button_log.UseVisualStyleBackColor = true;
+            this.button_log.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_log.Values.Text = "Clean LOG";
             this.button_log.Click += new System.EventHandler(this.button_log_Click);
             // 
             // info_log
@@ -614,11 +625,10 @@
             // 
             this.location.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.location.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.location.Location = new System.Drawing.Point(6, 100);
             this.location.MinimumSize = new System.Drawing.Size(300, 10);
             this.location.Name = "location";
-            this.location.Size = new System.Drawing.Size(364, 20);
+            this.location.Size = new System.Drawing.Size(364, 23);
             this.location.TabIndex = 2;
             // 
             // tabControl
@@ -677,46 +687,46 @@
             this.ResumeLayout(false);
 
         }
-
         #endregion
+
         private MyImageBox pictureBox;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button button_show_image;
+        private Krypton.Toolkit.KryptonButton button_show_image;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
-        private System.Windows.Forms.Button button_show;
+        private Krypton.Toolkit.KryptonButton button_show;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Histogram;
-        private System.Windows.Forms.Button button_Charts;
-        private System.Windows.Forms.Button button_show_mask;
+        private Krypton.Toolkit.KryptonButton button_Charts;
+        private Krypton.Toolkit.KryptonButton button_show_mask;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button_selectROI;
+        private Krypton.Toolkit.KryptonButton button_selectROI;
         private System.Windows.Forms.Label label_x;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button_AI;
+        private Krypton.Toolkit.KryptonButton button_AI;
         private System.Windows.Forms.Label label_y;
-        private System.Windows.Forms.Button button_AIonROI;
+        private Krypton.Toolkit.KryptonButton button_AIonROI;
         private System.Windows.Forms.Label startPoint;
-        private System.Windows.Forms.Button button_RemoveROI;
+        private Krypton.Toolkit.KryptonButton button_RemoveROI;
         private System.Windows.Forms.Label endPoint;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.RichTextBox Tissue_Info;
-        private System.Windows.Forms.TextBox contrastLimit;
-        private System.Windows.Forms.TextBox windowSize;
+        private Krypton.Toolkit.KryptonRichTextBox Tissue_Info;
+        private Krypton.Toolkit.KryptonTextBox contrastLimit;
+        private Krypton.Toolkit.KryptonTextBox windowSize;
         private System.Windows.Forms.Label label_Tissue0;
-        private System.Windows.Forms.Button button_Preprocessing;
-        private System.Windows.Forms.Button button_typeTissue;
-        private System.Windows.Forms.Button button_CLHE;
-        private System.Windows.Forms.Button button_CLAHE;
+        private Krypton.Toolkit.KryptonButton button_Preprocessing;
+        private Krypton.Toolkit.KryptonButton button_typeTissue;
+        private Krypton.Toolkit.KryptonButton button_CLHE;
+        private Krypton.Toolkit.KryptonButton button_CLAHE;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button_select;
-        private System.Windows.Forms.Button button_relode;
-        private System.Windows.Forms.Button button_log;
+        private Krypton.Toolkit.KryptonButton button_select;
+        private Krypton.Toolkit.KryptonButton button_relode;
+        private Krypton.Toolkit.KryptonButton button_log;
         private System.Windows.Forms.RichTextBox info_log;
-        private System.Windows.Forms.TextBox location;
+        private Krypton.Toolkit.KryptonTextBox location;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.Button button1;
+        private Krypton.Toolkit.KryptonButton button1;
     }
 }
 

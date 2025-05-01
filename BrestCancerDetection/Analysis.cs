@@ -31,11 +31,6 @@ namespace Licenta_Mamograf
             ImageData.Load();
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
 
-            // Afisare datele despre imaginea initiala din fisierul "data.txt"...
-            /*List<imageData> a = ImageData.GetDatas();
-            for (int i = 0; i < a.Count; i++)
-                info_log.Text += a[i].ToString() + "\n";
-            */
             location.Text = filePath;
 
             img = new PGM(filePath);
