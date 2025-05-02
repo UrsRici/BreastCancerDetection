@@ -169,6 +169,7 @@
   <ItemGroup>
     <Compile Include="Classes\Algorithm\CLHE.cs" />
     <Compile Include="Classes\Algorithm\GrowCut.cs" />
+    <Compile Include="Classes\Components\ButtonsInfo.cs" />
     <Compile Include="Classes\Components\ImageData.cs" />
     <Compile Include="Classes\Components\MyBitmap.cs" />
     <Compile Include="Classes\Algorithm\MyClahe.cs" />
@@ -186,6 +187,12 @@
     <Compile Include="Classes\Components\PGM.cs" />
     <Compile Include="Classes\Components\MyImageBox.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StartPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartPage.Designer.cs">
+      <DependentUpon>StartPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +212,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StartPage.resx">
+      <DependentUpon>StartPage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Classes\MLModel\Model.mlnet" />
     <None Include="Images\mdb001.pgm" />
     <None Include="Images\mdb002.pgm" />

@@ -7,7 +7,8 @@ using System.Windows.Forms;
 using ZedGraph;
 using System.Windows.Forms.DataVisualization.Charting;
 using Licenta_Mamograf.Classes;
-using Google.Protobuf.WellKnownTypes;
+using BrestCancerDetection.Classes;
+using Krypton.Toolkit;
 
 namespace Licenta_Mamograf
 {
@@ -18,6 +19,8 @@ namespace Licenta_Mamograf
         private PGM img = new PGM();
         DateTime t = new DateTime();
 
+        private Krypton.Toolkit.KryptonButton currentButton;
+
         public Point ROIstartPoint = new Point();
         public Point ROIendPoint = new Point();
         private float[,] ROI;
@@ -27,25 +30,17 @@ namespace Licenta_Mamograf
         public Image_Analysis()
         {
             InitializeComponent();
-            Image_Analysis_Resize(new object(), new EventArgs());
-            ImageData.Load();
-            ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
 
             location.Text = filePath;
 
             img = new PGM(filePath);
             img.ShowImage(pictureBox);
         }
-        private void Image_Analysis_Resize(object sender, EventArgs e)
+        private void Image_Analysis_FormClosed(object sender, FormClosedEventArgs e)
         {
-            tabControl.Width = this.ClientSize.Width - pictureBox.Width - pictureBox.Location.Y * 3;
-            int chartLocation = button_show_image.Location.Y + button_show_mask.Location.Y + button_show_mask.Height;
-            int chartSpace = tabPage4.Height - chartLocation;
-            chart_CumulativeHistogram.Height = chartSpace / 2 - 6;
-            chart_Histogram.Height = chartSpace / 2 - 6;
-            chart_CumulativeHistogram.Location = new Point(chart_CumulativeHistogram.Location.X, chartLocation);
-            chart_Histogram.Location = new Point(chart_CumulativeHistogram.Location.X, chartLocation + chart_CumulativeHistogram.Height + 6);
+            Application.Exit();
         }
+
         private void ImageVerify()
         {
             if (pictureBox.Image == null)
@@ -56,7 +51,7 @@ namespace Licenta_Mamograf
         #region Selectare Imagini
         private void button_select_Click(object sender, EventArgs e)
         {
-            t = DateTime.Now; 
+            t = DateTime.Now;
             // Create an OpenFileDialog to select a file
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -105,7 +100,7 @@ namespace Licenta_Mamograf
             for (int i = 0; i < a.Count; i++)
                 info_log.Text += a[i].ToString() + "\n";
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void button_save_Click(object sender, EventArgs e)
         {
             if (img != null)
             {
@@ -139,7 +134,7 @@ namespace Licenta_Mamograf
                             if (img.mask.GetPixel(y, x).R != 0)
                                 combinedImage.SetPixel(y, x, img.mask.GetPixel(y, x));
                             else
-                            { 
+                            {
                                 byte c = img.bitmap.GetPixel(x, y);
                                 Color color = Color.FromArgb(c, c, c); // Conversie grayscale
                                 combinedImage.SetPixel(y, x, color);
@@ -223,7 +218,7 @@ namespace Licenta_Mamograf
             label_Tissue0.Text = "Tissue Type: " + output.PredictedLabel;
             Tissue_Info.Text = string.Empty;
             foreach (var item in info)
-            { 
+            {
                 Tissue_Info.Text += $"{item.Key}: {item.Value}%\n";
                 climpLimit += Limit[item.Key] * item.Value / 100f;
             }
@@ -233,7 +228,7 @@ namespace Licenta_Mamograf
         }
         #endregion
 
-        #region AI
+        #region Segmentare
         private void button_selectROI_Click(object sender, EventArgs e)
         {
             if (pictureBox.Image != null)
@@ -242,18 +237,11 @@ namespace Licenta_Mamograf
                 if (pictureBox.ROIselect_Button_active)
                 {
                     pictureBox.Cursor = Cursors.Cross;
-                    /*
-                     * SelectROI_button.BackColor = Color.Gray;
-                     * SelectROI_button.ForeColor = Color.White;
-                     */
                 }
                 else
                 {
                     pictureBox.Cursor = Cursors.Hand;
-                    /*
-                     * SelectROI_button.BackColor = BackColor;
-                     * SelectROI_button.ForeColor = Color.Black;
-                     */
+
                     Point p = new Point(
                         Math.Min(ROIendPoint.X, ROIstartPoint.X),
                         Math.Min(ROIendPoint.Y, ROIstartPoint.Y));
@@ -318,6 +306,8 @@ namespace Licenta_Mamograf
         }
         private void button_AI_Click(object sender, EventArgs e)
         {
+            ImageData.Load();
+            ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
             float[,] mask = GrowCut.ApplyData(img.matrix);
 
             img.ApplyMask(mask);
@@ -411,5 +401,39 @@ namespace Licenta_Mamograf
             }
         }
         #endregion
+
+        #region Button Hover
+        private void button_MouseEnter(object sender, EventArgs e)
+        {
+            currentButton = sender as Krypton.Toolkit.KryptonButton;
+            timer_hover.Start();
+        }
+        private void button_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Actualizăm locația etichetei în funcție de poziția mouse-ului
+            if (currentButton != null && LabelInfoButton.Visible)
+            {
+                Point mouseLocation = new Point(e.X + currentButton.Location.X + 10, e.Y + currentButton.Location.Y + 10);
+                LabelInfoButton.Location = mouseLocation;
+            }
+        }
+        private void button_MouseLeave(object sender, EventArgs e)
+        {
+            LabelInfoButton.Visible = false;
+            timer_hover.Stop(); // Oprim timerul
+        }
+        private void timer_hover_Tick(object sender, EventArgs e)
+        {
+            if (currentButton != null)
+            {
+                LabelInfoButton.Text = ButtonsInfo.GetInfo(currentButton.Name);
+                int numarRanduri = LabelInfoButton.GetLineFromCharIndex(LabelInfoButton.Text.Length);
+                LabelInfoButton.Height = 18 + 13 * numarRanduri;
+                LabelInfoButton.Visible = true;
+            }
+            timer_hover.Stop();
+        }
+        #endregion
+
     }
 }
