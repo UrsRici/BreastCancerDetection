@@ -22,6 +22,7 @@ namespace Licenta_Mamograf.Classes
         /// <returns>O mască binară cu valorile segmentate.</returns>
         public static float[,] ApplyData(float[,] matrix)
         {
+
             // Creăm o mască de dimensiuni corespunzătoare
             float[,] mask = new float[matrix.GetLength(0), matrix.GetLength(1)];
 

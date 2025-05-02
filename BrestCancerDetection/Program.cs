@@ -1,4 +1,5 @@
-﻿using Emgu.CV.ML;
+﻿using BrestCancerDetection;
+using Emgu.CV.ML;
 using Licenta_Mamograf.Classes;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Licenta_Mamograf
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Image_Analysis());
+            Application.Run(new StartPage());
         }
     }
 }
