@@ -9,6 +9,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Licenta_Mamograf.Classes;
 using BrestCancerDetection.Classes;
 using Krypton.Toolkit;
+using BrestCancerDetection;
 
 namespace Licenta_Mamograf
 {
@@ -19,7 +20,7 @@ namespace Licenta_Mamograf
         private PGM img = new PGM();
         DateTime t = new DateTime();
 
-        private Krypton.Toolkit.KryptonButton currentButton;
+        private KryptonButton currentButton;
 
         public Point ROIstartPoint = new Point();
         public Point ROIendPoint = new Point();
@@ -31,7 +32,6 @@ namespace Licenta_Mamograf
         {
             InitializeComponent();
 
-            location.Text = filePath;
 
             img = new PGM(filePath);
             img.ShowImage(pictureBox);
@@ -40,11 +40,20 @@ namespace Licenta_Mamograf
         {
             Application.Exit();
         }
-
+        private void Image_Analysis_Resize(object sender, EventArgs e)
+        {
+            tabControl.Width = this.ClientSize.Width - pictureBox.Width - 30;
+            int chartLocation = 50;
+            int chartSpace = tabPage4.Height - chartLocation;
+            chart_CumulativeHistogram.Height = chartSpace / 2;
+            chart_Histogram.Height = chartSpace / 2;
+            chart_CumulativeHistogram.Location = new Point(0, chartLocation);
+            chart_Histogram.Location = new Point(0, chartLocation + chart_CumulativeHistogram.Height);
+        }
         private void ImageVerify()
         {
             if (pictureBox.Image == null)
-                info_log.Text += "No image selected!\n";
+                MessageBox.Show("Please select an image first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
 
@@ -65,26 +74,18 @@ namespace Licenta_Mamograf
             {
                 filePath = openFileDialog.FileName;
 
-                location.Text = filePath;
-
                 img = new PGM(filePath);
                 img.ShowImage(pictureBox);
-
-                info_log.Text += "------Image Load------\n";
 
                 ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
 
                 // Afisare datele despre imaginea initiala din fisierul "data.txt"...
                 List<imageData> a = ImageData.GetDatas();
-                for (int i = 0; i < a.Count; i++)
-                    info_log.Text += a[i].ToString() + "\n";
             }
-            info_log.Text = (DateTime.Now - t).ToString();
         }
         private void button_relode_Click(object sender, EventArgs e)
         {
             ImageVerify();
-            location.Text = filePath;
 
             ResetROI();
 
@@ -97,8 +98,7 @@ namespace Licenta_Mamograf
 
             // Afisare datele despre imaginea initiala din fisierul "data.txt"...
             List<imageData> a = ImageData.GetDatas();
-            for (int i = 0; i < a.Count; i++)
-                info_log.Text += a[i].ToString() + "\n";
+
         }
         private void button_save_Click(object sender, EventArgs e)
         {
@@ -144,14 +144,9 @@ namespace Licenta_Mamograf
                     combinedImage.Save(combinedImagePath);
 
                     // Log info
-                    info_log.Text += "Original image saved to: " + originalImagePath + "\n";
-                    info_log.Text += "Mask image saved to: " + maskImagePath + "\n";
+                    MessageBox.Show("Images saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-        private void button_log_Click(object sender, EventArgs e)
-        {
-            info_log.Text = string.Empty;
         }
         #endregion
 
@@ -163,7 +158,7 @@ namespace Licenta_Mamograf
 
             t = DateTime.Now;
             img.Update(Preprocessing.Apply(img));
-            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
+            string Time = (DateTime.Now - t).ToString() + " ms\n";
 
             img.ShowImage(pictureBox);
         }
@@ -177,7 +172,7 @@ namespace Licenta_Mamograf
 
             t = DateTime.Now;
             CLHE.Apply(ref myBitmap, cL);
-            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
+            string Time = (DateTime.Now - t).ToString() + " ms\n";
 
             img.Update(myBitmap);
 
@@ -193,7 +188,7 @@ namespace Licenta_Mamograf
 
             t = DateTime.Now;
             img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
-            info_log.Text += (DateTime.Now - t).ToString() + " ms\n";
+            string Time = (DateTime.Now - t).ToString() + " ms\n";
 
             img.ShowImage(pictureBox);
         }
@@ -215,7 +210,7 @@ namespace Licenta_Mamograf
             float climpLimit = 0f;
             ModelOutput output = MLTissue.Predict(img.ToModelInput());
             var info = MLTissue.GetSortedScoresWithLabels(output);
-            label_Tissue0.Text = "Tissue Type: " + output.PredictedLabel;
+            label_Tissue.Text = "Tissue Type: " + output.PredictedLabel;
             Tissue_Info.Text = string.Empty;
             foreach (var item in info)
             {
@@ -255,12 +250,9 @@ namespace Licenta_Mamograf
                     for (int y = 0; y < ROI.GetLength(0); y++)
                         for (int x = 0; x < ROI.GetLength(1); x++)
                             ROI[y, x] = aux.GetPixel((p.Y + y), (p.X + x));
-
-                    info_log.Text += ROI.GetLength(0) + " " + ROI.GetLength(1) + "\n";
-
                 }
             }
-            else info_log.Text += "No image selected!\n";
+            else MessageBox.Show("Please select an image first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void button_RemoveROI_Click(object sender, EventArgs e)
         {
@@ -278,7 +270,7 @@ namespace Licenta_Mamograf
             pictureBox.ResetROIfig();
             img.ShowImage(pictureBox);
         }
-        private void button_AIonROI_Click(object sender, EventArgs e)
+        private void button_GrowCutOnROI_Click(object sender, EventArgs e)
         {
 
             if (!pictureBox.IsROIfig()) { return; }
@@ -304,7 +296,7 @@ namespace Licenta_Mamograf
 
             pictureBox.ResetROIfig();
         }
-        private void button_AI_Click(object sender, EventArgs e)
+        private void button_GrowCut_Click(object sender, EventArgs e)
         {
             ImageData.Load();
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
@@ -413,7 +405,7 @@ namespace Licenta_Mamograf
             // Actualizăm locația etichetei în funcție de poziția mouse-ului
             if (currentButton != null && LabelInfoButton.Visible)
             {
-                Point mouseLocation = new Point(e.X + currentButton.Location.X + 10, e.Y + currentButton.Location.Y + 10);
+                Point mouseLocation = new Point(e.X + currentButton.Location.X + 22, e.Y + currentButton.Location.Y + 22);
                 LabelInfoButton.Location = mouseLocation;
             }
         }
@@ -428,12 +420,147 @@ namespace Licenta_Mamograf
             {
                 LabelInfoButton.Text = ButtonsInfo.GetInfo(currentButton.Name);
                 int numarRanduri = LabelInfoButton.GetLineFromCharIndex(LabelInfoButton.Text.Length);
-                LabelInfoButton.Height = 18 + 13 * numarRanduri;
+                LabelInfoButton.Height = 22 + 13 * numarRanduri;
                 LabelInfoButton.Visible = true;
             }
             timer_hover.Stop();
         }
         #endregion
 
+        private void button_information_Click(object sender, EventArgs e)
+        {
+            Information information = new Information();
+            information.ShowDialog();
+        }
+        public bool isActive1 = false;
+        public bool isActive2 = false;
+        public bool isActive3 = false;
+        public bool isActive4 = false;
+        private void Active1()
+        {
+            if (isActive1)
+            {
+                button_select.Visible = false;
+                button_relode.Visible = false;
+                button_save.Visible = false;
+            }
+            else
+            {
+                button_select.Visible = true;
+                button_relode.Visible = true;
+                button_save.Visible = true;
+            }
+            isActive1 = !isActive1;
+        }
+        private void Active2()
+        {
+            if (isActive2)
+            {
+                button_Preprocessing.Visible = false;
+                button_CLHE.Visible = false;
+                button_CLAHE.Visible = false;
+                label_ContrastLimit.Visible = false;
+                label_WindowSize.Visible = false;
+                contrastLimit.Visible = false;
+                windowSize.Visible = false;
+                button_typeTissue.Visible = false;
+                label_Tissue.Visible = false;
+                Tissue_Info.Visible = false;
+            }
+            else
+            {
+                button_Preprocessing.Visible = true;
+                button_CLHE.Visible = true;
+                button_CLAHE.Visible = true;
+                label_ContrastLimit.Visible = true;
+                label_WindowSize.Visible = true;
+                contrastLimit.Visible = true;
+                windowSize.Visible = true;
+                button_typeTissue.Visible = true;
+                label_Tissue.Visible = true;
+                Tissue_Info.Visible = true;
+            }
+            isActive2 = !isActive2;
+        }
+        private void Active3()
+        {
+            if (isActive3)
+            {
+                button_GrowCut.Visible = false;
+                button_GrowCutOnROI.Visible = false;
+                button_RemoveROI.Visible = false;
+                button_selectROI.Visible = false;
+                label_H.Visible = false;
+                label_W.Visible = false;
+                label_x.Visible = false;
+                label_y.Visible = false;
+                startPoint.Visible = false;
+                endPoint.Visible = false;
+            }
+            else
+            {
+                button_GrowCut.Visible = true;
+                button_GrowCutOnROI.Visible = true;
+                button_RemoveROI.Visible = true;
+                button_selectROI.Visible = true;
+                label_H.Visible = true;
+                label_W.Visible = true;
+                label_x.Visible = true;
+                label_y.Visible = true;
+                startPoint.Visible = true;
+                endPoint.Visible = true;
+            }
+            isActive3 = !isActive3;
+        }
+        private void Active4()
+        {
+            if (isActive4)
+            {
+                button_show.Visible = false;                button_show.Location = new Point(25, 61);
+                button_show_image.Visible = false;          button_show_image.Location = new Point(133, 61);
+                button_show_mask.Visible = false;           button_show_mask.Location = new Point(241, 61);
+                button_Charts.Visible = false;              button_Charts.Location = new Point(349, 61);
+                chart_Histogram.Visible = false;            chart_Histogram.Location = new Point(9, 110);
+                chart_CumulativeHistogram.Visible = false;  chart_CumulativeHistogram.Location = new Point(9, 284);
+            }
+            else
+            {
+                button_show.Visible = true;
+                button_show_image.Visible = true;
+                button_show_mask.Visible = true;
+                button_Charts.Visible = true;
+                chart_Histogram.Visible = true;
+                chart_CumulativeHistogram.Visible = true;
+            }
+            isActive4 = !isActive4;
+        }
+        private void button_Initializare_Click(object sender, EventArgs e)
+        {
+            if (!isActive1) { Active1(); }
+            if (isActive2) { Active2(); }
+            if (isActive3) { Active3(); }
+            if (isActive4) { Active4(); }
+        }
+        private void button_Procesare_Click(object sender, EventArgs e)
+        {
+            if (isActive1) { Active1(); }
+            if (!isActive2) { Active2(); }
+            if (isActive3) { Active3(); }
+            if (isActive4) { Active4(); }
+        }
+        private void button_Segmentare_Click(object sender, EventArgs e)
+        {
+            if (isActive1) { Active1(); }
+            if (isActive2) { Active2(); }
+            if (!isActive3) { Active3(); }
+            if (isActive4) { Active4(); }
+        }
+        private void button_Vizualizare_Click(object sender, EventArgs e)
+        {
+            if (isActive1) { Active1(); }
+            if (isActive2) { Active2(); }
+            if (isActive3) { Active3(); }
+            if (!isActive4) { Active4(); }
+        }
     }
 }

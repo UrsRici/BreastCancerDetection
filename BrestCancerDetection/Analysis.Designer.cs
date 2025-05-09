@@ -30,581 +30,62 @@ namespace Licenta_Mamograf
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            this.button_show_image = new Krypton.Toolkit.KryptonButton();
-            this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_show = new Krypton.Toolkit.KryptonButton();
-            this.chart_Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_Charts = new Krypton.Toolkit.KryptonButton();
-            this.button_show_mask = new Krypton.Toolkit.KryptonButton();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint13 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.Title title13 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint14 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
+            System.Windows.Forms.DataVisualization.Charting.Title title14 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            this.buttonSpecAny1 = new Krypton.Toolkit.ButtonSpecAny();
+            this.timer_hover = new System.Windows.Forms.Timer(this.components);
+            this.LabelInfoButton = new Krypton.Toolkit.KryptonRichTextBox();
+            this.button_select = new Krypton.Toolkit.KryptonButton();
+            this.button_Preprocessing = new Krypton.Toolkit.KryptonButton();
+            this.button_information = new Krypton.Toolkit.KryptonButton();
+            this.contrastLimit = new Krypton.Toolkit.KryptonTextBox();
             this.button_selectROI = new Krypton.Toolkit.KryptonButton();
+            this.windowSize = new Krypton.Toolkit.KryptonTextBox();
+            this.label_Tissue = new System.Windows.Forms.Label();
+            this.button_typeTissue = new Krypton.Toolkit.KryptonButton();
             this.label_x = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button_AI = new Krypton.Toolkit.KryptonButton();
+            this.button_CLHE = new Krypton.Toolkit.KryptonButton();
+            this.button_CLAHE = new Krypton.Toolkit.KryptonButton();
+            this.button_save = new Krypton.Toolkit.KryptonButton();
+            this.label_ContrastLimit = new System.Windows.Forms.Label();
+            this.label_WindowSize = new System.Windows.Forms.Label();
+            this.label_H = new System.Windows.Forms.Label();
+            this.label_W = new System.Windows.Forms.Label();
+            this.button_GrowCut = new Krypton.Toolkit.KryptonButton();
             this.label_y = new System.Windows.Forms.Label();
-            this.button_AIonROI = new Krypton.Toolkit.KryptonButton();
+            this.button_relode = new Krypton.Toolkit.KryptonButton();
+            this.button_GrowCutOnROI = new Krypton.Toolkit.KryptonButton();
             this.startPoint = new System.Windows.Forms.Label();
             this.button_RemoveROI = new Krypton.Toolkit.KryptonButton();
             this.endPoint = new System.Windows.Forms.Label();
             this.Tissue_Info = new Krypton.Toolkit.KryptonRichTextBox();
-            this.contrastLimit = new Krypton.Toolkit.KryptonTextBox();
-            this.windowSize = new Krypton.Toolkit.KryptonTextBox();
-            this.label_Tissue0 = new System.Windows.Forms.Label();
-            this.button_Preprocessing = new Krypton.Toolkit.KryptonButton();
-            this.button_typeTissue = new Krypton.Toolkit.KryptonButton();
-            this.button_CLHE = new Krypton.Toolkit.KryptonButton();
-            this.button_CLAHE = new Krypton.Toolkit.KryptonButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button_save = new Krypton.Toolkit.KryptonButton();
-            this.button_select = new Krypton.Toolkit.KryptonButton();
-            this.button_relode = new Krypton.Toolkit.KryptonButton();
-            this.button_log = new Krypton.Toolkit.KryptonButton();
-            this.info_log = new System.Windows.Forms.RichTextBox();
-            this.location = new Krypton.Toolkit.KryptonTextBox();
-            this.LabelInfoButton = new Krypton.Toolkit.KryptonRichTextBox();
-            this.buttonSpecAny1 = new Krypton.Toolkit.ButtonSpecAny();
-            this.timer_hover = new System.Windows.Forms.Timer(this.components);
+            this.button_show_image = new Krypton.Toolkit.KryptonButton();
+            this.button_show = new Krypton.Toolkit.KryptonButton();
+            this.button_show_mask = new Krypton.Toolkit.KryptonButton();
+            this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button_Charts = new Krypton.Toolkit.KryptonButton();
+            this.chart_Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBox = new Licenta_Mamograf.MyImageBox();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.tabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button_show_image
-            // 
-            this.button_show_image.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show_image.Location = new System.Drawing.Point(253, 413);
-            this.button_show_image.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_show_image.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_show_image.Name = "button_show_image";
-            this.button_show_image.Size = new System.Drawing.Size(138, 40);
-            this.button_show_image.StateCommon.Border.Rounding = 10F;
-            this.button_show_image.StateCommon.Border.Width = 1;
-            this.button_show_image.TabIndex = 45;
-            this.button_show_image.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_show_image.Values.Text = "Show Image";
-            this.button_show_image.Click += new System.EventHandler(this.button_show_image_Click);
-            this.button_show_image.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show_image.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show_image.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // chart_CumulativeHistogram
-            // 
-            this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.Teal;
-            chartArea1.AxisX.Maximum = 255D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.InnerPlotPosition.Auto = false;
-            chartArea1.InnerPlotPosition.Height = 80F;
-            chartArea1.InnerPlotPosition.Width = 85F;
-            chartArea1.InnerPlotPosition.X = 10F;
-            chartArea1.InnerPlotPosition.Y = 10F;
-            chartArea1.Name = "CumulativeHistogram";
-            chartArea1.Position.Auto = false;
-            chartArea1.Position.Height = 100F;
-            chartArea1.Position.Width = 100F;
-            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea1);
-            this.chart_CumulativeHistogram.Location = new System.Drawing.Point(404, 432);
-            this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
-            this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series1.ChartArea = "CumulativeHistogram";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Name = "Pixel";
-            series1.Points.Add(dataPoint1);
-            this.chart_CumulativeHistogram.Series.Add(series1);
-            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(282, 154);
-            this.chart_CumulativeHistogram.TabIndex = 41;
-            title1.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title1.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
-            title1.DockingOffset = -10;
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Position.Auto = false;
-            title1.Position.Height = 8.378904F;
-            title1.Position.Width = 94F;
-            title1.Position.X = 3F;
-            title1.Position.Y = 1F;
-            title1.Text = "Histograma Cumulativa";
-            this.chart_CumulativeHistogram.Titles.Add(title1);
-            // 
-            // button_show
-            // 
-            this.button_show.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show.Location = new System.Drawing.Point(253, 548);
-            this.button_show.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_show.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_show.Name = "button_show";
-            this.button_show.Size = new System.Drawing.Size(138, 40);
-            this.button_show.StateCommon.Border.Rounding = 10F;
-            this.button_show.StateCommon.Border.Width = 1;
-            this.button_show.TabIndex = 47;
-            this.button_show.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_show.Values.Text = "Image + Mask";
-            this.button_show.Click += new System.EventHandler(this.button_show_Click);
-            this.button_show.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // chart_Histogram
-            // 
-            this.chart_Histogram.BackColor = System.Drawing.Color.Teal;
-            chartArea2.AxisX.Maximum = 255D;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisY.MaximumAutoSize = 0F;
-            chartArea2.InnerPlotPosition.Auto = false;
-            chartArea2.InnerPlotPosition.Height = 80F;
-            chartArea2.InnerPlotPosition.Width = 85F;
-            chartArea2.InnerPlotPosition.X = 10F;
-            chartArea2.InnerPlotPosition.Y = 10F;
-            chartArea2.Name = "ChartArea";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 100F;
-            chartArea2.Position.Width = 100F;
-            this.chart_Histogram.ChartAreas.Add(chartArea2);
-            this.chart_Histogram.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.chart_Histogram.Location = new System.Drawing.Point(404, 272);
-            this.chart_Histogram.Name = "chart_Histogram";
-            this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series2.ChartArea = "ChartArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series2.Name = "Pixel";
-            dataPoint2.Color = System.Drawing.Color.Black;
-            series2.Points.Add(dataPoint2);
-            series2.YValuesPerPoint = 2;
-            this.chart_Histogram.Series.Add(series2);
-            this.chart_Histogram.Size = new System.Drawing.Size(282, 154);
-            this.chart_Histogram.TabIndex = 39;
-            title2.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Title1";
-            title2.Position.Auto = false;
-            title2.Position.Height = 8.378904F;
-            title2.Position.Width = 94F;
-            title2.Position.X = 3F;
-            title2.Position.Y = 1F;
-            title2.Text = "Histograma";
-            this.chart_Histogram.Titles.Add(title2);
-            // 
-            // button_Charts
-            // 
-            this.button_Charts.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_Charts.Location = new System.Drawing.Point(253, 505);
-            this.button_Charts.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_Charts.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_Charts.Name = "button_Charts";
-            this.button_Charts.Size = new System.Drawing.Size(138, 40);
-            this.button_Charts.StateCommon.Border.Rounding = 10F;
-            this.button_Charts.StateCommon.Border.Width = 1;
-            this.button_Charts.TabIndex = 40;
-            this.button_Charts.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_Charts.Values.Text = "Update Charts";
-            this.button_Charts.Click += new System.EventHandler(this.button_Charts_Click);
-            this.button_Charts.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_Charts.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_Charts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_show_mask
-            // 
-            this.button_show_mask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show_mask.Location = new System.Drawing.Point(253, 459);
-            this.button_show_mask.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_show_mask.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_show_mask.Name = "button_show_mask";
-            this.button_show_mask.Size = new System.Drawing.Size(138, 40);
-            this.button_show_mask.StateCommon.Border.Rounding = 10F;
-            this.button_show_mask.StateCommon.Border.Width = 1;
-            this.button_show_mask.TabIndex = 46;
-            this.button_show_mask.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_show_mask.Values.Text = "Show Mask";
-            this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
-            this.button_show_mask.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show_mask.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show_mask.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_selectROI
-            // 
-            this.button_selectROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_selectROI.Location = new System.Drawing.Point(393, 12);
-            this.button_selectROI.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_selectROI.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_selectROI.Name = "button_selectROI";
-            this.button_selectROI.Size = new System.Drawing.Size(130, 40);
-            this.button_selectROI.StateCommon.Border.Rounding = 10F;
-            this.button_selectROI.StateCommon.Border.Width = 1;
-            this.button_selectROI.TabIndex = 21;
-            this.button_selectROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_selectROI.Values.Text = "Select ROI";
-            this.button_selectROI.Click += new System.EventHandler(this.button_selectROI_Click);
-            this.button_selectROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_selectROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_selectROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // label_x
-            // 
-            this.label_x.AutoSize = true;
-            this.label_x.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_x.Location = new System.Drawing.Point(413, 55);
-            this.label_x.Name = "label_x";
-            this.label_x.Size = new System.Drawing.Size(16, 20);
-            this.label_x.TabIndex = 16;
-            this.label_x.Text = "x";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(393, 55);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(21, 20);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "H";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(393, 81);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(24, 20);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "W";
-            // 
-            // button_AI
-            // 
-            this.button_AI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_AI.Location = new System.Drawing.Point(393, 195);
-            this.button_AI.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_AI.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_AI.Name = "button_AI";
-            this.button_AI.Size = new System.Drawing.Size(130, 40);
-            this.button_AI.StateCommon.Border.Rounding = 10F;
-            this.button_AI.StateCommon.Border.Width = 1;
-            this.button_AI.TabIndex = 44;
-            this.button_AI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_AI.Values.Text = "Apply AI";
-            this.button_AI.Click += new System.EventHandler(this.button_AI_Click);
-            this.button_AI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_AI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_AI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // label_y
-            // 
-            this.label_y.AutoSize = true;
-            this.label_y.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_y.Location = new System.Drawing.Point(413, 81);
-            this.label_y.Name = "label_y";
-            this.label_y.Size = new System.Drawing.Size(16, 20);
-            this.label_y.TabIndex = 18;
-            this.label_y.Text = "y";
-            // 
-            // button_AIonROI
-            // 
-            this.button_AIonROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_AIonROI.Location = new System.Drawing.Point(393, 151);
-            this.button_AIonROI.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_AIonROI.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_AIonROI.Name = "button_AIonROI";
-            this.button_AIonROI.Size = new System.Drawing.Size(130, 40);
-            this.button_AIonROI.StateCommon.Border.Rounding = 10F;
-            this.button_AIonROI.StateCommon.Border.Width = 1;
-            this.button_AIonROI.TabIndex = 43;
-            this.button_AIonROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_AIonROI.Values.Text = "Apply AI on ROI";
-            this.button_AIonROI.Click += new System.EventHandler(this.button_AIonROI_Click);
-            this.button_AIonROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_AIonROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_AIonROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // startPoint
-            // 
-            this.startPoint.AutoSize = true;
-            this.startPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startPoint.Location = new System.Drawing.Point(460, 55);
-            this.startPoint.Name = "startPoint";
-            this.startPoint.Size = new System.Drawing.Size(56, 20);
-            this.startPoint.TabIndex = 19;
-            this.startPoint.Text = "P1(x,y)";
-            // 
-            // button_RemoveROI
-            // 
-            this.button_RemoveROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_RemoveROI.Location = new System.Drawing.Point(393, 107);
-            this.button_RemoveROI.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_RemoveROI.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_RemoveROI.Name = "button_RemoveROI";
-            this.button_RemoveROI.Size = new System.Drawing.Size(130, 40);
-            this.button_RemoveROI.StateCommon.Border.Rounding = 10F;
-            this.button_RemoveROI.StateCommon.Border.Width = 1;
-            this.button_RemoveROI.TabIndex = 42;
-            this.button_RemoveROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_RemoveROI.Values.Text = "Remove ROI";
-            this.button_RemoveROI.Click += new System.EventHandler(this.button_RemoveROI_Click);
-            this.button_RemoveROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_RemoveROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_RemoveROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // endPoint
-            // 
-            this.endPoint.AutoSize = true;
-            this.endPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endPoint.Location = new System.Drawing.Point(460, 81);
-            this.endPoint.Name = "endPoint";
-            this.endPoint.Size = new System.Drawing.Size(56, 20);
-            this.endPoint.TabIndex = 20;
-            this.endPoint.Text = "P2(x,y)";
-            // 
-            // Tissue_Info
-            // 
-            this.Tissue_Info.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Tissue_Info.Location = new System.Drawing.Point(173, 272);
-            this.Tissue_Info.MaxLength = 2147;
-            this.Tissue_Info.Name = "Tissue_Info";
-            this.Tissue_Info.ReadOnly = true;
-            this.Tissue_Info.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.Tissue_Info.Size = new System.Drawing.Size(225, 72);
-            this.Tissue_Info.StateCommon.Back.Color1 = System.Drawing.Color.DarkCyan;
-            this.Tissue_Info.StateCommon.Border.Rounding = 10F;
-            this.Tissue_Info.StateCommon.Border.Width = 1;
-            this.Tissue_Info.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tissue_Info.TabIndex = 47;
-            this.Tissue_Info.Text = "Tissue 1: 99.9%\nTissue 2: 99.9%\nTissue 3: 99.9%";
-            // 
-            // contrastLimit
-            // 
-            this.contrastLimit.Location = new System.Drawing.Point(286, 147);
-            this.contrastLimit.Margin = new System.Windows.Forms.Padding(2);
-            this.contrastLimit.Name = "contrastLimit";
-            this.contrastLimit.Size = new System.Drawing.Size(33, 27);
-            this.contrastLimit.StateCommon.Border.Rounding = 5F;
-            this.contrastLimit.StateCommon.Border.Width = 1;
-            this.contrastLimit.TabIndex = 30;
-            this.contrastLimit.Text = "5";
-            this.contrastLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // windowSize
-            // 
-            this.windowSize.Location = new System.Drawing.Point(286, 175);
-            this.windowSize.Margin = new System.Windows.Forms.Padding(2);
-            this.windowSize.Name = "windowSize";
-            this.windowSize.Size = new System.Drawing.Size(33, 27);
-            this.windowSize.StateCommon.Border.Rounding = 5F;
-            this.windowSize.StateCommon.Border.Width = 1;
-            this.windowSize.TabIndex = 33;
-            this.windowSize.Text = "16";
-            this.windowSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label_Tissue0
-            // 
-            this.label_Tissue0.AutoSize = true;
-            this.label_Tissue0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Tissue0.Location = new System.Drawing.Point(172, 249);
-            this.label_Tissue0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label_Tissue0.Name = "label_Tissue0";
-            this.label_Tissue0.Size = new System.Drawing.Size(101, 20);
-            this.label_Tissue0.TabIndex = 46;
-            this.label_Tissue0.Text = "Tissue Type: ";
-            // 
-            // button_Preprocessing
-            // 
-            this.button_Preprocessing.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_Preprocessing.Location = new System.Drawing.Point(173, 12);
-            this.button_Preprocessing.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_Preprocessing.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_Preprocessing.Name = "button_Preprocessing";
-            this.button_Preprocessing.Size = new System.Drawing.Size(130, 40);
-            this.button_Preprocessing.StateCommon.Border.Rounding = 10F;
-            this.button_Preprocessing.StateCommon.Border.Width = 1;
-            this.button_Preprocessing.TabIndex = 4;
-            this.button_Preprocessing.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_Preprocessing.Values.Text = "PreProcesare";
-            this.button_Preprocessing.Click += new System.EventHandler(this.button_Preprocessing_Click);
-            this.button_Preprocessing.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_Preprocessing.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_Preprocessing.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_typeTissue
-            // 
-            this.button_typeTissue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_typeTissue.Location = new System.Drawing.Point(173, 206);
-            this.button_typeTissue.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_typeTissue.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_typeTissue.Name = "button_typeTissue";
-            this.button_typeTissue.Size = new System.Drawing.Size(130, 40);
-            this.button_typeTissue.StateCommon.Border.Rounding = 10F;
-            this.button_typeTissue.StateCommon.Border.Width = 1;
-            this.button_typeTissue.TabIndex = 45;
-            this.button_typeTissue.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_typeTissue.Values.Text = "Tissue Type";
-            this.button_typeTissue.Click += new System.EventHandler(this.button_typeTissue_Click);
-            this.button_typeTissue.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_typeTissue.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_typeTissue.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_CLHE
-            // 
-            this.button_CLHE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_CLHE.Location = new System.Drawing.Point(173, 58);
-            this.button_CLHE.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_CLHE.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_CLHE.Name = "button_CLHE";
-            this.button_CLHE.Size = new System.Drawing.Size(130, 40);
-            this.button_CLHE.StateCommon.Border.Rounding = 10F;
-            this.button_CLHE.StateCommon.Border.Width = 1;
-            this.button_CLHE.TabIndex = 29;
-            this.button_CLHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_CLHE.Values.Text = "CLHE";
-            this.button_CLHE.Click += new System.EventHandler(this.button_CLHE_Click);
-            this.button_CLHE.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_CLHE.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_CLHE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_CLAHE
-            // 
-            this.button_CLAHE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_CLAHE.Location = new System.Drawing.Point(173, 104);
-            this.button_CLAHE.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_CLAHE.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_CLAHE.Name = "button_CLAHE";
-            this.button_CLAHE.Size = new System.Drawing.Size(130, 40);
-            this.button_CLAHE.StateCommon.Border.Rounding = 10F;
-            this.button_CLAHE.StateCommon.Border.Width = 1;
-            this.button_CLAHE.TabIndex = 32;
-            this.button_CLAHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_CLAHE.Values.Text = "CLAHE";
-            this.button_CLAHE.Click += new System.EventHandler(this.button_CLAHE_Click);
-            this.button_CLAHE.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_CLAHE.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_CLAHE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(175, 150);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 20);
-            this.label7.TabIndex = 31;
-            this.label7.Text = "Contrast Limit";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(175, 177);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 20);
-            this.label8.TabIndex = 34;
-            this.label8.Text = "Window Size";
-            // 
-            // button_save
-            // 
-            this.button_save.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_save.Location = new System.Drawing.Point(12, 106);
-            this.button_save.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_save.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(130, 40);
-            this.button_save.StateCommon.Border.Rounding = 10F;
-            this.button_save.StateCommon.Border.Width = 1;
-            this.button_save.TabIndex = 25;
-            this.button_save.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_save.Values.Text = "Save Image";
-            this.button_save.Click += new System.EventHandler(this.button_save_Click);
-            this.button_save.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_save.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_save.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_select
-            // 
-            this.button_select.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_select.Location = new System.Drawing.Point(12, 12);
-            this.button_select.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_select.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_select.Name = "button_select";
-            this.button_select.Size = new System.Drawing.Size(130, 40);
-            this.button_select.StateCommon.Border.Rounding = 10F;
-            this.button_select.StateCommon.Border.Width = 1;
-            this.button_select.TabIndex = 1;
-            this.button_select.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_select.Values.Text = "Select Image";
-            this.button_select.Click += new System.EventHandler(this.button_select_Click);
-            this.button_select.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_select.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_select.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_relode
-            // 
-            this.button_relode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_relode.Location = new System.Drawing.Point(12, 58);
-            this.button_relode.MaximumSize = new System.Drawing.Size(300, 400);
-            this.button_relode.MinimumSize = new System.Drawing.Size(130, 40);
-            this.button_relode.Name = "button_relode";
-            this.button_relode.Size = new System.Drawing.Size(130, 42);
-            this.button_relode.StateCommon.Border.Rounding = 10F;
-            this.button_relode.StateCommon.Border.Width = 1;
-            this.button_relode.TabIndex = 23;
-            this.button_relode.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_relode.Values.Text = "Relode Image";
-            this.button_relode.Click += new System.EventHandler(this.button_relode_Click);
-            this.button_relode.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_relode.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_relode.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_log
-            // 
-            this.button_log.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_log.Location = new System.Drawing.Point(29, 213);
-            this.button_log.Name = "button_log";
-            this.button_log.Size = new System.Drawing.Size(78, 19);
-            this.button_log.TabIndex = 24;
-            this.button_log.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_log.Values.Text = "Clean LOG";
-            this.button_log.Click += new System.EventHandler(this.button_log_Click);
-            // 
-            // info_log
-            // 
-            this.info_log.BackColor = System.Drawing.Color.LightBlue;
-            this.info_log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.info_log.Location = new System.Drawing.Point(12, 153);
-            this.info_log.MinimumSize = new System.Drawing.Size(100, 100);
-            this.info_log.Name = "info_log";
-            this.info_log.Size = new System.Drawing.Size(117, 100);
-            this.info_log.TabIndex = 3;
-            this.info_log.Text = "";
-            // 
-            // location
-            // 
-            this.location.Location = new System.Drawing.Point(12, 291);
-            this.location.MinimumSize = new System.Drawing.Size(100, 10);
-            this.location.Name = "location";
-            this.location.Size = new System.Drawing.Size(100, 23);
-            this.location.TabIndex = 2;
-            // 
-            // LabelInfoButton
-            // 
-            this.LabelInfoButton.AutoWordSelection = true;
-            this.LabelInfoButton.ButtonSpecs.Add(this.buttonSpecAny1);
-            this.LabelInfoButton.Enabled = false;
-            this.LabelInfoButton.Location = new System.Drawing.Point(5, 413);
-            this.LabelInfoButton.Name = "LabelInfoButton";
-            this.LabelInfoButton.ReadOnly = true;
-            this.LabelInfoButton.Size = new System.Drawing.Size(223, 120);
-            this.LabelInfoButton.StateCommon.Back.Color1 = System.Drawing.Color.LightBlue;
-            this.LabelInfoButton.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.LabelInfoButton.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelInfoButton.TabIndex = 26;
-            this.LabelInfoButton.Text = "text info";
-            this.LabelInfoButton.Visible = false;
             // 
             // buttonSpecAny1
             // 
@@ -615,107 +96,667 @@ namespace Licenta_Mamograf
             this.timer_hover.Interval = 1000;
             this.timer_hover.Tick += new System.EventHandler(this.timer_hover_Tick);
             // 
+            // LabelInfoButton
+            // 
+            this.LabelInfoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LabelInfoButton.AutoWordSelection = true;
+            this.LabelInfoButton.ButtonSpecs.Add(this.buttonSpecAny1);
+            this.LabelInfoButton.Enabled = false;
+            this.LabelInfoButton.Location = new System.Drawing.Point(759, 25);
+            this.LabelInfoButton.Name = "LabelInfoButton";
+            this.LabelInfoButton.ReadOnly = true;
+            this.LabelInfoButton.Size = new System.Drawing.Size(223, 120);
+            this.LabelInfoButton.StateCommon.Back.Color1 = System.Drawing.Color.LightBlue;
+            this.LabelInfoButton.StateCommon.Border.Rounding = 5F;
+            this.LabelInfoButton.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LabelInfoButton.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelInfoButton.TabIndex = 74;
+            this.LabelInfoButton.Text = "text info";
+            this.LabelInfoButton.Visible = false;
+            // 
+            // button_select
+            // 
+            this.button_select.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_select.Location = new System.Drawing.Point(6, 6);
+            this.button_select.Name = "button_select";
+            this.button_select.Size = new System.Drawing.Size(147, 40);
+            this.button_select.StateCommon.Border.Rounding = 10F;
+            this.button_select.TabIndex = 60;
+            this.button_select.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_select.Values.Text = "Select Image";
+            this.button_select.Click += new System.EventHandler(this.button_select_Click);
+            this.button_select.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_select.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_select.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // button_Preprocessing
+            // 
+            this.button_Preprocessing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_Preprocessing.Location = new System.Drawing.Point(6, 6);
+            this.button_Preprocessing.Name = "button_Preprocessing";
+            this.button_Preprocessing.Size = new System.Drawing.Size(146, 40);
+            this.button_Preprocessing.StateCommon.Border.Rounding = 10F;
+            this.button_Preprocessing.TabIndex = 63;
+            this.button_Preprocessing.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_Preprocessing.Values.Text = "PreProcesare";
+            this.button_Preprocessing.Click += new System.EventHandler(this.button_Preprocessing_Click);
+            this.button_Preprocessing.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_Preprocessing.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_Preprocessing.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // button_information
+            // 
+            this.button_information.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_information.Cursor = System.Windows.Forms.Cursors.Help;
+            this.button_information.Location = new System.Drawing.Point(9, 472);
+            this.button_information.Margin = new System.Windows.Forms.Padding(0);
+            this.button_information.Name = "button_information";
+            this.button_information.Size = new System.Drawing.Size(40, 40);
+            this.button_information.StateCommon.Border.Rounding = 25F;
+            this.button_information.StateCommon.Content.Padding = new System.Windows.Forms.Padding(-2, -2, 0, 0);
+            this.button_information.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Monotype Corsiva", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_information.TabIndex = 88;
+            this.button_information.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_information.Values.Text = "i";
+            this.button_information.Click += new System.EventHandler(this.button_information_Click);
+            // 
+            // contrastLimit
+            // 
+            this.contrastLimit.Location = new System.Drawing.Point(119, 141);
+            this.contrastLimit.Margin = new System.Windows.Forms.Padding(2);
+            this.contrastLimit.Name = "contrastLimit";
+            this.contrastLimit.Size = new System.Drawing.Size(33, 27);
+            this.contrastLimit.StateCommon.Border.Rounding = 5F;
+            this.contrastLimit.StateCommon.Border.Width = 1;
+            this.contrastLimit.TabIndex = 76;
+            this.contrastLimit.Text = "5";
+            this.contrastLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // button_selectROI
+            // 
+            this.button_selectROI.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_selectROI.Location = new System.Drawing.Point(158, 6);
+            this.button_selectROI.Name = "button_selectROI";
+            this.button_selectROI.Size = new System.Drawing.Size(146, 40);
+            this.button_selectROI.StateCommon.Border.Rounding = 10F;
+            this.button_selectROI.TabIndex = 70;
+            this.button_selectROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_selectROI.Values.Text = "Select ROI";
+            this.button_selectROI.Click += new System.EventHandler(this.button_selectROI_Click);
+            this.button_selectROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_selectROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_selectROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // windowSize
+            // 
+            this.windowSize.Location = new System.Drawing.Point(119, 169);
+            this.windowSize.Margin = new System.Windows.Forms.Padding(2);
+            this.windowSize.Name = "windowSize";
+            this.windowSize.Size = new System.Drawing.Size(33, 27);
+            this.windowSize.StateCommon.Border.Rounding = 5F;
+            this.windowSize.StateCommon.Border.Width = 1;
+            this.windowSize.TabIndex = 79;
+            this.windowSize.Text = "16";
+            this.windowSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label_Tissue
+            // 
+            this.label_Tissue.AutoSize = true;
+            this.label_Tissue.BackColor = System.Drawing.Color.Transparent;
+            this.label_Tissue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Tissue.Location = new System.Drawing.Point(177, 49);
+            this.label_Tissue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_Tissue.Name = "label_Tissue";
+            this.label_Tissue.Size = new System.Drawing.Size(101, 20);
+            this.label_Tissue.TabIndex = 85;
+            this.label_Tissue.Text = "Tissue Type: ";
+            // 
+            // button_typeTissue
+            // 
+            this.button_typeTissue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_typeTissue.Location = new System.Drawing.Point(158, 6);
+            this.button_typeTissue.Name = "button_typeTissue";
+            this.button_typeTissue.Size = new System.Drawing.Size(130, 40);
+            this.button_typeTissue.StateCommon.Border.Rounding = 10F;
+            this.button_typeTissue.TabIndex = 84;
+            this.button_typeTissue.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_typeTissue.Values.Text = "Tissue Type";
+            this.button_typeTissue.Click += new System.EventHandler(this.button_typeTissue_Click);
+            this.button_typeTissue.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_typeTissue.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_typeTissue.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // label_x
+            // 
+            this.label_x.AutoSize = true;
+            this.label_x.BackColor = System.Drawing.Color.Transparent;
+            this.label_x.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_x.Location = new System.Drawing.Point(178, 49);
+            this.label_x.Name = "label_x";
+            this.label_x.Size = new System.Drawing.Size(16, 20);
+            this.label_x.TabIndex = 65;
+            this.label_x.Text = "x";
+            // 
+            // button_CLHE
+            // 
+            this.button_CLHE.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_CLHE.Location = new System.Drawing.Point(6, 52);
+            this.button_CLHE.Name = "button_CLHE";
+            this.button_CLHE.Size = new System.Drawing.Size(146, 40);
+            this.button_CLHE.StateCommon.Border.Rounding = 10F;
+            this.button_CLHE.TabIndex = 75;
+            this.button_CLHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_CLHE.Values.Text = "CLHE";
+            this.button_CLHE.Click += new System.EventHandler(this.button_CLHE_Click);
+            this.button_CLHE.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_CLHE.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_CLHE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // button_CLAHE
+            // 
+            this.button_CLAHE.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_CLAHE.Location = new System.Drawing.Point(6, 98);
+            this.button_CLAHE.Name = "button_CLAHE";
+            this.button_CLAHE.Size = new System.Drawing.Size(146, 40);
+            this.button_CLAHE.StateCommon.Border.Rounding = 10F;
+            this.button_CLAHE.TabIndex = 78;
+            this.button_CLAHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_CLAHE.Values.Text = "CLAHE";
+            this.button_CLAHE.Click += new System.EventHandler(this.button_CLAHE_Click);
+            this.button_CLAHE.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_CLAHE.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_CLAHE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // button_save
+            // 
+            this.button_save.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_save.Location = new System.Drawing.Point(6, 100);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(147, 40);
+            this.button_save.StateCommon.Border.Rounding = 10F;
+            this.button_save.TabIndex = 73;
+            this.button_save.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_save.Values.Text = "Save Image";
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            this.button_save.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_save.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_save.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // label_ContrastLimit
+            // 
+            this.label_ContrastLimit.AutoSize = true;
+            this.label_ContrastLimit.BackColor = System.Drawing.Color.Transparent;
+            this.label_ContrastLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ContrastLimit.Location = new System.Drawing.Point(8, 144);
+            this.label_ContrastLimit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_ContrastLimit.Name = "label_ContrastLimit";
+            this.label_ContrastLimit.Size = new System.Drawing.Size(107, 20);
+            this.label_ContrastLimit.TabIndex = 77;
+            this.label_ContrastLimit.Text = "Contrast Limit";
+            // 
+            // label_WindowSize
+            // 
+            this.label_WindowSize.AutoSize = true;
+            this.label_WindowSize.BackColor = System.Drawing.Color.Transparent;
+            this.label_WindowSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_WindowSize.Location = new System.Drawing.Point(8, 171);
+            this.label_WindowSize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_WindowSize.Name = "label_WindowSize";
+            this.label_WindowSize.Size = new System.Drawing.Size(100, 20);
+            this.label_WindowSize.TabIndex = 80;
+            this.label_WindowSize.Text = "Window Size";
+            // 
+            // label_H
+            // 
+            this.label_H.AutoSize = true;
+            this.label_H.BackColor = System.Drawing.Color.Transparent;
+            this.label_H.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_H.Location = new System.Drawing.Point(158, 49);
+            this.label_H.Name = "label_H";
+            this.label_H.Size = new System.Drawing.Size(21, 20);
+            this.label_H.TabIndex = 64;
+            this.label_H.Text = "H";
+            // 
+            // label_W
+            // 
+            this.label_W.AutoSize = true;
+            this.label_W.BackColor = System.Drawing.Color.Transparent;
+            this.label_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_W.Location = new System.Drawing.Point(158, 75);
+            this.label_W.Name = "label_W";
+            this.label_W.Size = new System.Drawing.Size(24, 20);
+            this.label_W.TabIndex = 66;
+            this.label_W.Text = "W";
+            // 
+            // button_GrowCut
+            // 
+            this.button_GrowCut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_GrowCut.Location = new System.Drawing.Point(6, 94);
+            this.button_GrowCut.Name = "button_GrowCut";
+            this.button_GrowCut.Size = new System.Drawing.Size(146, 40);
+            this.button_GrowCut.StateCommon.Border.Rounding = 10F;
+            this.button_GrowCut.TabIndex = 83;
+            this.button_GrowCut.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_GrowCut.Values.Text = "Apply GrowCut";
+            this.button_GrowCut.Click += new System.EventHandler(this.button_GrowCut_Click);
+            this.button_GrowCut.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_GrowCut.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_GrowCut.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // label_y
+            // 
+            this.label_y.AutoSize = true;
+            this.label_y.BackColor = System.Drawing.Color.Transparent;
+            this.label_y.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_y.Location = new System.Drawing.Point(178, 75);
+            this.label_y.Name = "label_y";
+            this.label_y.Size = new System.Drawing.Size(16, 20);
+            this.label_y.TabIndex = 67;
+            this.label_y.Text = "y";
+            // 
+            // button_relode
+            // 
+            this.button_relode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_relode.Location = new System.Drawing.Point(6, 52);
+            this.button_relode.Name = "button_relode";
+            this.button_relode.Size = new System.Drawing.Size(147, 42);
+            this.button_relode.StateCommon.Border.Rounding = 10F;
+            this.button_relode.TabIndex = 71;
+            this.button_relode.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_relode.Values.Text = "Relode Image";
+            this.button_relode.Click += new System.EventHandler(this.button_relode_Click);
+            this.button_relode.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_relode.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_relode.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // button_GrowCutOnROI
+            // 
+            this.button_GrowCutOnROI.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_GrowCutOnROI.Location = new System.Drawing.Point(6, 50);
+            this.button_GrowCutOnROI.Name = "button_GrowCutOnROI";
+            this.button_GrowCutOnROI.Size = new System.Drawing.Size(146, 40);
+            this.button_GrowCutOnROI.StateCommon.Border.Rounding = 10F;
+            this.button_GrowCutOnROI.TabIndex = 82;
+            this.button_GrowCutOnROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_GrowCutOnROI.Values.Text = "GrowCut pe ROI";
+            this.button_GrowCutOnROI.Click += new System.EventHandler(this.button_GrowCutOnROI_Click);
+            this.button_GrowCutOnROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_GrowCutOnROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_GrowCutOnROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // startPoint
+            // 
+            this.startPoint.AutoSize = true;
+            this.startPoint.BackColor = System.Drawing.Color.Transparent;
+            this.startPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startPoint.Location = new System.Drawing.Point(213, 49);
+            this.startPoint.Name = "startPoint";
+            this.startPoint.Size = new System.Drawing.Size(56, 20);
+            this.startPoint.TabIndex = 68;
+            this.startPoint.Text = "P1(x,y)";
+            // 
+            // button_RemoveROI
+            // 
+            this.button_RemoveROI.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_RemoveROI.Location = new System.Drawing.Point(6, 6);
+            this.button_RemoveROI.Name = "button_RemoveROI";
+            this.button_RemoveROI.Size = new System.Drawing.Size(146, 40);
+            this.button_RemoveROI.StateCommon.Border.Rounding = 10F;
+            this.button_RemoveROI.TabIndex = 81;
+            this.button_RemoveROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_RemoveROI.Values.Text = "Remove ROI";
+            this.button_RemoveROI.Click += new System.EventHandler(this.button_RemoveROI_Click);
+            this.button_RemoveROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_RemoveROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_RemoveROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // endPoint
+            // 
+            this.endPoint.AutoSize = true;
+            this.endPoint.BackColor = System.Drawing.Color.Transparent;
+            this.endPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endPoint.Location = new System.Drawing.Point(213, 75);
+            this.endPoint.Name = "endPoint";
+            this.endPoint.Size = new System.Drawing.Size(56, 20);
+            this.endPoint.TabIndex = 69;
+            this.endPoint.Text = "P2(x,y)";
+            // 
+            // Tissue_Info
+            // 
+            this.Tissue_Info.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Tissue_Info.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.Tissue_Info.Location = new System.Drawing.Point(158, 75);
+            this.Tissue_Info.MaxLength = 2147;
+            this.Tissue_Info.Name = "Tissue_Info";
+            this.Tissue_Info.ReadOnly = true;
+            this.Tissue_Info.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.Tissue_Info.Size = new System.Drawing.Size(236, 72);
+            this.Tissue_Info.StateCommon.Back.Color1 = System.Drawing.Color.LightBlue;
+            this.Tissue_Info.StateCommon.Border.Rounding = 10F;
+            this.Tissue_Info.StateCommon.Border.Width = 1;
+            this.Tissue_Info.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tissue_Info.TabIndex = 86;
+            this.Tissue_Info.Text = "Tissue 1: 99.9%\nTissue 2: 99.9%\nTissue 3: 99.9%";
+            this.Tissue_Info.UseMnemonic = false;
+            // 
+            // button_show_image
+            // 
+            this.button_show_image.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_show_image.Location = new System.Drawing.Point(115, 6);
+            this.button_show_image.Name = "button_show_image";
+            this.button_show_image.Size = new System.Drawing.Size(102, 40);
+            this.button_show_image.StateCommon.Border.Rounding = 10F;
+            this.button_show_image.TabIndex = 45;
+            this.button_show_image.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show_image.Values.Text = "Show Image";
+            this.button_show_image.Click += new System.EventHandler(this.button_show_image_Click);
+            this.button_show_image.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_show_image.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_show_image.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // button_show
+            // 
+            this.button_show.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_show.Location = new System.Drawing.Point(7, 6);
+            this.button_show.Name = "button_show";
+            this.button_show.Size = new System.Drawing.Size(102, 40);
+            this.button_show.StateCommon.Border.Rounding = 10F;
+            this.button_show.TabIndex = 47;
+            this.button_show.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show.Values.Text = "Image + Mask";
+            this.button_show.Click += new System.EventHandler(this.button_show_Click);
+            this.button_show.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_show.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_show.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // button_show_mask
+            // 
+            this.button_show_mask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_show_mask.Location = new System.Drawing.Point(223, 6);
+            this.button_show_mask.Name = "button_show_mask";
+            this.button_show_mask.Size = new System.Drawing.Size(102, 40);
+            this.button_show_mask.StateCommon.Border.Rounding = 10F;
+            this.button_show_mask.TabIndex = 46;
+            this.button_show_mask.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show_mask.Values.Text = "Show Mask";
+            this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
+            this.button_show_mask.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_show_mask.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_show_mask.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // chart_CumulativeHistogram
+            // 
+            this.chart_CumulativeHistogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.Teal;
+            chartArea13.AxisX.Maximum = 255D;
+            chartArea13.AxisX.Minimum = 0D;
+            chartArea13.AxisY.LabelStyle.Format = "0.#e+0";
+            chartArea13.InnerPlotPosition.Auto = false;
+            chartArea13.InnerPlotPosition.Height = 80F;
+            chartArea13.InnerPlotPosition.Width = 85F;
+            chartArea13.InnerPlotPosition.X = 10F;
+            chartArea13.Name = "CumulativeHistogram";
+            chartArea13.Position.Auto = false;
+            chartArea13.Position.Height = 90F;
+            chartArea13.Position.Width = 100F;
+            chartArea13.Position.Y = 10F;
+            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea13);
+            this.chart_CumulativeHistogram.Location = new System.Drawing.Point(0, 50);
+            this.chart_CumulativeHistogram.MinimumSize = new System.Drawing.Size(450, 165);
+            this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
+            this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            series13.ChartArea = "CumulativeHistogram";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series13.Name = "Pixel";
+            series13.Points.Add(dataPoint13);
+            this.chart_CumulativeHistogram.Series.Add(series13);
+            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(469, 186);
+            this.chart_CumulativeHistogram.TabIndex = 41;
+            title13.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title13.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
+            title13.DockingOffset = -10;
+            title13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title13.Name = "Title1";
+            title13.Position.Auto = false;
+            title13.Position.Height = 8.378904F;
+            title13.Position.Width = 94F;
+            title13.Position.X = 3F;
+            title13.Position.Y = 1F;
+            title13.Text = "Histograma Cumulativa";
+            this.chart_CumulativeHistogram.Titles.Add(title13);
+            // 
+            // button_Charts
+            // 
+            this.button_Charts.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_Charts.Location = new System.Drawing.Point(331, 6);
+            this.button_Charts.Name = "button_Charts";
+            this.button_Charts.Size = new System.Drawing.Size(102, 40);
+            this.button_Charts.StateCommon.Border.Rounding = 10F;
+            this.button_Charts.TabIndex = 40;
+            this.button_Charts.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_Charts.Values.Text = "Update Charts";
+            this.button_Charts.Click += new System.EventHandler(this.button_Charts_Click);
+            this.button_Charts.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_Charts.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_Charts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // chart_Histogram
+            // 
+            this.chart_Histogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart_Histogram.BackColor = System.Drawing.Color.Teal;
+            chartArea14.AxisX.Maximum = 255D;
+            chartArea14.AxisX.Minimum = 0D;
+            chartArea14.AxisY.LabelStyle.Format = "0.#e+0";
+            chartArea14.AxisY.MaximumAutoSize = 0F;
+            chartArea14.InnerPlotPosition.Auto = false;
+            chartArea14.InnerPlotPosition.Height = 80F;
+            chartArea14.InnerPlotPosition.Width = 85F;
+            chartArea14.InnerPlotPosition.X = 10F;
+            chartArea14.Name = "ChartArea";
+            chartArea14.Position.Auto = false;
+            chartArea14.Position.Height = 90F;
+            chartArea14.Position.Width = 100F;
+            chartArea14.Position.Y = 10F;
+            this.chart_Histogram.ChartAreas.Add(chartArea14);
+            this.chart_Histogram.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.chart_Histogram.Location = new System.Drawing.Point(0, 236);
+            this.chart_Histogram.MinimumSize = new System.Drawing.Size(450, 165);
+            this.chart_Histogram.Name = "chart_Histogram";
+            this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            series14.ChartArea = "ChartArea";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series14.Legend = "Legend1";
+            series14.Name = "Pixel";
+            dataPoint14.Color = System.Drawing.Color.Black;
+            series14.Points.Add(dataPoint14);
+            series14.YValuesPerPoint = 2;
+            this.chart_Histogram.Series.Add(series14);
+            this.chart_Histogram.Size = new System.Drawing.Size(469, 186);
+            this.chart_Histogram.TabIndex = 39;
+            title14.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title14.Name = "Title1";
+            title14.Position.Auto = false;
+            title14.Position.Height = 8.378904F;
+            title14.Position.Width = 94F;
+            title14.Position.X = 3F;
+            title14.Position.Y = 1F;
+            title14.Text = "Histograma";
+            this.chart_Histogram.Titles.Add(title14);
+            // 
             // pictureBox
             // 
-            this.pictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox.Location = new System.Drawing.Point(699, 12);
+            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox.Location = new System.Drawing.Point(496, 12);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.ROIselect_Button_active = false;
-            this.pictureBox.Size = new System.Drawing.Size(578, 578);
-            this.pictureBox.TabIndex = 48;
+            this.pictureBox.Size = new System.Drawing.Size(500, 500);
+            this.pictureBox.TabIndex = 87;
             this.pictureBox.TabStop = false;
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl.Location = new System.Drawing.Point(12, 12);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(478, 456);
+            this.tabControl.TabIndex = 89;
+            this.tabControl.Click += new System.EventHandler(this.Image_Analysis_Resize);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.AutoScroll = true;
+            this.tabPage1.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage1.Controls.Add(this.button_select);
+            this.tabPage1.Controls.Add(this.button_save);
+            this.tabPage1.Controls.Add(this.button_relode);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(470, 423);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Incarcare";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.AutoScroll = true;
+            this.tabPage2.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage2.Controls.Add(this.button_Preprocessing);
+            this.tabPage2.Controls.Add(this.button_CLHE);
+            this.tabPage2.Controls.Add(this.button_typeTissue);
+            this.tabPage2.Controls.Add(this.label_Tissue);
+            this.tabPage2.Controls.Add(this.Tissue_Info);
+            this.tabPage2.Controls.Add(this.label_WindowSize);
+            this.tabPage2.Controls.Add(this.label_ContrastLimit);
+            this.tabPage2.Controls.Add(this.button_CLAHE);
+            this.tabPage2.Controls.Add(this.contrastLimit);
+            this.tabPage2.Controls.Add(this.windowSize);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(470, 423);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Procesare";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.AutoScroll = true;
+            this.tabPage3.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage3.Controls.Add(this.button_selectROI);
+            this.tabPage3.Controls.Add(this.label_y);
+            this.tabPage3.Controls.Add(this.endPoint);
+            this.tabPage3.Controls.Add(this.startPoint);
+            this.tabPage3.Controls.Add(this.label_x);
+            this.tabPage3.Controls.Add(this.label_W);
+            this.tabPage3.Controls.Add(this.label_H);
+            this.tabPage3.Controls.Add(this.button_RemoveROI);
+            this.tabPage3.Controls.Add(this.button_GrowCut);
+            this.tabPage3.Controls.Add(this.button_GrowCutOnROI);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(470, 423);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Segmentare";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.AutoScroll = true;
+            this.tabPage4.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage4.Controls.Add(this.chart_Histogram);
+            this.tabPage4.Controls.Add(this.button_show_image);
+            this.tabPage4.Controls.Add(this.button_Charts);
+            this.tabPage4.Controls.Add(this.button_show);
+            this.tabPage4.Controls.Add(this.chart_CumulativeHistogram);
+            this.tabPage4.Controls.Add(this.button_show_mask);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(470, 423);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Vizualizare";
             // 
             // Image_Analysis
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(1289, 600);
+            this.ClientSize = new System.Drawing.Size(1008, 524);
             this.Controls.Add(this.LabelInfoButton);
-            this.Controls.Add(this.Tissue_Info);
-            this.Controls.Add(this.button_show_image);
-            this.Controls.Add(this.contrastLimit);
-            this.Controls.Add(this.button_selectROI);
-            this.Controls.Add(this.windowSize);
-            this.Controls.Add(this.chart_CumulativeHistogram);
-            this.Controls.Add(this.label_Tissue0);
-            this.Controls.Add(this.button_show);
-            this.Controls.Add(this.button_Preprocessing);
-            this.Controls.Add(this.button_typeTissue);
-            this.Controls.Add(this.label_x);
-            this.Controls.Add(this.button_CLHE);
-            this.Controls.Add(this.chart_Histogram);
-            this.Controls.Add(this.button_CLAHE);
-            this.Controls.Add(this.button_save);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.button_Charts);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.button_show_mask);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.button_select);
-            this.Controls.Add(this.button_AI);
             this.Controls.Add(this.pictureBox);
-            this.Controls.Add(this.label_y);
-            this.Controls.Add(this.button_relode);
-            this.Controls.Add(this.button_AIonROI);
-            this.Controls.Add(this.startPoint);
-            this.Controls.Add(this.button_log);
-            this.Controls.Add(this.button_RemoveROI);
-            this.Controls.Add(this.info_log);
-            this.Controls.Add(this.endPoint);
-            this.Controls.Add(this.location);
+            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.button_information);
+            this.MinimumSize = new System.Drawing.Size(1024, 563);
             this.Name = "Image_Analysis";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Image Analysis";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Image_Analysis_FormClosed);
+            this.Resize += new System.EventHandler(this.Image_Analysis_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.tabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
         #endregion
-
-        private MyImageBox pictureBox;
+        private Krypton.Toolkit.ButtonSpecAny buttonSpecAny1;
         private Krypton.Toolkit.KryptonButton button_show_image;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
+        private Krypton.Toolkit.KryptonButton button_show_mask;
+        private Krypton.Toolkit.KryptonButton button_Charts;
         private Krypton.Toolkit.KryptonButton button_show;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Histogram;
-        private Krypton.Toolkit.KryptonButton button_Charts;
-        private Krypton.Toolkit.KryptonButton button_show_mask;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
+        private System.Windows.Forms.Timer timer_hover;
+        private Krypton.Toolkit.KryptonRichTextBox LabelInfoButton;
+        private Krypton.Toolkit.KryptonButton button_select;
+        private Krypton.Toolkit.KryptonButton button_Preprocessing;
+        private Krypton.Toolkit.KryptonButton button_information;
+        private Krypton.Toolkit.KryptonTextBox contrastLimit;
         private Krypton.Toolkit.KryptonButton button_selectROI;
+        private Krypton.Toolkit.KryptonTextBox windowSize;
+        private System.Windows.Forms.Label label_Tissue;
+        private Krypton.Toolkit.KryptonButton button_typeTissue;
         private System.Windows.Forms.Label label_x;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private Krypton.Toolkit.KryptonButton button_AI;
+        private Krypton.Toolkit.KryptonButton button_CLHE;
+        private Krypton.Toolkit.KryptonButton button_CLAHE;
+        private Krypton.Toolkit.KryptonButton button_save;
+        private System.Windows.Forms.Label label_ContrastLimit;
+        private System.Windows.Forms.Label label_WindowSize;
+        private System.Windows.Forms.Label label_H;
+        private System.Windows.Forms.Label label_W;
+        private Krypton.Toolkit.KryptonButton button_GrowCut;
         private System.Windows.Forms.Label label_y;
-        private Krypton.Toolkit.KryptonButton button_AIonROI;
+        private Krypton.Toolkit.KryptonButton button_relode;
+        private Krypton.Toolkit.KryptonButton button_GrowCutOnROI;
         private System.Windows.Forms.Label startPoint;
         private Krypton.Toolkit.KryptonButton button_RemoveROI;
         private System.Windows.Forms.Label endPoint;
         private Krypton.Toolkit.KryptonRichTextBox Tissue_Info;
-        private Krypton.Toolkit.KryptonTextBox contrastLimit;
-        private Krypton.Toolkit.KryptonTextBox windowSize;
-        private System.Windows.Forms.Label label_Tissue0;
-        private Krypton.Toolkit.KryptonButton button_Preprocessing;
-        private Krypton.Toolkit.KryptonButton button_typeTissue;
-        private Krypton.Toolkit.KryptonButton button_CLHE;
-        private Krypton.Toolkit.KryptonButton button_CLAHE;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private Krypton.Toolkit.KryptonButton button_select;
-        private Krypton.Toolkit.KryptonButton button_relode;
-        private Krypton.Toolkit.KryptonButton button_log;
-        private Krypton.Toolkit.KryptonButton button_save;
-        private Krypton.Toolkit.KryptonRichTextBox LabelInfoButton;
-        private Krypton.Toolkit.ButtonSpecAny buttonSpecAny1;
-        private System.Windows.Forms.RichTextBox info_log;
-        private Krypton.Toolkit.KryptonTextBox location;
-        private System.Windows.Forms.Timer timer_hover;
+        private MyImageBox pictureBox;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
     }
 }
 
