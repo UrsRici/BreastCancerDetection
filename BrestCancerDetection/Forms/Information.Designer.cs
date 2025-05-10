@@ -29,19 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Information));
-            this.pictureBox_i = new System.Windows.Forms.PictureBox();
             this.button_ok = new Krypton.Toolkit.KryptonButton();
-            this.TextBox_information = new Krypton.Toolkit.KryptonRichTextBox();
+            this.TextBox_information = new System.Windows.Forms.RichTextBox();
+            this.pictureBox_i = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_i)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox_i
-            // 
-            this.pictureBox_i.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.pictureBox_i.Image = global::BrestCancerDetection.Properties.Resources.blue_information_button;
-            resources.ApplyResources(this.pictureBox_i, "pictureBox_i");
-            this.pictureBox_i.Name = "pictureBox_i";
-            this.pictureBox_i.TabStop = false;
             // 
             // button_ok
             // 
@@ -55,25 +47,32 @@
             // 
             // TextBox_information
             // 
+            this.TextBox_information.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.TextBox_information.BorderStyle = System.Windows.Forms.BorderStyle.None;
             resources.ApplyResources(this.TextBox_information, "TextBox_information");
+            this.TextBox_information.ForeColor = System.Drawing.Color.Black;
             this.TextBox_information.Name = "TextBox_information";
             this.TextBox_information.ReadOnly = true;
-            this.TextBox_information.StateActive.Back.Color1 = System.Drawing.Color.DarkSlateGray;
-            this.TextBox_information.StateActive.Border.Color1 = System.Drawing.Color.DarkSlateGray;
-            this.TextBox_information.StateActive.Border.Rounding = 1F;
-            this.TextBox_information.StateActive.Border.Width = 1;
-            this.TextBox_information.StateActive.Content.Color1 = System.Drawing.Color.White;
-            this.TextBox_information.StateActive.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // pictureBox_i
+            // 
+            this.pictureBox_i.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_i.Image = global::BrestCancerDetection.Properties.Resources.blue_information_button;
+            resources.ApplyResources(this.pictureBox_i, "pictureBox_i");
+            this.pictureBox_i.Name = "pictureBox_i";
+            this.pictureBox_i.TabStop = false;
             // 
             // Information
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.BackgroundImage = global::BrestCancerDetection.Properties.Resources.background;
             this.Controls.Add(this.TextBox_information);
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.pictureBox_i);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.HelpButton = true;
             this.Name = "Information";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_i)).EndInit();
             this.ResumeLayout(false);
@@ -81,9 +80,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox_i;
         private Krypton.Toolkit.KryptonButton button_ok;
-        private Krypton.Toolkit.KryptonRichTextBox TextBox_information;
+        private System.Windows.Forms.RichTextBox TextBox_information;
+        private System.Windows.Forms.PictureBox pictureBox_i;
     }
 }

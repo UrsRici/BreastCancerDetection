@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Windows.Forms;
 namespace Licenta_Mamograf
 {
     partial class Image_Analysis
@@ -30,14 +31,14 @@ namespace Licenta_Mamograf
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint13 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.Title title13 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint14 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.Title title14 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint17 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
+            System.Windows.Forms.DataVisualization.Charting.Title title17 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint18 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.Title title18 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.buttonSpecAny1 = new Krypton.Toolkit.ButtonSpecAny();
             this.timer_hover = new System.Windows.Forms.Timer(this.components);
             this.LabelInfoButton = new Krypton.Toolkit.KryptonRichTextBox();
@@ -65,26 +66,26 @@ namespace Licenta_Mamograf
             this.button_RemoveROI = new Krypton.Toolkit.KryptonButton();
             this.endPoint = new System.Windows.Forms.Label();
             this.Tissue_Info = new Krypton.Toolkit.KryptonRichTextBox();
-            this.button_show_image = new Krypton.Toolkit.KryptonButton();
-            this.button_show = new Krypton.Toolkit.KryptonButton();
-            this.button_show_mask = new Krypton.Toolkit.KryptonButton();
-            this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_Charts = new Krypton.Toolkit.KryptonButton();
-            this.chart_Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.pictureBox = new Licenta_Mamograf.MyImageBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.chart_Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button_show_image = new Krypton.Toolkit.KryptonButton();
+            this.button_Charts = new Krypton.Toolkit.KryptonButton();
+            this.button_show = new Krypton.Toolkit.KryptonButton();
+            this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button_show_mask = new Krypton.Toolkit.KryptonButton();
+            this.pictureBox = new Licenta_Mamograf.MyImageBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonSpecAny1
@@ -102,12 +103,11 @@ namespace Licenta_Mamograf
             this.LabelInfoButton.AutoWordSelection = true;
             this.LabelInfoButton.ButtonSpecs.Add(this.buttonSpecAny1);
             this.LabelInfoButton.Enabled = false;
-            this.LabelInfoButton.Location = new System.Drawing.Point(759, 25);
+            this.LabelInfoButton.Location = new System.Drawing.Point(82, 498);
             this.LabelInfoButton.Name = "LabelInfoButton";
             this.LabelInfoButton.ReadOnly = true;
-            this.LabelInfoButton.Size = new System.Drawing.Size(223, 120);
+            this.LabelInfoButton.Size = new System.Drawing.Size(223, 20);
             this.LabelInfoButton.StateCommon.Back.Color1 = System.Drawing.Color.LightBlue;
-            this.LabelInfoButton.StateCommon.Border.Rounding = 5F;
             this.LabelInfoButton.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LabelInfoButton.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelInfoButton.TabIndex = 74;
@@ -117,7 +117,7 @@ namespace Licenta_Mamograf
             // button_select
             // 
             this.button_select.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_select.Location = new System.Drawing.Point(6, 6);
+            this.button_select.Location = new System.Drawing.Point(3, 3);
             this.button_select.Name = "button_select";
             this.button_select.Size = new System.Drawing.Size(147, 40);
             this.button_select.StateCommon.Border.Rounding = 10F;
@@ -148,7 +148,7 @@ namespace Licenta_Mamograf
             // 
             this.button_information.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_information.Cursor = System.Windows.Forms.Cursors.Help;
-            this.button_information.Location = new System.Drawing.Point(9, 472);
+            this.button_information.Location = new System.Drawing.Point(9, 488);
             this.button_information.Margin = new System.Windows.Forms.Padding(0);
             this.button_information.Name = "button_information";
             this.button_information.Size = new System.Drawing.Size(40, 40);
@@ -270,7 +270,7 @@ namespace Licenta_Mamograf
             // button_save
             // 
             this.button_save.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_save.Location = new System.Drawing.Point(6, 100);
+            this.button_save.Location = new System.Drawing.Point(3, 97);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(147, 40);
             this.button_save.StateCommon.Border.Rounding = 10F;
@@ -357,7 +357,7 @@ namespace Licenta_Mamograf
             // button_relode
             // 
             this.button_relode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_relode.Location = new System.Drawing.Point(6, 52);
+            this.button_relode.Location = new System.Drawing.Point(3, 49);
             this.button_relode.Name = "button_relode";
             this.button_relode.Size = new System.Drawing.Size(147, 42);
             this.button_relode.StateCommon.Border.Rounding = 10F;
@@ -439,6 +439,148 @@ namespace Licenta_Mamograf
             this.Tissue_Info.Text = "Tissue 1: 99.9%\nTissue 2: 99.9%\nTissue 3: 99.9%";
             this.Tissue_Info.UseMnemonic = false;
             // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl.ItemSize = new System.Drawing.Size(100, 30);
+            this.tabControl.Location = new System.Drawing.Point(12, 12);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(453, 473);
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
+            this.tabControl.TabIndex = 89;
+            this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl_DrawItem);
+            this.tabControl.Click += new System.EventHandler(this.Image_Analysis_Resize);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.AutoScroll = true;
+            this.tabPage1.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.button_select);
+            this.tabPage1.Controls.Add(this.button_relode);
+            this.tabPage1.Controls.Add(this.button_save);
+            this.tabPage1.Location = new System.Drawing.Point(4, 34);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(445, 435);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Incarcare";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.AutoScroll = true;
+            this.tabPage2.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage2.Controls.Add(this.button_Preprocessing);
+            this.tabPage2.Controls.Add(this.button_CLHE);
+            this.tabPage2.Controls.Add(this.button_typeTissue);
+            this.tabPage2.Controls.Add(this.label_Tissue);
+            this.tabPage2.Controls.Add(this.Tissue_Info);
+            this.tabPage2.Controls.Add(this.label_WindowSize);
+            this.tabPage2.Controls.Add(this.label_ContrastLimit);
+            this.tabPage2.Controls.Add(this.button_CLAHE);
+            this.tabPage2.Controls.Add(this.contrastLimit);
+            this.tabPage2.Controls.Add(this.windowSize);
+            this.tabPage2.Location = new System.Drawing.Point(4, 34);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(458, 422);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Procesare";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.AutoScroll = true;
+            this.tabPage3.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage3.Controls.Add(this.button_selectROI);
+            this.tabPage3.Controls.Add(this.label_y);
+            this.tabPage3.Controls.Add(this.endPoint);
+            this.tabPage3.Controls.Add(this.startPoint);
+            this.tabPage3.Controls.Add(this.label_x);
+            this.tabPage3.Controls.Add(this.label_W);
+            this.tabPage3.Controls.Add(this.label_H);
+            this.tabPage3.Controls.Add(this.button_RemoveROI);
+            this.tabPage3.Controls.Add(this.button_GrowCut);
+            this.tabPage3.Controls.Add(this.button_GrowCutOnROI);
+            this.tabPage3.Location = new System.Drawing.Point(4, 34);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(536, 422);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Segmentare";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.AutoScroll = true;
+            this.tabPage4.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage4.Controls.Add(this.chart_Histogram);
+            this.tabPage4.Controls.Add(this.button_show_image);
+            this.tabPage4.Controls.Add(this.button_Charts);
+            this.tabPage4.Controls.Add(this.button_show);
+            this.tabPage4.Controls.Add(this.chart_CumulativeHistogram);
+            this.tabPage4.Controls.Add(this.button_show_mask);
+            this.tabPage4.Location = new System.Drawing.Point(4, 34);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(458, 422);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Vizualizare";
+            // 
+            // chart_Histogram
+            // 
+            this.chart_Histogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart_Histogram.BackColor = System.Drawing.Color.DarkCyan;
+            chartArea17.AxisX.Maximum = 255D;
+            chartArea17.AxisX.Minimum = 0D;
+            chartArea17.AxisY.LabelStyle.Format = "0.#e+0";
+            chartArea17.AxisY.MaximumAutoSize = 0F;
+            chartArea17.InnerPlotPosition.Auto = false;
+            chartArea17.InnerPlotPosition.Height = 80F;
+            chartArea17.InnerPlotPosition.Width = 85F;
+            chartArea17.InnerPlotPosition.X = 10F;
+            chartArea17.Name = "ChartArea";
+            chartArea17.Position.Auto = false;
+            chartArea17.Position.Height = 90F;
+            chartArea17.Position.Width = 100F;
+            chartArea17.Position.Y = 10F;
+            this.chart_Histogram.ChartAreas.Add(chartArea17);
+            this.chart_Histogram.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.chart_Histogram.Location = new System.Drawing.Point(0, 235);
+            this.chart_Histogram.MinimumSize = new System.Drawing.Size(400, 150);
+            this.chart_Histogram.Name = "chart_Histogram";
+            this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            series17.ChartArea = "ChartArea";
+            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series17.Legend = "Legend1";
+            series17.Name = "Pixel";
+            dataPoint17.Color = System.Drawing.Color.Black;
+            series17.Points.Add(dataPoint17);
+            series17.YValuesPerPoint = 2;
+            this.chart_Histogram.Series.Add(series17);
+            this.chart_Histogram.Size = new System.Drawing.Size(457, 186);
+            this.chart_Histogram.TabIndex = 39;
+            title17.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title17.Name = "Title1";
+            title17.Position.Auto = false;
+            title17.Position.Height = 8.378904F;
+            title17.Position.Width = 94F;
+            title17.Position.X = 3F;
+            title17.Position.Y = 1F;
+            title17.Text = "Histograma";
+            this.chart_Histogram.Titles.Add(title17);
+            // 
             // button_show_image
             // 
             this.button_show_image.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -453,77 +595,6 @@ namespace Licenta_Mamograf
             this.button_show_image.MouseEnter += new System.EventHandler(this.button_MouseEnter);
             this.button_show_image.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             this.button_show_image.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_show
-            // 
-            this.button_show.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show.Location = new System.Drawing.Point(7, 6);
-            this.button_show.Name = "button_show";
-            this.button_show.Size = new System.Drawing.Size(102, 40);
-            this.button_show.StateCommon.Border.Rounding = 10F;
-            this.button_show.TabIndex = 47;
-            this.button_show.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_show.Values.Text = "Image + Mask";
-            this.button_show.Click += new System.EventHandler(this.button_show_Click);
-            this.button_show.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // button_show_mask
-            // 
-            this.button_show_mask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show_mask.Location = new System.Drawing.Point(223, 6);
-            this.button_show_mask.Name = "button_show_mask";
-            this.button_show_mask.Size = new System.Drawing.Size(102, 40);
-            this.button_show_mask.StateCommon.Border.Rounding = 10F;
-            this.button_show_mask.TabIndex = 46;
-            this.button_show_mask.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_show_mask.Values.Text = "Show Mask";
-            this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
-            this.button_show_mask.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show_mask.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show_mask.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
-            // 
-            // chart_CumulativeHistogram
-            // 
-            this.chart_CumulativeHistogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.Teal;
-            chartArea13.AxisX.Maximum = 255D;
-            chartArea13.AxisX.Minimum = 0D;
-            chartArea13.AxisY.LabelStyle.Format = "0.#e+0";
-            chartArea13.InnerPlotPosition.Auto = false;
-            chartArea13.InnerPlotPosition.Height = 80F;
-            chartArea13.InnerPlotPosition.Width = 85F;
-            chartArea13.InnerPlotPosition.X = 10F;
-            chartArea13.Name = "CumulativeHistogram";
-            chartArea13.Position.Auto = false;
-            chartArea13.Position.Height = 90F;
-            chartArea13.Position.Width = 100F;
-            chartArea13.Position.Y = 10F;
-            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea13);
-            this.chart_CumulativeHistogram.Location = new System.Drawing.Point(0, 50);
-            this.chart_CumulativeHistogram.MinimumSize = new System.Drawing.Size(450, 165);
-            this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
-            this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series13.ChartArea = "CumulativeHistogram";
-            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series13.Name = "Pixel";
-            series13.Points.Add(dataPoint13);
-            this.chart_CumulativeHistogram.Series.Add(series13);
-            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(469, 186);
-            this.chart_CumulativeHistogram.TabIndex = 41;
-            title13.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title13.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
-            title13.DockingOffset = -10;
-            title13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title13.Name = "Title1";
-            title13.Position.Auto = false;
-            title13.Position.Height = 8.378904F;
-            title13.Position.Width = 94F;
-            title13.Position.X = 3F;
-            title13.Position.Y = 1F;
-            title13.Text = "Histograma Cumulativa";
-            this.chart_CumulativeHistogram.Titles.Add(title13);
             // 
             // button_Charts
             // 
@@ -540,173 +611,108 @@ namespace Licenta_Mamograf
             this.button_Charts.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             this.button_Charts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
             // 
-            // chart_Histogram
+            // button_show
             // 
-            this.chart_Histogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chart_Histogram.BackColor = System.Drawing.Color.Teal;
-            chartArea14.AxisX.Maximum = 255D;
-            chartArea14.AxisX.Minimum = 0D;
-            chartArea14.AxisY.LabelStyle.Format = "0.#e+0";
-            chartArea14.AxisY.MaximumAutoSize = 0F;
-            chartArea14.InnerPlotPosition.Auto = false;
-            chartArea14.InnerPlotPosition.Height = 80F;
-            chartArea14.InnerPlotPosition.Width = 85F;
-            chartArea14.InnerPlotPosition.X = 10F;
-            chartArea14.Name = "ChartArea";
-            chartArea14.Position.Auto = false;
-            chartArea14.Position.Height = 90F;
-            chartArea14.Position.Width = 100F;
-            chartArea14.Position.Y = 10F;
-            this.chart_Histogram.ChartAreas.Add(chartArea14);
-            this.chart_Histogram.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.chart_Histogram.Location = new System.Drawing.Point(0, 236);
-            this.chart_Histogram.MinimumSize = new System.Drawing.Size(450, 165);
-            this.chart_Histogram.Name = "chart_Histogram";
-            this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series14.ChartArea = "ChartArea";
-            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series14.Legend = "Legend1";
-            series14.Name = "Pixel";
-            dataPoint14.Color = System.Drawing.Color.Black;
-            series14.Points.Add(dataPoint14);
-            series14.YValuesPerPoint = 2;
-            this.chart_Histogram.Series.Add(series14);
-            this.chart_Histogram.Size = new System.Drawing.Size(469, 186);
-            this.chart_Histogram.TabIndex = 39;
-            title14.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title14.Name = "Title1";
-            title14.Position.Auto = false;
-            title14.Position.Height = 8.378904F;
-            title14.Position.Width = 94F;
-            title14.Position.X = 3F;
-            title14.Position.Y = 1F;
-            title14.Text = "Histograma";
-            this.chart_Histogram.Titles.Add(title14);
+            this.button_show.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_show.Location = new System.Drawing.Point(7, 6);
+            this.button_show.Name = "button_show";
+            this.button_show.Size = new System.Drawing.Size(102, 40);
+            this.button_show.StateCommon.Border.Rounding = 10F;
+            this.button_show.TabIndex = 47;
+            this.button_show.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show.Values.Text = "Image + Mask";
+            this.button_show.Click += new System.EventHandler(this.button_show_Click);
+            this.button_show.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_show.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_show.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
+            // chart_CumulativeHistogram
+            // 
+            this.chart_CumulativeHistogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.DarkCyan;
+            chartArea18.AxisX.Maximum = 255D;
+            chartArea18.AxisX.Minimum = 0D;
+            chartArea18.AxisY.LabelStyle.Format = "0.#e+0";
+            chartArea18.InnerPlotPosition.Auto = false;
+            chartArea18.InnerPlotPosition.Height = 80F;
+            chartArea18.InnerPlotPosition.Width = 85F;
+            chartArea18.InnerPlotPosition.X = 10F;
+            chartArea18.Name = "CumulativeHistogram";
+            chartArea18.Position.Auto = false;
+            chartArea18.Position.Height = 90F;
+            chartArea18.Position.Width = 100F;
+            chartArea18.Position.Y = 10F;
+            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea18);
+            this.chart_CumulativeHistogram.Location = new System.Drawing.Point(0, 49);
+            this.chart_CumulativeHistogram.MinimumSize = new System.Drawing.Size(400, 150);
+            this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
+            this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            series18.ChartArea = "CumulativeHistogram";
+            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series18.Name = "Pixel";
+            series18.Points.Add(dataPoint18);
+            this.chart_CumulativeHistogram.Series.Add(series18);
+            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(457, 186);
+            this.chart_CumulativeHistogram.TabIndex = 41;
+            title18.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title18.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
+            title18.DockingOffset = -10;
+            title18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title18.Name = "Title1";
+            title18.Position.Auto = false;
+            title18.Position.Height = 8.378904F;
+            title18.Position.Width = 94F;
+            title18.Position.X = 3F;
+            title18.Position.Y = 1F;
+            title18.Text = "Histograma Cumulativa";
+            this.chart_CumulativeHistogram.Titles.Add(title18);
+            // 
+            // button_show_mask
+            // 
+            this.button_show_mask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_show_mask.Location = new System.Drawing.Point(223, 6);
+            this.button_show_mask.Name = "button_show_mask";
+            this.button_show_mask.Size = new System.Drawing.Size(102, 40);
+            this.button_show_mask.StateCommon.Border.Rounding = 10F;
+            this.button_show_mask.TabIndex = 46;
+            this.button_show_mask.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show_mask.Values.Text = "Show Mask";
+            this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
+            this.button_show_mask.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_show_mask.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_show_mask.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
             // 
             // pictureBox
             // 
-            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox.Location = new System.Drawing.Point(496, 12);
+            this.pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox.Location = new System.Drawing.Point(471, 0);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.ROIselect_Button_active = false;
-            this.pictureBox.Size = new System.Drawing.Size(500, 500);
+            this.pictureBox.Size = new System.Drawing.Size(537, 537);
             this.pictureBox.TabIndex = 87;
             this.pictureBox.TabStop = false;
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            // 
-            // tabControl
-            // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Controls.Add(this.tabPage4);
-            this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl.Location = new System.Drawing.Point(12, 12);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(478, 456);
-            this.tabControl.TabIndex = 89;
-            this.tabControl.Click += new System.EventHandler(this.Image_Analysis_Resize);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.AutoScroll = true;
-            this.tabPage1.BackColor = System.Drawing.Color.DarkCyan;
-            this.tabPage1.Controls.Add(this.button_select);
-            this.tabPage1.Controls.Add(this.button_save);
-            this.tabPage1.Controls.Add(this.button_relode);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(470, 423);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Incarcare";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.AutoScroll = true;
-            this.tabPage2.BackColor = System.Drawing.Color.DarkCyan;
-            this.tabPage2.Controls.Add(this.button_Preprocessing);
-            this.tabPage2.Controls.Add(this.button_CLHE);
-            this.tabPage2.Controls.Add(this.button_typeTissue);
-            this.tabPage2.Controls.Add(this.label_Tissue);
-            this.tabPage2.Controls.Add(this.Tissue_Info);
-            this.tabPage2.Controls.Add(this.label_WindowSize);
-            this.tabPage2.Controls.Add(this.label_ContrastLimit);
-            this.tabPage2.Controls.Add(this.button_CLAHE);
-            this.tabPage2.Controls.Add(this.contrastLimit);
-            this.tabPage2.Controls.Add(this.windowSize);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(470, 423);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Procesare";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.AutoScroll = true;
-            this.tabPage3.BackColor = System.Drawing.Color.DarkCyan;
-            this.tabPage3.Controls.Add(this.button_selectROI);
-            this.tabPage3.Controls.Add(this.label_y);
-            this.tabPage3.Controls.Add(this.endPoint);
-            this.tabPage3.Controls.Add(this.startPoint);
-            this.tabPage3.Controls.Add(this.label_x);
-            this.tabPage3.Controls.Add(this.label_W);
-            this.tabPage3.Controls.Add(this.label_H);
-            this.tabPage3.Controls.Add(this.button_RemoveROI);
-            this.tabPage3.Controls.Add(this.button_GrowCut);
-            this.tabPage3.Controls.Add(this.button_GrowCutOnROI);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(470, 423);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Segmentare";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.AutoScroll = true;
-            this.tabPage4.BackColor = System.Drawing.Color.DarkCyan;
-            this.tabPage4.Controls.Add(this.chart_Histogram);
-            this.tabPage4.Controls.Add(this.button_show_image);
-            this.tabPage4.Controls.Add(this.button_Charts);
-            this.tabPage4.Controls.Add(this.button_show);
-            this.tabPage4.Controls.Add(this.chart_CumulativeHistogram);
-            this.tabPage4.Controls.Add(this.button_show_mask);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(470, 423);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Vizualizare";
             // 
             // Image_Analysis
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(1008, 524);
+            this.BackgroundImage = global::BrestCancerDetection.Properties.Resources.background;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1008, 537);
             this.Controls.Add(this.LabelInfoButton);
             this.Controls.Add(this.pictureBox);
-            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.button_information);
-            this.MinimumSize = new System.Drawing.Size(1024, 563);
+            this.Controls.Add(this.tabControl);
+            this.DoubleBuffered = true;
             this.Name = "Image_Analysis";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Image Analysis";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Image_Analysis_FormClosed);
             this.Resize += new System.EventHandler(this.Image_Analysis_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -714,17 +720,14 @@ namespace Licenta_Mamograf
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
         #endregion
         private Krypton.Toolkit.ButtonSpecAny buttonSpecAny1;
-        private Krypton.Toolkit.KryptonButton button_show_image;
-        private Krypton.Toolkit.KryptonButton button_show_mask;
-        private Krypton.Toolkit.KryptonButton button_Charts;
-        private Krypton.Toolkit.KryptonButton button_show;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart_Histogram;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
         private System.Windows.Forms.Timer timer_hover;
         private Krypton.Toolkit.KryptonRichTextBox LabelInfoButton;
         private Krypton.Toolkit.KryptonButton button_select;
@@ -756,7 +759,13 @@ namespace Licenta_Mamograf
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
+        private TabPage tabPage4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_Histogram;
+        private Krypton.Toolkit.KryptonButton button_show_image;
+        private Krypton.Toolkit.KryptonButton button_Charts;
+        private Krypton.Toolkit.KryptonButton button_show;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
+        private Krypton.Toolkit.KryptonButton button_show_mask;
     }
 }
 

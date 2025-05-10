@@ -117,92 +117,163 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="button_Start.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox_i.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 125</value>
+  <data name="button_Start.Location" type="System.Drawing.Point, System.Drawing">
+    <value>179, 306</value>
   </data>
-  <data name="pictureBox_i.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>100, 100</value>
-  </data>
-  <data name="pictureBox_i.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>100, 100</value>
-  </data>
-  <data name="pictureBox_i.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 100</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pictureBox_i.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
+  <data name="button_Start.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 55</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pictureBox_i.TabIndex" type="System.Int32, mscorlib">
+  <data name="button_Start.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;pictureBox_i.Name" xml:space="preserve">
-    <value>pictureBox_i</value>
+  <data name="button_Start.Values.Text" xml:space="preserve">
+    <value>Începe Analiza</value>
   </data>
-  <data name="&gt;&gt;pictureBox_i.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;button_Start.Name" xml:space="preserve">
+    <value>button_Start</value>
   </data>
-  <data name="&gt;&gt;pictureBox_i.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pictureBox_i.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="button_ok.Location" type="System.Drawing.Point, System.Drawing">
-    <value>483, 320</value>
-  </data>
-  <data name="button_ok.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 29</value>
-  </data>
-  <data name="button_ok.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="button_ok.Values.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;button_ok.Name" xml:space="preserve">
-    <value>button_ok</value>
-  </data>
-  <data name="&gt;&gt;button_ok.Type" xml:space="preserve">
+  <data name="&gt;&gt;button_Start.Type" xml:space="preserve">
     <value>Krypton.Toolkit.KryptonButton, Krypton.Toolkit, Version=95.25.4.111, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e</value>
   </data>
-  <data name="&gt;&gt;button_ok.Parent" xml:space="preserve">
+  <data name="&gt;&gt;button_Start.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;button_ok.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;button_Start.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="button_Info.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="button_Info.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 306</value>
+  </data>
+  <data name="button_Info.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 55</value>
+  </data>
+  <data name="button_Info.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="button_Info.Values.Text" xml:space="preserve">
+    <value>Despre Aplicație</value>
+  </data>
+  <data name="&gt;&gt;button_Info.Name" xml:space="preserve">
+    <value>button_Info</value>
+  </data>
+  <data name="&gt;&gt;button_Info.Type" xml:space="preserve">
+    <value>Krypton.Toolkit.KryptonButton, Krypton.Toolkit, Version=95.25.4.111, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e</value>
+  </data>
+  <data name="&gt;&gt;button_Info.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button_Info.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="TextBox_information.Location" type="System.Drawing.Point, System.Drawing">
-    <value>132, 30</value>
+  <data name="label_title.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 36pt, style=Bold</value>
   </data>
-  <data name="TextBox_information.Size" type="System.Drawing.Size, System.Drawing">
-    <value>420, 278</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label_title.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="TextBox_information.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="label_title.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 42</value>
   </data>
-  <data name="TextBox_information.Text" xml:space="preserve">
-    <value>Pentru utilizarea cât mai eficientă a acestei aplicații este recomandata urmatoarea ordine de utilizare:
-    1. Utilizeaza butonul "Select Image" pentru selecta imaginea dorită.
-    2. Aplicați preprocesarea imagini prin utilizarea butonului "PreProcesare".
-    3. Determina tipul de țesut prin utilizarea butonului "Tissue Type".
-    4. Îmbunătațește contrastul imagini prin utilizarea butonului "CLAHE" (Se pot personaliza "Contrast Limit" și "Window Size" pentru o eficacitate sporită).
-    5. Selectează o zonă de interes prin utilizarea butonului "Select ROI" și selectează pe imagine zona dorită.
-    6. Utilizează butonul "GrowCut pe ROI" pentru segmentarea zonei selectate anterior.</value>
+  <data name="label_title.Size" type="System.Drawing.Size, System.Drawing">
+    <value>760, 55</value>
   </data>
-  <data name="&gt;&gt;TextBox_information.Name" xml:space="preserve">
-    <value>TextBox_information</value>
+  <data name="label_title.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;TextBox_information.Type" xml:space="preserve">
-    <value>Krypton.Toolkit.KryptonRichTextBox, Krypton.Toolkit, Version=95.25.4.111, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e</value>
+  <data name="label_title.Text" xml:space="preserve">
+    <value>BREST CANCER DETECTION</value>
   </data>
-  <data name="&gt;&gt;TextBox_information.Parent" xml:space="preserve">
+  <data name="label_title.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label_title.Name" xml:space="preserve">
+    <value>label_title</value>
+  </data>
+  <data name="&gt;&gt;label_title.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_title.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;TextBox_information.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;label_title.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label_name.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 24pt, style=Bold</value>
+  </data>
+  <data name="label_name.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_name.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 380</value>
+  </data>
+  <data name="label_name.Size" type="System.Drawing.Size, System.Drawing">
+    <value>760, 36</value>
+  </data>
+  <data name="label_name.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label_name.Text" xml:space="preserve">
+    <value>Urs Richard - 2025</value>
+  </data>
+  <data name="label_name.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label_name.Name" xml:space="preserve">
+    <value>label_name</value>
+  </data>
+  <data name="&gt;&gt;label_name.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_name.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label_name.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label_content.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 21.75pt</value>
+  </data>
+  <data name="label_content.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_content.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 125</value>
+  </data>
+  <data name="label_content.Size" type="System.Drawing.Size, System.Drawing">
+    <value>760, 144</value>
+  </data>
+  <data name="label_content.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="label_content.Text" xml:space="preserve">
+    <value>Această aplicație ajută la analiza
+mamografiilorfolosind metode de
+procesare a imaginii și rețele neuronale.</value>
+  </data>
+  <data name="label_content.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;label_content.Name" xml:space="preserve">
+    <value>label_content</value>
+  </data>
+  <data name="&gt;&gt;label_content.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_content.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label_content.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -210,26 +281,26 @@
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
-  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
+  <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>584, 361</value>
+    <value>784, 451</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 400</value>
+    <value>800, 490</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 400</value>
+    <value>800, 490</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Informații despre utilizare</value>
+    <value>Start Page</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Information</value>
+    <value>StartPage</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

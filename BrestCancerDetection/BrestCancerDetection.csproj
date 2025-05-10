@@ -177,10 +177,10 @@
     <Compile Include="Classes\MLModel\MLTissue.cs" />
     <Compile Include="Classes\MLModel\ModelInput.cs" />
     <Compile Include="Classes\MLModel\ModelOutput.cs" />
-    <Compile Include="Analysis.cs">
+    <Compile Include="Forms\Analysis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Analysis.Designer.cs">
+    <Compile Include="Forms\Analysis.Designer.cs">
       <DependentUpon>Analysis.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Algorithm\Preprocessing.cs" />
@@ -188,10 +188,16 @@
     <Compile Include="Classes\Components\MyImageBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Information.cs">
+    <Compile Include="Forms\AppInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Information.Designer.cs">
+    <Compile Include="Forms\AppInfo.Designer.cs">
+      <DependentUpon>AppInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Information.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Information.Designer.cs">
       <DependentUpon>Information.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -199,35 +205,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StartPage.cs">
+    <Compile Include="Forms\StartPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartPage.Designer.cs">
+    <Compile Include="Forms\StartPage.Designer.cs">
       <DependentUpon>StartPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Analysis.resx">
+    <EmbeddedResource Include="Forms\Analysis.resx">
       <DependentUpon>Analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppInfo.resx">
+      <DependentUpon>AppInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\Components\MyImageBox.resx">
       <DependentUpon>MyImageBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Information.aa.resx">
+    <EmbeddedResource Include="Forms\Information.aa.resx">
       <DependentUpon>Information.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Information.resx">
+    <EmbeddedResource Include="Forms\Information.resx">
       <DependentUpon>Information.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Information.ro.resx">
+    <EmbeddedResource Include="Forms\Information.ro.resx">
       <DependentUpon>Information.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StartPage.resx">
+    <EmbeddedResource Include="Forms\StartPage.resx">
       <DependentUpon>StartPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Classes\MLModel\Model.mlnet" />
@@ -573,6 +581,7 @@
     <Content Include="Images\data.txt" />
     <Content Include="Images\Info.txt" />
     <Content Include="Images\Licence.txt" />
+    <None Include="Resources\background.jpg" />
     <None Include="Resources\blue-information-button.png" />
   </ItemGroup>
   <ItemGroup />

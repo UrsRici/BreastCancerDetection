@@ -10,6 +10,7 @@ using Licenta_Mamograf.Classes;
 using BrestCancerDetection.Classes;
 using Krypton.Toolkit;
 using BrestCancerDetection;
+using OpenTK;
 
 namespace Licenta_Mamograf
 {
@@ -32,7 +33,6 @@ namespace Licenta_Mamograf
         {
             InitializeComponent();
 
-
             img = new PGM(filePath);
             img.ShowImage(pictureBox);
         }
@@ -42,7 +42,8 @@ namespace Licenta_Mamograf
         }
         private void Image_Analysis_Resize(object sender, EventArgs e)
         {
-            tabControl.Width = this.ClientSize.Width - pictureBox.Width - 30;
+            tabControl.Width = this.ClientSize.Width - pictureBox.Width - 18;
+            tabControl.Height = button_information.Location.Y - tabControl.Location.Y - 3;
             int chartLocation = 50;
             int chartSpace = tabPage4.Height - chartLocation;
             chart_CumulativeHistogram.Height = chartSpace / 2;
@@ -405,7 +406,7 @@ namespace Licenta_Mamograf
             // Actualizăm locația etichetei în funcție de poziția mouse-ului
             if (currentButton != null && LabelInfoButton.Visible)
             {
-                Point mouseLocation = new Point(e.X + currentButton.Location.X + 22, e.Y + currentButton.Location.Y + 22);
+                Point mouseLocation = new Point(e.X + currentButton.Location.X + 22, e.Y + currentButton.Location.Y + 66);
                 LabelInfoButton.Location = mouseLocation;
             }
         }
@@ -420,7 +421,7 @@ namespace Licenta_Mamograf
             {
                 LabelInfoButton.Text = ButtonsInfo.GetInfo(currentButton.Name);
                 int numarRanduri = LabelInfoButton.GetLineFromCharIndex(LabelInfoButton.Text.Length);
-                LabelInfoButton.Height = 22 + 13 * numarRanduri;
+                LabelInfoButton.Height = 20 + 13 * numarRanduri;
                 LabelInfoButton.Visible = true;
             }
             timer_hover.Stop();
@@ -561,6 +562,27 @@ namespace Licenta_Mamograf
             if (isActive2) { Active2(); }
             if (isActive3) { Active3(); }
             if (!isActive4) { Active4(); }
+        }
+
+        private void tabControl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage tabPage = tabControl.TabPages[e.Index];
+            Rectangle tabRect = tabControl.GetTabRect(e.Index);
+
+            bool isSelected = (e.Index == tabControl.SelectedIndex);
+            Color backColor = isSelected ? Color.Teal : Color.LightGray;
+            Color borderColor = Color.Teal;
+            Color textColor = isSelected ? Color.White : Color.Black;
+
+            using (SolidBrush brush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(brush, tabRect);
+
+            using (Pen pen = new Pen(borderColor, 2))
+                e.Graphics.DrawRectangle(pen, tabRect);
+
+            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabControl.Font, tabRect, textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
     }
 }

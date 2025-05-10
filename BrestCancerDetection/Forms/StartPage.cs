@@ -24,5 +24,11 @@ namespace BrestCancerDetection
             imageAnalysis.Show();
             this.Hide();
         }
+
+        private void button_Info_Click(object sender, EventArgs e)
+        {
+            AppInfo appInfo = new AppInfo();
+            appInfo.Show();
+        }
     }
 }
