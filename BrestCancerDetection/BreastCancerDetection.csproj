@@ -222,13 +222,7 @@
     <EmbeddedResource Include="Classes\Components\MyImageBox.resx">
       <DependentUpon>MyImageBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Information.aa.resx">
-      <DependentUpon>Information.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Information.resx">
-      <DependentUpon>Information.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Information.ro.resx">
       <DependentUpon>Information.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

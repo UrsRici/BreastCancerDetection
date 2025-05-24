@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BrestCancerDetection
+namespace BreastCancerDetection
 {
     public partial class Information: Form
     {

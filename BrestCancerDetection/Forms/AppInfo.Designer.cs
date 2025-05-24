@@ -1,4 +1,4 @@
-﻿namespace BrestCancerDetection
+﻿namespace BreastCancerDetection
 {
     partial class AppInfo
     {

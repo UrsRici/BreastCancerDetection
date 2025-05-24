@@ -1,16 +1,10 @@
 ﻿using Krypton.Toolkit;
-using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BrestCancerDetection.Classes
+namespace BreastCancerDetection.Classes
 {
     public static class ButtonsInfo
     {

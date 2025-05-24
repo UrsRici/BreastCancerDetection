@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Forms;
-namespace Licenta_Mamograf
+using BreastCancerDetection.Classes;
+namespace BreastCancerDetection
 {
     partial class Image_Analysis
     {
@@ -77,7 +78,7 @@ namespace Licenta_Mamograf
             this.button_show = new Krypton.Toolkit.KryptonButton();
             this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button_show_mask = new Krypton.Toolkit.KryptonButton();
-            this.pictureBox = new Licenta_Mamograf.MyImageBox();
+            this.pictureBox = new MyImageBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();

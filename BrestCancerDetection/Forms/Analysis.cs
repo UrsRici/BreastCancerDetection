@@ -6,13 +6,12 @@ using System.Linq;
 using System.Windows.Forms;
 using ZedGraph;
 using System.Windows.Forms.DataVisualization.Charting;
-using Licenta_Mamograf.Classes;
-using BrestCancerDetection.Classes;
+using BreastCancerDetection.Classes;
 using Krypton.Toolkit;
-using BrestCancerDetection;
+using BreastCancerDetection;
 using OpenTK;
 
-namespace Licenta_Mamograf
+namespace BreastCancerDetection
 {
     public partial class Image_Analysis : Form
     {

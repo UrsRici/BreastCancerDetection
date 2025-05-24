@@ -1,4 +1,4 @@
-﻿namespace Licenta_Mamograf.Classes
+﻿namespace BreastCancerDetection.Classes
 {
     /// <summary>
     /// Clasa care reprezintă un pixel într-o imagine, conținând coordonatele și valoarea de intensitate.

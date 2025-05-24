@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Licenta_Mamograf
+namespace BreastCancerDetection.Classes
 {
     /// <summary>
     /// Clasă personalizată pentru manipularea imaginilor în format grayscale, 

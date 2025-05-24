@@ -1,6 +1,6 @@
 ﻿using Microsoft.ML.Data;
 
-namespace Licenta_Mamograf.Classes
+namespace BreastCancerDetection.Classes
 {
     /// <summary>
     /// model input class for MLTissue.

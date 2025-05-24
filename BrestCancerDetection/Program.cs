@@ -1,13 +1,7 @@
-﻿using BrestCancerDetection;
-using Emgu.CV.ML;
-using Licenta_Mamograf.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
-namespace Licenta_Mamograf
+namespace BreastCancerDetection
 {
     internal static class Program
     {
