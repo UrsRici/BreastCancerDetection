@@ -196,9 +196,9 @@ namespace BreastCancerDetection
         {
             Dictionary<string, float> Limit = new Dictionary<string, float>
             {
-                { "Fatty", 2f },
-                { "Fatty-Glandular", 3.5f },
-                { "Dense-Glandular", 4.5f }
+                { "Fatty", 5f },
+                { "Fatty-Glandular", 3f },
+                { "Dense-Glandular", 2f }
             };
             Dictionary<string, int> Size = new Dictionary<string, int>
             {
@@ -284,7 +284,6 @@ namespace BreastCancerDetection
                 Math.Max(ROIstartPoint.X, ROIendPoint.X),
                 Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
 
-            //float[,] mask = GrowCut.Apply(ROI);
             img.ApplyMask(p0, p1, GrowCut.Apply(ROI));
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
