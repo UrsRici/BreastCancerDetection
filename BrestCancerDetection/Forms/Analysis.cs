@@ -18,13 +18,13 @@ namespace BreastCancerDetection
         #region Variabile Globale
         private string filePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Images\mdb005.pgm"));
         private PGM img = new PGM();
-        DateTime t = new DateTime();
-
-        private KryptonButton currentButton;
-
+        
         public Point ROIstartPoint = new Point();
         public Point ROIendPoint = new Point();
         private float[,] ROI;
+
+        private Point lastMousePosition;
+        private KryptonButton currentButton;
         #endregion
 
         #region Image Analysis Form
@@ -57,18 +57,43 @@ namespace BreastCancerDetection
             if (pictureBox.Image == null)
                 MessageBox.Show("Please select an image first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        private void Button_information_Click(object sender, EventArgs e)
+        {
+            Information information = new Information();
+            information.ShowDialog();
+        }
+        private void TabControl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage tabPage = tabControl.TabPages[e.Index];
+            Rectangle tabRect = tabControl.GetTabRect(e.Index);
+
+            bool isSelected = (e.Index == tabControl.SelectedIndex);
+            Color backColor = isSelected ? Color.Teal : Color.LightGray;
+            Color borderColor = Color.Teal;
+            Color textColor = isSelected ? Color.White : Color.Black;
+
+            using (SolidBrush brush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(brush, tabRect);
+
+            using (Pen pen = new Pen(borderColor, 2))
+                e.Graphics.DrawRectangle(pen, tabRect);
+
+            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabControl.Font, tabRect, textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+        }
         #endregion
 
         #region Selectare Imagini
-        private void button_select_Click(object sender, EventArgs e)
+        private void Button_select_Click(object sender, EventArgs e)
         {
-            t = DateTime.Now;
             // Create an OpenFileDialog to select a file
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            // Set the filter to accept only.pgm files
-            openFileDialog.Filter = "PGM Files (*.pgm)|*.pgm";
-            openFileDialog.Title = "Select a PGM File";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                // Set the filter to accept only.pgm files
+                Filter = "PGM Files (*.pgm)|*.pgm",
+                Title = "Select a PGM File"
+            };
 
             ResetROI();
             // If the user selects a file and clicks OK
@@ -80,12 +105,9 @@ namespace BreastCancerDetection
                 img.ShowImage(pictureBox);
 
                 ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
-
-                // Afisare datele despre imaginea initiala din fisierul "data.txt"...
-                List<imageData> a = ImageData.GetDatas();
             }
         }
-        private void button_relode_Click(object sender, EventArgs e)
+        private void Button_relode_Click(object sender, EventArgs e)
         {
             ImageVerify();
 
@@ -97,17 +119,15 @@ namespace BreastCancerDetection
             //info_log.Text += "------Image Reloded------\n";
 
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
-
-            // Afisare datele despre imaginea initiala din fisierul "data.txt"...
-            List<imageData> a = ImageData.GetDatas();
-
         }
-        private void button_save_Click(object sender, EventArgs e)
+        private void Button_save_Click(object sender, EventArgs e)
         {
             if (img != null)
             {
-                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-                folderDialog.Description = "Select a folder to save the images";
+                FolderBrowserDialog folderDialog = new FolderBrowserDialog
+                { 
+                    Description = "Select a folder to save the images" 
+                };
 
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -153,18 +173,16 @@ namespace BreastCancerDetection
         #endregion
 
         #region Preprocesare
-        private void button_Preprocessing_Click(object sender, EventArgs e)
+        private void Button_Preprocessing_Click(object sender, EventArgs e)
         {
             //info_log.Text += "------Preprocessing------\n";
             ImageVerify();
 
-            t = DateTime.Now;
             img.Update(Preprocessing.Apply(img));
-            string Time = (DateTime.Now - t).ToString() + " ms\n";
 
             img.ShowImage(pictureBox);
         }
-        private void button_CLHE_Click(object sender, EventArgs e)
+        private void Button_CLHE_Click(object sender, EventArgs e)
         {
             //info_log.Text += "-------------CLHE------------\n";
             ImageVerify();
@@ -172,15 +190,13 @@ namespace BreastCancerDetection
             float cL = float.Parse(contrastLimit.Text);
             MyBitmap myBitmap = img.bitmap;
 
-            t = DateTime.Now;
             CLHE.Apply(ref myBitmap, cL);
-            string Time = (DateTime.Now - t).ToString() + " ms\n";
 
             img.Update(myBitmap);
 
             img.ShowImage(pictureBox);
         }
-        private void button_CLAHE_Click(object sender, EventArgs e)
+        private void Button_CLAHE_Click(object sender, EventArgs e)
         {
             //info_log.Text += "-------------CLAHE------------\n";
             ImageVerify();
@@ -188,13 +204,11 @@ namespace BreastCancerDetection
             double cL = double.Parse(contrastLimit.Text);
             int wS = int.Parse(windowSize.Text);
 
-            t = DateTime.Now;
             img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
-            string Time = (DateTime.Now - t).ToString() + " ms\n";
 
             img.ShowImage(pictureBox);
         }
-        private void button_typeTissue_Click(object sender, EventArgs e)
+        private void Button_typeTissue_Click(object sender, EventArgs e)
         {
             Dictionary<string, float> Limit = new Dictionary<string, float>
             {
@@ -226,7 +240,7 @@ namespace BreastCancerDetection
         #endregion
 
         #region Segmentare
-        private void button_selectROI_Click(object sender, EventArgs e)
+        private void Button_selectROI_Click(object sender, EventArgs e)
         {
             if (pictureBox.Image != null)
             {
@@ -256,7 +270,7 @@ namespace BreastCancerDetection
             }
             else MessageBox.Show("Please select an image first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        private void button_RemoveROI_Click(object sender, EventArgs e)
+        private void Button_RemoveROI_Click(object sender, EventArgs e)
         {
             if (!pictureBox.IsROIfig()) { return; }
 
@@ -272,11 +286,11 @@ namespace BreastCancerDetection
             pictureBox.ResetROIfig();
             img.ShowImage(pictureBox);
         }
-        private void button_GrowCutOnROI_Click(object sender, EventArgs e)
+        private void Button_GrowCutOnROI_Click(object sender, EventArgs e)
         {
 
             if (!pictureBox.IsROIfig()) { return; }
-            if (pictureBox.ROIselect_Button_active) { button_selectROI_Click(sender, e); }
+            if (pictureBox.ROIselect_Button_active) { Button_selectROI_Click(sender, e); }
 
             Point p0 = new Point(
                Math.Min(ROIstartPoint.X, ROIendPoint.X),
@@ -293,11 +307,11 @@ namespace BreastCancerDetection
         private void ResetROI()
         {
             if (pictureBox.ROIselect_Button_active)
-                button_selectROI_Click(new object(), new EventArgs());
+                Button_selectROI_Click(new object(), new EventArgs());
 
             pictureBox.ResetROIfig();
         }
-        private void button_GrowCut_Click(object sender, EventArgs e)
+        private void Button_GrowCut_Click(object sender, EventArgs e)
         {
             ImageData.Load();
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
@@ -310,7 +324,7 @@ namespace BreastCancerDetection
         #endregion
 
         #region Diagrame
-        private void button_Charts_Click(object sender, EventArgs e)
+        private void Button_Charts_Click(object sender, EventArgs e)
         {
             float[] histogram = img.Histogram();
             float[] cumulativeHistogram = img.CumulativeHistogram();
@@ -341,23 +355,23 @@ namespace BreastCancerDetection
         #endregion
 
         #region Vizualizare Imagini
-        private void button_show_image_Click(object sender, EventArgs e)
+        private void Button_show_image_Click(object sender, EventArgs e)
         {
             img.ShowImage(pictureBox);
         }
-        private void button_show_mask_Click(object sender, EventArgs e)
+        private void Button_show_mask_Click(object sender, EventArgs e)
         {
             pictureBox.BackColor = Color.Black;
             img.ShowMask(pictureBox);
         }
-        private void button_show_Click(object sender, EventArgs e)
+        private void Button_show_Click(object sender, EventArgs e)
         {
             img.Show(pictureBox);
         }
         #endregion
 
         #region ImageBox Events
-        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+        private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
             {
@@ -368,7 +382,7 @@ namespace BreastCancerDetection
                 startPoint.Text = "P1(" + ROIstartPoint.X + "," + ROIstartPoint.Y + ")";
             }
         }
-        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
+        private void PictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (pictureBox.ROIselect_Button_active && e.Button == MouseButtons.Left)
             {
@@ -396,63 +410,41 @@ namespace BreastCancerDetection
         #endregion
 
         #region Button Hover
-        private void button_MouseEnter(object sender, EventArgs e)
+
+        private void Button_MouseEnter(object sender, EventArgs e)
         {
-            currentButton = sender as Krypton.Toolkit.KryptonButton;
+            currentButton = sender as KryptonButton;
             timer_hover.Start();
         }
-        private void button_MouseMove(object sender, MouseEventArgs e)
+        private void Button_MouseMove(object sender, MouseEventArgs e)
         {
-            // Actualizăm locația etichetei în funcție de poziția mouse-ului
-            if (currentButton != null && LabelInfoButton.Visible)
+            if (lastMousePosition != e.Location)
             {
-                Point mouseLocation = new Point(e.X + currentButton.Location.X + 22, e.Y + currentButton.Location.Y + 66);
-                LabelInfoButton.Location = mouseLocation;
+                LabelInfoButton.Visible = false;
+                lastMousePosition = e.Location;
+                timer_hover.Start();
             }
         }
-        private void button_MouseLeave(object sender, EventArgs e)
+        private void Button_MouseLeave(object sender, EventArgs e)
         {
             LabelInfoButton.Visible = false;
-            timer_hover.Stop(); // Oprim timerul
+            timer_hover.Stop();
         }
-        private void timer_hover_Tick(object sender, EventArgs e)
+        private void Timer_hover_Tick(object sender, EventArgs e)
         {
             if (currentButton != null)
             {
+                LabelInfoButton.Location = new Point(
+                    lastMousePosition.X + currentButton.Location.X + 28, 
+                    lastMousePosition.Y + currentButton.Location.Y + 68);
                 LabelInfoButton.Text = ButtonsInfo.GetInfo(currentButton.Name);
                 int numarRanduri = LabelInfoButton.GetLineFromCharIndex(LabelInfoButton.Text.Length);
                 LabelInfoButton.Height = 20 + 13 * numarRanduri;
                 LabelInfoButton.Visible = true;
+                currentButton.Cursor = Cursors.Help;
             }
             timer_hover.Stop();
         }
         #endregion
-
-        private void button_information_Click(object sender, EventArgs e)
-        {
-            Information information = new Information();
-            information.ShowDialog();
-        }
-
-        private void tabControl_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            TabControl tabControl = sender as TabControl;
-            TabPage tabPage = tabControl.TabPages[e.Index];
-            Rectangle tabRect = tabControl.GetTabRect(e.Index);
-
-            bool isSelected = (e.Index == tabControl.SelectedIndex);
-            Color backColor = isSelected ? Color.Teal : Color.LightGray;
-            Color borderColor = Color.Teal;
-            Color textColor = isSelected ? Color.White : Color.Black;
-
-            using (SolidBrush brush = new SolidBrush(backColor))
-                e.Graphics.FillRectangle(brush, tabRect);
-
-            using (Pen pen = new Pen(borderColor, 2))
-                e.Graphics.DrawRectangle(pen, tabRect);
-
-            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabControl.Font, tabRect, textColor,
-                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-        }
     }
 }

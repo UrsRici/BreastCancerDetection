@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Windows.Forms;
+using Krypton.Toolkit;
 using BreastCancerDetection.Classes;
 namespace BreastCancerDetection
 {
@@ -32,14 +33,14 @@ namespace BreastCancerDetection
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.buttonSpecAny1 = new Krypton.Toolkit.ButtonSpecAny();
             this.timer_hover = new System.Windows.Forms.Timer(this.components);
             this.LabelInfoButton = new Krypton.Toolkit.KryptonRichTextBox();
@@ -110,7 +111,7 @@ namespace BreastCancerDetection
             // timer_hover
             // 
             this.timer_hover.Interval = 1000;
-            this.timer_hover.Tick += new System.EventHandler(this.timer_hover_Tick);
+            this.timer_hover.Tick += new System.EventHandler(this.Timer_hover_Tick);
             // 
             // LabelInfoButton
             // 
@@ -144,10 +145,10 @@ namespace BreastCancerDetection
             this.button_select.TabIndex = 60;
             this.button_select.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_select.Values.Text = "Select Image";
-            this.button_select.Click += new System.EventHandler(this.button_select_Click);
-            this.button_select.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_select.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_select.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_select.Click += new System.EventHandler(this.Button_select_Click);
+            this.button_select.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_select.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_select.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // button_Preprocessing
             // 
@@ -163,10 +164,10 @@ namespace BreastCancerDetection
             this.button_Preprocessing.TabIndex = 63;
             this.button_Preprocessing.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_Preprocessing.Values.Text = "PreProcesare";
-            this.button_Preprocessing.Click += new System.EventHandler(this.button_Preprocessing_Click);
-            this.button_Preprocessing.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_Preprocessing.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_Preprocessing.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_Preprocessing.Click += new System.EventHandler(this.Button_Preprocessing_Click);
+            this.button_Preprocessing.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_Preprocessing.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_Preprocessing.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // button_information
             // 
@@ -182,7 +183,7 @@ namespace BreastCancerDetection
             this.button_information.TabIndex = 88;
             this.button_information.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_information.Values.Text = "i";
-            this.button_information.Click += new System.EventHandler(this.button_information_Click);
+            this.button_information.Click += new System.EventHandler(this.Button_information_Click);
             // 
             // contrastLimit
             // 
@@ -202,18 +203,18 @@ namespace BreastCancerDetection
             this.button_selectROI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_selectROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_selectROI.Location = new System.Drawing.Point(218, 3);
+            this.button_selectROI.Location = new System.Drawing.Point(222, 3);
             this.button_selectROI.Name = "button_selectROI";
-            this.button_selectROI.Size = new System.Drawing.Size(210, 41);
+            this.button_selectROI.Size = new System.Drawing.Size(214, 41);
             this.button_selectROI.StateCommon.Border.Rounding = 10F;
             this.button_selectROI.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_selectROI.TabIndex = 70;
             this.button_selectROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_selectROI.Values.Text = "Select ROI";
-            this.button_selectROI.Click += new System.EventHandler(this.button_selectROI_Click);
-            this.button_selectROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_selectROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_selectROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_selectROI.Click += new System.EventHandler(this.Button_selectROI_Click);
+            this.button_selectROI.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_selectROI.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_selectROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // windowSize
             // 
@@ -257,10 +258,10 @@ namespace BreastCancerDetection
             this.button_typeTissue.TabIndex = 84;
             this.button_typeTissue.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_typeTissue.Values.Text = "Tissue Type";
-            this.button_typeTissue.Click += new System.EventHandler(this.button_typeTissue_Click);
-            this.button_typeTissue.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_typeTissue.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_typeTissue.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_typeTissue.Click += new System.EventHandler(this.Button_typeTissue_Click);
+            this.button_typeTissue.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_typeTissue.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_typeTissue.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // label_x
             // 
@@ -287,10 +288,10 @@ namespace BreastCancerDetection
             this.button_CLHE.TabIndex = 75;
             this.button_CLHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_CLHE.Values.Text = "CLHE";
-            this.button_CLHE.Click += new System.EventHandler(this.button_CLHE_Click);
-            this.button_CLHE.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_CLHE.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_CLHE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_CLHE.Click += new System.EventHandler(this.Button_CLHE_Click);
+            this.button_CLHE.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_CLHE.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_CLHE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // button_CLAHE
             // 
@@ -306,10 +307,10 @@ namespace BreastCancerDetection
             this.button_CLAHE.TabIndex = 78;
             this.button_CLAHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_CLAHE.Values.Text = "CLAHE";
-            this.button_CLAHE.Click += new System.EventHandler(this.button_CLAHE_Click);
-            this.button_CLAHE.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_CLAHE.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_CLAHE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_CLAHE.Click += new System.EventHandler(this.Button_CLAHE_Click);
+            this.button_CLAHE.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_CLAHE.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_CLAHE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // button_save
             // 
@@ -326,10 +327,10 @@ namespace BreastCancerDetection
             this.button_save.TabIndex = 73;
             this.button_save.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_save.Values.Text = "Save Image";
-            this.button_save.Click += new System.EventHandler(this.button_save_Click);
-            this.button_save.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_save.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_save.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_save.Click += new System.EventHandler(this.Button_save_Click);
+            this.button_save.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_save.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_save.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // label_ContrastLimit
             // 
@@ -388,18 +389,18 @@ namespace BreastCancerDetection
             this.button_GrowCut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_GrowCut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_GrowCut.Location = new System.Drawing.Point(3, 97);
+            this.button_GrowCut.Location = new System.Drawing.Point(3, 101);
             this.button_GrowCut.Name = "button_GrowCut";
-            this.button_GrowCut.Size = new System.Drawing.Size(209, 40);
+            this.button_GrowCut.Size = new System.Drawing.Size(213, 40);
             this.button_GrowCut.StateCommon.Border.Rounding = 10F;
             this.button_GrowCut.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_GrowCut.TabIndex = 83;
             this.button_GrowCut.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_GrowCut.Values.Text = "Apply GrowCut";
-            this.button_GrowCut.Click += new System.EventHandler(this.button_GrowCut_Click);
-            this.button_GrowCut.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_GrowCut.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_GrowCut.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_GrowCut.Click += new System.EventHandler(this.Button_GrowCut_Click);
+            this.button_GrowCut.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_GrowCut.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_GrowCut.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // label_y
             // 
@@ -427,28 +428,28 @@ namespace BreastCancerDetection
             this.button_relode.TabIndex = 71;
             this.button_relode.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_relode.Values.Text = "Relode Image";
-            this.button_relode.Click += new System.EventHandler(this.button_relode_Click);
-            this.button_relode.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_relode.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_relode.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_relode.Click += new System.EventHandler(this.Button_relode_Click);
+            this.button_relode.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_relode.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_relode.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // button_GrowCutOnROI
             // 
             this.button_GrowCutOnROI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_GrowCutOnROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_GrowCutOnROI.Location = new System.Drawing.Point(3, 50);
+            this.button_GrowCutOnROI.Location = new System.Drawing.Point(3, 52);
             this.button_GrowCutOnROI.Name = "button_GrowCutOnROI";
-            this.button_GrowCutOnROI.Size = new System.Drawing.Size(209, 41);
+            this.button_GrowCutOnROI.Size = new System.Drawing.Size(213, 41);
             this.button_GrowCutOnROI.StateCommon.Border.Rounding = 10F;
             this.button_GrowCutOnROI.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_GrowCutOnROI.TabIndex = 82;
             this.button_GrowCutOnROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_GrowCutOnROI.Values.Text = "GrowCut pe ROI";
-            this.button_GrowCutOnROI.Click += new System.EventHandler(this.button_GrowCutOnROI_Click);
-            this.button_GrowCutOnROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_GrowCutOnROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_GrowCutOnROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_GrowCutOnROI.Click += new System.EventHandler(this.Button_GrowCutOnROI_Click);
+            this.button_GrowCutOnROI.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_GrowCutOnROI.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_GrowCutOnROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // startPoint
             // 
@@ -468,16 +469,16 @@ namespace BreastCancerDetection
             this.button_RemoveROI.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_RemoveROI.Location = new System.Drawing.Point(3, 3);
             this.button_RemoveROI.Name = "button_RemoveROI";
-            this.button_RemoveROI.Size = new System.Drawing.Size(209, 40);
+            this.button_RemoveROI.Size = new System.Drawing.Size(213, 40);
             this.button_RemoveROI.StateCommon.Border.Rounding = 10F;
             this.button_RemoveROI.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_RemoveROI.TabIndex = 81;
             this.button_RemoveROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_RemoveROI.Values.Text = "Remove ROI";
-            this.button_RemoveROI.Click += new System.EventHandler(this.button_RemoveROI_Click);
-            this.button_RemoveROI.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_RemoveROI.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_RemoveROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_RemoveROI.Click += new System.EventHandler(this.Button_RemoveROI_Click);
+            this.button_RemoveROI.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_RemoveROI.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_RemoveROI.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // endPoint
             // 
@@ -529,7 +530,7 @@ namespace BreastCancerDetection
             this.tabControl.Size = new System.Drawing.Size(453, 473);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl.TabIndex = 89;
-            this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl_DrawItem);
+            this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TabControl_DrawItem);
             this.tabControl.Click += new System.EventHandler(this.Image_Analysis_Resize);
             // 
             // tabPage1
@@ -554,7 +555,7 @@ namespace BreastCancerDetection
             this.kryptonTableLayoutPanel4.Controls.Add(this.button_select, 0, 0);
             this.kryptonTableLayoutPanel4.Controls.Add(this.button_relode, 1, 0);
             this.kryptonTableLayoutPanel4.Controls.Add(this.button_save, 0, 1);
-            this.kryptonTableLayoutPanel4.Location = new System.Drawing.Point(2, 3);
+            this.kryptonTableLayoutPanel4.Location = new System.Drawing.Point(2, 2);
             this.kryptonTableLayoutPanel4.MinimumSize = new System.Drawing.Size(400, 100);
             this.kryptonTableLayoutPanel4.Name = "kryptonTableLayoutPanel4";
             this.kryptonTableLayoutPanel4.RowCount = 2;
@@ -663,14 +664,14 @@ namespace BreastCancerDetection
             this.kryptonTableLayoutPanel3.Controls.Add(this.button_RemoveROI, 0, 0);
             this.kryptonTableLayoutPanel3.Controls.Add(this.button_GrowCutOnROI, 0, 1);
             this.kryptonTableLayoutPanel3.Controls.Add(this.button_selectROI, 1, 0);
-            this.kryptonTableLayoutPanel3.Location = new System.Drawing.Point(6, 6);
+            this.kryptonTableLayoutPanel3.Location = new System.Drawing.Point(2, 2);
             this.kryptonTableLayoutPanel3.MinimumSize = new System.Drawing.Size(400, 125);
             this.kryptonTableLayoutPanel3.Name = "kryptonTableLayoutPanel3";
             this.kryptonTableLayoutPanel3.RowCount = 3;
             this.kryptonTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.kryptonTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.kryptonTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.kryptonTableLayoutPanel3.Size = new System.Drawing.Size(431, 143);
+            this.kryptonTableLayoutPanel3.Size = new System.Drawing.Size(439, 150);
             this.kryptonTableLayoutPanel3.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
             this.kryptonTableLayoutPanel3.TabIndex = 84;
             // 
@@ -686,7 +687,7 @@ namespace BreastCancerDetection
             this.kryptonTableLayoutPanel2.Controls.Add(this.label_W, 0, 0);
             this.kryptonTableLayoutPanel2.Controls.Add(this.label_y, 1, 1);
             this.kryptonTableLayoutPanel2.Controls.Add(this.label_H, 0, 1);
-            this.kryptonTableLayoutPanel2.Location = new System.Drawing.Point(218, 50);
+            this.kryptonTableLayoutPanel2.Location = new System.Drawing.Point(222, 52);
             this.kryptonTableLayoutPanel2.Name = "kryptonTableLayoutPanel2";
             this.kryptonTableLayoutPanel2.RowCount = 2;
             this.kryptonTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -714,45 +715,45 @@ namespace BreastCancerDetection
             // 
             this.chart_Histogram.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chart_Histogram.BackColor = System.Drawing.Color.DarkCyan;
-            chartArea3.AxisX.Maximum = 255D;
-            chartArea3.AxisX.Minimum = 0D;
-            chartArea3.AxisY.LabelStyle.Format = "0.#e+0";
-            chartArea3.AxisY.MaximumAutoSize = 0F;
-            chartArea3.InnerPlotPosition.Auto = false;
-            chartArea3.InnerPlotPosition.Height = 80F;
-            chartArea3.InnerPlotPosition.Width = 85F;
-            chartArea3.InnerPlotPosition.X = 10F;
-            chartArea3.Name = "ChartArea";
-            chartArea3.Position.Auto = false;
-            chartArea3.Position.Height = 90F;
-            chartArea3.Position.Width = 100F;
-            chartArea3.Position.Y = 10F;
-            this.chart_Histogram.ChartAreas.Add(chartArea3);
+            chartArea1.AxisX.Maximum = 255D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisY.LabelStyle.Format = "0.#e+0";
+            chartArea1.AxisY.MaximumAutoSize = 0F;
+            chartArea1.InnerPlotPosition.Auto = false;
+            chartArea1.InnerPlotPosition.Height = 80F;
+            chartArea1.InnerPlotPosition.Width = 85F;
+            chartArea1.InnerPlotPosition.X = 10F;
+            chartArea1.Name = "ChartArea";
+            chartArea1.Position.Auto = false;
+            chartArea1.Position.Height = 90F;
+            chartArea1.Position.Width = 100F;
+            chartArea1.Position.Y = 10F;
+            this.chart_Histogram.ChartAreas.Add(chartArea1);
             this.chart_Histogram.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.chart_Histogram.Location = new System.Drawing.Point(-1, 244);
             this.chart_Histogram.MinimumSize = new System.Drawing.Size(430, 150);
             this.chart_Histogram.Name = "chart_Histogram";
             this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series3.ChartArea = "ChartArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series3.Legend = "Legend1";
-            series3.Name = "Pixel";
-            dataPoint3.Color = System.Drawing.Color.Black;
-            series3.Points.Add(dataPoint3);
-            series3.YValuesPerPoint = 2;
-            this.chart_Histogram.Series.Add(series3);
+            series1.ChartArea = "ChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series1.Legend = "Legend1";
+            series1.Name = "Pixel";
+            dataPoint1.Color = System.Drawing.Color.Black;
+            series1.Points.Add(dataPoint1);
+            series1.YValuesPerPoint = 2;
+            this.chart_Histogram.Series.Add(series1);
             this.chart_Histogram.Size = new System.Drawing.Size(444, 190);
             this.chart_Histogram.TabIndex = 39;
-            title3.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.Name = "Title1";
-            title3.Position.Auto = false;
-            title3.Position.Height = 8.378904F;
-            title3.Position.Width = 94F;
-            title3.Position.X = 3F;
-            title3.Position.Y = 1F;
-            title3.Text = "Histograma";
-            this.chart_Histogram.Titles.Add(title3);
+            title1.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Position.Auto = false;
+            title1.Position.Height = 8.378904F;
+            title1.Position.Width = 94F;
+            title1.Position.X = 3F;
+            title1.Position.Y = 1F;
+            title1.Text = "Histograma";
+            this.chart_Histogram.Titles.Add(title1);
             // 
             // KryptonTableLayoutPanel1
             // 
@@ -767,127 +768,131 @@ namespace BreastCancerDetection
             this.KryptonTableLayoutPanel1.Controls.Add(this.button_show_mask, 2, 0);
             this.KryptonTableLayoutPanel1.Controls.Add(this.button_Charts, 3, 0);
             this.KryptonTableLayoutPanel1.Controls.Add(this.button_show, 0, 0);
-            this.KryptonTableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
+            this.KryptonTableLayoutPanel1.Location = new System.Drawing.Point(2, 2);
             this.KryptonTableLayoutPanel1.MinimumSize = new System.Drawing.Size(420, 40);
             this.KryptonTableLayoutPanel1.Name = "KryptonTableLayoutPanel1";
             this.KryptonTableLayoutPanel1.RowCount = 1;
             this.KryptonTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.KryptonTableLayoutPanel1.Size = new System.Drawing.Size(429, 40);
+            this.KryptonTableLayoutPanel1.Size = new System.Drawing.Size(439, 49);
             this.KryptonTableLayoutPanel1.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
             this.KryptonTableLayoutPanel1.TabIndex = 76;
             // 
             // button_show_image
             // 
-            this.button_show_image.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.button_show_image.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_show_image.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show_image.Location = new System.Drawing.Point(110, 3);
+            this.button_show_image.Location = new System.Drawing.Point(112, 3);
             this.button_show_image.Name = "button_show_image";
-            this.button_show_image.Size = new System.Drawing.Size(101, 34);
+            this.button_show_image.Size = new System.Drawing.Size(103, 43);
             this.button_show_image.StateCommon.Border.Rounding = 10F;
             this.button_show_image.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_show_image.TabIndex = 45;
             this.button_show_image.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_show_image.Values.Text = "Show Image";
-            this.button_show_image.Click += new System.EventHandler(this.button_show_image_Click);
-            this.button_show_image.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show_image.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show_image.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_show_image.Click += new System.EventHandler(this.Button_show_image_Click);
+            this.button_show_image.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_show_image.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_show_image.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // button_show_mask
             // 
-            this.button_show_mask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.button_show_mask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_show_mask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show_mask.Location = new System.Drawing.Point(217, 3);
+            this.button_show_mask.Location = new System.Drawing.Point(221, 3);
             this.button_show_mask.Name = "button_show_mask";
-            this.button_show_mask.Size = new System.Drawing.Size(101, 34);
+            this.button_show_mask.Size = new System.Drawing.Size(103, 43);
             this.button_show_mask.StateCommon.Border.Rounding = 10F;
             this.button_show_mask.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_show_mask.TabIndex = 46;
             this.button_show_mask.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_show_mask.Values.Text = "Show Mask";
-            this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
-            this.button_show_mask.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show_mask.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show_mask.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_show_mask.Click += new System.EventHandler(this.Button_show_mask_Click);
+            this.button_show_mask.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_show_mask.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_show_mask.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // button_Charts
             // 
-            this.button_Charts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.button_Charts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Charts.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_Charts.Location = new System.Drawing.Point(324, 3);
+            this.button_Charts.Location = new System.Drawing.Point(330, 3);
             this.button_Charts.Name = "button_Charts";
-            this.button_Charts.Size = new System.Drawing.Size(102, 34);
+            this.button_Charts.Size = new System.Drawing.Size(106, 43);
             this.button_Charts.StateCommon.Border.Rounding = 10F;
             this.button_Charts.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Charts.TabIndex = 40;
             this.button_Charts.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_Charts.Values.Text = "Update Charts";
-            this.button_Charts.Click += new System.EventHandler(this.button_Charts_Click);
-            this.button_Charts.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_Charts.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_Charts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_Charts.Click += new System.EventHandler(this.Button_Charts_Click);
+            this.button_Charts.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_Charts.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_Charts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // button_show
             // 
-            this.button_show.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.button_show.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_show.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_show.Location = new System.Drawing.Point(3, 3);
             this.button_show.Name = "button_show";
-            this.button_show.Size = new System.Drawing.Size(101, 34);
+            this.button_show.Size = new System.Drawing.Size(103, 43);
             this.button_show.StateCommon.Border.Rounding = 10F;
             this.button_show.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_show.TabIndex = 47;
             this.button_show.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_show.Values.Text = "Image + Mask";
-            this.button_show.Click += new System.EventHandler(this.button_show_Click);
-            this.button_show.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            this.button_show.Click += new System.EventHandler(this.Button_show_Click);
+            this.button_show.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.button_show.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            this.button_show.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button_MouseMove);
             // 
             // chart_CumulativeHistogram
             // 
             this.chart_CumulativeHistogram.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.DarkCyan;
-            chartArea4.AxisX.Maximum = 255D;
-            chartArea4.AxisX.Minimum = 0D;
-            chartArea4.AxisY.LabelStyle.Format = "0.#e+0";
-            chartArea4.InnerPlotPosition.Auto = false;
-            chartArea4.InnerPlotPosition.Height = 80F;
-            chartArea4.InnerPlotPosition.Width = 85F;
-            chartArea4.InnerPlotPosition.X = 10F;
-            chartArea4.Name = "CumulativeHistogram";
-            chartArea4.Position.Auto = false;
-            chartArea4.Position.Height = 90F;
-            chartArea4.Position.Width = 100F;
-            chartArea4.Position.Y = 10F;
-            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea4);
+            chartArea2.AxisX.Maximum = 255D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisY.LabelStyle.Format = "0.#e+0";
+            chartArea2.InnerPlotPosition.Auto = false;
+            chartArea2.InnerPlotPosition.Height = 80F;
+            chartArea2.InnerPlotPosition.Width = 85F;
+            chartArea2.InnerPlotPosition.X = 10F;
+            chartArea2.Name = "CumulativeHistogram";
+            chartArea2.Position.Auto = false;
+            chartArea2.Position.Height = 90F;
+            chartArea2.Position.Width = 100F;
+            chartArea2.Position.Y = 10F;
+            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea2);
             this.chart_CumulativeHistogram.Location = new System.Drawing.Point(-1, 49);
             this.chart_CumulativeHistogram.MinimumSize = new System.Drawing.Size(430, 150);
             this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
             this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series4.ChartArea = "CumulativeHistogram";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Name = "Pixel";
-            series4.Points.Add(dataPoint4);
-            this.chart_CumulativeHistogram.Series.Add(series4);
+            series2.ChartArea = "CumulativeHistogram";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Name = "Pixel";
+            series2.Points.Add(dataPoint2);
+            this.chart_CumulativeHistogram.Series.Add(series2);
             this.chart_CumulativeHistogram.Size = new System.Drawing.Size(444, 190);
             this.chart_CumulativeHistogram.TabIndex = 41;
-            title4.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title4.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
-            title4.DockingOffset = -10;
-            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title4.Name = "Title1";
-            title4.Position.Auto = false;
-            title4.Position.Height = 8.378904F;
-            title4.Position.Width = 94F;
-            title4.Position.X = 3F;
-            title4.Position.Y = 1F;
-            title4.Text = "Histograma Cumulativa";
-            this.chart_CumulativeHistogram.Titles.Add(title4);
+            title2.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title2.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
+            title2.DockingOffset = -10;
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Position.Auto = false;
+            title2.Position.Height = 8.378904F;
+            title2.Position.Width = 94F;
+            title2.Position.X = 3F;
+            title2.Position.Y = 1F;
+            title2.Text = "Histograma Cumulativa";
+            this.chart_CumulativeHistogram.Titles.Add(title2);
             // 
             // pictureBox
             // 
@@ -899,8 +904,8 @@ namespace BreastCancerDetection
             this.pictureBox.Size = new System.Drawing.Size(537, 537);
             this.pictureBox.TabIndex = 87;
             this.pictureBox.TabStop = false;
-            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
+            this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseMove);
             // 
             // Image_Analysis
             // 
@@ -944,33 +949,33 @@ namespace BreastCancerDetection
 
         }
         #endregion
-        private Krypton.Toolkit.ButtonSpecAny buttonSpecAny1;
+        private ButtonSpecAny buttonSpecAny1;
         private System.Windows.Forms.Timer timer_hover;
-        private Krypton.Toolkit.KryptonRichTextBox LabelInfoButton;
-        private Krypton.Toolkit.KryptonButton button_select;
-        private Krypton.Toolkit.KryptonButton button_Preprocessing;
-        private Krypton.Toolkit.KryptonButton button_information;
-        private Krypton.Toolkit.KryptonTextBox contrastLimit;
-        private Krypton.Toolkit.KryptonButton button_selectROI;
-        private Krypton.Toolkit.KryptonTextBox windowSize;
+        private KryptonRichTextBox LabelInfoButton;
+        private KryptonButton button_select;
+        private KryptonButton button_Preprocessing;
+        private KryptonButton button_information;
+        private KryptonTextBox contrastLimit;
+        private KryptonButton button_selectROI;
+        private KryptonTextBox windowSize;
         private System.Windows.Forms.Label label_Tissue;
-        private Krypton.Toolkit.KryptonButton button_typeTissue;
+        private KryptonButton button_typeTissue;
         private System.Windows.Forms.Label label_x;
-        private Krypton.Toolkit.KryptonButton button_CLHE;
-        private Krypton.Toolkit.KryptonButton button_CLAHE;
-        private Krypton.Toolkit.KryptonButton button_save;
+        private KryptonButton button_CLHE;
+        private KryptonButton button_CLAHE;
+        private KryptonButton button_save;
         private System.Windows.Forms.Label label_ContrastLimit;
         private System.Windows.Forms.Label label_WindowSize;
         private System.Windows.Forms.Label label_H;
         private System.Windows.Forms.Label label_W;
-        private Krypton.Toolkit.KryptonButton button_GrowCut;
+        private KryptonButton button_GrowCut;
         private System.Windows.Forms.Label label_y;
-        private Krypton.Toolkit.KryptonButton button_relode;
-        private Krypton.Toolkit.KryptonButton button_GrowCutOnROI;
+        private KryptonButton button_relode;
+        private KryptonButton button_GrowCutOnROI;
         private System.Windows.Forms.Label startPoint;
-        private Krypton.Toolkit.KryptonButton button_RemoveROI;
+        private KryptonButton button_RemoveROI;
         private System.Windows.Forms.Label endPoint;
-        private Krypton.Toolkit.KryptonRichTextBox Tissue_Info;
+        private KryptonRichTextBox Tissue_Info;
         private MyImageBox pictureBox;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
@@ -978,18 +983,18 @@ namespace BreastCancerDetection
         private System.Windows.Forms.TabPage tabPage3;
         private TabPage tabPage4;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Histogram;
-        private Krypton.Toolkit.KryptonButton button_show_image;
-        private Krypton.Toolkit.KryptonButton button_Charts;
-        private Krypton.Toolkit.KryptonButton button_show;
+        private KryptonButton button_show_image;
+        private KryptonButton button_Charts;
+        private KryptonButton button_show;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
-        private Krypton.Toolkit.KryptonButton button_show_mask;
-        private Krypton.Toolkit.KryptonTableLayoutPanel KryptonTableLayoutPanel1;
-        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel3;
-        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel2;
-        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel4;
-        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel7;
-        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel6;
-        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel5;
+        private KryptonButton button_show_mask;
+        private KryptonTableLayoutPanel KryptonTableLayoutPanel1;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel3;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel2;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel4;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel7;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel6;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel5;
     }
 }
 
