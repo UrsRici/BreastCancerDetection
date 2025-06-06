@@ -21,7 +21,7 @@ namespace BreastCancerDetection.Classes
                 return true;
         }
 
-        public Brush ROIselectionBrush = new SolidBrush(Color.FromArgb(100, 170, 215, 230));
+        public Brush ROIselectionBrush = new SolidBrush(Color.FromArgb(100, 240, 235, 0));
 
         private bool _panableAndZoomable;
 

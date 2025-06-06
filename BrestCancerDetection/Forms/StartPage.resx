@@ -190,7 +190,7 @@
     <value>1</value>
   </data>
   <data name="label_title.Text" xml:space="preserve">
-    <value>BREST CANCER DETECTION</value>
+    <value>BREAST CANCER DETECTION</value>
   </data>
   <data name="label_title.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -257,7 +257,7 @@
   </data>
   <data name="label_content.Text" xml:space="preserve">
     <value>Această aplicație ajută la analiza
-mamografiilorfolosind metode de
+mamografiilor folosind metode de
 procesare a imaginii și rețele neuronale.</value>
   </data>
   <data name="label_content.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">

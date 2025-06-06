@@ -231,6 +231,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StartPage.resx">
       <DependentUpon>StartPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Classes\MLModel\Model.mlnet" />
     <None Include="Images\mdb001.pgm" />

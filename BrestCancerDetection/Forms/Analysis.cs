@@ -42,6 +42,8 @@ namespace BreastCancerDetection
         private void Image_Analysis_Resize(object sender, EventArgs e)
         {
             tabControl.Width = this.ClientSize.Width - pictureBox.Width - 18;
+            chart_CumulativeHistogram.Width = tabControl.Width;
+            chart_Histogram.Width = tabControl.Width;
             tabControl.Height = button_information.Location.Y - tabControl.Location.Y - 3;
             int chartLocation = 50;
             int chartSpace = tabPage4.Height - chartLocation;
@@ -430,136 +432,6 @@ namespace BreastCancerDetection
         {
             Information information = new Information();
             information.ShowDialog();
-        }
-        public bool isActive1 = false;
-        public bool isActive2 = false;
-        public bool isActive3 = false;
-        public bool isActive4 = false;
-        private void Active1()
-        {
-            if (isActive1)
-            {
-                button_select.Visible = false;
-                button_relode.Visible = false;
-                button_save.Visible = false;
-            }
-            else
-            {
-                button_select.Visible = true;
-                button_relode.Visible = true;
-                button_save.Visible = true;
-            }
-            isActive1 = !isActive1;
-        }
-        private void Active2()
-        {
-            if (isActive2)
-            {
-                button_Preprocessing.Visible = false;
-                button_CLHE.Visible = false;
-                button_CLAHE.Visible = false;
-                label_ContrastLimit.Visible = false;
-                label_WindowSize.Visible = false;
-                contrastLimit.Visible = false;
-                windowSize.Visible = false;
-                button_typeTissue.Visible = false;
-                label_Tissue.Visible = false;
-                Tissue_Info.Visible = false;
-            }
-            else
-            {
-                button_Preprocessing.Visible = true;
-                button_CLHE.Visible = true;
-                button_CLAHE.Visible = true;
-                label_ContrastLimit.Visible = true;
-                label_WindowSize.Visible = true;
-                contrastLimit.Visible = true;
-                windowSize.Visible = true;
-                button_typeTissue.Visible = true;
-                label_Tissue.Visible = true;
-                Tissue_Info.Visible = true;
-            }
-            isActive2 = !isActive2;
-        }
-        private void Active3()
-        {
-            if (isActive3)
-            {
-                button_GrowCut.Visible = false;
-                button_GrowCutOnROI.Visible = false;
-                button_RemoveROI.Visible = false;
-                button_selectROI.Visible = false;
-                label_H.Visible = false;
-                label_W.Visible = false;
-                label_x.Visible = false;
-                label_y.Visible = false;
-                startPoint.Visible = false;
-                endPoint.Visible = false;
-            }
-            else
-            {
-                button_GrowCut.Visible = true;
-                button_GrowCutOnROI.Visible = true;
-                button_RemoveROI.Visible = true;
-                button_selectROI.Visible = true;
-                label_H.Visible = true;
-                label_W.Visible = true;
-                label_x.Visible = true;
-                label_y.Visible = true;
-                startPoint.Visible = true;
-                endPoint.Visible = true;
-            }
-            isActive3 = !isActive3;
-        }
-        private void Active4()
-        {
-            if (isActive4)
-            {
-                button_show.Visible = false;                button_show.Location = new Point(25, 61);
-                button_show_image.Visible = false;          button_show_image.Location = new Point(133, 61);
-                button_show_mask.Visible = false;           button_show_mask.Location = new Point(241, 61);
-                button_Charts.Visible = false;              button_Charts.Location = new Point(349, 61);
-                chart_Histogram.Visible = false;            chart_Histogram.Location = new Point(9, 110);
-                chart_CumulativeHistogram.Visible = false;  chart_CumulativeHistogram.Location = new Point(9, 284);
-            }
-            else
-            {
-                button_show.Visible = true;
-                button_show_image.Visible = true;
-                button_show_mask.Visible = true;
-                button_Charts.Visible = true;
-                chart_Histogram.Visible = true;
-                chart_CumulativeHistogram.Visible = true;
-            }
-            isActive4 = !isActive4;
-        }
-        private void button_Initializare_Click(object sender, EventArgs e)
-        {
-            if (!isActive1) { Active1(); }
-            if (isActive2) { Active2(); }
-            if (isActive3) { Active3(); }
-            if (isActive4) { Active4(); }
-        }
-        private void button_Procesare_Click(object sender, EventArgs e)
-        {
-            if (isActive1) { Active1(); }
-            if (!isActive2) { Active2(); }
-            if (isActive3) { Active3(); }
-            if (isActive4) { Active4(); }
-        }
-        private void button_Segmentare_Click(object sender, EventArgs e)
-        {
-            if (isActive1) { Active1(); }
-            if (isActive2) { Active2(); }
-            if (!isActive3) { Active3(); }
-            if (isActive4) { Active4(); }
-        }
-        private void button_Vizualizare_Click(object sender, EventArgs e)
-        {
-            if (isActive1) { Active1(); }
-            if (isActive2) { Active2(); }
-            if (isActive3) { Active3(); }
-            if (!isActive4) { Active4(); }
         }
 
         private void tabControl_DrawItem(object sender, DrawItemEventArgs e)

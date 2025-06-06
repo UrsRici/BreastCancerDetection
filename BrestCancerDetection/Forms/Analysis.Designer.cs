@@ -32,14 +32,14 @@ namespace BreastCancerDetection
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint9 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.Title title9 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint10 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.Title title10 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.buttonSpecAny1 = new Krypton.Toolkit.ButtonSpecAny();
             this.timer_hover = new System.Windows.Forms.Timer(this.components);
             this.LabelInfoButton = new Krypton.Toolkit.KryptonRichTextBox();
@@ -69,22 +69,36 @@ namespace BreastCancerDetection
             this.Tissue_Info = new Krypton.Toolkit.KryptonRichTextBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.kryptonTableLayoutPanel4 = new Krypton.Toolkit.KryptonTableLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.kryptonTableLayoutPanel7 = new Krypton.Toolkit.KryptonTableLayoutPanel();
+            this.kryptonTableLayoutPanel5 = new Krypton.Toolkit.KryptonTableLayoutPanel();
+            this.kryptonTableLayoutPanel6 = new Krypton.Toolkit.KryptonTableLayoutPanel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.kryptonTableLayoutPanel3 = new Krypton.Toolkit.KryptonTableLayoutPanel();
+            this.kryptonTableLayoutPanel2 = new Krypton.Toolkit.KryptonTableLayoutPanel();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.chart_Histogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.KryptonTableLayoutPanel1 = new Krypton.Toolkit.KryptonTableLayoutPanel();
             this.button_show_image = new Krypton.Toolkit.KryptonButton();
+            this.button_show_mask = new Krypton.Toolkit.KryptonButton();
             this.button_Charts = new Krypton.Toolkit.KryptonButton();
             this.button_show = new Krypton.Toolkit.KryptonButton();
             this.chart_CumulativeHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_show_mask = new Krypton.Toolkit.KryptonButton();
-            this.pictureBox = new MyImageBox();
+            this.pictureBox = new BreastCancerDetection.Classes.MyImageBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.kryptonTableLayoutPanel4.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.kryptonTableLayoutPanel7.SuspendLayout();
+            this.kryptonTableLayoutPanel5.SuspendLayout();
+            this.kryptonTableLayoutPanel6.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.kryptonTableLayoutPanel3.SuspendLayout();
+            this.kryptonTableLayoutPanel2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).BeginInit();
+            this.KryptonTableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +118,7 @@ namespace BreastCancerDetection
             this.LabelInfoButton.AutoWordSelection = true;
             this.LabelInfoButton.ButtonSpecs.Add(this.buttonSpecAny1);
             this.LabelInfoButton.Enabled = false;
-            this.LabelInfoButton.Location = new System.Drawing.Point(82, 498);
+            this.LabelInfoButton.Location = new System.Drawing.Point(71, 505);
             this.LabelInfoButton.Name = "LabelInfoButton";
             this.LabelInfoButton.ReadOnly = true;
             this.LabelInfoButton.Size = new System.Drawing.Size(223, 20);
@@ -117,11 +131,16 @@ namespace BreastCancerDetection
             // 
             // button_select
             // 
+            this.button_select.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_select.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_select.Location = new System.Drawing.Point(3, 3);
             this.button_select.Name = "button_select";
-            this.button_select.Size = new System.Drawing.Size(147, 40);
+            this.button_select.Size = new System.Drawing.Size(213, 45);
             this.button_select.StateCommon.Border.Rounding = 10F;
+            this.button_select.StateCommon.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_select.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_select.StateNormal.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_select.TabIndex = 60;
             this.button_select.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_select.Values.Text = "Select Image";
@@ -132,11 +151,15 @@ namespace BreastCancerDetection
             // 
             // button_Preprocessing
             // 
+            this.button_Preprocessing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Preprocessing.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_Preprocessing.Location = new System.Drawing.Point(6, 6);
+            this.button_Preprocessing.Location = new System.Drawing.Point(3, 3);
             this.button_Preprocessing.Name = "button_Preprocessing";
-            this.button_Preprocessing.Size = new System.Drawing.Size(146, 40);
+            this.button_Preprocessing.Size = new System.Drawing.Size(213, 43);
             this.button_Preprocessing.StateCommon.Border.Rounding = 10F;
+            this.button_Preprocessing.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Preprocessing.TabIndex = 63;
             this.button_Preprocessing.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_Preprocessing.Values.Text = "PreProcesare";
@@ -149,7 +172,7 @@ namespace BreastCancerDetection
             // 
             this.button_information.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_information.Cursor = System.Windows.Forms.Cursors.Help;
-            this.button_information.Location = new System.Drawing.Point(9, 488);
+            this.button_information.Location = new System.Drawing.Point(12, 488);
             this.button_information.Margin = new System.Windows.Forms.Padding(0);
             this.button_information.Name = "button_information";
             this.button_information.Size = new System.Drawing.Size(40, 40);
@@ -163,23 +186,27 @@ namespace BreastCancerDetection
             // 
             // contrastLimit
             // 
-            this.contrastLimit.Location = new System.Drawing.Point(119, 141);
-            this.contrastLimit.Margin = new System.Windows.Forms.Padding(2);
+            this.contrastLimit.Location = new System.Drawing.Point(128, 0);
+            this.contrastLimit.Margin = new System.Windows.Forms.Padding(0);
             this.contrastLimit.Name = "contrastLimit";
-            this.contrastLimit.Size = new System.Drawing.Size(33, 27);
+            this.contrastLimit.Size = new System.Drawing.Size(33, 30);
             this.contrastLimit.StateCommon.Border.Rounding = 5F;
             this.contrastLimit.StateCommon.Border.Width = 1;
+            this.contrastLimit.StateCommon.Content.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contrastLimit.TabIndex = 76;
             this.contrastLimit.Text = "5";
-            this.contrastLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.contrastLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button_selectROI
             // 
+            this.button_selectROI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_selectROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_selectROI.Location = new System.Drawing.Point(158, 6);
+            this.button_selectROI.Location = new System.Drawing.Point(218, 3);
             this.button_selectROI.Name = "button_selectROI";
-            this.button_selectROI.Size = new System.Drawing.Size(146, 40);
+            this.button_selectROI.Size = new System.Drawing.Size(210, 41);
             this.button_selectROI.StateCommon.Border.Rounding = 10F;
+            this.button_selectROI.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_selectROI.TabIndex = 70;
             this.button_selectROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_selectROI.Values.Text = "Select ROI";
@@ -190,35 +217,43 @@ namespace BreastCancerDetection
             // 
             // windowSize
             // 
-            this.windowSize.Location = new System.Drawing.Point(119, 169);
-            this.windowSize.Margin = new System.Windows.Forms.Padding(2);
+            this.windowSize.Location = new System.Drawing.Point(128, 0);
+            this.windowSize.Margin = new System.Windows.Forms.Padding(0);
             this.windowSize.Name = "windowSize";
-            this.windowSize.Size = new System.Drawing.Size(33, 27);
+            this.windowSize.Size = new System.Drawing.Size(33, 30);
             this.windowSize.StateCommon.Border.Rounding = 5F;
             this.windowSize.StateCommon.Border.Width = 1;
+            this.windowSize.StateCommon.Content.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.windowSize.TabIndex = 79;
             this.windowSize.Text = "16";
-            this.windowSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.windowSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label_Tissue
             // 
+            this.label_Tissue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label_Tissue.AutoSize = true;
             this.label_Tissue.BackColor = System.Drawing.Color.Transparent;
-            this.label_Tissue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Tissue.Location = new System.Drawing.Point(177, 49);
+            this.label_Tissue.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Tissue.Location = new System.Drawing.Point(2, 98);
             this.label_Tissue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_Tissue.Name = "label_Tissue";
-            this.label_Tissue.Size = new System.Drawing.Size(101, 20);
+            this.label_Tissue.Size = new System.Drawing.Size(111, 37);
             this.label_Tissue.TabIndex = 85;
             this.label_Tissue.Text = "Tissue Type: ";
+            this.label_Tissue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button_typeTissue
             // 
+            this.button_typeTissue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_typeTissue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_typeTissue.Location = new System.Drawing.Point(158, 6);
+            this.button_typeTissue.Location = new System.Drawing.Point(3, 52);
             this.button_typeTissue.Name = "button_typeTissue";
-            this.button_typeTissue.Size = new System.Drawing.Size(130, 40);
+            this.button_typeTissue.Size = new System.Drawing.Size(213, 43);
             this.button_typeTissue.StateCommon.Border.Rounding = 10F;
+            this.button_typeTissue.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_typeTissue.TabIndex = 84;
             this.button_typeTissue.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_typeTissue.Values.Text = "Tissue Type";
@@ -232,7 +267,7 @@ namespace BreastCancerDetection
             this.label_x.AutoSize = true;
             this.label_x.BackColor = System.Drawing.Color.Transparent;
             this.label_x.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_x.Location = new System.Drawing.Point(178, 49);
+            this.label_x.Location = new System.Drawing.Point(45, 0);
             this.label_x.Name = "label_x";
             this.label_x.Size = new System.Drawing.Size(16, 20);
             this.label_x.TabIndex = 65;
@@ -240,11 +275,15 @@ namespace BreastCancerDetection
             // 
             // button_CLHE
             // 
+            this.button_CLHE.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_CLHE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_CLHE.Location = new System.Drawing.Point(6, 52);
+            this.button_CLHE.Location = new System.Drawing.Point(222, 3);
             this.button_CLHE.Name = "button_CLHE";
-            this.button_CLHE.Size = new System.Drawing.Size(146, 40);
+            this.button_CLHE.Size = new System.Drawing.Size(214, 43);
             this.button_CLHE.StateCommon.Border.Rounding = 10F;
+            this.button_CLHE.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CLHE.TabIndex = 75;
             this.button_CLHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_CLHE.Values.Text = "CLHE";
@@ -255,11 +294,15 @@ namespace BreastCancerDetection
             // 
             // button_CLAHE
             // 
+            this.button_CLAHE.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_CLAHE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_CLAHE.Location = new System.Drawing.Point(6, 98);
+            this.button_CLAHE.Location = new System.Drawing.Point(222, 52);
             this.button_CLAHE.Name = "button_CLAHE";
-            this.button_CLAHE.Size = new System.Drawing.Size(146, 40);
+            this.button_CLAHE.Size = new System.Drawing.Size(214, 43);
             this.button_CLAHE.StateCommon.Border.Rounding = 10F;
+            this.button_CLAHE.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CLAHE.TabIndex = 78;
             this.button_CLAHE.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_CLAHE.Values.Text = "CLAHE";
@@ -270,11 +313,16 @@ namespace BreastCancerDetection
             // 
             // button_save
             // 
+            this.button_save.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_save.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_save.Location = new System.Drawing.Point(3, 97);
+            this.button_save.Location = new System.Drawing.Point(3, 54);
             this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(147, 40);
+            this.button_save.Size = new System.Drawing.Size(213, 46);
             this.button_save.StateCommon.Border.Rounding = 10F;
+            this.button_save.StateCommon.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_save.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_save.StateNormal.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_save.TabIndex = 73;
             this.button_save.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_save.Values.Text = "Save Image";
@@ -285,34 +333,40 @@ namespace BreastCancerDetection
             // 
             // label_ContrastLimit
             // 
+            this.label_ContrastLimit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label_ContrastLimit.AutoSize = true;
             this.label_ContrastLimit.BackColor = System.Drawing.Color.Transparent;
-            this.label_ContrastLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ContrastLimit.Location = new System.Drawing.Point(8, 144);
+            this.label_ContrastLimit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ContrastLimit.Location = new System.Drawing.Point(2, 0);
             this.label_ContrastLimit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_ContrastLimit.Name = "label_ContrastLimit";
-            this.label_ContrastLimit.Size = new System.Drawing.Size(107, 20);
+            this.label_ContrastLimit.Size = new System.Drawing.Size(116, 31);
             this.label_ContrastLimit.TabIndex = 77;
             this.label_ContrastLimit.Text = "Contrast Limit";
+            this.label_ContrastLimit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label_WindowSize
             // 
+            this.label_WindowSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label_WindowSize.AutoSize = true;
             this.label_WindowSize.BackColor = System.Drawing.Color.Transparent;
-            this.label_WindowSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_WindowSize.Location = new System.Drawing.Point(8, 171);
+            this.label_WindowSize.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_WindowSize.Location = new System.Drawing.Point(2, 0);
             this.label_WindowSize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_WindowSize.Name = "label_WindowSize";
-            this.label_WindowSize.Size = new System.Drawing.Size(100, 20);
+            this.label_WindowSize.Size = new System.Drawing.Size(108, 31);
             this.label_WindowSize.TabIndex = 80;
             this.label_WindowSize.Text = "Window Size";
+            this.label_WindowSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label_H
             // 
             this.label_H.AutoSize = true;
             this.label_H.BackColor = System.Drawing.Color.Transparent;
             this.label_H.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_H.Location = new System.Drawing.Point(158, 49);
+            this.label_H.Location = new System.Drawing.Point(3, 20);
             this.label_H.Name = "label_H";
             this.label_H.Size = new System.Drawing.Size(21, 20);
             this.label_H.TabIndex = 64;
@@ -323,7 +377,7 @@ namespace BreastCancerDetection
             this.label_W.AutoSize = true;
             this.label_W.BackColor = System.Drawing.Color.Transparent;
             this.label_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_W.Location = new System.Drawing.Point(158, 75);
+            this.label_W.Location = new System.Drawing.Point(3, 0);
             this.label_W.Name = "label_W";
             this.label_W.Size = new System.Drawing.Size(24, 20);
             this.label_W.TabIndex = 66;
@@ -331,11 +385,14 @@ namespace BreastCancerDetection
             // 
             // button_GrowCut
             // 
+            this.button_GrowCut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_GrowCut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_GrowCut.Location = new System.Drawing.Point(6, 94);
+            this.button_GrowCut.Location = new System.Drawing.Point(3, 97);
             this.button_GrowCut.Name = "button_GrowCut";
-            this.button_GrowCut.Size = new System.Drawing.Size(146, 40);
+            this.button_GrowCut.Size = new System.Drawing.Size(209, 40);
             this.button_GrowCut.StateCommon.Border.Rounding = 10F;
+            this.button_GrowCut.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_GrowCut.TabIndex = 83;
             this.button_GrowCut.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_GrowCut.Values.Text = "Apply GrowCut";
@@ -349,7 +406,7 @@ namespace BreastCancerDetection
             this.label_y.AutoSize = true;
             this.label_y.BackColor = System.Drawing.Color.Transparent;
             this.label_y.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_y.Location = new System.Drawing.Point(178, 75);
+            this.label_y.Location = new System.Drawing.Point(45, 20);
             this.label_y.Name = "label_y";
             this.label_y.Size = new System.Drawing.Size(16, 20);
             this.label_y.TabIndex = 67;
@@ -357,11 +414,16 @@ namespace BreastCancerDetection
             // 
             // button_relode
             // 
+            this.button_relode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_relode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_relode.Location = new System.Drawing.Point(3, 49);
+            this.button_relode.Location = new System.Drawing.Point(222, 3);
             this.button_relode.Name = "button_relode";
-            this.button_relode.Size = new System.Drawing.Size(147, 42);
+            this.button_relode.Size = new System.Drawing.Size(213, 45);
             this.button_relode.StateCommon.Border.Rounding = 10F;
+            this.button_relode.StateCommon.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_relode.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_relode.StateNormal.Content.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_relode.TabIndex = 71;
             this.button_relode.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_relode.Values.Text = "Relode Image";
@@ -372,11 +434,14 @@ namespace BreastCancerDetection
             // 
             // button_GrowCutOnROI
             // 
+            this.button_GrowCutOnROI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_GrowCutOnROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_GrowCutOnROI.Location = new System.Drawing.Point(6, 50);
+            this.button_GrowCutOnROI.Location = new System.Drawing.Point(3, 50);
             this.button_GrowCutOnROI.Name = "button_GrowCutOnROI";
-            this.button_GrowCutOnROI.Size = new System.Drawing.Size(146, 40);
+            this.button_GrowCutOnROI.Size = new System.Drawing.Size(209, 41);
             this.button_GrowCutOnROI.StateCommon.Border.Rounding = 10F;
+            this.button_GrowCutOnROI.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_GrowCutOnROI.TabIndex = 82;
             this.button_GrowCutOnROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_GrowCutOnROI.Values.Text = "GrowCut pe ROI";
@@ -390,7 +455,7 @@ namespace BreastCancerDetection
             this.startPoint.AutoSize = true;
             this.startPoint.BackColor = System.Drawing.Color.Transparent;
             this.startPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startPoint.Location = new System.Drawing.Point(213, 49);
+            this.startPoint.Location = new System.Drawing.Point(108, 0);
             this.startPoint.Name = "startPoint";
             this.startPoint.Size = new System.Drawing.Size(56, 20);
             this.startPoint.TabIndex = 68;
@@ -398,11 +463,14 @@ namespace BreastCancerDetection
             // 
             // button_RemoveROI
             // 
+            this.button_RemoveROI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_RemoveROI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_RemoveROI.Location = new System.Drawing.Point(6, 6);
+            this.button_RemoveROI.Location = new System.Drawing.Point(3, 3);
             this.button_RemoveROI.Name = "button_RemoveROI";
-            this.button_RemoveROI.Size = new System.Drawing.Size(146, 40);
+            this.button_RemoveROI.Size = new System.Drawing.Size(209, 40);
             this.button_RemoveROI.StateCommon.Border.Rounding = 10F;
+            this.button_RemoveROI.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_RemoveROI.TabIndex = 81;
             this.button_RemoveROI.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_RemoveROI.Values.Text = "Remove ROI";
@@ -416,7 +484,7 @@ namespace BreastCancerDetection
             this.endPoint.AutoSize = true;
             this.endPoint.BackColor = System.Drawing.Color.Transparent;
             this.endPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.endPoint.Location = new System.Drawing.Point(213, 75);
+            this.endPoint.Location = new System.Drawing.Point(108, 20);
             this.endPoint.Name = "endPoint";
             this.endPoint.Size = new System.Drawing.Size(56, 20);
             this.endPoint.TabIndex = 69;
@@ -424,18 +492,20 @@ namespace BreastCancerDetection
             // 
             // Tissue_Info
             // 
+            this.Tissue_Info.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Tissue_Info.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Tissue_Info.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.Tissue_Info.Location = new System.Drawing.Point(158, 75);
+            this.Tissue_Info.Location = new System.Drawing.Point(3, 138);
             this.Tissue_Info.MaxLength = 2147;
             this.Tissue_Info.Name = "Tissue_Info";
             this.Tissue_Info.ReadOnly = true;
             this.Tissue_Info.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.Tissue_Info.Size = new System.Drawing.Size(236, 72);
-            this.Tissue_Info.StateCommon.Back.Color1 = System.Drawing.Color.LightBlue;
-            this.Tissue_Info.StateCommon.Border.Rounding = 10F;
-            this.Tissue_Info.StateCommon.Border.Width = 1;
-            this.Tissue_Info.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tissue_Info.Size = new System.Drawing.Size(213, 63);
+            this.Tissue_Info.StateCommon.Back.Color1 = System.Drawing.Color.DarkCyan;
+            this.Tissue_Info.StateCommon.Border.Color1 = System.Drawing.Color.DarkCyan;
+            this.Tissue_Info.StateCommon.Content.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tissue_Info.StateCommon.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Center;
             this.Tissue_Info.TabIndex = 86;
             this.Tissue_Info.Text = "Tissue 1: 99.9%\nTissue 2: 99.9%\nTissue 3: 99.9%";
             this.Tissue_Info.UseMnemonic = false;
@@ -467,30 +537,39 @@ namespace BreastCancerDetection
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.DarkCyan;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage1.Controls.Add(this.button_select);
-            this.tabPage1.Controls.Add(this.button_relode);
-            this.tabPage1.Controls.Add(this.button_save);
+            this.tabPage1.Controls.Add(this.kryptonTableLayoutPanel4);
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(445, 435);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Incarcare";
             // 
+            // kryptonTableLayoutPanel4
+            // 
+            this.kryptonTableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonTableLayoutPanel4.ColumnCount = 2;
+            this.kryptonTableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel4.Controls.Add(this.button_select, 0, 0);
+            this.kryptonTableLayoutPanel4.Controls.Add(this.button_relode, 1, 0);
+            this.kryptonTableLayoutPanel4.Controls.Add(this.button_save, 0, 1);
+            this.kryptonTableLayoutPanel4.Location = new System.Drawing.Point(2, 3);
+            this.kryptonTableLayoutPanel4.MinimumSize = new System.Drawing.Size(400, 100);
+            this.kryptonTableLayoutPanel4.Name = "kryptonTableLayoutPanel4";
+            this.kryptonTableLayoutPanel4.RowCount = 2;
+            this.kryptonTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel4.Size = new System.Drawing.Size(438, 103);
+            this.kryptonTableLayoutPanel4.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel4.TabIndex = 74;
+            // 
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.DarkCyan;
             this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage2.Controls.Add(this.button_Preprocessing);
-            this.tabPage2.Controls.Add(this.button_CLHE);
-            this.tabPage2.Controls.Add(this.button_typeTissue);
-            this.tabPage2.Controls.Add(this.label_Tissue);
-            this.tabPage2.Controls.Add(this.Tissue_Info);
-            this.tabPage2.Controls.Add(this.label_WindowSize);
-            this.tabPage2.Controls.Add(this.label_ContrastLimit);
-            this.tabPage2.Controls.Add(this.button_CLAHE);
-            this.tabPage2.Controls.Add(this.contrastLimit);
-            this.tabPage2.Controls.Add(this.windowSize);
+            this.tabPage2.Controls.Add(this.kryptonTableLayoutPanel7);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -498,21 +577,73 @@ namespace BreastCancerDetection
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Procesare";
             // 
+            // kryptonTableLayoutPanel7
+            // 
+            this.kryptonTableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonTableLayoutPanel7.ColumnCount = 2;
+            this.kryptonTableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel7.Controls.Add(this.kryptonTableLayoutPanel5, 1, 3);
+            this.kryptonTableLayoutPanel7.Controls.Add(this.kryptonTableLayoutPanel6, 1, 2);
+            this.kryptonTableLayoutPanel7.Controls.Add(this.Tissue_Info, 0, 3);
+            this.kryptonTableLayoutPanel7.Controls.Add(this.button_Preprocessing, 0, 0);
+            this.kryptonTableLayoutPanel7.Controls.Add(this.button_CLHE, 1, 0);
+            this.kryptonTableLayoutPanel7.Controls.Add(this.button_typeTissue, 0, 1);
+            this.kryptonTableLayoutPanel7.Controls.Add(this.button_CLAHE, 1, 1);
+            this.kryptonTableLayoutPanel7.Controls.Add(this.label_Tissue, 0, 2);
+            this.kryptonTableLayoutPanel7.Location = new System.Drawing.Point(2, 2);
+            this.kryptonTableLayoutPanel7.MinimumSize = new System.Drawing.Size(400, 200);
+            this.kryptonTableLayoutPanel7.Name = "kryptonTableLayoutPanel7";
+            this.kryptonTableLayoutPanel7.RowCount = 4;
+            this.kryptonTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.kryptonTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.kryptonTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.kryptonTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.kryptonTableLayoutPanel7.Size = new System.Drawing.Size(439, 248);
+            this.kryptonTableLayoutPanel7.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel7.TabIndex = 87;
+            // 
+            // kryptonTableLayoutPanel5
+            // 
+            this.kryptonTableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonTableLayoutPanel5.ColumnCount = 2;
+            this.kryptonTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.kryptonTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.kryptonTableLayoutPanel5.Controls.Add(this.windowSize, 1, 0);
+            this.kryptonTableLayoutPanel5.Controls.Add(this.label_WindowSize, 0, 0);
+            this.kryptonTableLayoutPanel5.Location = new System.Drawing.Point(222, 138);
+            this.kryptonTableLayoutPanel5.Name = "kryptonTableLayoutPanel5";
+            this.kryptonTableLayoutPanel5.RowCount = 1;
+            this.kryptonTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.kryptonTableLayoutPanel5.Size = new System.Drawing.Size(214, 31);
+            this.kryptonTableLayoutPanel5.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel5.TabIndex = 94;
+            // 
+            // kryptonTableLayoutPanel6
+            // 
+            this.kryptonTableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonTableLayoutPanel6.ColumnCount = 2;
+            this.kryptonTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.kryptonTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.kryptonTableLayoutPanel6.Controls.Add(this.contrastLimit, 1, 0);
+            this.kryptonTableLayoutPanel6.Controls.Add(this.label_ContrastLimit, 0, 0);
+            this.kryptonTableLayoutPanel6.Location = new System.Drawing.Point(222, 101);
+            this.kryptonTableLayoutPanel6.Name = "kryptonTableLayoutPanel6";
+            this.kryptonTableLayoutPanel6.RowCount = 1;
+            this.kryptonTableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.kryptonTableLayoutPanel6.Size = new System.Drawing.Size(214, 31);
+            this.kryptonTableLayoutPanel6.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel6.TabIndex = 92;
+            // 
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.DarkCyan;
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage3.Controls.Add(this.button_selectROI);
-            this.tabPage3.Controls.Add(this.label_y);
-            this.tabPage3.Controls.Add(this.endPoint);
-            this.tabPage3.Controls.Add(this.startPoint);
-            this.tabPage3.Controls.Add(this.label_x);
-            this.tabPage3.Controls.Add(this.label_W);
-            this.tabPage3.Controls.Add(this.label_H);
-            this.tabPage3.Controls.Add(this.button_RemoveROI);
-            this.tabPage3.Controls.Add(this.button_GrowCut);
-            this.tabPage3.Controls.Add(this.button_GrowCutOnROI);
+            this.tabPage3.Controls.Add(this.kryptonTableLayoutPanel3);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -520,17 +651,58 @@ namespace BreastCancerDetection
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Segmentare";
             // 
+            // kryptonTableLayoutPanel3
+            // 
+            this.kryptonTableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonTableLayoutPanel3.ColumnCount = 2;
+            this.kryptonTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel3.Controls.Add(this.kryptonTableLayoutPanel2, 1, 1);
+            this.kryptonTableLayoutPanel3.Controls.Add(this.button_GrowCut, 0, 2);
+            this.kryptonTableLayoutPanel3.Controls.Add(this.button_RemoveROI, 0, 0);
+            this.kryptonTableLayoutPanel3.Controls.Add(this.button_GrowCutOnROI, 0, 1);
+            this.kryptonTableLayoutPanel3.Controls.Add(this.button_selectROI, 1, 0);
+            this.kryptonTableLayoutPanel3.Location = new System.Drawing.Point(6, 6);
+            this.kryptonTableLayoutPanel3.MinimumSize = new System.Drawing.Size(400, 125);
+            this.kryptonTableLayoutPanel3.Name = "kryptonTableLayoutPanel3";
+            this.kryptonTableLayoutPanel3.RowCount = 3;
+            this.kryptonTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.kryptonTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.kryptonTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.kryptonTableLayoutPanel3.Size = new System.Drawing.Size(431, 143);
+            this.kryptonTableLayoutPanel3.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel3.TabIndex = 84;
+            // 
+            // kryptonTableLayoutPanel2
+            // 
+            this.kryptonTableLayoutPanel2.ColumnCount = 3;
+            this.kryptonTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.kryptonTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.kryptonTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel2.Controls.Add(this.startPoint, 2, 0);
+            this.kryptonTableLayoutPanel2.Controls.Add(this.label_x, 1, 0);
+            this.kryptonTableLayoutPanel2.Controls.Add(this.endPoint, 2, 1);
+            this.kryptonTableLayoutPanel2.Controls.Add(this.label_W, 0, 0);
+            this.kryptonTableLayoutPanel2.Controls.Add(this.label_y, 1, 1);
+            this.kryptonTableLayoutPanel2.Controls.Add(this.label_H, 0, 1);
+            this.kryptonTableLayoutPanel2.Location = new System.Drawing.Point(218, 50);
+            this.kryptonTableLayoutPanel2.Name = "kryptonTableLayoutPanel2";
+            this.kryptonTableLayoutPanel2.RowCount = 2;
+            this.kryptonTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.kryptonTableLayoutPanel2.Size = new System.Drawing.Size(210, 41);
+            this.kryptonTableLayoutPanel2.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel2.TabIndex = 86;
+            // 
             // tabPage4
             // 
             this.tabPage4.AutoScroll = true;
             this.tabPage4.BackColor = System.Drawing.Color.DarkCyan;
             this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage4.Controls.Add(this.chart_Histogram);
-            this.tabPage4.Controls.Add(this.button_show_image);
-            this.tabPage4.Controls.Add(this.button_Charts);
-            this.tabPage4.Controls.Add(this.button_show);
+            this.tabPage4.Controls.Add(this.KryptonTableLayoutPanel1);
             this.tabPage4.Controls.Add(this.chart_CumulativeHistogram);
-            this.tabPage4.Controls.Add(this.button_show_mask);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -540,55 +712,80 @@ namespace BreastCancerDetection
             // 
             // chart_Histogram
             // 
-            this.chart_Histogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart_Histogram.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chart_Histogram.BackColor = System.Drawing.Color.DarkCyan;
-            chartArea9.AxisX.Maximum = 255D;
-            chartArea9.AxisX.Minimum = 0D;
-            chartArea9.AxisY.LabelStyle.Format = "0.#e+0";
-            chartArea9.AxisY.MaximumAutoSize = 0F;
-            chartArea9.InnerPlotPosition.Auto = false;
-            chartArea9.InnerPlotPosition.Height = 80F;
-            chartArea9.InnerPlotPosition.Width = 85F;
-            chartArea9.InnerPlotPosition.X = 10F;
-            chartArea9.Name = "ChartArea";
-            chartArea9.Position.Auto = false;
-            chartArea9.Position.Height = 90F;
-            chartArea9.Position.Width = 100F;
-            chartArea9.Position.Y = 10F;
-            this.chart_Histogram.ChartAreas.Add(chartArea9);
+            chartArea3.AxisX.Maximum = 255D;
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.AxisY.LabelStyle.Format = "0.#e+0";
+            chartArea3.AxisY.MaximumAutoSize = 0F;
+            chartArea3.InnerPlotPosition.Auto = false;
+            chartArea3.InnerPlotPosition.Height = 80F;
+            chartArea3.InnerPlotPosition.Width = 85F;
+            chartArea3.InnerPlotPosition.X = 10F;
+            chartArea3.Name = "ChartArea";
+            chartArea3.Position.Auto = false;
+            chartArea3.Position.Height = 90F;
+            chartArea3.Position.Width = 100F;
+            chartArea3.Position.Y = 10F;
+            this.chart_Histogram.ChartAreas.Add(chartArea3);
             this.chart_Histogram.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.chart_Histogram.Location = new System.Drawing.Point(0, 241);
-            this.chart_Histogram.MinimumSize = new System.Drawing.Size(400, 150);
+            this.chart_Histogram.Location = new System.Drawing.Point(-1, 244);
+            this.chart_Histogram.MinimumSize = new System.Drawing.Size(430, 150);
             this.chart_Histogram.Name = "chart_Histogram";
             this.chart_Histogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series9.ChartArea = "ChartArea";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series9.Legend = "Legend1";
-            series9.Name = "Pixel";
-            dataPoint9.Color = System.Drawing.Color.Black;
-            series9.Points.Add(dataPoint9);
-            series9.YValuesPerPoint = 2;
-            this.chart_Histogram.Series.Add(series9);
-            this.chart_Histogram.Size = new System.Drawing.Size(444, 186);
+            series3.ChartArea = "ChartArea";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series3.Legend = "Legend1";
+            series3.Name = "Pixel";
+            dataPoint3.Color = System.Drawing.Color.Black;
+            series3.Points.Add(dataPoint3);
+            series3.YValuesPerPoint = 2;
+            this.chart_Histogram.Series.Add(series3);
+            this.chart_Histogram.Size = new System.Drawing.Size(444, 190);
             this.chart_Histogram.TabIndex = 39;
-            title9.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title9.Name = "Title1";
-            title9.Position.Auto = false;
-            title9.Position.Height = 8.378904F;
-            title9.Position.Width = 94F;
-            title9.Position.X = 3F;
-            title9.Position.Y = 1F;
-            title9.Text = "Histograma";
-            this.chart_Histogram.Titles.Add(title9);
+            title3.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Position.Auto = false;
+            title3.Position.Height = 8.378904F;
+            title3.Position.Width = 94F;
+            title3.Position.X = 3F;
+            title3.Position.Y = 1F;
+            title3.Text = "Histograma";
+            this.chart_Histogram.Titles.Add(title3);
+            // 
+            // KryptonTableLayoutPanel1
+            // 
+            this.KryptonTableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.KryptonTableLayoutPanel1.ColumnCount = 4;
+            this.KryptonTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.KryptonTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.KryptonTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.KryptonTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.KryptonTableLayoutPanel1.Controls.Add(this.button_show_image, 1, 0);
+            this.KryptonTableLayoutPanel1.Controls.Add(this.button_show_mask, 2, 0);
+            this.KryptonTableLayoutPanel1.Controls.Add(this.button_Charts, 3, 0);
+            this.KryptonTableLayoutPanel1.Controls.Add(this.button_show, 0, 0);
+            this.KryptonTableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
+            this.KryptonTableLayoutPanel1.MinimumSize = new System.Drawing.Size(420, 40);
+            this.KryptonTableLayoutPanel1.Name = "KryptonTableLayoutPanel1";
+            this.KryptonTableLayoutPanel1.RowCount = 1;
+            this.KryptonTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.KryptonTableLayoutPanel1.Size = new System.Drawing.Size(429, 40);
+            this.KryptonTableLayoutPanel1.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.KryptonTableLayoutPanel1.TabIndex = 76;
             // 
             // button_show_image
             // 
+            this.button_show_image.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_show_image.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show_image.Location = new System.Drawing.Point(115, 6);
+            this.button_show_image.Location = new System.Drawing.Point(110, 3);
             this.button_show_image.Name = "button_show_image";
-            this.button_show_image.Size = new System.Drawing.Size(102, 40);
+            this.button_show_image.Size = new System.Drawing.Size(101, 34);
             this.button_show_image.StateCommon.Border.Rounding = 10F;
+            this.button_show_image.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_show_image.TabIndex = 45;
             this.button_show_image.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_show_image.Values.Text = "Show Image";
@@ -597,13 +794,34 @@ namespace BreastCancerDetection
             this.button_show_image.MouseLeave += new System.EventHandler(this.button_MouseLeave);
             this.button_show_image.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
             // 
+            // button_show_mask
+            // 
+            this.button_show_mask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_show_mask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_show_mask.Location = new System.Drawing.Point(217, 3);
+            this.button_show_mask.Name = "button_show_mask";
+            this.button_show_mask.Size = new System.Drawing.Size(101, 34);
+            this.button_show_mask.StateCommon.Border.Rounding = 10F;
+            this.button_show_mask.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_show_mask.TabIndex = 46;
+            this.button_show_mask.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.button_show_mask.Values.Text = "Show Mask";
+            this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
+            this.button_show_mask.MouseEnter += new System.EventHandler(this.button_MouseEnter);
+            this.button_show_mask.MouseLeave += new System.EventHandler(this.button_MouseLeave);
+            this.button_show_mask.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            // 
             // button_Charts
             // 
+            this.button_Charts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Charts.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_Charts.Location = new System.Drawing.Point(331, 6);
+            this.button_Charts.Location = new System.Drawing.Point(324, 3);
             this.button_Charts.Name = "button_Charts";
-            this.button_Charts.Size = new System.Drawing.Size(102, 40);
+            this.button_Charts.Size = new System.Drawing.Size(102, 34);
             this.button_Charts.StateCommon.Border.Rounding = 10F;
+            this.button_Charts.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Charts.TabIndex = 40;
             this.button_Charts.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_Charts.Values.Text = "Update Charts";
@@ -614,11 +832,14 @@ namespace BreastCancerDetection
             // 
             // button_show
             // 
+            this.button_show.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.button_show.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show.Location = new System.Drawing.Point(7, 6);
+            this.button_show.Location = new System.Drawing.Point(3, 3);
             this.button_show.Name = "button_show";
-            this.button_show.Size = new System.Drawing.Size(102, 40);
+            this.button_show.Size = new System.Drawing.Size(101, 34);
             this.button_show.StateCommon.Border.Rounding = 10F;
+            this.button_show.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_show.TabIndex = 47;
             this.button_show.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.button_show.Values.Text = "Image + Mask";
@@ -629,59 +850,44 @@ namespace BreastCancerDetection
             // 
             // chart_CumulativeHistogram
             // 
-            this.chart_CumulativeHistogram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart_CumulativeHistogram.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chart_CumulativeHistogram.BackColor = System.Drawing.Color.DarkCyan;
-            chartArea10.AxisX.Maximum = 255D;
-            chartArea10.AxisX.Minimum = 0D;
-            chartArea10.AxisY.LabelStyle.Format = "0.#e+0";
-            chartArea10.InnerPlotPosition.Auto = false;
-            chartArea10.InnerPlotPosition.Height = 80F;
-            chartArea10.InnerPlotPosition.Width = 85F;
-            chartArea10.InnerPlotPosition.X = 10F;
-            chartArea10.Name = "CumulativeHistogram";
-            chartArea10.Position.Auto = false;
-            chartArea10.Position.Height = 90F;
-            chartArea10.Position.Width = 100F;
-            chartArea10.Position.Y = 10F;
-            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea10);
-            this.chart_CumulativeHistogram.Location = new System.Drawing.Point(0, 55);
-            this.chart_CumulativeHistogram.MinimumSize = new System.Drawing.Size(400, 150);
+            chartArea4.AxisX.Maximum = 255D;
+            chartArea4.AxisX.Minimum = 0D;
+            chartArea4.AxisY.LabelStyle.Format = "0.#e+0";
+            chartArea4.InnerPlotPosition.Auto = false;
+            chartArea4.InnerPlotPosition.Height = 80F;
+            chartArea4.InnerPlotPosition.Width = 85F;
+            chartArea4.InnerPlotPosition.X = 10F;
+            chartArea4.Name = "CumulativeHistogram";
+            chartArea4.Position.Auto = false;
+            chartArea4.Position.Height = 90F;
+            chartArea4.Position.Width = 100F;
+            chartArea4.Position.Y = 10F;
+            this.chart_CumulativeHistogram.ChartAreas.Add(chartArea4);
+            this.chart_CumulativeHistogram.Location = new System.Drawing.Point(-1, 49);
+            this.chart_CumulativeHistogram.MinimumSize = new System.Drawing.Size(430, 150);
             this.chart_CumulativeHistogram.Name = "chart_CumulativeHistogram";
             this.chart_CumulativeHistogram.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series10.ChartArea = "CumulativeHistogram";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series10.Name = "Pixel";
-            series10.Points.Add(dataPoint10);
-            this.chart_CumulativeHistogram.Series.Add(series10);
-            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(444, 186);
+            series4.ChartArea = "CumulativeHistogram";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Name = "Pixel";
+            series4.Points.Add(dataPoint4);
+            this.chart_CumulativeHistogram.Series.Add(series4);
+            this.chart_CumulativeHistogram.Size = new System.Drawing.Size(444, 190);
             this.chart_CumulativeHistogram.TabIndex = 41;
-            title10.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title10.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
-            title10.DockingOffset = -10;
-            title10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title10.Name = "Title1";
-            title10.Position.Auto = false;
-            title10.Position.Height = 8.378904F;
-            title10.Position.Width = 94F;
-            title10.Position.X = 3F;
-            title10.Position.Y = 1F;
-            title10.Text = "Histograma Cumulativa";
-            this.chart_CumulativeHistogram.Titles.Add(title10);
-            // 
-            // button_show_mask
-            // 
-            this.button_show_mask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button_show_mask.Location = new System.Drawing.Point(223, 6);
-            this.button_show_mask.Name = "button_show_mask";
-            this.button_show_mask.Size = new System.Drawing.Size(102, 40);
-            this.button_show_mask.StateCommon.Border.Rounding = 10F;
-            this.button_show_mask.TabIndex = 46;
-            this.button_show_mask.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.button_show_mask.Values.Text = "Show Mask";
-            this.button_show_mask.Click += new System.EventHandler(this.button_show_mask_Click);
-            this.button_show_mask.MouseEnter += new System.EventHandler(this.button_MouseEnter);
-            this.button_show_mask.MouseLeave += new System.EventHandler(this.button_MouseLeave);
-            this.button_show_mask.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button_MouseMove);
+            title4.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title4.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Top;
+            title4.DockingOffset = -10;
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.Name = "Title1";
+            title4.Position.Auto = false;
+            title4.Position.Height = 8.378904F;
+            title4.Position.Width = 94F;
+            title4.Position.X = 3F;
+            title4.Position.Y = 1F;
+            title4.Text = "Histograma Cumulativa";
+            this.chart_CumulativeHistogram.Titles.Add(title4);
             // 
             // pictureBox
             // 
@@ -717,12 +923,21 @@ namespace BreastCancerDetection
             this.Resize += new System.EventHandler(this.Image_Analysis_Resize);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.kryptonTableLayoutPanel4.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.kryptonTableLayoutPanel7.ResumeLayout(false);
+            this.kryptonTableLayoutPanel7.PerformLayout();
+            this.kryptonTableLayoutPanel5.ResumeLayout(false);
+            this.kryptonTableLayoutPanel5.PerformLayout();
+            this.kryptonTableLayoutPanel6.ResumeLayout(false);
+            this.kryptonTableLayoutPanel6.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.kryptonTableLayoutPanel3.ResumeLayout(false);
+            this.kryptonTableLayoutPanel2.ResumeLayout(false);
+            this.kryptonTableLayoutPanel2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_Histogram)).EndInit();
+            this.KryptonTableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -768,6 +983,13 @@ namespace BreastCancerDetection
         private Krypton.Toolkit.KryptonButton button_show;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_CumulativeHistogram;
         private Krypton.Toolkit.KryptonButton button_show_mask;
+        private Krypton.Toolkit.KryptonTableLayoutPanel KryptonTableLayoutPanel1;
+        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel3;
+        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel2;
+        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel4;
+        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel7;
+        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel6;
+        private Krypton.Toolkit.KryptonTableLayoutPanel kryptonTableLayoutPanel5;
     }
 }
 
