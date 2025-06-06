@@ -420,6 +420,7 @@ namespace BreastCancerDetection
             if (lastMousePosition != e.Location)
             {
                 LabelInfoButton.Visible = false;
+                currentButton.Cursor = Cursors.Hand;
                 lastMousePosition = e.Location;
                 timer_hover.Start();
             }
@@ -427,6 +428,7 @@ namespace BreastCancerDetection
         private void Button_MouseLeave(object sender, EventArgs e)
         {
             LabelInfoButton.Visible = false;
+            currentButton.Cursor = Cursors.Hand;
             timer_hover.Stop();
         }
         private void Timer_hover_Tick(object sender, EventArgs e)
