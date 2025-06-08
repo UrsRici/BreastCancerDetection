@@ -18,7 +18,9 @@ namespace BreastCancerDetection
         #region Variabile Globale
         private string filePath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Images\mdb005.pgm"));
         private PGM img = new PGM();
-        
+        private Bitmap original_iamge;
+        private Bitmap preproces_iamge;
+
         public Point ROIstartPoint = new Point();
         public Point ROIendPoint = new Point();
         private float[,] ROI;
@@ -33,6 +35,8 @@ namespace BreastCancerDetection
             InitializeComponent();
 
             img = new PGM(filePath);
+            original_iamge = img.ToBitmap();
+
             img.ShowImage(pictureBox);
         }
         private void Image_Analysis_FormClosed(object sender, FormClosedEventArgs e)
@@ -104,6 +108,8 @@ namespace BreastCancerDetection
                 img = new PGM(filePath);
                 img.ShowImage(pictureBox);
 
+                original_iamge = img.ToBitmap();
+
                 ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
             }
         }
@@ -165,6 +171,20 @@ namespace BreastCancerDetection
                     }
                     combinedImage.Save(combinedImagePath);
 
+                    // Calea pentru imaginea preprocesată
+                    if (preproces_iamge != null)
+                    {
+                        string preprocessedImagePath = Path.Combine(newFolderPath, fileName + "_preprocessed.jpg");
+                        preproces_iamge.Save(preprocessedImagePath);
+                    }
+
+                    // Calea pentru imaginea originală (fără preprocesare)
+                    if (original_iamge != null) 
+                    {
+                        string originalImageUnprocessedPath = Path.Combine(newFolderPath, fileName + "_original.jpg");
+                        original_iamge.Save(originalImageUnprocessedPath);
+                    }
+
                     // Log info
                     MessageBox.Show("Images saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -179,6 +199,7 @@ namespace BreastCancerDetection
             ImageVerify();
 
             img.Update(Preprocessing.Apply(img));
+            preproces_iamge = img.ToBitmap();
 
             img.ShowImage(pictureBox);
         }
@@ -409,7 +430,6 @@ namespace BreastCancerDetection
         #endregion
 
         #region Button Hover
-
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             currentButton = sender as KryptonButton;

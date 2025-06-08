@@ -190,7 +190,7 @@ namespace BreastCancerDetection
             this.contrastLimit.Location = new System.Drawing.Point(128, 0);
             this.contrastLimit.Margin = new System.Windows.Forms.Padding(0);
             this.contrastLimit.Name = "contrastLimit";
-            this.contrastLimit.Size = new System.Drawing.Size(33, 30);
+            this.contrastLimit.Size = new System.Drawing.Size(48, 30);
             this.contrastLimit.StateCommon.Border.Rounding = 5F;
             this.contrastLimit.StateCommon.Border.Width = 1;
             this.contrastLimit.StateCommon.Content.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -221,7 +221,7 @@ namespace BreastCancerDetection
             this.windowSize.Location = new System.Drawing.Point(128, 0);
             this.windowSize.Margin = new System.Windows.Forms.Padding(0);
             this.windowSize.Name = "windowSize";
-            this.windowSize.Size = new System.Drawing.Size(33, 30);
+            this.windowSize.Size = new System.Drawing.Size(48, 30);
             this.windowSize.StateCommon.Border.Rounding = 5F;
             this.windowSize.StateCommon.Border.Width = 1;
             this.windowSize.StateCommon.Content.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

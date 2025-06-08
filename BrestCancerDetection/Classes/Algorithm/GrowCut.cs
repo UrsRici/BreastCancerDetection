@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security;
 
 namespace BreastCancerDetection.Classes
 {
@@ -113,7 +114,69 @@ namespace BreastCancerDetection.Classes
                     }
                 }
             }
+            FillContur();
+
             return points;
+        }
+
+        /// <summary>
+        /// Umple si sterge pixeli în interiorul conturului, bazându-se pe vecinii lor.
+        /// </summary>
+        private static void FillContur()
+        {
+            bool found = true;
+            while (found)
+            {
+                found = false;
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        if (points[y, x] == 255) continue; // Sărim peste pixelii deja marcați
+                        List<pixel> neighbors = getNeighbors(y, x);
+                            int aux = 0;
+                        foreach (pixel n in neighbors)
+                        {
+                            if (points[n.y, n.x] == 255)
+                            {
+                                aux++;
+                            }
+                        }
+
+                        if (aux > 4)
+                        {
+                            points[y, x] = 255;
+                            found = true;
+                        }
+                    }
+                }
+            }
+            found = true;
+            while (found)
+            {
+                found = false;
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        if (points[y, x] == 0) continue; // Sărim peste pixelii deja marcați
+                        List<pixel> neighbors = getNeighbors(y, x);
+                        int aux = 0;
+                        foreach (pixel n in neighbors)
+                        {
+                            if (points[n.y, n.x] == 0)
+                            {
+                                aux++;
+                            }
+                        }
+                        if (aux > 5)
+                        {
+                            points[y, x] = 0;
+                            found = true;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -127,7 +190,7 @@ namespace BreastCancerDetection.Classes
             points = new float[height, width];
             strength = new float[height, width];
 
-            int X = 0, Y = 0;
+            int X = width / 2, Y = height / 2;
             // Căutăm pixelul cu valoarea maximă pentru a începe procesul de segmentare
             for (int y = 0; y < height; y++)
             {
