@@ -44,7 +44,7 @@
     <StartupObject>BreastCancerDetection.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ICON.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\ICON.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Emgu.CV.UI, Version=3.1.0.2282, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
@@ -579,7 +579,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ICON.ico" />
     <Content Include="Images\data.txt" />
     <Content Include="Images\Info.txt" />
     <Content Include="Images\Licence.txt" />
