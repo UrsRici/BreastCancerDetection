@@ -21,7 +21,7 @@ namespace BreastCancerDetection.Classes
         /// </summary>
         /// <param name="matrix">Matricea de date care reprezintă imaginea.</param>
         /// <returns>O mască binară cu valorile segmentate.</returns>
-        public static float[,] ApplyData(float[,] matrix)
+        public static float[,] ApplyData(float[,] matrix, float th)
         {
 
             // Creăm o mască de dimensiuni corespunzătoare
@@ -47,7 +47,7 @@ namespace BreastCancerDetection.Classes
                         }
                     }
                     // Aplicăm algoritmul GrowCut pe ROI
-                    ROI = Apply(ROI);
+                    ROI = Apply(ROI, th);
 
                     // Actualizăm masca cu rezultatele procesării ROI
                     for (int y = 0; y < ROI.GetLength(0); y++)
@@ -67,10 +67,10 @@ namespace BreastCancerDetection.Classes
         /// </summary>
         /// <param name="ROI">Regiunea de interes pe care se aplică algoritmul.</param>
         /// <returns>O matrice de valori segmentate (0 sau 255).</returns>
-        public static float[,] Apply(float[,] ROI)
+        public static float[,] Apply(float[,] ROI, float th)
         {
             // Inițializăm datele necesare (dimensiuni, puncte, forțe)
-            Initialization(ROI);
+            Initialization(ROI, th);
 
             bool found = true;
             // Algoritmul continuă până când nu mai există modificări
@@ -183,12 +183,14 @@ namespace BreastCancerDetection.Classes
         /// Inițializează variabilele necesare pentru procesarea imaginii (dimensiuni, puncte, forțe).
         /// </summary>
         /// <param name="ROI">Regiunea de interes pentru care se face procesarea.</param>
-        private static void Initialization(float[,] ROI)
+        private static void Initialization(float[,] ROI, float th)
         {
             height = ROI.GetLength(0);
             width = ROI.GetLength(1);
             points = new float[height, width];
             strength = new float[height, width];
+
+            threshold = th;
 
             int X = width / 2, Y = height / 2;
             // Căutăm pixelul cu valoarea maximă pentru a începe procesul de segmentare

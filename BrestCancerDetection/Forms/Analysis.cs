@@ -46,15 +46,15 @@ namespace BreastCancerDetection
         private void Image_Analysis_Resize(object sender, EventArgs e)
         {
             tabControl.Width = this.ClientSize.Width - pictureBox.Width - 18;
-            chart_CumulativeHistogram.Width = tabControl.Width;
-            chart_Histogram.Width = tabControl.Width;
             tabControl.Height = button_information.Location.Y - tabControl.Location.Y - 3;
+            /*chart_CumulativeHistogram.Width = tabControl.Width;
+            chart_Histogram.Width = tabControl.Width;
             int chartLocation = 50;
             int chartSpace = tabPage4.Height - chartLocation;
             chart_CumulativeHistogram.Height = chartSpace / 2;
             chart_Histogram.Height = chartSpace / 2;
             chart_CumulativeHistogram.Location = new Point(0, chartLocation);
-            chart_Histogram.Location = new Point(0, chartLocation + chart_CumulativeHistogram.Height);
+            chart_Histogram.Location = new Point(0, chartLocation + chart_CumulativeHistogram.Height);*/
         }
         private void ImageVerify()
         {
@@ -185,6 +185,13 @@ namespace BreastCancerDetection
                         original_iamge.Save(originalImageUnprocessedPath);
                     }
 
+                    // Save charts as images
+                    Button_Charts_Click(sender, e);
+                    string cumulativeHistogramPath = Path.Combine(newFolderPath, fileName + "_cumulative_histogram.jpg");
+                    string histogramPath = Path.Combine(newFolderPath, fileName + "_histogram.jpg");
+                    chart_CumulativeHistogram.SaveImage(cumulativeHistogramPath, ChartImageFormat.Png);
+                    chart_Histogram.SaveImage(histogramPath, ChartImageFormat.Png);
+
                     // Log info
                     MessageBox.Show("Images saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -222,8 +229,8 @@ namespace BreastCancerDetection
             //info_log.Text += "-------------CLAHE------------\n";
             ImageVerify();
 
-            double cL = double.Parse(contrastLimit.Text);
-            int wS = int.Parse(windowSize.Text);
+            double cL = (double) contrastLimit.Value;
+            int wS = (int) windowSize.Value;
 
             img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
 
@@ -247,7 +254,7 @@ namespace BreastCancerDetection
             float climpLimit = 0f;
             ModelOutput output = MLTissue.Predict(img.ToModelInput());
             var info = MLTissue.GetSortedScoresWithLabels(output);
-            label_Tissue.Text = "Tissue Type: " + output.PredictedLabel;
+            label_Tissue.Text = output.PredictedLabel;
             Tissue_Info.Text = string.Empty;
 
             Tissue_Info.Text = string.Join("\n", info.Select(item => $"{item.Key}: {item.Value}%"));
@@ -320,7 +327,7 @@ namespace BreastCancerDetection
                 Math.Max(ROIstartPoint.X, ROIendPoint.X),
                 Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
 
-            img.ApplyMask(p0, p1, GrowCut.Apply(ROI));
+            img.ApplyMask(p0, p1, GrowCut.Apply(ROI, (float)thresHold.Value));
             pictureBox.ResetROIfig();
             img.Show(pictureBox);
         }
@@ -335,7 +342,7 @@ namespace BreastCancerDetection
         {
             ImageData.Load();
             ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
-            float[,] mask = GrowCut.ApplyData(img.matrix);
+            float[,] mask = GrowCut.ApplyData(img.matrix, (float)thresHold.Value);
 
             img.ApplyMask(mask);
             pictureBox.ResetROIfig();
