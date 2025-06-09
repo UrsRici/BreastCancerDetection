@@ -10,8 +10,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{005DF706-9E5D-4539-96E1-A64F9605ACE6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BrestCancerDetection</RootNamespace>
-    <AssemblyName>BrestCancerDetection</AssemblyName>
+    <RootNamespace>BreastCancerDetection</RootNamespace>
+    <AssemblyName>BreastCancerDetection</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -226,7 +226,7 @@
       <DependentUpon>Information.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StartPage.resx">

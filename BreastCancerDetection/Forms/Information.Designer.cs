@@ -57,7 +57,7 @@
             // pictureBox_i
             // 
             this.pictureBox_i.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_i.Image = global::BrestCancerDetection.Properties.Resources.blue_information_button;
+            this.pictureBox_i.Image = global::BreastCancerDetection.Properties.Resources.blue_information_button;
             resources.ApplyResources(this.pictureBox_i, "pictureBox_i");
             this.pictureBox_i.Name = "pictureBox_i";
             this.pictureBox_i.TabStop = false;
@@ -67,7 +67,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.BackgroundImage = global::BrestCancerDetection.Properties.Resources.background;
+            this.BackgroundImage = global::BreastCancerDetection.Properties.Resources.background;
             this.Controls.Add(this.TextBox_information);
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.pictureBox_i);

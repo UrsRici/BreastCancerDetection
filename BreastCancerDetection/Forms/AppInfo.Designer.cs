@@ -75,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::BrestCancerDetection.Properties.Resources.background;
+            this.BackgroundImage = global::BreastCancerDetection.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

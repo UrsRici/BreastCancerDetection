@@ -88,7 +88,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.BackgroundImage = global::BrestCancerDetection.Properties.Resources.background;
+            this.BackgroundImage = global::BreastCancerDetection.Properties.Resources.background;
             this.Controls.Add(this.button_Start);
             this.Controls.Add(this.button_Info);
             this.Controls.Add(this.label_content);

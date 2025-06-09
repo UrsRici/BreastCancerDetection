@@ -1049,7 +1049,7 @@ namespace BreastCancerDetection
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.BackgroundImage = global::BrestCancerDetection.Properties.Resources.background;
+            this.BackgroundImage = global::BreastCancerDetection.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1017, 544);
             this.Controls.Add(this.LabelInfoButton);
