@@ -41,6 +41,7 @@ namespace BreastCancerDetection
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Image_Analysis));
             this.buttonSpecAny1 = new Krypton.Toolkit.ButtonSpecAny();
             this.timer_hover = new System.Windows.Forms.Timer(this.components);
             this.LabelInfoButton = new Krypton.Toolkit.KryptonRichTextBox();
@@ -1057,6 +1058,7 @@ namespace BreastCancerDetection
             this.Controls.Add(this.button_information);
             this.Controls.Add(this.tabControl);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "Image_Analysis";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
