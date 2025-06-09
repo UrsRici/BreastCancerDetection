@@ -44,12 +44,7 @@
     <StartupObject>BreastCancerDetection.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-<<<<<<< HEAD
-    <ApplicationIcon>
-    </ApplicationIcon>
-=======
     <ApplicationIcon>ICON.ico</ApplicationIcon>
->>>>>>> ec46644d8737167e9ae3a37084bc05bd4358dd07
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Emgu.CV.UI, Version=3.1.0.2282, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
