@@ -8,8 +8,6 @@ using ZedGraph;
 using System.Windows.Forms.DataVisualization.Charting;
 using BreastCancerDetection.Classes;
 using Krypton.Toolkit;
-using BreastCancerDetection;
-using OpenTK;
 
 namespace BreastCancerDetection
 {
