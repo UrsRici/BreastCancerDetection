@@ -18,12 +18,10 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Aplica procesarea imaginii pe imaginea dată (PGM).
         /// </summary>
-        /// <param name="pgm">Imaginea PGM de procesat.</param>
-        /// <returns>Imaginea procesată.</returns>
         public static MyBitmap Apply(PGM pgm)
         {
-            // Elimină zgomotul de înălțime din imagine...
-            RemoveHeightNoise(pgm);
+            // Netezirea zgomotul din imaginea propriu-zisa...
+            SmoothNoise(pgm);
 
             matrix = pgm.matrix;
 
@@ -38,9 +36,7 @@ namespace BreastCancerDetection.Classes
 
         /// <summary>
         /// Elimină zgomotul de înălțime (valorile extreme) din imaginea PGM.
-        /// </summary>
-        /// <param name="pgm">Imaginea PGM din care se elimină zgomotul.</param>
-        private static void RemoveHeightNoise(PGM pgm)
+        private static void SmoothNoise(PGM pgm)
         {
             MyBitmap image = pgm.bitmap;
             int width = image.Width;
@@ -79,10 +75,19 @@ namespace BreastCancerDetection.Classes
             pgm.Update(cleanImage);
         }
 
+
         #region HaarWavelet
         /// <summary>
-        /// Realizează transformata Haar pe matricea de imagine.
+        /// Această secțiune implementează un algoritm de eliminare a zgomotului (denoising)
+        /// folosind Transformata Haar Wavelet aplicată pe imagine.
+        /// Procesul constă în:
+        /// 1. Transformarea matricei imaginii în coeficienți Haar (pe rânduri);
+        /// 2. Calcularea unui prag adaptiv bazat pe deviația standard a coeficienților;
+        /// 3. Eliminarea coeficienților sub prag (considerați zgomot);
+        /// 4. Reconstrucția imaginii prin transformata inversă Haar;
+        /// 5. Conversia rezultatului într-o imagine Bitmap curățată.
         /// </summary>
+
         private static void Transform()
         {
             int height = matrix.GetLength(0);
@@ -100,9 +105,6 @@ namespace BreastCancerDetection.Classes
             }
         }
 
-        /// <summary>
-        /// Realizează transformata inversă Haar pe matricea de coeficienți.
-        /// </summary>
         private static void InverseTransform()
         {
             int height = coefficients.GetLength(0);
@@ -120,9 +122,6 @@ namespace BreastCancerDetection.Classes
             }
         }
 
-        /// <summary>
-        /// Calculează pragul adaptiv pe baza coeficientilor Haar.
-        /// </summary>
         private static void CalculateThreshold()
         {
             // Implementare simplă pentru calcularea pragului
@@ -131,9 +130,6 @@ namespace BreastCancerDetection.Classes
             threshold = mean + .5f * stdDev; // Prag adaptiv simplificat
         }
 
-        /// <summary>
-        /// Aplică pragul la coeficientii Haar pentru a elimina valorile mici.
-        /// </summary>
         private static void ApplyThreshold()
         {
             int height = coefficients.GetLength(0);
@@ -152,9 +148,6 @@ namespace BreastCancerDetection.Classes
             }
         }
 
-        /// <summary>
-        /// Convertește matricea denoizată într-o imagine Bitmap.
-        /// </summary>
         private static void ConvertMatrixToBitmap()
         {
             int height = denoisedMatrix.GetLength(0);
@@ -180,9 +173,6 @@ namespace BreastCancerDetection.Classes
             }
         }
 
-        /// <summary>
-        /// Aplică procesul complet Haar Wavelet.
-        /// </summary>
         private static void HaarWavelet()
         {
             // Transformă matricea în coeficienți Haar...
@@ -258,9 +248,7 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Obține toți vecinii unui pixel (8 direcții de vecinătate).
         /// </summary>
-        /// <param name="y">Coordonata pe axa Y a pixelului.</param>
-        /// <param name="x">Coordonata pe axa X a pixelului.</param>
-        /// <returns>Lista vecinilor.</returns>
+
         private static List<(int, int)> GetNeighbors(int y, int x)
         {
             List<(int, int)> neighbors = new List<(int, int)>(); // Listă pentru vecini
@@ -288,7 +276,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Înlătură regiunile mici și păstrează doar regiunea cea mai mare.
         /// </summary>
-        /// <param name="regions">Lista regiunilor detectate.</param>
         private static void RemoveRegions(List<List<(int, int)>> regions)
         {
             int width = cleanImage.Width;

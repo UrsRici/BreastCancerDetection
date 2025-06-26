@@ -12,10 +12,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Aplică algoritmul CLAHE pe o imagine bitmap pentru îmbunătățirea contrastului.
         /// </summary>
-        /// <param name="bitmap">Imaginea pe care se va aplica CLAHE.</param>
-        /// <param name="clipLimit">Limita de tăiere pentru histogramă.</param>
-        /// <param name="size">Dimensiunea ferestrei pentru aplicarea CLAHE.</param>
-        /// <returns>Imaginea procesată cu CLAHE și cu zgomotul eliminat.</returns>
         public static Bitmap Apply(Bitmap bitmap, double clipLimit, int size)
         {
             // Convertește Bitmap-ul într-o imagine în tonuri de gri
@@ -35,8 +31,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Înlătură zgomotul din imaginea procesată prin setarea pixelilor cu valori foarte mici la negru.
         /// </summary>
-        /// <param name="mat">Imaginea procesată pe care dorim să o curățăm de zgomot.</param>
-        /// <returns>Imaginea curățată de zgomot.</returns>
         private static Bitmap RemoveNoise(Bitmap mat)
         {
             // Creăm un nou obiect Bitmap pentru imaginea curățată

@@ -19,8 +19,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Aplică algoritmul GrowCut pe o matrice de date (imagine).
         /// </summary>
-        /// <param name="matrix">Matricea de date care reprezintă imaginea.</param>
-        /// <returns>O mască binară cu valorile segmentate.</returns>
         public static float[,] ApplyData(float[,] matrix, float th)
         {
 
@@ -65,8 +63,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Aplică algoritmul GrowCut pe un ROI dat.
         /// </summary>
-        /// <param name="ROI">Regiunea de interes pe care se aplică algoritmul.</param>
-        /// <returns>O matrice de valori segmentate (0 sau 255).</returns>
         public static float[,] Apply(float[,] ROI, float th)
         {
             // Inițializăm datele necesare (dimensiuni, puncte, forțe)
@@ -182,7 +178,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Inițializează variabilele necesare pentru procesarea imaginii (dimensiuni, puncte, forțe).
         /// </summary>
-        /// <param name="ROI">Regiunea de interes pentru care se face procesarea.</param>
         private static void Initialization(float[,] ROI, float th)
         {
             height = ROI.GetLength(0);
@@ -214,9 +209,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Obține vecinii unui pixel dat într-o fereastră de 3x3.
         /// </summary>
-        /// <param name="Y">Coordonata Y a pixelului curent.</param>
-        /// <param name="X">Coordonata X a pixelului curent.</param>
-        /// <returns>Lista vecinilor pixelului curent.</returns>
         private static List<pixel> getNeighbors(int Y, int X)
         {
             List<pixel> N = new List<pixel>();
@@ -237,9 +229,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Funcția care calculează forța de influență între două valori.
         /// </summary>
-        /// <param name="i1">Prima valoare (intensitatea pixelului curent).</param>
-        /// <param name="i2">A doua valoare (intensitatea vecinului).</param>
-        /// <returns>Forța de influență calculată între cele două valori.</returns>
         private static float f(float i1, float i2)
         {
             // Calculăm forța de influență în funcție de diferența dintre intensități
