@@ -21,8 +21,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Constructor care inițializează o imagine goală cu dimensiuni date.
         /// </summary>
-        /// <param name="h">Înălțimea imaginii.</param>
-        /// <param name="w">Lățimea imaginii.</param>
         public MyBitmap(int h, int w)
         {
             this.Width = w;
@@ -33,23 +31,16 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Returnează valoarea pixelului de la o anumită coordonată.
         /// </summary>
-        /// <param name="y">Coordonata pe axa Y.</param>
-        /// <param name="x">Coordonata pe axa X.</param>
-        /// <returns>Valoarea pixelului (intensitatea de gri).</returns>
         public byte GetPixel(int y, int x) { return this.PixelData[y, x]; }
 
         /// <summary>
         /// Setează valoarea unui pixel la coordonatele date.
         /// </summary>
-        /// <param name="y">Coordonata pe axa Y.</param>
-        /// <param name="x">Coordonata pe axa X.</param>
-        /// <param name="value">Noua valoare a pixelului.</param>
         public void SetPixel(int y, int x, byte value) { this.PixelData[y, x] = value; }
 
         /// <summary>
         /// Convertește obiectul `MyBitmap` într-o imagine `Bitmap` standard.
         /// </summary>
-        /// <returns>Un obiect `Bitmap` echivalent.</returns>
         public Bitmap ToBitmap()
         {
             Bitmap bitmap = new Bitmap(this.Width, this.Height);

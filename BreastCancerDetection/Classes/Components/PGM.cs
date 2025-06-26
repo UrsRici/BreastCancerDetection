@@ -35,7 +35,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Constructor care încarcă o imagine PGM dintr-un fișier.
         /// </summary>
-        /// <param name="filePath">Calea către fișierul PGM</param>
         public PGM(string filePath)
         {
             StreamReader sr = new StreamReader(filePath);
@@ -78,7 +77,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Actualizează imaginea folosind un obiect MyBitmap.
         /// </summary>
-        /// <param name="bmp">Noua imagine MyBitmap</param>
         public void Update(MyBitmap bmp)
         {
             this.bitmap = bmp;
@@ -98,7 +96,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Actualizează imaginea folosind o matrice de pixeli (float).
         /// </summary>
-        /// <param name="matrix">Matricea de pixeli</param>
         public void Update(float[,] matrix)
         {
             this.width = matrix.GetLength(0);
@@ -118,7 +115,6 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Actualizează imaginea folosind un obiect Bitmap.
         /// </summary>
-        /// <param name="bmp">Noua imagine Bitmap</param>
         public void Update(Bitmap bmp)
         {
             this.magicNumber = "P5"; // Format standard pentru PGM binar
