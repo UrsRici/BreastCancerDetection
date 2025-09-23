@@ -170,19 +170,13 @@ namespace BreastCancerDetection.Classes
         #endregion
 
         #region Afișări
-        /// <summary>
         /// Afișează imaginea în controlul PictureBox.
-        /// </summary>
         public void ShowImage(PictureBox p) { p.Image = this.bitmap.ToBitmap(); }
 
-        /// <summary>
         /// Afișează masca în controlul PictureBox.
-        /// </summary>
         public void ShowMask(PictureBox p) { p.Image = this.mask; }
 
-        /// <summary>
         /// Afișează imaginea cu masca aplicată în controlul PictureBox.
-        /// </summary>
         public void Show(PictureBox p)
         {
             Bitmap image = new Bitmap(width, height);

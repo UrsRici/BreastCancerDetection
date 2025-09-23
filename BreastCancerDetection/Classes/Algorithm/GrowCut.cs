@@ -203,7 +203,7 @@ namespace BreastCancerDetection.Classes
                 }
             }
             // Setăm forța maximă pentru pixelul cu valoarea cea mai mare
-            strength[Y, X] = 1;
+            strength[height / 2, width / 2] = 1; // strength[Y, X] = 1
         }
 
         /// <summary>

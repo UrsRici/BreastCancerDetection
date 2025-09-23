@@ -8,6 +8,11 @@ using ZedGraph;
 using System.Windows.Forms.DataVisualization.Charting;
 using BreastCancerDetection.Classes;
 using Krypton.Toolkit;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
+using Emgu.CV.Util;
+using Emgu.CV.Structure;
+using System.Threading.Tasks;
 
 namespace BreastCancerDetection
 {
@@ -59,6 +64,19 @@ namespace BreastCancerDetection
             if (pictureBox.Image == null)
                 MessageBox.Show("Please select an image first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        private void RunWithWaitCursor(Action action)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor; // schimbă cursorul
+                Application.DoEvents();           // forțează refresh imediat
+                action();                         // execută acțiunea dorită
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;    // revine la normal
+            }
+        }
         private void Button_information_Click(object sender, EventArgs e)
         {
             Information information = new Information();
@@ -89,6 +107,7 @@ namespace BreastCancerDetection
         #region Selectare Imagini
         private void Button_select_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             // Create an OpenFileDialog to select a file
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -110,6 +129,7 @@ namespace BreastCancerDetection
 
                 ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
             }
+            this.Cursor = Cursors.Default;
         }
         private void Button_relode_Click(object sender, EventArgs e)
         {
@@ -129,8 +149,8 @@ namespace BreastCancerDetection
             if (img != null)
             {
                 FolderBrowserDialog folderDialog = new FolderBrowserDialog
-                { 
-                    Description = "Select a folder to save the images" 
+                {
+                    Description = "Select a folder to save the images"
                 };
 
                 if (folderDialog.ShowDialog() == DialogResult.OK)
@@ -177,7 +197,7 @@ namespace BreastCancerDetection
                     }
 
                     // Calea pentru imaginea originală (fără preprocesare)
-                    if (original_iamge != null) 
+                    if (original_iamge != null)
                     {
                         string originalImageUnprocessedPath = Path.Combine(newFolderPath, fileName + "_original.jpg");
                         original_iamge.Save(originalImageUnprocessedPath);
@@ -198,136 +218,171 @@ namespace BreastCancerDetection
         #endregion
 
         #region Preprocesare
+
+        private void Button_autoProcessing_Click(object sender, EventArgs e)
+        {
+            RunWithWaitCursor(() =>
+            {
+                ImageVerify();
+
+                Button_Preprocessing_Click(sender, e);  // Preprocessing
+                Button_typeTissue_Click(sender, e);     // Tissue Type
+                Button_CLAHE_Click(sender, e);          // CLAHE
+                Button_GrowCut_Click(sender, e);        // GrowCut
+                Button_Charts_Click(sender, e);         // Charts
+            });
+        }
+
         private void Button_Preprocessing_Click(object sender, EventArgs e)
         {
-            //info_log.Text += "------Preprocessing------\n";
-            ImageVerify();
+            RunWithWaitCursor(() =>
+            {
+                //info_log.Text += "------Preprocessing------\n";
+                ImageVerify();
 
-            img.Update(Preprocessing.Apply(img));
-            preproces_iamge = img.ToBitmap();
+                img.Update(Preprocessing.Apply(img));
+                preproces_iamge = img.ToBitmap();
 
-            img.ShowImage(pictureBox);
+                img.ShowImage(pictureBox);
+            });
         }
         private void Button_CLHE_Click(object sender, EventArgs e)
         {
-            //info_log.Text += "-------------CLHE------------\n";
-            ImageVerify();
+            RunWithWaitCursor(() =>
+            {
+                //info_log.Text += "-------------CLHE------------\n";
+                ImageVerify();
 
-            float cL = float.Parse(contrastLimit.Text);
-            MyBitmap myBitmap = img.bitmap;
+                float cL = float.Parse(contrastLimit.Text);
+                MyBitmap myBitmap = img.bitmap;
 
-            CLHE.Apply(ref myBitmap, cL);
+                CLHE.Apply(ref myBitmap, cL);
 
-            img.Update(myBitmap);
+                img.Update(myBitmap);
 
-            img.ShowImage(pictureBox);
+                img.ShowImage(pictureBox);
+            });
         }
         private void Button_CLAHE_Click(object sender, EventArgs e)
         {
-            //info_log.Text += "-------------CLAHE------------\n";
-            ImageVerify();
+            RunWithWaitCursor(() =>
+            {
+                //info_log.Text += "-------------CLAHE------------\n";
+                ImageVerify();
 
-            double cL = (double) contrastLimit.Value;
-            int wS = (int) windowSize.Value;
+                double cL = (double)contrastLimit.Value;
+                int wS = (int)windowSize.Value;
 
-            img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
+                img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
 
-            img.ShowImage(pictureBox);
+                img.ShowImage(pictureBox);
+            });
         }
         private void Button_typeTissue_Click(object sender, EventArgs e)
         {
-            Dictionary<string, float> Limit = new Dictionary<string, float>
+            RunWithWaitCursor(() =>
             {
-                { "Fatty", 5f },
-                { "Fatty-Glandular", 3f },
-                { "Dense-Glandular", 2f }
-            };
-            Dictionary<string, int> Size = new Dictionary<string, int>
-            {
-                { "Fatty", 4 },
-                { "Fatty-Glandular", 6 },
-                { "Dense-Glandular", 8 }
-            };
+                Dictionary<string, float> Limit = new Dictionary<string, float>
+                {
+                    { "Fatty", 5f },
+                    { "Fatty-Glandular", 3f },
+                    { "Dense-Glandular", 2f }
+                };
+                    Dictionary<string, int> Size = new Dictionary<string, int>
+                {
+                    { "Fatty", 4 },
+                    { "Fatty-Glandular", 6 },
+                    { "Dense-Glandular", 8 }
+                };
 
-            float climpLimit = 0f;
-            ModelOutput output = MLTissue.Predict(img.ToModelInput());
-            var info = MLTissue.GetSortedScoresWithLabels(output);
-            label_Tissue.Text = output.PredictedLabel;
-            Tissue_Info.Text = string.Empty;
+                float climpLimit = 0f;
+                ModelOutput output = MLTissue.Predict(img.ToModelInput());
+                var info = MLTissue.GetSortedScoresWithLabels(output);
+                label_Tissue.Text = output.PredictedLabel;
+                Tissue_Info.Text = string.Empty;
 
-            Tissue_Info.Text = string.Join("\n", info.Select(item => $"{item.Key}: {item.Value}%"));
-            climpLimit = info.Sum(item => Limit[item.Key] * item.Value / 100f);
+                Tissue_Info.Text = string.Join("\n", info.Select(item => $"{item.Key}: {item.Value}%"));
+                climpLimit = info.Sum(item => Limit[item.Key] * item.Value / 100f);
 
-            contrastLimit.Text = Math.Round(climpLimit, 2).ToString();
-            windowSize.Text = Size[output.PredictedLabel].ToString();
+                contrastLimit.Text = Math.Round(climpLimit, 2).ToString();
+                windowSize.Text = Size[output.PredictedLabel].ToString();
 
+            });
         }
         #endregion
 
         #region Segmentare
         private void Button_selectROI_Click(object sender, EventArgs e)
         {
-            if (pictureBox.Image != null)
+            RunWithWaitCursor(() =>
             {
-                pictureBox.ROIselect_Button_active = !pictureBox.ROIselect_Button_active;
-                if (pictureBox.ROIselect_Button_active)
+                if (pictureBox.Image != null)
                 {
-                    pictureBox.Cursor = Cursors.Cross;
+                    pictureBox.ROIselect_Button_active = !pictureBox.ROIselect_Button_active;
+                    if (pictureBox.ROIselect_Button_active)
+                    {
+                        pictureBox.Cursor = Cursors.Cross;
+                    }
+                    else
+                    {
+                        pictureBox.Cursor = Cursors.Hand;
+
+                        Point p = new Point(
+                            Math.Min(ROIendPoint.X, ROIstartPoint.X),
+                            Math.Min(ROIendPoint.Y, ROIstartPoint.Y));
+
+                        ROI = new float[
+                            Math.Abs(ROIendPoint.Y - ROIstartPoint.Y),
+                            Math.Abs(ROIendPoint.X - ROIstartPoint.X)];
+
+                        MyBitmap aux = img.bitmap;
+
+                        for (int y = 0; y < ROI.GetLength(0); y++)
+                            for (int x = 0; x < ROI.GetLength(1); x++)
+                                ROI[y, x] = aux.GetPixel((p.Y + y), (p.X + x));
+                    }
                 }
-                else
-                {
-                    pictureBox.Cursor = Cursors.Hand;
-
-                    Point p = new Point(
-                        Math.Min(ROIendPoint.X, ROIstartPoint.X),
-                        Math.Min(ROIendPoint.Y, ROIstartPoint.Y));
-
-                    ROI = new float[
-                        Math.Abs(ROIendPoint.Y - ROIstartPoint.Y),
-                        Math.Abs(ROIendPoint.X - ROIstartPoint.X)];
-
-                    MyBitmap aux = img.bitmap;
-
-                    for (int y = 0; y < ROI.GetLength(0); y++)
-                        for (int x = 0; x < ROI.GetLength(1); x++)
-                            ROI[y, x] = aux.GetPixel((p.Y + y), (p.X + x));
-                }
-            }
-            else MessageBox.Show("Please select an image first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show("Please select an image first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            });        
         }
         private void Button_RemoveROI_Click(object sender, EventArgs e)
         {
-            if (!pictureBox.IsROIfig()) { return; }
+            RunWithWaitCursor(() =>
+            {
+                if (!pictureBox.IsROIfig()) { return; }
 
-            Point p0 = new Point(
-                Math.Min(ROIstartPoint.X, ROIendPoint.X),
-                Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
+                Point p0 = new Point(
+                    Math.Min(ROIstartPoint.X, ROIendPoint.X),
+                    Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
 
-            Point p1 = new Point(
-                Math.Max(ROIstartPoint.X, ROIendPoint.X),
-                Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
+                Point p1 = new Point(
+                    Math.Max(ROIstartPoint.X, ROIendPoint.X),
+                    Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
 
-            img.RemoveArea(p0, p1);
-            pictureBox.ResetROIfig();
-            img.ShowImage(pictureBox);
+                img.RemoveArea(p0, p1);
+                pictureBox.ResetROIfig();
+                img.ShowImage(pictureBox);
+            });
         }
         private void Button_GrowCutOnROI_Click(object sender, EventArgs e)
         {
+            RunWithWaitCursor(() =>
+            {
+                if (!pictureBox.IsROIfig()) { return; }
+                if (pictureBox.ROIselect_Button_active) { Button_selectROI_Click(sender, e); }
 
-            if (!pictureBox.IsROIfig()) { return; }
-            if (pictureBox.ROIselect_Button_active) { Button_selectROI_Click(sender, e); }
+                Point p0 = new Point(
+                   Math.Min(ROIstartPoint.X, ROIendPoint.X),
+                   Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
 
-            Point p0 = new Point(
-               Math.Min(ROIstartPoint.X, ROIendPoint.X),
-               Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
+                Point p1 = new Point(
+                    Math.Max(ROIstartPoint.X, ROIendPoint.X),
+                    Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
 
-            Point p1 = new Point(
-                Math.Max(ROIstartPoint.X, ROIendPoint.X),
-                Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
-
-            img.ApplyMask(p0, p1, GrowCut.Apply(ROI, (float)thresHold.Value));
-            pictureBox.ResetROIfig();
-            img.Show(pictureBox);
+                img.ApplyMask(p0, p1, GrowCut.Apply(ROI, (float)thresHold.Value));
+                pictureBox.ResetROIfig();
+                img.Show(pictureBox);
+            });
         }
         private void ResetROI()
         {
@@ -338,13 +393,16 @@ namespace BreastCancerDetection
         }
         private void Button_GrowCut_Click(object sender, EventArgs e)
         {
-            ImageData.Load();
-            ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
-            float[,] mask = GrowCut.ApplyData(img.matrix, (float)thresHold.Value);
+            RunWithWaitCursor(() =>
+            {
+                ImageData.Load();
+                ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
+                float[,] mask = GrowCut.ApplyData(img.matrix, (float)thresHold.Value);
 
-            img.ApplyMask(mask);
-            pictureBox.ResetROIfig();
-            img.Show(pictureBox);
+                img.ApplyMask(mask);
+                pictureBox.ResetROIfig();
+                img.Show(pictureBox);
+            });
         }
         #endregion
 
@@ -461,7 +519,7 @@ namespace BreastCancerDetection
             if (currentButton != null)
             {
                 LabelInfoButton.Location = new Point(
-                    lastMousePosition.X + currentButton.Location.X + 28, 
+                    lastMousePosition.X + currentButton.Location.X + 28,
                     lastMousePosition.Y + currentButton.Location.Y + 68);
                 LabelInfoButton.Text = ButtonsInfo.GetInfo(currentButton.Name);
                 int numarRanduri = LabelInfoButton.GetLineFromCharIndex(LabelInfoButton.Text.Length);
@@ -472,5 +530,27 @@ namespace BreastCancerDetection
             timer_hover.Stop();
         }
         #endregion
+
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+
+            Mat grayMask = new Image<Gray, byte>(img.mask).Mat;
+
+            Mat binaryMask = new Mat();
+            CvInvoke.Threshold(grayMask, binaryMask, 1, 255, ThresholdType.Binary);
+
+            VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
+            CvInvoke.FindContours(binaryMask, contours, null, RetrType.External, ChainApproxMethod.ChainApproxSimple);
+
+            Mat image = new Image<Gray, byte>(img.ToBitmap()).Mat;
+            CvInvoke.DrawContours(image, contours, -1, new MCvScalar(0, 255, 0), 1);
+
+            tumorsData tumorsData = new tumorsData(contours, image);
+
+            richText1.Text = tumorsData.ToString();
+            pictureBox.Image = image.Bitmap;
+        }
+
     }
 }
