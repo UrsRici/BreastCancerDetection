@@ -177,6 +177,7 @@
     <Compile Include="Classes\Algorithm\CLHE.cs" />
     <Compile Include="Classes\Algorithm\GrowCut.cs" />
     <Compile Include="Classes\Components\ButtonsInfo.cs" />
+    <Compile Include="Classes\Components\Class1.cs" />
     <Compile Include="Classes\Components\TumorData.cs" />
     <Compile Include="Classes\Components\ImageData.cs" />
     <Compile Include="Classes\Components\MyBitmap.cs" />

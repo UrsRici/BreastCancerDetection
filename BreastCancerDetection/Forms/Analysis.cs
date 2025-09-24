@@ -534,22 +534,23 @@ namespace BreastCancerDetection
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-
             Mat grayMask = new Image<Gray, byte>(img.mask).Mat;
 
             Mat binaryMask = new Mat();
             CvInvoke.Threshold(grayMask, binaryMask, 1, 255, ThresholdType.Binary);
+            pictureBox.Image = binaryMask.Bitmap;
 
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
             CvInvoke.FindContours(binaryMask, contours, null, RetrType.External, ChainApproxMethod.ChainApproxSimple);
 
             Mat image = new Image<Gray, byte>(img.ToBitmap()).Mat;
-            CvInvoke.DrawContours(image, contours, -1, new MCvScalar(0, 255, 0), 1);
+            Mat mat = image.Clone();
+            CvInvoke.DrawContours(mat, contours, -1, new MCvScalar(0, 255, 0), 1);
+            pictureBox.Image = mat.Bitmap;
 
             tumorsData tumorsData = new tumorsData(contours, image);
 
             richText1.Text = tumorsData.ToString();
-            pictureBox.Image = image.Bitmap;
         }
 
     }
