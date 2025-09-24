@@ -12,7 +12,10 @@ namespace BreastCancerDetection.Classes
     public class tumorsData
     {
         Dictionary<int, tumorData> tumors = new Dictionary<int, tumorData>();
-
+        public tumorsData()
+        {
+            this.tumors = new Dictionary<int, tumorData>();
+        }
         public tumorsData(VectorOfVectorOfPoint contours, Mat image)
         {
             for (int i = 0; i < contours.Size; i++)
