@@ -112,8 +112,8 @@ namespace BreastCancerDetection
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 // Set the filter to accept only.pgm files
-                Filter = "PGM Files (*.pgm)|*.pgm",
-                Title = "Select a PGM File"
+                Filter = "Image Files (*.pgm;*.png;*.jpg;*.jpeg)|*.pgm;*.png;*.jpg;*.jpeg",
+                Title = "Select a image"
             };
 
             ResetROI();

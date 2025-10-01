@@ -13,13 +13,7 @@ namespace BreastCancerDetection.Classes
         private Rectangle ROIfig { get; set; } = new Rectangle();
         public void SetROIfig(Point location, Size size) { ROIfig = new Rectangle(location, size); }
         public void ResetROIfig() { ROIfig = new Rectangle(); }
-        public bool IsROIfig()
-        { 
-            if (ROIfig == Rectangle.Empty)
-                return false;
-            else
-                return true;
-        }
+        public bool IsROIfig() { if (ROIfig == Rectangle.Empty) return false; else return true; }
 
         public Brush ROIselectionBrush = new SolidBrush(Color.FromArgb(100, 240, 235, 0));
 
@@ -187,13 +181,10 @@ namespace BreastCancerDetection.Classes
             }
             else
             {
-                if (e.Delta == 0)
-                {
-                    return;
-                }
+                if (e.Delta == 0) { return; }
                 num = 0.5;
             }
-            if (num == 0.5 && (this.Image.Width * this.ZoomScale <= this.Width || this.Image.Height * this.ZoomScale <= this.Height))
+            if (num == 0.5 && (this.Image.Width * this.ZoomScale <= this.Width && this.Image.Height * this.ZoomScale <= this.Height))
                 return;
 
             SetZoomScale(ZoomScale * num, e.Location);

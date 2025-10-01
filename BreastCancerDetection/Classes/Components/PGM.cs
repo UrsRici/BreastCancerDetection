@@ -33,9 +33,18 @@ namespace BreastCancerDetection.Classes
         }
 
         /// <summary>
-        /// Constructor care încarcă o imagine PGM dintr-un fișier.
+        /// Constructor care încarcă o imagine pgm/jpg/png/jpeg dintr-un fișier.
         /// </summary>
         public PGM(string filePath)
+        {
+            string ext = Path.GetExtension(filePath).ToLower();
+
+            if (ext != ".pgm")
+                InitFromBitmap(filePath);
+            else
+                InitFromPGM(filePath);
+        }
+        public void InitFromPGM(string filePath)
         {
             StreamReader sr = new StreamReader(filePath);
 
@@ -68,6 +77,31 @@ namespace BreastCancerDetection.Classes
                     // Setăm pixelul pe baza valorii citite
                     this.bitmap.SetPixel(y, this.width - x - 1, pixel);
                     this.matrix[y, this.width - x - 1] = pixel;
+                }
+            }
+        }
+        public void InitFromBitmap(string filePath)
+        {
+            Bitmap bmp = new Bitmap(filePath);
+
+            this.magicNumber = "P5";
+            this.width = bmp.Width;
+            this.height = bmp.Height;
+            this.maxVal = 255;
+
+            this.bitmap = new MyBitmap(bmp.Height, bmp.Width);
+            this.mask = new Bitmap(bmp.Width, bmp.Height);
+            this.matrix = new float[ bmp.Height, bmp.Width];
+
+            for (int y = 0; y < bmp.Height; y++)
+            {
+                for (int x = 0; x < bmp.Width; x++)
+                {
+                    Color pixelColor = bmp.GetPixel(x, y);
+                    byte gray = (byte)((pixelColor.R + pixelColor.G + pixelColor.B) / 3);
+
+                    this.bitmap.SetPixel(y, x, gray);
+                    this.matrix[y, x] = gray;
                 }
             }
         }

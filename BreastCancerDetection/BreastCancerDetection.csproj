@@ -177,7 +177,7 @@
     <Compile Include="Classes\Algorithm\CLHE.cs" />
     <Compile Include="Classes\Algorithm\GrowCut.cs" />
     <Compile Include="Classes\Components\ButtonsInfo.cs" />
-    <Compile Include="Classes\Components\Class1.cs" />
+    <Compile Include="Classes\Components\ImagePopup.cs" />
     <Compile Include="Classes\Components\TumorData.cs" />
     <Compile Include="Classes\Components\ImageData.cs" />
     <Compile Include="Classes\Components\MyBitmap.cs" />
@@ -604,4 +604,8 @@
   </Target>
   <Import Project="..\packages\EmguCV.3.1.0.1\build\EmguCV.targets" Condition="Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.targets')" />
   <Import Project="..\packages\Microsoft.ML.3.0.1\build\netstandard2.0\Microsoft.ML.targets" Condition="Exists('..\packages\Microsoft.ML.3.0.1\build\netstandard2.0\Microsoft.ML.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>
