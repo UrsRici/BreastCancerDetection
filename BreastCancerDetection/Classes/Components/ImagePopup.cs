@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Emgu.CV;
+using Emgu.CV.Structure;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -23,7 +25,7 @@ namespace BreastCancerDetection.Classes
                 Size = new Size(800, 600)
             };
 
-            MyImageBox pictureBox = new MyImageBox
+            PictureBox pictureBox = new PictureBox
             {
                 Dock = DockStyle.Fill,
                 Image = (Bitmap)bitmap.Clone(),
@@ -36,6 +38,31 @@ namespace BreastCancerDetection.Classes
                                 // sau popup.Show();  dacă vrei non-modal
         }
 
+        public static void Show(Mat mat, string textMessage)
+        {
+            if (mat == null) return;
+
+            Bitmap bmp = mat.Bitmap; 
+            Show(bmp, textMessage);
+            bmp.Dispose();
+        }
+        public static void Show(float[,] matrix, string textMassage)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+            Bitmap bmp = new Bitmap(cols, rows);
+            for (int y = 0; y < rows; y++)
+            {
+                for (int x = 0; x < cols; x++)
+                {
+                    // Normalizare în [0..255]
+                    int value = (int)matrix[y, x];
+                    value = Math.Max(0, Math.Min(255, value));
+                    bmp.SetPixel(x, y, Color.FromArgb(value, value, value));
+                }
+            }
+            Show(bmp, textMassage);
+        }
         public static void Show(byte[,,] data, string textMessage)
         {
             Bitmap bitmap = ByteArrayToBitmapGray(data);
@@ -59,7 +86,6 @@ namespace BreastCancerDetection.Classes
             }
             Show(bmp, textMessage);
         }
-
         public static Bitmap ByteArrayToBitmapGray(byte[,,] data)
         {
             int rows = data.GetLength(0);
@@ -81,15 +107,6 @@ namespace BreastCancerDetection.Classes
         }
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 

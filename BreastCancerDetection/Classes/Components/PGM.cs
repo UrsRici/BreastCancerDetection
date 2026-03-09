@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
 
@@ -80,10 +82,42 @@ namespace BreastCancerDetection.Classes
                 }
             }
         }
+        private static Bitmap ResizeWithBlackBars(Bitmap original, int targetSize)
+        {
+            // Dimensiunile originale
+            int originalWidth = original.Width;
+            int originalHeight = original.Height;
+
+            // Calculăm factorul de scalare proporțional
+            float scale = Math.Min((float)targetSize / originalWidth, (float)targetSize / originalHeight);
+
+            // Dimensiunile redimensionate păstrând proporțiile
+            int newWidth = (int)(originalWidth * scale);
+            int newHeight = (int)(originalHeight * scale);
+
+            // Calculăm poziția pentru a centra imaginea în canvas
+            int offsetX = (targetSize - newWidth) / 2;
+            int offsetY = (targetSize - newHeight) / 2;
+
+            // Creăm noul canvas negru (pătrat)
+            Bitmap result = new Bitmap(targetSize, targetSize);
+            using (Graphics g = Graphics.FromImage(result))
+            {
+                g.Clear(Color.Black);
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                // Desenăm imaginea redimensionată centrată
+                g.DrawImage(original, offsetX, offsetY, newWidth, newHeight);
+            }
+
+            return result;
+        }
         public void InitFromBitmap(string filePath)
         {
             Bitmap bmp = new Bitmap(filePath);
-
+            bmp = ResizeWithBlackBars(bmp, 1024);
             this.magicNumber = "P5";
             this.width = bmp.Width;
             this.height = bmp.Height;
@@ -275,6 +309,7 @@ namespace BreastCancerDetection.Classes
             {
                 for (int x = 0; x < width; x++)
                 {
+                    if (roi[y, x] == 0) continue; // Sărim peste pixelii cu valoarea 0
                     Color color = Color.FromArgb((byte)roi[y, x], 0, 0);
                     this.mask.SetPixel(x, y, color); // Aplicăm masca pe întreaga imagine
                 }

@@ -93,6 +93,10 @@ namespace BreastCancerDetection
             this.button_Charts = new Krypton.Toolkit.KryptonButton();
             this.button_show = new Krypton.Toolkit.KryptonButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            this.number2 = new System.Windows.Forms.NumericUpDown();
+            this.number = new System.Windows.Forms.NumericUpDown();
+            this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.richText1 = new System.Windows.Forms.RichTextBox();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             this.pictureBox = new BreastCancerDetection.Classes.MyImageBox();
@@ -113,6 +117,8 @@ namespace BreastCancerDetection
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).BeginInit();
             this.KryptonTableLayoutPanel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.number2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.number)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1059,6 +1065,10 @@ namespace BreastCancerDetection
             this.tabPage5.AutoScroll = true;
             this.tabPage5.AutoScrollMinSize = new System.Drawing.Size(400, 100);
             this.tabPage5.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage5.Controls.Add(this.kryptonButton3);
+            this.tabPage5.Controls.Add(this.number2);
+            this.tabPage5.Controls.Add(this.number);
+            this.tabPage5.Controls.Add(this.kryptonButton2);
             this.tabPage5.Controls.Add(this.richText1);
             this.tabPage5.Controls.Add(this.kryptonButton1);
             this.tabPage5.Location = new System.Drawing.Point(4, 34);
@@ -1066,6 +1076,52 @@ namespace BreastCancerDetection
             this.tabPage5.Size = new System.Drawing.Size(450, 442);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Data";
+            // 
+            // kryptonButton3
+            // 
+            this.kryptonButton3.Location = new System.Drawing.Point(16, 48);
+            this.kryptonButton3.Name = "kryptonButton3";
+            this.kryptonButton3.Size = new System.Drawing.Size(180, 25);
+            this.kryptonButton3.StateCommon.Border.Rounding = 5F;
+            this.kryptonButton3.TabIndex = 5;
+            this.kryptonButton3.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.kryptonButton3.Values.Text = "analizare";
+            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
+            // 
+            // number2
+            // 
+            this.number2.Location = new System.Drawing.Point(341, 44);
+            this.number2.Name = "number2";
+            this.number2.Size = new System.Drawing.Size(50, 26);
+            this.number2.TabIndex = 4;
+            this.number2.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            // 
+            // number
+            // 
+            this.number.Location = new System.Drawing.Point(290, 44);
+            this.number.Name = "number";
+            this.number.Size = new System.Drawing.Size(45, 26);
+            this.number.TabIndex = 3;
+            this.number.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // kryptonButton2
+            // 
+            this.kryptonButton2.Location = new System.Drawing.Point(211, 13);
+            this.kryptonButton2.Name = "kryptonButton2";
+            this.kryptonButton2.Size = new System.Drawing.Size(180, 25);
+            this.kryptonButton2.StateCommon.Border.Rounding = 5F;
+            this.kryptonButton2.TabIndex = 2;
+            this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.kryptonButton2.Values.Text = "spatii suspicioase";
+            this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
             // 
             // richText1
             // 
@@ -1143,6 +1199,8 @@ namespace BreastCancerDetection
             ((System.ComponentModel.ISupportInitialize)(this.chart_CumulativeHistogram)).EndInit();
             this.KryptonTableLayoutPanel1.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.number2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.number)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -1202,6 +1260,10 @@ namespace BreastCancerDetection
         private TabPage tabPage5;
         private KryptonButton kryptonButton1;
         private RichTextBox richText1;
+        private KryptonButton kryptonButton2;
+        private NumericUpDown number;
+        private NumericUpDown number2;
+        private KryptonButton kryptonButton3;
     }
 }
 

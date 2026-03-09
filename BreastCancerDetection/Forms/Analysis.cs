@@ -13,6 +13,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
 using System.Threading.Tasks;
+using BreastCancerDetection.NewFolder1;
 
 namespace BreastCancerDetection
 {
@@ -379,7 +380,8 @@ namespace BreastCancerDetection
                     Math.Max(ROIstartPoint.X, ROIendPoint.X),
                     Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
 
-                img.ApplyMask(p0, p1, GrowCut.Apply(ROI, (float)thresHold.Value));
+                img.ApplyMask(GrowCut.Apply(img.matrix, (float)thresHold.Value, p0, p1));
+                //img.ApplyMask(p0, p1, GrowCut.Apply(ROI, (float)thresHold.Value));
                 pictureBox.ResetROIfig();
                 img.Show(pictureBox);
             });
@@ -534,7 +536,7 @@ namespace BreastCancerDetection
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            Mat grayMask = new Image<Gray, byte>(img.mask).Mat;
+            Mat grayMask = img.mask.ToMat();
 
             Mat binaryMask = new Mat();
             CvInvoke.Threshold(grayMask, binaryMask, 1, 255, ThresholdType.Binary);
@@ -543,15 +545,55 @@ namespace BreastCancerDetection
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
             CvInvoke.FindContours(binaryMask, contours, null, RetrType.External, ChainApproxMethod.ChainApproxSimple);
 
-            Mat image = new Image<Gray, byte>(img.ToBitmap()).Mat;
+            Mat image = img.ToBitmap().ToMat();
             Mat mat = image.Clone();
             CvInvoke.DrawContours(mat, contours, -1, new MCvScalar(0, 255, 0), 1);
             pictureBox.Image = mat.Bitmap;
 
-            tumorsData tumorsData = new tumorsData(contours, image);
+            TumorsData tumorsData = new TumorsData(contours, image);
 
             richText1.Text = tumorsData.ToString();
         }
 
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+
+            /*SLIAnalyzer analyzer = new SLIAnalyzer();
+
+            var regions = analyzer.Analyze(img,(float)number.Value, (int)number2.Value);
+            richText1.Text = "Regions of interest:\n" + regions.Count;
+            foreach (var r in regions)
+            {
+                using (Graphics g = Graphics.FromImage(img.mask))
+                {
+                    g.DrawRectangle(Pens.Red, r.X, r.Y, r.Width, r.Height);
+                    g.DrawLine(Pens.Red, r.X, r.Y, r.X + r.Width, r.Y + r.Height);
+                    g.DrawLine(Pens.Red, r.X + r.Width, r.Y, r.X, r.Y + r.Height);
+                }
+            }
+            img.Show(pictureBox);
+            richText1.Text += "\n\nFeatures of the regions:\n" + analyzer.LISTSHOW;
+            /* Bitmap roi = new Bitmap(10, 10);
+             roi = new Bitmap(ROI.GetLength(1), ROI.GetLength(0));
+             for (int y = 0; y < ROI.GetLength(0); y++)
+                 for (int x = 0; x < ROI.GetLength(1); x++)
+                 {
+                     byte c = (byte)ROI[y, x];
+                     Color color = Color.FromArgb(c, c, c); // Conversie grayscale
+                     roi.SetPixel(x, y, color);
+                 }
+             //pictureBox.Image = roi;
+             if (pictureBox.ROIselect_Button_active)
+                 Button_selectROI_Click(new object(), new EventArgs());
+             var regions = analyzer.Analyze(ROI);
+             richText1.Text = "Feature: \n";
+             richText1.Text += string.Join("\n", regions.Select(kvp => $"{kvp.Key}: {kvp.Value}"));*/
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = FourierProcessor.GetFourierSpectrum(img.ToBitmap());
+            pictureBox.Image = bmp;
+        }
     }
 }

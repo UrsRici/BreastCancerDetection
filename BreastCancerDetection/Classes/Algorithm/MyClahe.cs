@@ -1,6 +1,7 @@
 ﻿using Emgu.CV.Structure;
 using Emgu.CV;
 using System.Drawing;
+using Emgu.CV.CvEnum;
 
 namespace BreastCancerDetection.Classes
 {
@@ -14,20 +15,15 @@ namespace BreastCancerDetection.Classes
         /// </summary>
         public static Bitmap Apply(Bitmap bitmap, double clipLimit, int size)
         {
-            // Convertește Bitmap-ul într-o imagine în tonuri de gri
-            Image<Gray, byte> image = new Image<Gray, byte>(bitmap);
+            // Convertim bitmap-ul la grayscale
+            Mat input = bitmap.ToMat();
 
-            // Creăm obiecte Mat pentru a lucra cu datele imaginii
-            Mat input = image.Mat;
             Mat output = new Mat();
-
-            // Aplicăm CLAHE pe imaginea de intrare
             CvInvoke.CLAHE(input, clipLimit, new Size(size, size), output);
 
-            // Înlăturăm zgomotul din imaginea rezultată
             return RemoveNoise(output.Bitmap);
         }
-
+        
         /// <summary>
         /// Înlătură zgomotul din imaginea procesată prin setarea pixelilor cu valori foarte mici la negru.
         /// </summary>

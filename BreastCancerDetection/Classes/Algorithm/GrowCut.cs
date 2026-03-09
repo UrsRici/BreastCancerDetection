@@ -1,5 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static Tensorflow.TensorShapeProto.Types;
 
 namespace BreastCancerDetection.Classes
 {
@@ -33,38 +39,47 @@ namespace BreastCancerDetection.Classes
                 // Procesăm fiecare regiune de interes (ROI)
                 foreach (var data in datas)
                 {
-                    // Creăm o matrice temporară pentru ROI
-                    float[,] ROI = new float[2 * data.Radius + 1, 2 * data.Radius + 1];
-
-                    // Extragem regiunea de interes (ROI) din matricea inițială
-                    for (int y = 0; y < ROI.GetLength(0); y++)
-                    {
-                        for (int x = 0; x < ROI.GetLength(1); x++)
-                        {
-                            ROI[y, x] = matrix[y + data.Y - data.Radius, x + data.X - data.Radius];
-                        }
-                    }
-                    // Aplicăm algoritmul GrowCut pe ROI
-                    ROI = Apply(ROI, th);
-
-                    // Actualizăm masca cu rezultatele procesării ROI
-                    for (int y = 0; y < ROI.GetLength(0); y++)
-                    {
-                        for (int x = 0; x < ROI.GetLength(1); x++)
-                        {
-                            mask[y + data.Y - data.Radius, x + data.X - data.Radius] = ROI[y, x];
-                        }
-                    }
+                    // Definim punctele care delimitează ROI-ul
+                    Point p0 = new Point(Math.Max(0, data.X - data.Radius), Math.Max(0, data.Y - data.Radius));
+                    Point p1 = new Point(Math.Min(matrix.GetLength(1) - 1, data.X + data.Radius), Math.Min(matrix.GetLength(0) - 1, data.Y + data.Radius));
+                    mask = MargeMask(Apply(matrix, th, p0, p1), mask);
                 }
             }
             return mask;
         }
-
+        private static float[,] MargeMask(float[,] newMask, float[,]oldMask)
+        {
+            if (oldMask == null) return newMask;
+            int height = Math.Min(oldMask.GetLength(0), newMask.GetLength(0));
+            int width = Math.Min(oldMask.GetLength(1), newMask.GetLength(1));
+            float[,] mask = new float[height, width];
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (oldMask[y, x] == 255 || newMask[y, x] == 255)
+                        mask[y, x] = 255;
+                    else
+                        mask[y, x] = 0;
+                }
+            }
+            return mask;
+        }
         /// <summary>
         /// Aplică algoritmul GrowCut pe un ROI dat.
         /// </summary>
-        public static float[,] Apply(float[,] ROI, float th)
+        public static float[,] Apply(float[,] matrix, float th, Point p0, Point p1)
         {
+            // Extragem regiunea de interes (ROI) din imagine
+            float[,] ROI = new float[p1.Y - p0.Y, p1.X - p0.X];
+            for (int y = p0.Y; y < p1.Y; y++)
+            {
+                for (int x = p0.X; x < p1.X; x++)
+                {
+                    ROI[y - p0.Y, x - p0.X] = matrix[y, x]; // Aplicăm culoarea din ROI pe mască
+                }
+            }
+
             // Inițializăm datele necesare (dimensiuni, puncte, forțe)
             Initialization(ROI, th);
 
@@ -111,10 +126,68 @@ namespace BreastCancerDetection.Classes
                 }
             }
             FillContur();
-
+            bool[] verif = Verify(points);
+            while (verif[0] || verif[1] || verif[2] || verif[3])
+            {
+                (p0, p1) = ChangeRoiPoints(matrix, p0, p1, 10, verif);
+                //ImagePopup.Show(points, "points");
+                points = Apply(matrix, th, p0, p1);
+                verif = Verify(points);
+            }
+            if (points.Length != matrix.Length) GetFullMask(matrix, p0, p1);
             return points;
         }
+        private static bool[] Verify(float[,] points)
+        {
+            int height = points.GetLength(0);
+            int width = points.GetLength(1);
+            bool N = false, S = false, E = false, W = false;
 
+            for (int i = 0; i < height; i++)
+            {
+                if (points[i, 0] != 0) W = true;          // corect — stânga → Vest
+                if (points[i, width - 1] != 0) E = true;  // corect — dreapta → Est
+            }
+            for (int i = 0; i < width; i++)
+            {
+                if (points[0, i] != 0) N = true;          // corect — sus → Nord
+                if (points[height - 1, i] != 0) S = true; // corect — jos → Sud
+            }
+            return new bool[] { N, S, E, W };
+        }
+        public static (Point, Point) ChangeRoiPoints(float[,] matrix, Point p0, Point p1, int margin, bool[] verif)
+        {
+            int minX = Math.Min(p0.X, p1.X);
+            int minY = Math.Min(p0.Y, p1.Y);
+            int maxX = Math.Max(p0.X, p1.X);
+            int maxY = Math.Max(p0.Y, p1.Y);
+
+            // Adăugăm marginea (dar limităm în interiorul imaginii)
+            if (verif[3]) minX = Math.Max(0, minX - margin);   // W
+            if (verif[0]) minY = Math.Max(0, minY - margin);   // N
+            if (verif[2]) maxX = Math.Min(matrix.GetLength(1) - 1, maxX + margin); // E
+            if (verif[1]) maxY = Math.Min(matrix.GetLength(0) - 1, maxY + margin); // S
+
+            Point topLeft = new Point(minX, minY);
+            Point bottomRight = new Point(maxX, maxY);
+
+            return (topLeft, bottomRight);
+        }
+        private static void GetFullMask(float[,] matrix, Point p0, Point p1)
+        {
+            int height = matrix.GetLength(0);
+            int width = matrix.GetLength(1);
+            matrix = new float[height, width];
+            //ImagePopup.Show(matrix, "m");
+            for (int y = p0.Y; y < p1.Y; y++)
+            {
+                for (int x = p0.X; x < p1.X; x++)
+                {
+                   matrix[y, x] = points[y - p0.Y, x - p0.X];
+                }
+            }
+            points = matrix;
+        }
         /// <summary>
         /// Umple si sterge pixeli în interiorul conturului, bazându-se pe vecinii lor.
         /// </summary>
