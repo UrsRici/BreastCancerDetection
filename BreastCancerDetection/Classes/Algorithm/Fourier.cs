@@ -3,9 +3,138 @@ using System.Drawing;
 
 namespace BreastCancerDetection.Classes
 {
-    public static class FourierProcessor
+    public class Fourier
     {
-        public static Bitmap GetFourierSpectrum(Bitmap input)
+        public Bitmap image;
+        public Bitmap fourier;
+        public Bitmap spectrum;
+        public Bitmap filteredImage;
+        private static ComplexNumber[,] fourierData;
+
+        public Fourier(Bitmap input)
+        {
+            image = input;
+            fourier = GetFourierTransform(image);
+        }
+
+        public void CreateFilter(int a, int b)
+        {
+            int width = image.Width;
+            int height = image.Height;
+            Bitmap filter = new Bitmap(width, height);
+
+            double centerX = width / 2.0;
+            double centerY = height / 2.0;
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    double dx = x - centerX;
+                    double dy = y - centerY;
+                    double distance = Math.Sqrt(dx * dx + dy * dy);
+
+                    bool inRange = distance >= Math.Min(a, b) && distance <= Math.Max(a, b);
+                    bool keep = (a < b) ? inRange : !inRange;
+
+                    Color pixel = keep ? fourier.GetPixel(x, y) : Color.Black;
+                    filter.SetPixel(x, y, pixel);
+                    if (!keep)
+                        fourierData[y, x] = new ComplexNumber(0, 0);
+                }
+            }
+
+            spectrum = filter;
+
+            filteredImage = GetFiltredImage(fourierData);
+        }
+
+        private Bitmap GetFiltredImage(ComplexNumber[,] data)
+        {
+            int width = data.GetLength(1);
+            int height = data.GetLength(0);
+
+            data = ShiftQuadrants(data); // unshift înainte de IFFT
+
+            // IFFT pe coloane
+            for (int x = 0; x < width; x++)
+            {
+                ComplexNumber[] col = new ComplexNumber[height];
+                for (int y = 0; y < height; y++)
+                    col[y] = data[y, x];
+
+                IFFT(col);
+
+                for (int y = 0; y < height; y++)
+                    data[y, x] = col[y];
+            }
+
+            // IFFT pe linii
+            for (int y = 0; y < height; y++)
+            {
+                ComplexNumber[] row = new ComplexNumber[width];
+                for (int x = 0; x < width; x++)
+                    row[x] = data[y, x];
+
+                IFFT(row);
+
+                for (int x = 0; x < width; x++)
+                    data[y, x] = row[x];
+            }
+
+            // Convertim în imagine finală
+            Bitmap result = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                {
+                    int val = (int)Math.Max(0, Math.Min(255, data[y, x].Real));
+                    result.SetPixel(x, y, Color.FromArgb(val, val, val));
+                }
+
+            return result;
+        }
+        private static void IFFT(ComplexNumber[] buffer)
+        {
+            int n = buffer.Length;
+
+            // Conjugăm
+            for (int i = 0; i < n; i++)
+                buffer[i] = new ComplexNumber(buffer[i].Real, -buffer[i].Imag);
+
+            // FFT normal
+            FFT(buffer);
+
+            // Conjugăm și normalizăm
+            for (int i = 0; i < n; i++)
+                buffer[i] = new ComplexNumber(buffer[i].Real / n, -buffer[i].Imag / n);
+        }
+
+
+        private static ComplexNumber[,] ShiftQuadrants(ComplexNumber[,] data)
+        {
+            int h = data.GetLength(0);
+            int w = data.GetLength(1);
+
+            ComplexNumber[,] shifted = new ComplexNumber[h, w];
+
+            int halfH = h / 2;
+            int halfW = w / 2;
+
+            for (int i = 0; i < h; i++)
+                for (int j = 0; j < w; j++)
+                {
+                    int newI = (i + halfH) % h;
+                    int newJ = (j + halfW) % w;
+                    shifted[newI, newJ] = data[i, j];
+                }
+
+            return shifted;
+        }
+
+
+
+        private static Bitmap GetFourierTransform(Bitmap input)
         {
             int width = input.Width;
             int height = input.Height;
@@ -44,6 +173,8 @@ namespace BreastCancerDetection.Classes
                 for (int i = 0; i < height; i++)
                     data[i, j] = col[i];
             }
+
+            fourierData = ShiftQuadrants(data);
 
             // Magnitudine logaritmică
             double[,] magnitude = new double[height, width];

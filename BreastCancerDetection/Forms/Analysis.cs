@@ -592,8 +592,25 @@ namespace BreastCancerDetection
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = FourierProcessor.GetFourierSpectrum(img.ToBitmap());
-            pictureBox.Image = bmp;
+            Fourier imgfourier = new Fourier(img.ToBitmap());
+            imgfourier.CreateFilter((int)kryptonNumericUpDown1.Value, (int)kryptonNumericUpDown2.Value);
+
+            Bitmap completImage = new Bitmap(2 * img.width, 2 * img.height);
+
+            /*ImagePopup.Show(imgfourier.fourier, "Fourier");
+            ImagePopup.Show(imgfourier.spectrum, "Spectrum");
+            ImagePopup.Show(imgfourier.image, "Original Image");
+            ImagePopup.Show(imgfourier.filteredImage, "Filtered Image");*/
+
+            for (int y = 0; y < completImage.Height / 2; y++)
+                for (int x = 0; x < completImage.Width / 2; x++)
+                {
+                    completImage.SetPixel(x, y, imgfourier.image.GetPixel(x, y));
+                    completImage.SetPixel(x + img.width, y, imgfourier.fourier.GetPixel(x, y));
+                    completImage.SetPixel(x, y + img.height, imgfourier.spectrum.GetPixel(x, y));
+                    completImage.SetPixel(x + img.width, y + img.height, imgfourier.filteredImage.GetPixel(x, y));
+                }
+            pictureBox.Image = completImage;
         }
     }
 }
