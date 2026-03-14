@@ -31,7 +31,7 @@ namespace BreastCancerDetection.Classes
         }
         public override string ToString()
         {
-            return string.Join("\n\n", tumors.Select(kv => $"Tumor {kv.Key}:\n{kv.Value.ToString()}"));
+            return string.Join("\n\n", tumors.Select(kv => $"Tumor {kv.Key + 1}:\n{kv.Value.ToString()}"));
         }
     }
     public class TumorData

@@ -534,27 +534,6 @@ namespace BreastCancerDetection
         #endregion
 
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            Mat grayMask = img.mask.ToMat();
-
-            Mat binaryMask = new Mat();
-            CvInvoke.Threshold(grayMask, binaryMask, 1, 255, ThresholdType.Binary);
-            pictureBox.Image = binaryMask.Bitmap;
-
-            VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
-            CvInvoke.FindContours(binaryMask, contours, null, RetrType.External, ChainApproxMethod.ChainApproxSimple);
-
-            Mat image = img.ToBitmap().ToMat();
-            Mat mat = image.Clone();
-            CvInvoke.DrawContours(mat, contours, -1, new MCvScalar(0, 255, 0), 1);
-            pictureBox.Image = mat.Bitmap;
-
-            TumorsData tumorsData = new TumorsData(contours, image);
-
-            richText1.Text = tumorsData.ToString();
-        }
-
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
 
@@ -590,10 +569,31 @@ namespace BreastCancerDetection
              richText1.Text += string.Join("\n", regions.Select(kvp => $"{kvp.Key}: {kvp.Value}"));*/
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
+        private void button_Tumod_Info_Click(object sender, EventArgs e)
+        {
+            Mat grayMask = img.mask.ToMat();
+
+            Mat binaryMask = new Mat();
+            CvInvoke.Threshold(grayMask, binaryMask, 1, 255, ThresholdType.Binary);
+            pictureBox.Image = binaryMask.Bitmap;
+
+            VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
+            CvInvoke.FindContours(binaryMask, contours, null, RetrType.External, ChainApproxMethod.ChainApproxSimple);
+
+            Mat image = img.ToBitmap().ToMat();
+            Mat mat = image.Clone();
+            CvInvoke.DrawContours(mat, contours, -1, new MCvScalar(0, 255, 0), 1);
+            pictureBox.Image = mat.Bitmap;
+
+            TumorsData tumorsData = new TumorsData(contours, image);
+
+            TextBoxTumors.Text = tumorsData.ToString();
+        }
+
+        private void button_Fourier_Click(object sender, EventArgs e)
         {
             Fourier imgfourier = new Fourier(img.ToBitmap());
-            imgfourier.CreateFilter((int)kryptonNumericUpDown1.Value, (int)kryptonNumericUpDown2.Value);
+            imgfourier.CreateFilter((int)filter_number_a.Value, (int)filter_number_b.Value);
 
             Bitmap completImage = new Bitmap(2 * img.width, 2 * img.height);
 
