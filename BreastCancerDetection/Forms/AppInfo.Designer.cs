@@ -51,6 +51,7 @@
             // 
             // button_ok
             // 
+            this.button_ok.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_ok.Location = new System.Drawing.Point(468, 305);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(89, 29);

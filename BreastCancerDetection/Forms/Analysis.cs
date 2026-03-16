@@ -13,7 +13,6 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
 using System.Threading.Tasks;
-using BreastCancerDetection.NewFolder1;
 
 namespace BreastCancerDetection
 {
@@ -164,50 +163,61 @@ namespace BreastCancerDetection
                     Directory.CreateDirectory(newFolderPath);
 
                     // Calea pentru imaginea originală
-                    string originalImagePath = Path.Combine(newFolderPath, fileName + ".jpg");
+                    string originalImagePath = Path.Combine(newFolderPath, fileName + ".png");
                     img.bitmap.ToBitmap().Save(originalImagePath);
 
                     // Calea pentru imaginea mască
-                    string maskImagePath = Path.Combine(newFolderPath, fileName + "_mask.jpg");
+                    string maskImagePath = Path.Combine(newFolderPath, fileName + "_mask.png");
                     img.mask.Save(maskImagePath);
 
-                    // Calea pentru imaginea combinată
-                    string combinedImagePath = Path.Combine(newFolderPath, fileName + "_combine.jpg");
+                    // Calea pentru imaginea combinată  // Calea pentru imaginea tumorii (pixelii reali din imagine)
+                    string combinedImagePath = Path.Combine(newFolderPath, fileName + "_combine.png");
+                    string tumorImagePath = Path.Combine(newFolderPath, fileName + "_tumor.png");
                     Bitmap combinedImage = new Bitmap(img.width, img.height);
+                    Bitmap tumorImage = new Bitmap(img.width, img.height);
                     for (int y = 0; y < img.height; y++)
                     {
                         for (int x = 0; x < img.width; x++)
                         {
                             if (img.mask.GetPixel(y, x).R != 0)
+                            {
                                 combinedImage.SetPixel(y, x, img.mask.GetPixel(y, x));
+
+                                byte c = img.bitmap.GetPixel(x, y);
+                                Color color = Color.FromArgb(c, c, c);
+                                tumorImage.SetPixel(y, x, color);
+                            }
                             else
                             {
                                 byte c = img.bitmap.GetPixel(x, y);
                                 Color color = Color.FromArgb(c, c, c); // Conversie grayscale
                                 combinedImage.SetPixel(y, x, color);
+
+                                tumorImage.SetPixel(y, x, img.mask.GetPixel(y, x));
                             }
                         }
                     }
                     combinedImage.Save(combinedImagePath);
+                    tumorImage.Save(tumorImagePath);
 
                     // Calea pentru imaginea preprocesată
                     if (preproces_iamge != null)
                     {
-                        string preprocessedImagePath = Path.Combine(newFolderPath, fileName + "_preprocessed.jpg");
+                        string preprocessedImagePath = Path.Combine(newFolderPath, fileName + "_preprocessed.png");
                         preproces_iamge.Save(preprocessedImagePath);
                     }
 
                     // Calea pentru imaginea originală (fără preprocesare)
                     if (original_iamge != null)
                     {
-                        string originalImageUnprocessedPath = Path.Combine(newFolderPath, fileName + "_original.jpg");
+                        string originalImageUnprocessedPath = Path.Combine(newFolderPath, fileName + "_original.png");
                         original_iamge.Save(originalImageUnprocessedPath);
                     }
 
                     // Save charts as images
                     Button_Charts_Click(sender, e);
-                    string cumulativeHistogramPath = Path.Combine(newFolderPath, fileName + "_cumulative_histogram.jpg");
-                    string histogramPath = Path.Combine(newFolderPath, fileName + "_histogram.jpg");
+                    string cumulativeHistogramPath = Path.Combine(newFolderPath, fileName + "_cumulative_histogram.png");
+                    string histogramPath = Path.Combine(newFolderPath, fileName + "_histogram.png");
                     chart_CumulativeHistogram.SaveImage(cumulativeHistogramPath, ChartImageFormat.Png);
                     chart_Histogram.SaveImage(histogramPath, ChartImageFormat.Png);
 
@@ -534,41 +544,6 @@ namespace BreastCancerDetection
         #endregion
 
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
-        {
-
-            /*SLIAnalyzer analyzer = new SLIAnalyzer();
-
-            var regions = analyzer.Analyze(img,(float)number.Value, (int)number2.Value);
-            richText1.Text = "Regions of interest:\n" + regions.Count;
-            foreach (var r in regions)
-            {
-                using (Graphics g = Graphics.FromImage(img.mask))
-                {
-                    g.DrawRectangle(Pens.Red, r.X, r.Y, r.Width, r.Height);
-                    g.DrawLine(Pens.Red, r.X, r.Y, r.X + r.Width, r.Y + r.Height);
-                    g.DrawLine(Pens.Red, r.X + r.Width, r.Y, r.X, r.Y + r.Height);
-                }
-            }
-            img.Show(pictureBox);
-            richText1.Text += "\n\nFeatures of the regions:\n" + analyzer.LISTSHOW;
-            /* Bitmap roi = new Bitmap(10, 10);
-             roi = new Bitmap(ROI.GetLength(1), ROI.GetLength(0));
-             for (int y = 0; y < ROI.GetLength(0); y++)
-                 for (int x = 0; x < ROI.GetLength(1); x++)
-                 {
-                     byte c = (byte)ROI[y, x];
-                     Color color = Color.FromArgb(c, c, c); // Conversie grayscale
-                     roi.SetPixel(x, y, color);
-                 }
-             //pictureBox.Image = roi;
-             if (pictureBox.ROIselect_Button_active)
-                 Button_selectROI_Click(new object(), new EventArgs());
-             var regions = analyzer.Analyze(ROI);
-             richText1.Text = "Feature: \n";
-             richText1.Text += string.Join("\n", regions.Select(kvp => $"{kvp.Key}: {kvp.Value}"));*/
-        }
-
         private void button_Tumod_Info_Click(object sender, EventArgs e)
         {
             Mat grayMask = img.mask.ToMat();
@@ -611,6 +586,27 @@ namespace BreastCancerDetection
                     completImage.SetPixel(x + img.width, y + img.height, imgfourier.filteredImage.GetPixel(x, y));
                 }
             pictureBox.Image = completImage;
+        }
+
+        private void kryptonButton2_Click_1(object sender, EventArgs e)
+        {
+            SLIAnalyzer analyzer = new SLIAnalyzer();
+            Bitmap bmp = analyzer.Analyze(img.ToBitmap());
+
+            ImagePopup.Show(bmp, "SLI Analysis");
+
+            analyzer.ShowStatisticsPopup();
+
+            /*analyzer.ShowFeatureChart("Contrast");
+            analyzer.ShowFeatureChart("Entropy");
+            analyzer.ShowFeatureChart("Homogeneity");*/
+
+            /*if (pictureBox.ROIselect_Button_active)
+                Button_selectROI_Click(new object(), new EventArgs());
+
+            double score = analyzer.GetSuspicionScore(ROI);
+
+            MessageBox.Show("Suspicion score = " + score);*/
         }
     }
 }

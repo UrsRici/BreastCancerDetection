@@ -214,8 +214,7 @@
     <Compile Include="Classes\Components\ButtonsInfo.cs" />
     <Compile Include="Classes\Components\BitmapExtentions.cs" />
     <Compile Include="Classes\Components\MatExtensions.cs" />
-    <Compile Include="Classes\test\SRD.cs" />
-    <Compile Include="Classes\test\SLIAnalyzer.cs" />
+    <Compile Include="Classes\Components\SLIAnalyzer.cs" />
     <Compile Include="Classes\Components\ImagePopup.cs" />
     <Compile Include="Classes\Components\TumorData.cs" />
     <Compile Include="Classes\Components\ImageData.cs" />
@@ -248,7 +247,6 @@
     <Compile Include="Forms\Information.Designer.cs">
       <DependentUpon>Information.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\test\Class1.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

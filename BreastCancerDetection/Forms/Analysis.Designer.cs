@@ -1185,7 +1185,7 @@ namespace BreastCancerDetection
             this.kryptonButton2.TabIndex = 8;
             this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton2.Values.Text = "spatii suspicioase";
-            this.kryptonButton2.Visible = false;
+            this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click_1);
             // 
             // kryptonTableLayoutPanel12
             // 

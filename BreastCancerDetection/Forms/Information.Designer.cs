@@ -37,6 +37,7 @@
             // 
             // button_ok
             // 
+            this.button_ok.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.button_ok, "button_ok");
             this.button_ok.Name = "button_ok";
             this.button_ok.StateCommon.Border.Rounding = 10F;
