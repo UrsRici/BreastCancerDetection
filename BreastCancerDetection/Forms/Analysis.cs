@@ -13,6 +13,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace BreastCancerDetection
 {
@@ -50,14 +51,8 @@ namespace BreastCancerDetection
         {
             tabControl.Width = this.ClientSize.Width - pictureBox.Width - 18;
             tabControl.Height = button_information.Location.Y - tabControl.Location.Y - 3;
-            /*chart_CumulativeHistogram.Width = tabControl.Width;
-            chart_Histogram.Width = tabControl.Width;
-            int chartLocation = 50;
-            int chartSpace = tabPage4.Height - chartLocation;
-            chart_CumulativeHistogram.Height = chartSpace / 2;
-            chart_Histogram.Height = chartSpace / 2;
-            chart_CumulativeHistogram.Location = new Point(0, chartLocation);
-            chart_Histogram.Location = new Point(0, chartLocation + chart_CumulativeHistogram.Height);*/
+            ModeleChart.Location = pictureBox.Location;
+            ModeleChart.Size = pictureBox.Size;
         }
         private void ImageVerify()
         {
@@ -585,11 +580,28 @@ namespace BreastCancerDetection
                     completImage.SetPixel(x, y + img.height, imgfourier.spectrum.GetPixel(x, y));
                     completImage.SetPixel(x + img.width, y + img.height, imgfourier.filteredImage.GetPixel(x, y));
                 }
-            pictureBox.Image = completImage;
+            pictureBox.Image = /*imgfourier.spectrum;*/completImage;
         }
 
         private void kryptonButton2_Click_1(object sender, EventArgs e)
         {
+            /*FolderBrowserDialog folderDialog = new FolderBrowserDialog
+            {
+                Description = "Select a folder to save the images"
+            };
+
+            if (folderDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Numele fișierului fără extensie (ex: mdb005)
+                string fileName = Path.GetFileNameWithoutExtension(filePath);
+
+                // Creează un folder nou în locația aleasă, cu numele fișierului
+                string newFolderPath = Path.Combine(folderDialog.SelectedPath, fileName);
+                Directory.CreateDirectory(newFolderPath);
+
+                string preprocessedImagePath = Path.Combine(newFolderPath, fileName + "_preprocessed.png");
+                pictureBox.Image.Save(preprocessedImagePath);
+            }*/
             SLIAnalyzer analyzer = new SLIAnalyzer();
             Bitmap bmp = analyzer.Analyze(img.ToBitmap());
 
@@ -607,6 +619,131 @@ namespace BreastCancerDetection
             double score = analyzer.GetSuspicionScore(ROI);
 
             MessageBox.Show("Suspicion score = " + score);*/
+        }
+
+
+        public void Button_Charts(ModelMath solver)
+        {
+            var solution = solver.SolveMain();
+            var trajectories = solver.SolvePhase();
+
+            // 🔵 chart1
+            chart1.Series.Clear();
+            chart1.SuspendLayout();
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "F0";
+            chart1.ChartAreas[0].AxisY.LabelStyle.Format = "F0";
+            chart1.ChartAreas[0].AxisX.Interval = 10;
+            chart1.ChartAreas[0].AxisY.Interval = 10;
+            chart1.ChartAreas[0].AxisX.Title = "Timp";
+            chart1.ChartAreas[0].AxisY.Title = "Populație";
+
+            var s1 = chart1.Series.Add("f(x,y)");
+            var s2 = chart1.Series.Add("g(x,y)");
+
+            s1.ChartType = s2.ChartType = SeriesChartType.Line;
+            s1.BorderWidth = s2.BorderWidth = 4;
+
+            foreach (var p in solution)
+            {
+                s1.Points.AddXY(p.t, p.x);
+                s2.Points.AddXY(p.t, p.y);
+            }
+
+            chart1.ResumeLayout();
+
+            // 🔴 chart2
+            chart2.Series.Clear();
+            chart2.SuspendLayout();
+            chart2.ChartAreas[0].AxisX.LabelStyle.Format = "F0";
+            chart2.ChartAreas[0].AxisY.LabelStyle.Format = "F0";
+            chart2.ChartAreas[0].AxisX.Minimum = 0;
+            chart2.ChartAreas[0].AxisX.Maximum = 100;
+            chart2.ChartAreas[0].AxisY.Minimum = 0;
+            chart2.ChartAreas[0].AxisY.Maximum = 100;
+            chart2.ChartAreas[0].AxisX.Interval = 10;
+            chart2.ChartAreas[0].AxisY.Interval = 10;
+            chart2.Legends.Clear();
+
+            int index = 0;
+
+            foreach (var traj in trajectories)
+            {
+                var s = chart2.Series.Add("traj" + index++);
+                s.ChartType = SeriesChartType.Line;
+                s.BorderWidth = 3;
+
+                foreach (var p in traj)
+                {
+                    s.Points.AddXY(p.x, p.y);
+                }
+            }
+
+            chart2.ResumeLayout();
+
+            // 📄 tabel
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"{"t",10} {"x(t)",20} {"y(t)",20}");
+            sb.AppendLine(new string('-', 55));
+
+            foreach (var p in solution)
+            {
+                sb.AppendLine($"{p.t,10:F2}  {p.x,15:F4}  {p.y,15:F4}");
+            }
+
+            richTextBox1.Text = sb.ToString();
+        }
+        private void Button_predictie_Click(object sender, EventArgs e)
+        {
+            ModeleChart.Visible = true;
+
+            ModelMath solver = new ModelMath
+            {
+                F1Expr = f_function.Text,
+                F2Expr = g_function.Text,
+
+                TEnd = (double)T_number.Value,
+
+                X0 = (double)x0_number.Value,
+                Y0 = (double)y0_number.Value,
+            };
+
+            solver.Initialize();
+
+            Button_Charts(solver);
+        }
+
+        private void Button_close_Click(object sender, EventArgs e)
+        {
+            ModeleChart.Visible = false;
+        }
+
+        private void ButtonA_Click(object sender, EventArgs e)
+        {
+            f_function.Text = "0.1*x*(1-(x+y)/100)-0.2*x";
+            g_function.Text = "0.15*y*(1-(x+y)/100)-0.3*y";
+            Button_predictie_Click(sender, e);
+        }
+
+        private void ButtonB_Click(object sender, EventArgs e)
+        {
+            f_function.Text = "0.5*x*(1-(x+y)/100)-0.05*x";
+            g_function.Text = "0.6*y*(1-(x+y)/100)-0.18*y";
+            Button_predictie_Click(sender, e);
+        }
+
+        private void ButtonC_Click(object sender, EventArgs e)
+        {
+            f_function.Text = "0.4*x*(1-(x+y)/100)-0.16*x";
+            g_function.Text = "0.6*y*(1-(x+y)/100)-0.12*y";
+            Button_predictie_Click(sender, e);
+        }
+
+        private void ButtonD_Click(object sender, EventArgs e)
+        {
+            f_function.Text = "0.5*x*(1-(x+y)/100)-0.1*x";
+            g_function.Text = "1.0*y*(1-(x+y)/100)-0.2*y";
+            Button_predictie_Click(sender, e);
         }
     }
 }

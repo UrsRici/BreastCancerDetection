@@ -42,6 +42,12 @@ namespace BreastCancerDetection
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Image_Analysis));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buttonSpecAny1 = new Krypton.Toolkit.ButtonSpecAny();
             this.timer_hover = new System.Windows.Forms.Timer(this.components);
             this.LabelInfoButton = new Krypton.Toolkit.KryptonRichTextBox();
@@ -103,6 +109,29 @@ namespace BreastCancerDetection
             this.kryptonTableLayoutPanel12 = new Krypton.Toolkit.KryptonTableLayoutPanel();
             this.filter_number_a = new Krypton.Toolkit.KryptonNumericUpDown();
             this.filter_number_b = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.kryptonTableLayoutPanel13 = new Krypton.Toolkit.KryptonTableLayoutPanel();
+            this.ButtonA = new Krypton.Toolkit.KryptonButton();
+            this.ButtonB = new Krypton.Toolkit.KryptonButton();
+            this.ButtonC = new Krypton.Toolkit.KryptonButton();
+            this.Button_predictie = new Krypton.Toolkit.KryptonButton();
+            this.ButtonD = new Krypton.Toolkit.KryptonButton();
+            this.T_number = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Button_close = new Krypton.Toolkit.KryptonButton();
+            this.y0_number = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.x0_number = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.f_function = new System.Windows.Forms.TextBox();
+            this.g_function = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ModeleChart = new Krypton.Toolkit.KryptonTableLayoutPanel();
+            this.kryptonTableLayoutPanel14 = new Krypton.Toolkit.KryptonTableLayoutPanel();
             this.pictureBox = new BreastCancerDetection.Classes.MyImageBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -125,6 +154,12 @@ namespace BreastCancerDetection
             this.tabPage6.SuspendLayout();
             this.kryptonTableLayoutPanel11.SuspendLayout();
             this.kryptonTableLayoutPanel12.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.kryptonTableLayoutPanel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            this.ModeleChart.SuspendLayout();
+            this.kryptonTableLayoutPanel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -438,6 +473,7 @@ namespace BreastCancerDetection
             this.tabControl.Controls.Add(this.tabPage4);
             this.tabControl.Controls.Add(this.tabPage5);
             this.tabControl.Controls.Add(this.tabPage6);
+            this.tabControl.Controls.Add(this.tabPage7);
             this.tabControl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.ItemSize = new System.Drawing.Size(100, 30);
@@ -1274,6 +1310,382 @@ namespace BreastCancerDetection
             0,
             0});
             // 
+            // tabPage7
+            // 
+            this.tabPage7.BackColor = System.Drawing.Color.DarkCyan;
+            this.tabPage7.Controls.Add(this.kryptonTableLayoutPanel13);
+            this.tabPage7.Controls.Add(this.y0_number);
+            this.tabPage7.Controls.Add(this.x0_number);
+            this.tabPage7.Controls.Add(this.f_function);
+            this.tabPage7.Controls.Add(this.g_function);
+            this.tabPage7.Controls.Add(this.label3);
+            this.tabPage7.Controls.Add(this.label2);
+            this.tabPage7.Controls.Add(this.label4);
+            this.tabPage7.Controls.Add(this.label1);
+            this.tabPage7.Controls.Add(this.richTextBox1);
+            this.tabPage7.Location = new System.Drawing.Point(4, 34);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(450, 442);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Simulare";
+            // 
+            // kryptonTableLayoutPanel13
+            // 
+            this.kryptonTableLayoutPanel13.ColumnCount = 4;
+            this.kryptonTableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.kryptonTableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.kryptonTableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.kryptonTableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.kryptonTableLayoutPanel13.Controls.Add(this.ButtonA, 0, 0);
+            this.kryptonTableLayoutPanel13.Controls.Add(this.ButtonB, 2, 0);
+            this.kryptonTableLayoutPanel13.Controls.Add(this.ButtonC, 3, 0);
+            this.kryptonTableLayoutPanel13.Controls.Add(this.Button_close, 1, 1);
+            this.kryptonTableLayoutPanel13.Controls.Add(this.Button_predictie, 0, 1);
+            this.kryptonTableLayoutPanel13.Controls.Add(this.ButtonD, 1, 0);
+            this.kryptonTableLayoutPanel13.Controls.Add(this.kryptonTableLayoutPanel14, 2, 1);
+            this.kryptonTableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonTableLayoutPanel13.Location = new System.Drawing.Point(3, 3);
+            this.kryptonTableLayoutPanel13.Name = "kryptonTableLayoutPanel13";
+            this.kryptonTableLayoutPanel13.RowCount = 2;
+            this.kryptonTableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.kryptonTableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.kryptonTableLayoutPanel13.Size = new System.Drawing.Size(444, 94);
+            this.kryptonTableLayoutPanel13.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel13.TabIndex = 109;
+            // 
+            // ButtonA
+            // 
+            this.ButtonA.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonA.Location = new System.Drawing.Point(3, 3);
+            this.ButtonA.Name = "ButtonA";
+            this.ButtonA.Size = new System.Drawing.Size(105, 41);
+            this.ButtonA.StateCommon.Border.Rounding = 10F;
+            this.ButtonA.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonA.TabIndex = 97;
+            this.ButtonA.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.ButtonA.Values.Text = "Inexistenta";
+            this.ButtonA.Click += new System.EventHandler(this.ButtonA_Click);
+            // 
+            // ButtonB
+            // 
+            this.ButtonB.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonB.Location = new System.Drawing.Point(225, 3);
+            this.ButtonB.Name = "ButtonB";
+            this.ButtonB.Size = new System.Drawing.Size(105, 41);
+            this.ButtonB.StateCommon.Border.Rounding = 10F;
+            this.ButtonB.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonB.TabIndex = 98;
+            this.ButtonB.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.ButtonB.Values.Text = "Sanatos";
+            this.ButtonB.Click += new System.EventHandler(this.ButtonB_Click);
+            // 
+            // ButtonC
+            // 
+            this.ButtonC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonC.Location = new System.Drawing.Point(336, 3);
+            this.ButtonC.Name = "ButtonC";
+            this.ButtonC.Size = new System.Drawing.Size(105, 41);
+            this.ButtonC.StateCommon.Border.Rounding = 10F;
+            this.ButtonC.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonC.TabIndex = 99;
+            this.ButtonC.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.ButtonC.Values.Text = "Cancer";
+            this.ButtonC.Click += new System.EventHandler(this.ButtonC_Click);
+            // 
+            // Button_predictie
+            // 
+            this.Button_predictie.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Button_predictie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Button_predictie.Location = new System.Drawing.Point(3, 50);
+            this.Button_predictie.Name = "Button_predictie";
+            this.Button_predictie.Size = new System.Drawing.Size(105, 41);
+            this.Button_predictie.StateCommon.Border.Rounding = 10F;
+            this.Button_predictie.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_predictie.TabIndex = 77;
+            this.Button_predictie.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.Button_predictie.Values.Text = "Solve";
+            this.Button_predictie.Click += new System.EventHandler(this.Button_predictie_Click);
+            // 
+            // ButtonD
+            // 
+            this.ButtonD.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonD.Location = new System.Drawing.Point(114, 3);
+            this.ButtonD.Name = "ButtonD";
+            this.ButtonD.Size = new System.Drawing.Size(105, 41);
+            this.ButtonD.StateCommon.Border.Rounding = 10F;
+            this.ButtonD.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonD.TabIndex = 100;
+            this.ButtonD.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.ButtonD.Values.Text = "Coexistenta";
+            this.ButtonD.Click += new System.EventHandler(this.ButtonD_Click);
+            // 
+            // T_number
+            // 
+            this.T_number.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.T_number.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.T_number.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.T_number.Location = new System.Drawing.Point(25, 6);
+            this.T_number.Margin = new System.Windows.Forms.Padding(0);
+            this.T_number.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.T_number.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.T_number.Name = "T_number";
+            this.T_number.PaletteMode = Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.T_number.Size = new System.Drawing.Size(57, 29);
+            this.T_number.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.T_number.StateCommon.Border.Rounding = 5F;
+            this.T_number.StateCommon.Border.Width = 1;
+            this.T_number.StateCommon.Content.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.T_number.StateCommon.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Center;
+            this.T_number.TabIndex = 108;
+            this.T_number.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.DarkCyan;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(19, 41);
+            this.label5.TabIndex = 107;
+            this.label5.Text = "T";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Button_close
+            // 
+            this.Button_close.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Button_close.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Button_close.Location = new System.Drawing.Point(114, 50);
+            this.Button_close.Name = "Button_close";
+            this.Button_close.Size = new System.Drawing.Size(105, 41);
+            this.Button_close.StateCommon.Border.Rounding = 10F;
+            this.Button_close.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button_close.TabIndex = 89;
+            this.Button_close.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.Button_close.Values.Text = "Close";
+            this.Button_close.Click += new System.EventHandler(this.Button_close_Click);
+            // 
+            // y0_number
+            // 
+            this.y0_number.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.y0_number.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.y0_number.Location = new System.Drawing.Point(319, 132);
+            this.y0_number.Margin = new System.Windows.Forms.Padding(0);
+            this.y0_number.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.y0_number.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.y0_number.Name = "y0_number";
+            this.y0_number.PaletteMode = Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.y0_number.Size = new System.Drawing.Size(57, 29);
+            this.y0_number.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.y0_number.StateCommon.Border.Rounding = 5F;
+            this.y0_number.StateCommon.Border.Width = 1;
+            this.y0_number.StateCommon.Content.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.y0_number.StateCommon.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Center;
+            this.y0_number.TabIndex = 106;
+            this.y0_number.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // x0_number
+            // 
+            this.x0_number.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.x0_number.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.x0_number.Location = new System.Drawing.Point(319, 100);
+            this.x0_number.Margin = new System.Windows.Forms.Padding(0);
+            this.x0_number.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.x0_number.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.x0_number.Name = "x0_number";
+            this.x0_number.PaletteMode = Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.x0_number.Size = new System.Drawing.Size(57, 29);
+            this.x0_number.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.x0_number.StateCommon.Border.Rounding = 5F;
+            this.x0_number.StateCommon.Border.Width = 1;
+            this.x0_number.StateCommon.Content.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.x0_number.StateCommon.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Center;
+            this.x0_number.TabIndex = 105;
+            this.x0_number.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // f_function
+            // 
+            this.f_function.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.f_function.Location = new System.Drawing.Point(60, 103);
+            this.f_function.Name = "f_function";
+            this.f_function.Size = new System.Drawing.Size(224, 26);
+            this.f_function.TabIndex = 93;
+            this.f_function.Text = "0.5*x*(1-(x+y)/100)-0.05*x";
+            // 
+            // g_function
+            // 
+            this.g_function.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.g_function.Location = new System.Drawing.Point(60, 132);
+            this.g_function.Name = "g_function";
+            this.g_function.Size = new System.Drawing.Size(224, 26);
+            this.g_function.TabIndex = 94;
+            this.g_function.Text = "0.6*y*(1-(x+y)/100)-0.18*y";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(290, 135);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 20);
+            this.label3.TabIndex = 104;
+            this.label3.Text = "y0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 132);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 20);
+            this.label2.TabIndex = 96;
+            this.label2.Text = "g(x,y)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(290, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 20);
+            this.label4.TabIndex = 103;
+            this.label4.Text = "x0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 104);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 20);
+            this.label1.TabIndex = 95;
+            this.label1.Text = "f(x,y)";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBox1.Location = new System.Drawing.Point(6, 164);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(355, 272);
+            this.richTextBox1.TabIndex = 92;
+            this.richTextBox1.Text = "";
+            // 
+            // chart1
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(3, 3);
+            this.chart1.Name = "chart1";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
+            this.chart1.Size = new System.Drawing.Size(538, 266);
+            this.chart1.TabIndex = 89;
+            this.chart1.Text = "chart1";
+            // 
+            // chart2
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
+            this.chart2.Location = new System.Drawing.Point(3, 275);
+            this.chart2.Name = "chart2";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart2.Series.Add(series4);
+            this.chart2.Size = new System.Drawing.Size(538, 266);
+            this.chart2.TabIndex = 90;
+            this.chart2.Text = "chart2";
+            // 
+            // ModeleChart
+            // 
+            this.ModeleChart.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ModeleChart.ColumnCount = 1;
+            this.ModeleChart.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ModeleChart.Controls.Add(this.chart2, 0, 1);
+            this.ModeleChart.Controls.Add(this.chart1, 0, 0);
+            this.ModeleChart.Location = new System.Drawing.Point(473, 0);
+            this.ModeleChart.Name = "ModeleChart";
+            this.ModeleChart.RowCount = 2;
+            this.ModeleChart.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.ModeleChart.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.ModeleChart.Size = new System.Drawing.Size(544, 544);
+            this.ModeleChart.TabIndex = 0;
+            this.ModeleChart.Visible = false;
+            // 
+            // kryptonTableLayoutPanel14
+            // 
+            this.kryptonTableLayoutPanel14.ColumnCount = 2;
+            this.kryptonTableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.kryptonTableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.kryptonTableLayoutPanel14.Controls.Add(this.label5, 0, 0);
+            this.kryptonTableLayoutPanel14.Controls.Add(this.T_number, 1, 0);
+            this.kryptonTableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonTableLayoutPanel14.Location = new System.Drawing.Point(225, 50);
+            this.kryptonTableLayoutPanel14.Name = "kryptonTableLayoutPanel14";
+            this.kryptonTableLayoutPanel14.RowCount = 1;
+            this.kryptonTableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.kryptonTableLayoutPanel14.Size = new System.Drawing.Size(105, 41);
+            this.kryptonTableLayoutPanel14.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel14.TabIndex = 101;
+            // 
             // pictureBox
             // 
             this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1296,6 +1708,7 @@ namespace BreastCancerDetection
             this.BackgroundImage = global::BreastCancerDetection.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1017, 544);
+            this.Controls.Add(this.ModeleChart);
             this.Controls.Add(this.LabelInfoButton);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.button_information);
@@ -1335,6 +1748,14 @@ namespace BreastCancerDetection
             this.tabPage6.ResumeLayout(false);
             this.kryptonTableLayoutPanel11.ResumeLayout(false);
             this.kryptonTableLayoutPanel12.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            this.kryptonTableLayoutPanel13.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            this.ModeleChart.ResumeLayout(false);
+            this.kryptonTableLayoutPanel14.ResumeLayout(false);
+            this.kryptonTableLayoutPanel14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -1402,6 +1823,29 @@ namespace BreastCancerDetection
         private KryptonNumericUpDown filter_number_a;
         private KryptonButton button_Fourier;
         private KryptonTableLayoutPanel kryptonTableLayoutPanel12;
+        private TabPage tabPage7;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private KryptonTableLayoutPanel ModeleChart;
+        private RichTextBox richTextBox1;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel13;
+        private KryptonButton ButtonA;
+        private KryptonButton ButtonB;
+        private KryptonButton ButtonC;
+        private KryptonButton Button_predictie;
+        private KryptonButton Button_close;
+        private KryptonButton ButtonD;
+        private KryptonNumericUpDown T_number;
+        private Label label5;
+        private KryptonNumericUpDown y0_number;
+        private KryptonNumericUpDown x0_number;
+        private Label label3;
+        private Label label4;
+        private Label label2;
+        private Label label1;
+        private TextBox g_function;
+        private TextBox f_function;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel14;
     }
 }
 

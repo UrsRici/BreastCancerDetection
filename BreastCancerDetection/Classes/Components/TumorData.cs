@@ -40,6 +40,7 @@ namespace BreastCancerDetection.Classes
         public Dictionary<string, double> textureDatas = new Dictionary<string, double>();
         public Dictionary<string, double> morphologyDatas = new Dictionary<string, double>();
         public double prediction = 0.0;
+        public static int levels = 32; // pentru GLCM
         public TumorData()
         {
             this.statisticsDatas = new Dictionary<string, double>();
@@ -103,6 +104,7 @@ namespace BreastCancerDetection.Classes
 
             this.prediction = finalScore;
         }
+
         public void CalculateStatisticsDatas(VectorOfPoint contour, Mat image)
         {
             // 1. Creăm masca ROI din contur
@@ -347,22 +349,23 @@ namespace BreastCancerDetection.Classes
             };
                         return output;
             */
-            int levels = glcm.GetLength(0);
+
+            int length = glcm.GetLength(0);
 
             double contrast = 0, correlation = 0, energy = 0;
             double homogeneity = 0, entropy = 0, dissimilarity = 0;
             double clusterShade = 0, clusterProminence = 0;
-            double IDN = 0, IDM = 0;
+            double IDN = 0, IDM = 0, IDMN = 0;
 
             double ux = 0, uy = 0, sigmax = 0, sigmay = 0;
 
-            double[] px = new double[levels];
-            double[] py = new double[levels];
+            double[] px = new double[length];
+            double[] py = new double[length];
 
             // Calcul px si py
-            for (int i = 0; i < levels; i++)
+            for (int i = 0; i < length; i++)
             {
-                for (int j = 0; j < levels; j++)
+                for (int j = 0; j < length; j++)
                 {
                     double p = glcm[i, j];
                     if (p <= 0) continue;
@@ -373,14 +376,14 @@ namespace BreastCancerDetection.Classes
             }
 
             // Calcul medii
-            for (int i = 0; i < levels; i++)
+            for (int i = 0; i < length; i++)
             {
                 ux += i * px[i];
                 uy += i * py[i];
             }
 
             // Calcul deviatii standard
-            for (int i = 0; i < levels; i++)
+            for (int i = 0; i < length; i++)
             {
                 sigmax += Math.Pow(i - ux, 2) * px[i];
                 sigmay += Math.Pow(i - uy, 2) * py[i];
@@ -390,9 +393,9 @@ namespace BreastCancerDetection.Classes
             sigmay = sigmay > 0 ? Math.Sqrt(sigmay) : 0.0;
 
             // Caracteristici principale
-            for (int i = 0; i < levels; i++)
+            for (int i = 0; i < length; i++)
             {
-                for (int j = 0; j < levels; j++)
+                for (int j = 0; j < length; j++)
                 {
                     double p = glcm[i, j];
                     if (p <= 0) continue;
@@ -404,7 +407,7 @@ namespace BreastCancerDetection.Classes
 
                     energy += p * p;
 
-                    homogeneity += p / (1.0 + Math.Pow(i - j, 2));
+                    homogeneity += p / (1.0 + Math.Abs(i - j));
 
                     entropy -= p * Math.Log(p);
 
@@ -416,7 +419,9 @@ namespace BreastCancerDetection.Classes
 
                     IDM += p / (1.0 + Math.Pow(i - j, 2));
 
-                    IDN += p / (1.0 + Math.Abs(i - j));
+                    IDN += p / (1.0 + (Math.Abs(i - j) / (double)levels));
+
+                    IDMN += p / (1.0 + Math.Pow((i - j) / (double)levels, 2));
                 }
             }
 
@@ -431,39 +436,56 @@ namespace BreastCancerDetection.Classes
                 ["ClusterShade"] = clusterShade,
                 ["ClusterProminence"] = clusterProminence,
                 ["IDN"] = IDN,
-                ["IDM"] = IDM
+                ["IDM"] = IDM,
+                ["IDMN"] = IDMN
             };
-
         }
 
         private double[,] ComputeGLCM(Mat grayImage, int dx, int dy)
         {
-            int levels = 256;
             int rows = grayImage.Rows;
             int cols = grayImage.Cols;
 
             double[,] glcm = new double[levels, levels];
 
+            // Convertim imaginea la byte[,]
             byte[,,] data = grayImage.ToImage<Gray, byte>().Data;
+
+            // Factor de cuantizare
+            double scale = 256.0 / levels;
 
             for (int y = 0; y < rows; y++)
             {
                 for (int x = 0; x < cols; x++)
                 {
-                    if (y + dy < 0 || x + dx < 0 || y + dy > 1023 || x + dx > 1023) continue;
-                    int i = data[y, x, 0];              // pixel curent
-                    int j = data[y + dy, x + dx, 0];    // pixel vecin
+                    int ny = y + dy;
+                    int nx = x + dx;
+
+                    // verificare limite corectă
+                    if (ny < 0 || nx < 0 || ny >= rows || nx >= cols)
+                        continue;
+
+                    // pixel original 0–255 → cuantizat 0–levels-1
+                    int i = (int)(data[y, x, 0] / scale);
+                    int j = (int)(data[ny, nx, 0] / scale);
 
                     glcm[i, j]++;
                 }
             }
-            glcm[0, 0] = 0; // Eliminăm fundalul
-            // Normalizare la probabilitate (împărțim la numărul total de perechi)
+
+            // Eliminăm fundalul (opțional)
+            glcm[0, 0] = 0;
+
+            // Normalizare
             double sum = 0;
-            foreach (var val in glcm) sum += val;
-            for (int i = 0; i < levels; i++)
-                for (int j = 0; j < levels; j++)
-                    glcm[i, j] /= sum;
+            foreach (var v in glcm) sum += v;
+
+            if (sum > 0)
+            {
+                for (int i = 0; i < levels; i++)
+                    for (int j = 0; j < levels; j++)
+                        glcm[i, j] /= sum;
+            }
 
             return glcm;
         }
