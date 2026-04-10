@@ -218,6 +218,9 @@
     <Compile Include="Classes\Components\ButtonsInfo.cs" />
     <Compile Include="Classes\Components\BitmapExtentions.cs" />
     <Compile Include="Classes\Components\MatExtensions.cs" />
+    <Compile Include="Classes\Components\Mybox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Classes\Components\SLIAnalyzer.cs" />
     <Compile Include="Classes\Components\ImagePopup.cs" />
     <Compile Include="Classes\Components\TumorData.cs" />
@@ -266,6 +269,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Analysis.resx">
       <DependentUpon>Analysis.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AppInfo.resx">
       <DependentUpon>AppInfo.cs</DependentUpon>

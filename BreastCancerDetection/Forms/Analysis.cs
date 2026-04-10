@@ -12,8 +12,6 @@ using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
-using System.Threading.Tasks;
-using System.Text;
 
 namespace BreastCancerDetection
 {
@@ -538,7 +536,6 @@ namespace BreastCancerDetection
         }
         #endregion
 
-
         private void button_Tumod_Info_Click(object sender, EventArgs e)
         {
             Mat grayMask = img.mask.ToMat();
@@ -559,7 +556,6 @@ namespace BreastCancerDetection
 
             TextBoxTumors.Text = tumorsData.ToString();
         }
-
         private void button_Fourier_Click(object sender, EventArgs e)
         {
             Fourier imgfourier = new Fourier(img.ToBitmap());
@@ -582,7 +578,6 @@ namespace BreastCancerDetection
                 }
             pictureBox.Image = /*imgfourier.spectrum;*/completImage;
         }
-
         private void kryptonButton2_Click_1(object sender, EventArgs e)
         {
             /*FolderBrowserDialog folderDialog = new FolderBrowserDialog
@@ -621,7 +616,6 @@ namespace BreastCancerDetection
             MessageBox.Show("Suspicion score = " + score);*/
         }
 
-
         public void Button_Charts(ModelMath solver)
         {
             var solution = solver.SolveMain();
@@ -630,12 +624,11 @@ namespace BreastCancerDetection
             // 🔵 chart1
             chart1.Series.Clear();
             chart1.SuspendLayout();
-            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "F0";
-            chart1.ChartAreas[0].AxisY.LabelStyle.Format = "F0";
-            chart1.ChartAreas[0].AxisX.Interval = 10;
-            chart1.ChartAreas[0].AxisY.Interval = 10;
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = chart1.ChartAreas[0].AxisY.LabelStyle.Format = "F0";
+            chart1.ChartAreas[0].AxisX.Interval = chart1.ChartAreas[0].AxisY.Interval = 10;
             chart1.ChartAreas[0].AxisX.Title = "Timp";
             chart1.ChartAreas[0].AxisY.Title = "Populație";
+            chart1.ChartAreas[0].AxisX.TitleFont = chart1.ChartAreas[0].AxisY.TitleFont = new Font("Times New ROman", 12, FontStyle.Bold);
 
             var s1 = chart1.Series.Add("f(x,y)");
             var s2 = chart1.Series.Add("g(x,y)");
@@ -654,14 +647,10 @@ namespace BreastCancerDetection
             // 🔴 chart2
             chart2.Series.Clear();
             chart2.SuspendLayout();
-            chart2.ChartAreas[0].AxisX.LabelStyle.Format = "F0";
-            chart2.ChartAreas[0].AxisY.LabelStyle.Format = "F0";
-            chart2.ChartAreas[0].AxisX.Minimum = 0;
-            chart2.ChartAreas[0].AxisX.Maximum = 100;
-            chart2.ChartAreas[0].AxisY.Minimum = 0;
-            chart2.ChartAreas[0].AxisY.Maximum = 100;
-            chart2.ChartAreas[0].AxisX.Interval = 10;
-            chart2.ChartAreas[0].AxisY.Interval = 10;
+            chart2.ChartAreas[0].AxisX.LabelStyle.Format = chart2.ChartAreas[0].AxisY.LabelStyle.Format = "F0";
+            chart2.ChartAreas[0].AxisX.Minimum = chart2.ChartAreas[0].AxisY.Minimum = 0;
+            chart2.ChartAreas[0].AxisX.Maximum = chart2.ChartAreas[0].AxisY.Maximum = 100;
+            chart2.ChartAreas[0].AxisX.Interval = chart2.ChartAreas[0].AxisY.Interval = 10;
             chart2.Legends.Clear();
 
             int index = 0;
@@ -681,17 +670,11 @@ namespace BreastCancerDetection
             chart2.ResumeLayout();
 
             // 📄 tabel
-            var sb = new StringBuilder();
-
-            sb.AppendLine($"{"t",10} {"x(t)",20} {"y(t)",20}");
-            sb.AppendLine(new string('-', 55));
 
             foreach (var p in solution)
             {
-                sb.AppendLine($"{p.t,10:F2}  {p.x,15:F4}  {p.y,15:F4}");
+                dataGridView.Rows.Add(p.t, p.x, p.y);
             }
-
-            richTextBox1.Text = sb.ToString();
         }
         private void Button_predictie_Click(object sender, EventArgs e)
         {
@@ -712,33 +695,28 @@ namespace BreastCancerDetection
 
             Button_Charts(solver);
         }
-
         private void Button_close_Click(object sender, EventArgs e)
         {
             ModeleChart.Visible = false;
         }
-
         private void ButtonA_Click(object sender, EventArgs e)
         {
             f_function.Text = "0.1*x*(1-(x+y)/100)-0.2*x";
             g_function.Text = "0.15*y*(1-(x+y)/100)-0.3*y";
             Button_predictie_Click(sender, e);
         }
-
         private void ButtonB_Click(object sender, EventArgs e)
         {
             f_function.Text = "0.5*x*(1-(x+y)/100)-0.05*x";
             g_function.Text = "0.6*y*(1-(x+y)/100)-0.18*y";
             Button_predictie_Click(sender, e);
         }
-
         private void ButtonC_Click(object sender, EventArgs e)
         {
             f_function.Text = "0.4*x*(1-(x+y)/100)-0.16*x";
             g_function.Text = "0.6*y*(1-(x+y)/100)-0.12*y";
             Button_predictie_Click(sender, e);
         }
-
         private void ButtonD_Click(object sender, EventArgs e)
         {
             f_function.Text = "0.5*x*(1-(x+y)/100)-0.1*x";
