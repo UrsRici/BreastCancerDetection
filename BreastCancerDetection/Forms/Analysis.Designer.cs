@@ -89,6 +89,10 @@ namespace BreastCancerDetection
             this.thresHold = new Krypton.Toolkit.KryptonNumericUpDown();
             this.label_Threshold = new System.Windows.Forms.Label();
             this.kryptonTableLayoutPanel2 = new Krypton.Toolkit.KryptonTableLayoutPanel();
+            this.endPoint = new System.Windows.Forms.TextBox();
+            this.label_y = new System.Windows.Forms.TextBox();
+            this.startPoint = new System.Windows.Forms.TextBox();
+            this.label_x = new System.Windows.Forms.TextBox();
             this.label_H = new System.Windows.Forms.Label();
             this.label_W = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -112,6 +116,8 @@ namespace BreastCancerDetection
             this.filter_number_a = new Krypton.Toolkit.KryptonNumericUpDown();
             this.filter_number_b = new Krypton.Toolkit.KryptonNumericUpDown();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.t = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.f = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -135,14 +141,8 @@ namespace BreastCancerDetection
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ModeleChart = new Krypton.Toolkit.KryptonTableLayoutPanel();
-            this.label_x = new System.Windows.Forms.TextBox();
-            this.label_y = new System.Windows.Forms.TextBox();
-            this.startPoint = new System.Windows.Forms.TextBox();
-            this.endPoint = new System.Windows.Forms.TextBox();
             this.pictureBox = new BreastCancerDetection.Classes.MyImageBox();
             this.kryptonContextMenu1 = new Krypton.Toolkit.KryptonContextMenu();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.kryptonTableLayoutPanel4.SuspendLayout();
@@ -817,6 +817,50 @@ namespace BreastCancerDetection
             this.kryptonTableLayoutPanel2.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
             this.kryptonTableLayoutPanel2.TabIndex = 86;
             // 
+            // endPoint
+            // 
+            this.endPoint.BackColor = System.Drawing.Color.DarkCyan;
+            this.endPoint.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.endPoint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.endPoint.Location = new System.Drawing.Point(118, 29);
+            this.endPoint.Name = "endPoint";
+            this.endPoint.Size = new System.Drawing.Size(103, 19);
+            this.endPoint.TabIndex = 87;
+            this.endPoint.Text = "P2(x,y)";
+            // 
+            // label_y
+            // 
+            this.label_y.BackColor = System.Drawing.Color.DarkCyan;
+            this.label_y.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.label_y.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_y.Location = new System.Drawing.Point(48, 29);
+            this.label_y.Name = "label_y";
+            this.label_y.Size = new System.Drawing.Size(64, 19);
+            this.label_y.TabIndex = 86;
+            this.label_y.Text = "y";
+            // 
+            // startPoint
+            // 
+            this.startPoint.BackColor = System.Drawing.Color.DarkCyan;
+            this.startPoint.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.startPoint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.startPoint.Location = new System.Drawing.Point(118, 3);
+            this.startPoint.Name = "startPoint";
+            this.startPoint.Size = new System.Drawing.Size(103, 19);
+            this.startPoint.TabIndex = 86;
+            this.startPoint.Text = "P1(x,y)";
+            // 
+            // label_x
+            // 
+            this.label_x.BackColor = System.Drawing.Color.DarkCyan;
+            this.label_x.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.label_x.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_x.Location = new System.Drawing.Point(48, 3);
+            this.label_x.Name = "label_x";
+            this.label_x.Size = new System.Drawing.Size(64, 19);
+            this.label_x.TabIndex = 85;
+            this.label_x.Text = "x";
+            // 
             // label_H
             // 
             this.label_H.AutoSize = true;
@@ -1278,6 +1322,26 @@ namespace BreastCancerDetection
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Simulare";
             // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.textBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox2.Location = new System.Drawing.Point(6, 132);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(56, 26);
+            this.textBox2.TabIndex = 112;
+            this.textBox2.Text = "g(x,y) = ";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox1.Location = new System.Drawing.Point(6, 103);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(56, 26);
+            this.textBox1.TabIndex = 111;
+            this.textBox1.Text = "f(x,y) = ";
+            // 
             // dataGridView
             // 
             this.dataGridView.AllowUserToAddRows = false;
@@ -1700,50 +1764,6 @@ namespace BreastCancerDetection
             this.ModeleChart.TabIndex = 0;
             this.ModeleChart.Visible = false;
             // 
-            // label_x
-            // 
-            this.label_x.BackColor = System.Drawing.Color.DarkCyan;
-            this.label_x.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.label_x.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_x.Location = new System.Drawing.Point(48, 3);
-            this.label_x.Name = "label_x";
-            this.label_x.Size = new System.Drawing.Size(64, 19);
-            this.label_x.TabIndex = 85;
-            this.label_x.Text = "x";
-            // 
-            // label_y
-            // 
-            this.label_y.BackColor = System.Drawing.Color.DarkCyan;
-            this.label_y.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.label_y.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_y.Location = new System.Drawing.Point(48, 29);
-            this.label_y.Name = "label_y";
-            this.label_y.Size = new System.Drawing.Size(64, 19);
-            this.label_y.TabIndex = 86;
-            this.label_y.Text = "y";
-            // 
-            // startPoint
-            // 
-            this.startPoint.BackColor = System.Drawing.Color.DarkCyan;
-            this.startPoint.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.startPoint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.startPoint.Location = new System.Drawing.Point(118, 3);
-            this.startPoint.Name = "startPoint";
-            this.startPoint.Size = new System.Drawing.Size(103, 19);
-            this.startPoint.TabIndex = 86;
-            this.startPoint.Text = "P1(x,y)";
-            // 
-            // endPoint
-            // 
-            this.endPoint.BackColor = System.Drawing.Color.DarkCyan;
-            this.endPoint.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.endPoint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.endPoint.Location = new System.Drawing.Point(118, 29);
-            this.endPoint.Name = "endPoint";
-            this.endPoint.Size = new System.Drawing.Size(103, 19);
-            this.endPoint.TabIndex = 87;
-            this.endPoint.Text = "P2(x,y)";
-            // 
             // pictureBox
             // 
             this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1757,26 +1777,6 @@ namespace BreastCancerDetection
             this.pictureBox.TabStop = false;
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseMove);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox1.Location = new System.Drawing.Point(6, 103);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(56, 26);
-            this.textBox1.TabIndex = 111;
-            this.textBox1.Text = "f(x,y) = ";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.textBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox2.Location = new System.Drawing.Point(6, 132);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(56, 26);
-            this.textBox2.TabIndex = 112;
-            this.textBox2.Text = "g(x,y) = ";
             // 
             // Image_Analysis
             // 
