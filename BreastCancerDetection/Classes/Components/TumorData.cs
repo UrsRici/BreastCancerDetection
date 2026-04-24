@@ -40,6 +40,15 @@ namespace BreastCancerDetection.Classes
         public Dictionary<string, double> textureDatas = new Dictionary<string, double>();
         public Dictionary<string, double> morphologyDatas = new Dictionary<string, double>();
         public double prediction = 0.0;
+        public string predictionLabel
+        {
+            get
+            {
+                if (prediction >= 0.50) return "High Malignancy Risk";
+                else if (prediction >= 0.30) return "Moderate Malignancy Risk";
+                else return "Low Malignancy Risk";
+            }
+        }
         public static int levels = 32; // pentru GLCM
         public TumorData()
         {
@@ -496,7 +505,8 @@ namespace BreastCancerDetection.Classes
                 " • Statistics Data:\n" + string.Join("\n", statisticsDatas.Select(kv => $"     - {kv.Key}: {kv.Value:F4}")) +
                 "\n • Texture Data:\n" + string.Join("\n", textureDatas.Select(kv => $"     - {kv.Key}: {kv.Value:F4}")) +
                 "\n • Morphology Data:\n" + string.Join("\n", morphologyDatas.Select(kv => $"     - {kv.Key}: {kv.Value:F4}")) +
-                "\n • Malignancy Score: " + prediction.ToString("F4");
+                "\n • Malignancy Score: " + prediction.ToString("F4") +
+                "\n • " + predictionLabel;
         }
     }
 }

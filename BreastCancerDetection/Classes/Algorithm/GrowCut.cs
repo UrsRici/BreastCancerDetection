@@ -25,7 +25,7 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Aplică algoritmul GrowCut pe o matrice de date (imagine).
         /// </summary>
-        public static float[,] ApplyData(float[,] matrix, float th)
+        public static float[,] ApplyData(float[,] matrix, float th, bool check)
         {
 
             // Creăm o mască de dimensiuni corespunzătoare
@@ -42,7 +42,7 @@ namespace BreastCancerDetection.Classes
                     // Definim punctele care delimitează ROI-ul
                     Point p0 = new Point(Math.Max(0, data.X - data.Radius), Math.Max(0, data.Y - data.Radius));
                     Point p1 = new Point(Math.Min(matrix.GetLength(1) - 1, data.X + data.Radius), Math.Min(matrix.GetLength(0) - 1, data.Y + data.Radius));
-                    mask = MargeMask(Apply(matrix, th, p0, p1), mask);
+                    mask = MargeMask(Apply(matrix, th, p0, p1, check), mask);
                 }
             }
             return mask;
@@ -68,7 +68,7 @@ namespace BreastCancerDetection.Classes
         /// <summary>
         /// Aplică algoritmul GrowCut pe un ROI dat.
         /// </summary>
-        public static float[,] Apply(float[,] matrix, float th, Point p0, Point p1)
+        public static float[,] Apply(float[,] matrix, float th, Point p0, Point p1, bool check)
         {
             // Extragem regiunea de interes (ROI) din imagine
             float[,] ROI = new float[p1.Y - p0.Y, p1.X - p0.X];
@@ -126,18 +126,21 @@ namespace BreastCancerDetection.Classes
                 }
             }
             FillContur();
-            bool[] verif = Verify(points);
-            while (verif[0] || verif[1] || verif[2] || verif[3])
+            if (check)
             {
-                (p0, p1) = ChangeRoiPoints(matrix, p0, p1, 10, verif);
-                //ImagePopup.Show(points, "points");
-                points = Apply(matrix, th, p0, p1);
-                verif = Verify(points);
+                bool[] verif = GetVerify(points);
+                while (verif[0] || verif[1] || verif[2] || verif[3])
+                {
+                    (p0, p1) = ChangeRoiPoints(matrix, p0, p1, 10, verif);
+                    //ImagePopup.Show(points, "points");
+                    points = Apply(matrix, th, p0, p1, check);
+                    verif = GetVerify(points);
+                }
             }
             if (points.Length != matrix.Length) GetFullMask(matrix, p0, p1);
             return points;
         }
-        private static bool[] Verify(float[,] points)
+        private static bool[] GetVerify(float[,] points)
         {
             int height = points.GetLength(0);
             int width = points.GetLength(1);
@@ -189,7 +192,7 @@ namespace BreastCancerDetection.Classes
             points = matrix;
         }
         /// <summary>
-        /// Umple si sterge pixeli în interiorul conturului, bazându-se pe vecinii lor.
+        /// Umple sau sterge pixeli în interiorul conturului, bazându-se pe vecinii lor.
         /// </summary>
         private static void FillContur()
         {
@@ -268,11 +271,11 @@ namespace BreastCancerDetection.Classes
                 {
                     strength[y, x] = 0;
                     points[y, x] = ROI[y, x];
-                    if (ROI[y, x] > ROI[Y, X])
+                    /*if (ROI[y, x] > ROI[Y, X])
                     {
                         X = x;
                         Y = y;
-                    }
+                    }*/
                 }
             }
             // Setăm forța maximă pentru pixelul cu valoarea cea mai mare

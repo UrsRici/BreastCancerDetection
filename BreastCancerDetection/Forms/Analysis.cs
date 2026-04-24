@@ -12,6 +12,7 @@ using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Util;
 using Emgu.CV.Structure;
+using System.Text;
 
 namespace BreastCancerDetection
 {
@@ -62,12 +63,12 @@ namespace BreastCancerDetection
             try
             {
                 this.Cursor = Cursors.WaitCursor; // schimbă cursorul
-                Application.DoEvents();           // forțează refresh imediat
-                action();                         // execută acțiunea dorită
+                Application.DoEvents();          // forțează refresh imediat
+                action();                        // execută acțiunea dorită
             }
             finally
             {
-                this.Cursor = Cursors.Default;    // revine la normal
+                this.Cursor = Cursors.Default;   // revine la normal
             }
         }
         private void Button_information_Click(object sender, EventArgs e)
@@ -163,7 +164,7 @@ namespace BreastCancerDetection
                     string maskImagePath = Path.Combine(newFolderPath, fileName + "_mask.png");
                     img.mask.Save(maskImagePath);
 
-                    // Calea pentru imaginea combinată  // Calea pentru imaginea tumorii (pixelii reali din imagine)
+                    // Calea pentru imaginea combinată // Calea pentru imaginea tumorii (pixelii reali din imagine)
                     string combinedImagePath = Path.Combine(newFolderPath, fileName + "_combine.png");
                     string tumorImagePath = Path.Combine(newFolderPath, fileName + "_tumor.png");
                     Bitmap combinedImage = new Bitmap(img.width, img.height);
@@ -208,12 +209,35 @@ namespace BreastCancerDetection
                     }
 
                     // Save charts as images
-                    Button_Charts_Click(sender, e);
                     string cumulativeHistogramPath = Path.Combine(newFolderPath, fileName + "_cumulative_histogram.png");
                     string histogramPath = Path.Combine(newFolderPath, fileName + "_histogram.png");
                     chart_CumulativeHistogram.SaveImage(cumulativeHistogramPath, ChartImageFormat.Png);
                     chart_Histogram.SaveImage(histogramPath, ChartImageFormat.Png);
+                    
+                    // 🔹 Calea pentru fișierul text
+                    string dataFilePath = Path.Combine(newFolderPath, "data.txt");
 
+                    // 🔹 Construire conținut
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.AppendLine("=== Tissue Information ===");
+                    sb.AppendLine(Tissue_Info.Text);
+                    sb.AppendLine();
+
+                    sb.AppendLine("=== CLAHE Parameters ===");
+                    sb.AppendLine($"Contrast Limit: {contrastLimit.Text}");
+                    sb.AppendLine($"Window Size: {windowSize.Text}");
+                    sb.AppendLine();
+
+                    sb.AppendLine("=== GrowCut Parameters ===");
+                    sb.AppendLine($"Threshold: {thresHold.Value}");
+                    sb.AppendLine();
+
+                    sb.AppendLine("=== Tumor Data ===");
+                    sb.AppendLine(TextBoxTumors.Text);
+
+                    // 🔹 Scriere în fișier
+                    File.WriteAllText(dataFilePath, sb.ToString());
                     // Log info
                     MessageBox.Show("Images saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -233,7 +257,7 @@ namespace BreastCancerDetection
                 Button_typeTissue_Click(sender, e);     // Tissue Type
                 Button_CLAHE_Click(sender, e);          // CLAHE
                 Button_GrowCut_Click(sender, e);        // GrowCut
-                Button_Charts_Click(sender, e);         // Charts
+                button_Tumod_Info_Click(sender, e);     // Tumor Info
             });
         }
 
@@ -248,6 +272,7 @@ namespace BreastCancerDetection
                 preproces_iamge = img.ToBitmap();
 
                 img.ShowImage(pictureBox);
+                Button_Charts_Click(sender, e);
             });
         }
         private void Button_CLHE_Click(object sender, EventArgs e)
@@ -265,6 +290,7 @@ namespace BreastCancerDetection
                 img.Update(myBitmap);
 
                 img.ShowImage(pictureBox);
+                Button_Charts_Click(sender, e);
             });
         }
         private void Button_CLAHE_Click(object sender, EventArgs e)
@@ -280,6 +306,7 @@ namespace BreastCancerDetection
                 img.Update(MyClahe.Apply(img.ToBitmap(), cL, wS));
 
                 img.ShowImage(pictureBox);
+                Button_Charts_Click(sender, e);
             });
         }
         private void Button_typeTissue_Click(object sender, EventArgs e)
@@ -289,27 +316,42 @@ namespace BreastCancerDetection
                 Dictionary<string, float> Limit = new Dictionary<string, float>
                 {
                     { "Fatty", 5f },
-                    { "Fatty-Glandular", 3f },
-                    { "Dense-Glandular", 2f }
+                    { "Fatty-Glandular", 4f },
+                    { "Dense-Glandular", 3f }
                 };
-                    Dictionary<string, int> Size = new Dictionary<string, int>
+                Dictionary<string, int> Size = new Dictionary<string, int>
                 {
                     { "Fatty", 4 },
                     { "Fatty-Glandular", 6 },
                     { "Dense-Glandular", 8 }
                 };
+                Dictionary<string, float> Threshold = new Dictionary<string, float>
+                {
+                    { "Fatty", 0.70f },
+                    { "Fatty-Glandular", 0.80f },
+                    { "Dense-Glandular", 0.90f }
+                };
 
                 float climpLimit = 0f;
+                float th = 0f;
+
                 ModelOutput output = MLTissue.Predict(img.ToModelInput());
                 var info = MLTissue.GetSortedScoresWithLabels(output);
-                label_Tissue.Text = output.PredictedLabel;
-                Tissue_Info.Text = string.Empty;
 
+                label_Tissue.Text = output.PredictedLabel;
                 Tissue_Info.Text = string.Join("\n", info.Select(item => $"{item.Key}: {item.Value}%"));
+
+                // 🔹 calcul pentru CLAHE limit
                 climpLimit = info.Sum(item => Limit[item.Key] * item.Value / 100f);
 
+                // 🔹 calcul pentru threshold (identic ca logică)
+                th = info.Sum(item => Threshold[item.Key] * item.Value / 100f);
+
+                // 🔹 update UI
                 contrastLimit.Text = Math.Round(climpLimit, 2).ToString();
                 windowSize.Text = Size[output.PredictedLabel].ToString();
+
+                thresHold.Value = (decimal)Math.Round(th, 2);
 
             });
         }
@@ -347,7 +389,7 @@ namespace BreastCancerDetection
                     }
                 }
                 else MessageBox.Show("Please select an image first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            });        
+            });       
         }
         private void Button_RemoveROI_Click(object sender, EventArgs e)
         {
@@ -376,14 +418,14 @@ namespace BreastCancerDetection
                 if (pictureBox.ROIselect_Button_active) { Button_selectROI_Click(sender, e); }
 
                 Point p0 = new Point(
-                   Math.Min(ROIstartPoint.X, ROIendPoint.X),
-                   Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
+                    Math.Min(ROIstartPoint.X, ROIendPoint.X),
+                    Math.Min(ROIstartPoint.Y, ROIendPoint.Y));
 
                 Point p1 = new Point(
                     Math.Max(ROIstartPoint.X, ROIendPoint.X),
                     Math.Max(ROIstartPoint.Y, ROIendPoint.Y));
 
-                img.ApplyMask(GrowCut.Apply(img.matrix, (float)thresHold.Value, p0, p1));
+                img.ApplyMask(GrowCut.Apply(img.matrix, (float)thresHold.Value, p0, p1, ROI_Plus.Checked));
                 //img.ApplyMask(p0, p1, GrowCut.Apply(ROI, (float)thresHold.Value));
                 pictureBox.ResetROIfig();
                 img.Show(pictureBox);
@@ -402,7 +444,7 @@ namespace BreastCancerDetection
             {
                 ImageData.Load();
                 ImageData.LoadCurrentData(Path.GetFileNameWithoutExtension(filePath));
-                float[,] mask = GrowCut.ApplyData(img.matrix, (float)thresHold.Value);
+                float[,] mask = GrowCut.ApplyData(img.matrix, (float)thresHold.Value, ROI_Plus.Checked);
 
                 img.ApplyMask(mask);
                 pictureBox.ResetROIfig();
@@ -412,9 +454,12 @@ namespace BreastCancerDetection
         #endregion
 
         #region Diagrame
+
+        private float[] previousHistogram = null;
+        private bool hasFirstSeries = false;
         private void Button_Charts_Click(object sender, EventArgs e)
         {
-            float[] histogram = img.Histogram();
+            /*float[] histogram = img.Histogram();
             float[] cumulativeHistogram = img.CumulativeHistogram();
 
             Series his = chart_Histogram.Series["Pixel"];
@@ -423,7 +468,7 @@ namespace BreastCancerDetection
             his.Points.Clear();
             cHis.Points.Clear();
 
-            for (int i = 0; i < histogram.Length; i++)
+            for (int i = 1; i < histogram.Length; i++)
             {
                 his.Points.AddXY(i, histogram[i]);
                 cHis.Points.AddXY(i, cumulativeHistogram[i]);
@@ -438,7 +483,81 @@ namespace BreastCancerDetection
             for (int i = 0; i < cumulativeHistogram.Length; i++)
             {
                 points.Add(i, cumulativeHistogram[i]);
+            }*/
+            float[] histogram = img.Histogram();
+            float[] cumulativeHistogram = img.CumulativeHistogram();
+
+            // PRIMA APĂSARE
+            if (!hasFirstSeries)
+            {
+                chart_Histogram.Series.Clear();
+                chart_CumulativeHistogram.Series.Clear();
+
+                Series his1 = new Series("Histogram 1");
+                his1.ChartType = SeriesChartType.SplineArea;
+                his1.Color = Color.Blue;
+
+                Series cHis1 = new Series("Cumulative 1");
+                cHis1.ChartType = SeriesChartType.Line;
+                cHis1.BorderWidth = 3;
+                cHis1.Color = Color.Blue;
+
+                for (int i = 1; i < histogram.Length; i++)
+                {
+                    his1.Points.AddXY(i, histogram[i]);
+                    cHis1.Points.AddXY(i, cumulativeHistogram[i]);
+                }
+
+                chart_Histogram.Series.Add(his1);
+                chart_CumulativeHistogram.Series.Add(cHis1);
+
+                // salvăm prima serie
+                previousHistogram = (float[])histogram.Clone();
+                hasFirstSeries = true;
             }
+            // A DOUA APĂSARE
+            else
+            {
+                Series his2 = new Series("Histogram 2");
+                his2.ChartType = SeriesChartType.SplineArea;
+                his2.Color = Color.Red;
+
+                Series cHis2 = new Series("Cumulative 2");
+                cHis2.ChartType = SeriesChartType.Line;
+                cHis2.BorderWidth = 3;
+                cHis2.Color = Color.Red;
+
+                Series intersection = new Series("Intersection");
+                intersection.ChartType = SeriesChartType.SplineArea;
+                intersection.Color = Color.Purple;
+
+                for (int i = 1; i < histogram.Length; i++)
+                {
+                    his2.Points.AddXY(i, histogram[i]);
+                    cHis2.Points.AddXY(i, cumulativeHistogram[i]);
+
+                    // INTERSECȚIE = MINIMUL dintre cele două
+                    double minVal = Math.Min(previousHistogram[i], histogram[i]);
+                    intersection.Points.AddXY(i, minVal);
+                }
+
+                chart_Histogram.Series.Add(his2);
+                chart_Histogram.Series.Add(intersection);
+                chart_CumulativeHistogram.Series.Add(cHis2);
+
+                hasFirstSeries = false; // reset dacă vrei să o iei de la capăt la următoarea apăsare
+            }
+
+            // AXE (se actualizează corect pentru toate seriile)
+            var allHistValues = chart_Histogram.Series
+                .SelectMany(s => s.Points)
+                .Select(p => p.YValues[0]);
+
+            chart_Histogram.ChartAreas[0].AxisY.Minimum = 0;
+            chart_Histogram.ChartAreas[0].AxisY.Maximum = allHistValues.Max() * 1.05;
+
+            chart_CumulativeHistogram.ChartAreas[0].AxisY.Minimum = cumulativeHistogram.Min();
+            chart_CumulativeHistogram.ChartAreas[0].AxisY.Maximum = cumulativeHistogram.Max();
         }
         #endregion
 
@@ -528,7 +647,7 @@ namespace BreastCancerDetection
                     lastMousePosition.Y + currentButton.Location.Y + 68);
                 LabelInfoButton.Text = ButtonsInfo.GetInfo(currentButton.Name);
                 int numarRanduri = LabelInfoButton.GetLineFromCharIndex(LabelInfoButton.Text.Length);
-                LabelInfoButton.Height = 20 + 13 * numarRanduri;
+                LabelInfoButton.Height = 20 + 14 * numarRanduri;
                 LabelInfoButton.Visible = true;
                 currentButton.Cursor = Cursors.Help;
             }
@@ -542,7 +661,7 @@ namespace BreastCancerDetection
 
             Mat binaryMask = new Mat();
             CvInvoke.Threshold(grayMask, binaryMask, 1, 255, ThresholdType.Binary);
-            pictureBox.Image = binaryMask.Bitmap;
+            //pictureBox.Image = binaryMask.Bitmap;
 
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
             CvInvoke.FindContours(binaryMask, contours, null, RetrType.External, ChainApproxMethod.ChainApproxSimple);
@@ -550,7 +669,7 @@ namespace BreastCancerDetection
             Mat image = img.ToBitmap().ToMat();
             Mat mat = image.Clone();
             CvInvoke.DrawContours(mat, contours, -1, new MCvScalar(0, 255, 0), 1);
-            pictureBox.Image = mat.Bitmap;
+            //pictureBox.Image = mat.Bitmap;
 
             TumorsData tumorsData = new TumorsData(contours, image);
 
@@ -628,7 +747,10 @@ namespace BreastCancerDetection
             chart1.ChartAreas[0].AxisX.Interval = chart1.ChartAreas[0].AxisY.Interval = 10;
             chart1.ChartAreas[0].AxisX.Title = "Timp";
             chart1.ChartAreas[0].AxisY.Title = "Populație";
-            chart1.ChartAreas[0].AxisX.TitleFont = chart1.ChartAreas[0].AxisY.TitleFont = new Font("Times New ROman", 12, FontStyle.Bold);
+            chart1.ChartAreas[0].AxisX.TitleFont = chart1.ChartAreas[0].AxisY.TitleFont = new Font("Times New Roman", 12, FontStyle.Bold);
+            chart1.ChartAreas[0].AxisX.Minimum = chart1.ChartAreas[0].AxisY.Minimum = 0;
+            chart1.ChartAreas[0].AxisX.Maximum = (int)T_number.Value;
+            chart1.ChartAreas[0].AxisY.Maximum = 100;
 
             var s1 = chart1.Series.Add("f(x,y)");
             var s2 = chart1.Series.Add("g(x,y)");
@@ -670,7 +792,7 @@ namespace BreastCancerDetection
             chart2.ResumeLayout();
 
             // 📄 tabel
-
+            dataGridView.Rows.Clear();
             foreach (var p in solution)
             {
                 dataGridView.Rows.Add(p.t, p.x, p.y);

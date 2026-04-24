@@ -86,6 +86,7 @@ namespace BreastCancerDetection
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.kryptonTableLayoutPanel3 = new Krypton.Toolkit.KryptonTableLayoutPanel();
             this.kryptonTableLayoutPanel9 = new Krypton.Toolkit.KryptonTableLayoutPanel();
+            this.ROI_Plus = new System.Windows.Forms.CheckBox();
             this.thresHold = new Krypton.Toolkit.KryptonNumericUpDown();
             this.label_Threshold = new System.Windows.Forms.Label();
             this.kryptonTableLayoutPanel2 = new Krypton.Toolkit.KryptonTableLayoutPanel();
@@ -141,8 +142,8 @@ namespace BreastCancerDetection
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ModeleChart = new Krypton.Toolkit.KryptonTableLayoutPanel();
-            this.pictureBox = new BreastCancerDetection.Classes.MyImageBox();
             this.kryptonContextMenu1 = new Krypton.Toolkit.KryptonContextMenu();
+            this.pictureBox = new BreastCancerDetection.Classes.MyImageBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.kryptonTableLayoutPanel4.SuspendLayout();
@@ -192,6 +193,7 @@ namespace BreastCancerDetection
             this.LabelInfoButton.Location = new System.Drawing.Point(52, 498);
             this.LabelInfoButton.Name = "LabelInfoButton";
             this.LabelInfoButton.ReadOnly = true;
+            this.LabelInfoButton.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.LabelInfoButton.Size = new System.Drawing.Size(220, 37);
             this.LabelInfoButton.StateCommon.Back.Color1 = System.Drawing.Color.LightBlue;
             this.LabelInfoButton.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -572,6 +574,7 @@ namespace BreastCancerDetection
             this.Tissue_Info.Dock = System.Windows.Forms.DockStyle.Left;
             this.Tissue_Info.Location = new System.Drawing.Point(3, 139);
             this.Tissue_Info.Name = "Tissue_Info";
+            this.Tissue_Info.ReadOnly = true;
             this.Tissue_Info.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Tissue_Info.Size = new System.Drawing.Size(198, 69);
             this.Tissue_Info.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -695,7 +698,7 @@ namespace BreastCancerDetection
             this.tabPage3.BackColor = System.Drawing.Color.DarkCyan;
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage3.Controls.Add(this.kryptonTableLayoutPanel3);
-            this.tabPage3.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tabPage3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(450, 442);
@@ -728,9 +731,11 @@ namespace BreastCancerDetection
             // 
             // kryptonTableLayoutPanel9
             // 
-            this.kryptonTableLayoutPanel9.ColumnCount = 2;
-            this.kryptonTableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.kryptonTableLayoutPanel9.ColumnCount = 3;
+            this.kryptonTableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.kryptonTableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.kryptonTableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.kryptonTableLayoutPanel9.Controls.Add(this.ROI_Plus, 2, 0);
             this.kryptonTableLayoutPanel9.Controls.Add(this.thresHold, 1, 0);
             this.kryptonTableLayoutPanel9.Controls.Add(this.label_Threshold, 0, 0);
             this.kryptonTableLayoutPanel9.Location = new System.Drawing.Point(3, 101);
@@ -740,6 +745,20 @@ namespace BreastCancerDetection
             this.kryptonTableLayoutPanel9.Size = new System.Drawing.Size(218, 30);
             this.kryptonTableLayoutPanel9.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
             this.kryptonTableLayoutPanel9.TabIndex = 96;
+            // 
+            // ROI_Plus
+            // 
+            this.ROI_Plus.AutoSize = true;
+            this.ROI_Plus.BackColor = System.Drawing.Color.Transparent;
+            this.ROI_Plus.Checked = true;
+            this.ROI_Plus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ROI_Plus.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ROI_Plus.Location = new System.Drawing.Point(151, 3);
+            this.ROI_Plus.Name = "ROI_Plus";
+            this.ROI_Plus.Size = new System.Drawing.Size(64, 24);
+            this.ROI_Plus.TabIndex = 85;
+            this.ROI_Plus.Text = "ROI+";
+            this.ROI_Plus.UseVisualStyleBackColor = false;
             // 
             // thresHold
             // 
@@ -752,7 +771,7 @@ namespace BreastCancerDetection
             0,
             0,
             131072});
-            this.thresHold.Location = new System.Drawing.Point(90, 0);
+            this.thresHold.Location = new System.Drawing.Point(85, 0);
             this.thresHold.Margin = new System.Windows.Forms.Padding(0);
             this.thresHold.Maximum = new decimal(new int[] {
             1,
@@ -766,7 +785,7 @@ namespace BreastCancerDetection
             0});
             this.thresHold.Name = "thresHold";
             this.thresHold.PaletteMode = Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
-            this.thresHold.Size = new System.Drawing.Size(66, 29);
+            this.thresHold.Size = new System.Drawing.Size(62, 29);
             this.thresHold.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.thresHold.StateCommon.Border.Rounding = 5F;
             this.thresHold.StateCommon.Border.Width = 1;
@@ -1115,8 +1134,8 @@ namespace BreastCancerDetection
             // 
             this.kryptonTableLayoutPanel10.ColumnCount = 1;
             this.kryptonTableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.kryptonTableLayoutPanel10.Controls.Add(this.button_Tumod_Info, 0, 0);
             this.kryptonTableLayoutPanel10.Controls.Add(this.TextBoxTumors, 0, 1);
+            this.kryptonTableLayoutPanel10.Controls.Add(this.button_Tumod_Info, 0, 0);
             this.kryptonTableLayoutPanel10.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.kryptonTableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonTableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
@@ -1213,6 +1232,7 @@ namespace BreastCancerDetection
             this.kryptonButton2.TabIndex = 8;
             this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton2.Values.Text = "spatii suspicioase";
+            this.kryptonButton2.Visible = false;
             this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click_1);
             // 
             // kryptonTableLayoutPanel12
@@ -1328,6 +1348,7 @@ namespace BreastCancerDetection
             this.textBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox2.Location = new System.Drawing.Point(6, 132);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(56, 26);
             this.textBox2.TabIndex = 112;
             this.textBox2.Text = "g(x,y) = ";
@@ -1338,6 +1359,7 @@ namespace BreastCancerDetection
             this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox1.Location = new System.Drawing.Point(6, 103);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(56, 26);
             this.textBox1.TabIndex = 111;
             this.textBox1.Text = "f(x,y) = ";
@@ -1857,6 +1879,7 @@ namespace BreastCancerDetection
         private KryptonButton button_GrowCutOnROI;
         private KryptonButton button_RemoveROI;
         private MyImageBox pictureBox;
+        private CheckBox ROI_Plus;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
