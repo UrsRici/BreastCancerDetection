@@ -233,6 +233,10 @@ namespace BreastCancerDetection
                     sb.AppendLine($"Threshold: {thresHold.Value}");
                     sb.AppendLine();
 
+                    sb.AppendLine("=== GLCM Parameters ===");
+                    sb.AppendLine($"Gray Level: {grayLevel.Value}");
+                    sb.AppendLine();
+
                     sb.AppendLine("=== Tumor Data ===");
                     sb.AppendLine(TextBoxTumors.Text);
 
@@ -671,7 +675,7 @@ namespace BreastCancerDetection
             CvInvoke.DrawContours(mat, contours, -1, new MCvScalar(0, 255, 0), 1);
             //pictureBox.Image = mat.Bitmap;
 
-            TumorsData tumorsData = new TumorsData(contours, image);
+            TumorsData tumorsData = new TumorsData(contours, image, (int)grayLevel.Value);
 
             TextBoxTumors.Text = tumorsData.ToString();
         }

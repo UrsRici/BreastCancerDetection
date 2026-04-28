@@ -143,6 +143,9 @@ namespace BreastCancerDetection
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ModeleChart = new Krypton.Toolkit.KryptonTableLayoutPanel();
             this.kryptonContextMenu1 = new Krypton.Toolkit.KryptonContextMenu();
+            this.kryptonTableLayoutPanel15 = new Krypton.Toolkit.KryptonTableLayoutPanel();
+            this.grayLevel = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox = new BreastCancerDetection.Classes.MyImageBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -172,6 +175,7 @@ namespace BreastCancerDetection
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.ModeleChart.SuspendLayout();
+            this.kryptonTableLayoutPanel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1135,10 +1139,11 @@ namespace BreastCancerDetection
             this.kryptonTableLayoutPanel10.ColumnCount = 1;
             this.kryptonTableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.kryptonTableLayoutPanel10.Controls.Add(this.TextBoxTumors, 0, 1);
-            this.kryptonTableLayoutPanel10.Controls.Add(this.button_Tumod_Info, 0, 0);
+            this.kryptonTableLayoutPanel10.Controls.Add(this.kryptonTableLayoutPanel15, 0, 0);
             this.kryptonTableLayoutPanel10.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.kryptonTableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonTableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
+            this.kryptonTableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
             this.kryptonTableLayoutPanel10.Name = "kryptonTableLayoutPanel10";
             this.kryptonTableLayoutPanel10.RowCount = 2;
             this.kryptonTableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
@@ -1154,7 +1159,7 @@ namespace BreastCancerDetection
             this.button_Tumod_Info.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_Tumod_Info.Location = new System.Drawing.Point(3, 3);
             this.button_Tumod_Info.Name = "button_Tumod_Info";
-            this.button_Tumod_Info.Size = new System.Drawing.Size(218, 44);
+            this.button_Tumod_Info.Size = new System.Drawing.Size(214, 44);
             this.button_Tumod_Info.StateCommon.Border.Rounding = 10F;
             this.button_Tumod_Info.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Tumod_Info.TabIndex = 76;
@@ -1786,6 +1791,74 @@ namespace BreastCancerDetection
             this.ModeleChart.TabIndex = 0;
             this.ModeleChart.Visible = false;
             // 
+            // kryptonTableLayoutPanel15
+            // 
+            this.kryptonTableLayoutPanel15.ColumnCount = 3;
+            this.kryptonTableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.kryptonTableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.kryptonTableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.kryptonTableLayoutPanel15.Controls.Add(this.button_Tumod_Info, 0, 0);
+            this.kryptonTableLayoutPanel15.Controls.Add(this.grayLevel, 2, 0);
+            this.kryptonTableLayoutPanel15.Controls.Add(this.label1, 1, 0);
+            this.kryptonTableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonTableLayoutPanel15.Location = new System.Drawing.Point(0, 0);
+            this.kryptonTableLayoutPanel15.Margin = new System.Windows.Forms.Padding(0);
+            this.kryptonTableLayoutPanel15.Name = "kryptonTableLayoutPanel15";
+            this.kryptonTableLayoutPanel15.RowCount = 1;
+            this.kryptonTableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.kryptonTableLayoutPanel15.Size = new System.Drawing.Size(450, 50);
+            this.kryptonTableLayoutPanel15.StateCommon.Color1 = System.Drawing.Color.DarkCyan;
+            this.kryptonTableLayoutPanel15.TabIndex = 78;
+            // 
+            // grayLevel
+            // 
+            this.grayLevel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.grayLevel.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.grayLevel.Location = new System.Drawing.Point(319, 11);
+            this.grayLevel.Margin = new System.Windows.Forms.Padding(3, 11, 3, 3);
+            this.grayLevel.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.grayLevel.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.grayLevel.Name = "grayLevel";
+            this.grayLevel.PaletteMode = Krypton.Toolkit.PaletteMode.ProfessionalOffice2003;
+            this.grayLevel.Size = new System.Drawing.Size(62, 29);
+            this.grayLevel.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grayLevel.StateCommon.Border.Rounding = 5F;
+            this.grayLevel.StateCommon.Border.Width = 1;
+            this.grayLevel.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grayLevel.StateCommon.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Center;
+            this.grayLevel.TabIndex = 86;
+            this.grayLevel.Value = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(223, 3);
+            this.label1.Margin = new System.Windows.Forms.Padding(3);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label1.Size = new System.Drawing.Size(90, 44);
+            this.label1.TabIndex = 87;
+            this.label1.Text = "Gray Level:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pictureBox
             // 
             this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1856,6 +1929,8 @@ namespace BreastCancerDetection
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ModeleChart.ResumeLayout(false);
+            this.kryptonTableLayoutPanel15.ResumeLayout(false);
+            this.kryptonTableLayoutPanel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -1951,6 +2026,9 @@ namespace BreastCancerDetection
         private KryptonContextMenu kryptonContextMenu1;
         private TextBox textBox2;
         private TextBox textBox1;
+        private KryptonTableLayoutPanel kryptonTableLayoutPanel15;
+        private KryptonNumericUpDown grayLevel;
+        private Label label1;
     }
 }
 

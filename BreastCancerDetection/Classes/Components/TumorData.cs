@@ -17,12 +17,12 @@ namespace BreastCancerDetection.Classes
         {
             this.tumors = new Dictionary<int, TumorData>();
         }
-        public TumorsData(VectorOfVectorOfPoint contours, Mat image)
+        public TumorsData(VectorOfVectorOfPoint contours, Mat image, int grayLevel)
         {
             for (int i = 0; i < contours.Size; i++)
             {
                 VectorOfPoint contour = contours[i];
-                tumors.Add(i, new TumorData(contour, image));
+                tumors.Add(i, new TumorData(contour, image, grayLevel));
             }
         }
         public void Add(TumorData tumor)
@@ -58,8 +58,9 @@ namespace BreastCancerDetection.Classes
             this.prediction = 0.0;
         }
 
-        public TumorData(VectorOfPoint contour, Mat image)
+        public TumorData(VectorOfPoint contour, Mat image, int grayLevel)
         {
+            levels = grayLevel;
             CalculateStatisticsDatas(contour, image);
             CalculateTextureDatas(contour, image);
             CalculateMorphologyDatas(contour);
