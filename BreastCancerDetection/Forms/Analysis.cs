@@ -745,6 +745,9 @@ namespace BreastCancerDetection
             var trajectories = solver.SolvePhase();
 
             // 🔵 chart1
+            chart1.Titles.Clear();
+            chart1.Titles.Add("Evoluția populațiilor");
+            chart1.Titles[0].Font = new Font("Times New Roman", 14, FontStyle.Bold);
             chart1.Series.Clear();
             chart1.SuspendLayout();
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = chart1.ChartAreas[0].AxisY.LabelStyle.Format = "F0";
@@ -771,6 +774,9 @@ namespace BreastCancerDetection
             chart1.ResumeLayout();
 
             // 🔴 chart2
+            chart2.Titles.Clear();
+            chart2.Titles.Add("Spațiul fazelor");
+            chart2.Titles[0].Font = new Font("Times New Roman", 14, FontStyle.Bold);
             chart2.Series.Clear();
             chart2.SuspendLayout();
             chart2.ChartAreas[0].AxisX.LabelStyle.Format = chart2.ChartAreas[0].AxisY.LabelStyle.Format = "F0";
